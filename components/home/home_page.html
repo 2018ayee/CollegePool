@@ -4,8 +4,18 @@
 <link rel="stylesheet" type="text/css" href="../app.css"/>
 
 <body>
-
-<!-- Tab links -->
+	<div class="info">
+		<img src="../../img/sample_profile.jpg" alt="Profile Photo" id="profile_pic">
+		<h3 id="username">Adam Yee</h3>
+		<h3 id="user_university">University of Virginia</h3>
+		<div class="userStats">
+			<span id="user_rides_given" class="userData">Rides Given: </span>
+			<span id="num_rides_given"></span>
+			<span id="user_rides_received" class="userData">Rides Received: </span>
+			<span id="num_rides_received"></span>
+		</div>
+	</div>
+	<!-- Tab links -->
 	<div class="tab">
 	  <button class="tablinks" onclick="changeTab(event, 'Feed')" id="defaultTab">Feed</button>
 	  <button class="tablinks" onclick="changeTab(event, 'Post')">Post</button>
