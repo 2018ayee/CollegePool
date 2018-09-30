@@ -1,28 +1,51 @@
-document.getElementById("defaultTab").click();
-document.getElementById("defaultModalTab").click();
-// Get the modal
-var modal = document.getElementById('myModal');
+init();
+function init(){
+    // window.addEventListener("resize", onWindowResize());
+    document.getElementById("defaultTab").click();
+    document.getElementById("defaultModalTab").click();
+    var size = "" + (window.innerWidth - 600) + "px";
+    console.log(size);
+    var tabcontents = document.getElementsByClassName('tabcontent')
+    for(var x = 0; x < tabcontents.length; x++)
+    {
+        tabcontents[x].style.width = size;
+    }
 
-// Get the button that opens the modal
-var btn = document.getElementById("Post");
+    // Get the modal
+    var modal = document.getElementById('myModal');
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    // Get the button that opens the modal
+    var btn = document.getElementById("Post");
 
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
         modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
+window.onresize = function(event){
+    console.log("resize")
+    var size = "" + (window.innerWidth - 600) + "px";
+    console.log(size);
+    var tabcontents = document.getElementsByClassName('tabcontent')
+    for(var x = 0; x < tabcontents.length; x++)
+    {
+        tabcontents[x].style.width = size;
     }
 }
 
@@ -70,4 +93,33 @@ function changeModalTab(evt, tab){
 
 function submitOffer(){
     span.click();
+}
+
+function filter(newsType){
+    requestContent = document.getElementsByClassName("request");
+    offerContent = document.getElementsByClassName("offer");
+    if(newsType == "offer"){
+        for (i = 0; i < requestContent.length; i++) {
+            requestContent[i].style.display = "none";
+        }
+        for (i = 0; i < offerContent.length; i++) {
+            offerContent[i].style.display = "block";
+        }
+    }
+    else if(newsType == "request"){
+        for (i = 0; i < requestContent.length; i++) {
+            requestContent[i].style.display = "block";
+        }
+        for (i = 0; i < offerContent.length; i++) {
+            offerContent[i].style.display = "none";
+        }
+    }
+    else if(newsType == "all"){
+        for (i = 0; i < requestContent.length; i++) {
+            requestContent[i].style.display = "block";
+        }
+        for (i = 0; i < offerContent.length; i++) {
+            offerContent[i].style.display = "block";
+        }
+    }
 }
