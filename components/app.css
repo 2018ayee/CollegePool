@@ -53,6 +53,46 @@
     background-color: #ccc;
 }
 
+/* Style the tab */
+.modaltab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width:50%;
+    margin: auto;
+}
+
+/* Style the buttons that are used to open the tab content */
+.modaltab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    width:50%;
+}
+
+/* Change background color of buttons on hover */
+.modaltab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.modaltab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.modaltabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
 /* Style the tab content */
 .tabcontent {
     float: left;
@@ -63,6 +103,7 @@
     height: 300px;
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
 }
+
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
     from {opacity: 0;}
@@ -79,6 +120,25 @@
 img{
     border-radius: 50%;
 }
+.submitbutton{
+    display: block;
+    background-color: #f1f1f1;
+    color: black;
+    padding: 22px 16px;
+    width: 75%;
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    margin:auto;
+}
+
+/* Change background color of buttons on hover */
+button:hover {
+    background-color: #ddd;
+}
+
 #username {
     float: left;
     margin-top: 30px;
@@ -100,4 +160,66 @@ img{
 }
 .info{
     display: inline-block;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    animation: fadeEffect 0.5s; /* Fading effect takes 1 second */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.address_text {
+    width: 300px;
+}
+
+.form {
+    padding-bottom: 100px;
+    margin:auto;
+}
+
+.comments {
+    width: 700px;
+    height: 150px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    font-size: 14px;
+    resize: none;
 }

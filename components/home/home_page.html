@@ -4,6 +4,49 @@
 <link rel="stylesheet" type="text/css" href="../app.css"/>
 
 <body>
+		<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <div class="modaltab">
+		  <button class="modaltablinks" onclick="changeModalTab(event, 'Offer')" id="defaultModalTab">Offer Ride</button>
+		  <button class="modaltablinks" onclick="changeModalTab(event, 'Request')">Request Ride</button>
+		</div>
+		<div id="Offer" class="modaltabcontent">
+		    <form class="form">
+				Departure date:<br>
+				<input type="datetime-local" name="departure"><br><br>
+				Pick up address:<br>
+				<input type="text" class="address_text" name="pickup"><br><br>
+				Destination address:<br>
+				<input type="text" class="address_text" name="destination"><br><br>
+				Capacity:
+				<input type="text" name="capacity">
+				Price:
+				<input type="text" name="price"><br><br>
+				Additional Comments:<br><br>
+				<textarea></textarea>
+			</form>
+			<button class="submitbutton" onclick="submitOffer()">Post</button>
+		</div>
+		<div id="Request" class="modaltabcontent">
+		    <form class="form">
+		    	Departure date:<br>
+				<input type="datetime-local" name="departure"><br><br>
+				Pick up address:<br>
+				<input type="text" class="address_text" name="pickup"><br><br>
+				Destination address:<br>
+				<input type="text" class="address_text" name="destination"><br><br>
+				Additional Comments:<br><br>
+				<textarea></textarea>
+			</form>
+			<button class="submitbutton" onclick="submitRequest()">Post</button>
+		</div>
+	  </div>
+
+	</div>
 	<div class="info">
 		<img src="../../img/sample_profile.jpg" alt="Profile Photo" id="profile_pic">
 		<h3 id="username">Adam Yee</h3>
@@ -18,7 +61,7 @@
 	<!-- Tab links -->
 	<div class="tab">
 	  <button class="tablinks" onclick="changeTab(event, 'Feed')" id="defaultTab">Feed</button>
-	  <button class="tablinks" onclick="changeTab(event, 'Post')">Post</button>
+	  <button class="tablinks" id="Post">Post</button>
 	  <button class="tablinks" onclick="changeTab(event, 'History')">History</button>
 	  <button class="tablinks" onclick="changeTab(event, 'Settings')">Settings</button>
 	</div>
