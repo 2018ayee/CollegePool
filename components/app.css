@@ -109,7 +109,6 @@
     from {opacity: 0;}
     to {opacity: 1;}
 }
-
 #profile_pic {
     float: left;
     margin-top: 30px;
@@ -222,4 +221,58 @@ textarea {
     border: 1px solid #888;
     font-size: 14px;
     resize: none;
+}
+.feed1{
+    height:40%;
+    width:60%;
+    border:2px solid black;
+    float:left;
+}
+
+.pfp{
+    height:45px;
+    width:45px;
+    align-content: center;
+    float:left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.header { 
+color:black;
+font-size:24pt;
+text-decoration:underline;
+line-height:.1;
+font-weight:bold;
+padding-top: 10px;
+ }
+
+ .details{
+    color:black;
+font-size:14pt;
+line-height:.2;
+}
+
+.destination{
+    height:125px;
+    width:250px;
+    display:block;
+    margin: 0 auto;
+}
+
+.buttons{
+    color:black;
+    display:block;
+    background-color:white;
+    padding: 4px 4px;
+    width: 18%;
+    border: 2px solid black; 
+    outline: 2px solid red;
+    text-align: right;
+    float:right;
+    font-size:24pt;
+}
+.buttonhouse{
+    padding-right: 5%;
+    color:background;
 }

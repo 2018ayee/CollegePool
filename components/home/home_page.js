@@ -71,3 +71,51 @@ function changeModalTab(evt, tab){
 function submitOffer(){
     span.click();
 }
+function multiply() {
+    var div = document.createElement("div");
+    div.id = "feed";
+    div.className = "feed1";
+    div.style.display = "all";
+    document.getElementById('bigfeed').appendChild(div);
+    
+    var divtext = document.createElement("div");
+    document.getElementById('feed').appendChild(divtext);
+    divtext.id = "text1";
+    
+    var img = document.createElement("IMG");
+    document.getElementById('text1').appendChild(img);
+    img.id = "pfp";
+    document.getElementById("pfp");
+    img.className = "pfp";
+    
+    var header1 = document.createElement("h1");
+    document.getElementById('text1').appendChild(header1);
+    header1.id = "name";
+    header1.innerHTML = "Name";
+    header1.className = "header";
+    
+    var p1 = document.createElement('p');
+    document.getElementById('text1').appendChild(p1);
+    p1.id = "details1";
+    p1.innerHTML = "Departure day for $$$$$";
+    p1.className = "details";
+    
+    var map1 = document.createElement("IMG")
+    document.getElementById('text1').appendChild(map1);
+    map1.id = "map1";
+    map1.className = "destination";
+
+    var buttonhouse1 = document.createElement("div");
+    document.getElementById('text1').appendChild(buttonhouse1);
+    buttonhouse1.id = "buttonhouse1";
+    buttonhouse1.className = "buttonhouse";
+    
+    var connect = document.createElement("button");
+    document.getElementById('buttonhouse1').appendChild(connect);
+    connect.id = "connect";
+    connect.className = "buttons";
+    connect.innerHTML = "Connect";
+
+
+
+}

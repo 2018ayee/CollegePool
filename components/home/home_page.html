@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
-
+<title> Cop a Ride </title>
+<link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="../app.css"/>
 
 <body>
-		<!-- The Modal -->
-	<div id="myModal" class="modal">
-
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
@@ -58,17 +56,21 @@
 			<span id="num_rides_received"></span>
 		</div>
 	</div>
-	<!-- Tab links -->
-	<div class="tab">
-	  <button class="tablinks" onclick="changeTab(event, 'Feed')" id="defaultTab">Feed</button>
-	  <button class="tablinks" id="Post">Post</button>
-	  <button class="tablinks" onclick="changeTab(event, 'History')">History</button>
-	  <button class="tablinks" onclick="changeTab(event, 'Settings')">Settings</button>
-	</div>
 
 	<!-- Tab content -->
 	<div id="Feed" class="tabcontent">
 	  <h3>News Feed</h3>
+	 	<div id="bigfeed" style="display:all;">
+			<div id="N1" class="feed1" style="display: all;">
+				<div id="text"> 
+					<img src="pfp.jpeg" class="pfp"> </img>
+					<h1 class="header"> Name </h1>
+					<p class="details"> Departure day for $$$$ </p>
+					<img src="map.jpeg" class="destination"> </img>
+				<button class="buttons" onclick="multiply()">Post</button> 
+				<div id="buttonhouse" class="buttonhouse"><button class="buttons">Connect</button> </div>
+			</div>
+		</div>
 	</div>
 
 	<div id="Post" class="tabcontent">
