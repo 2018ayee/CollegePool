@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="../app.css"/>
 
 <body>
+	<div id="myModal" class = "modal">
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
@@ -55,6 +56,14 @@
 			<span id="user_rides_received" class="userData">Rides Received: </span>
 			<span id="num_rides_received"></span>
 		</div>
+	</div>
+
+<!-- Tab links -->
+	<div class="tab">
+	  <button class="tablinks" onclick="changeTab(event, 'Feed')" id="defaultTab">Feed</button>
+	  <button class="tablinks" id="Post">Post</button>
+	  <button class="tablinks" onclick="changeTab(event, 'History')">History</button>
+	  <button class="tablinks" onclick="changeTab(event, 'Settings')">Settings</button>
 	</div>
 
 	<!-- Tab content -->
