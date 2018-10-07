@@ -8,24 +8,27 @@
 	background-color: #a0c4ff;
 }
 .info {
-    position: fixed;
-    top: 15px;
-    right: 15px;
+/*    position: fixed;
+    top: 35px;
+    right: 35px;*/
+    margin-top: 35px;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
     text-align: center;
-    width: 450px;
+    width: 400px;
     height: 200px;
 }
 /* Style the tab */
 .tab {
-    position: fixed;
-    right: 15px;
-    top: 350px;
+/*    position: fixed;
+    right: 35px;
+    top: 350px;*/
+    margin-top:160px;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    width: 450px;
-    height: 236px;
+    background-color: #ffffff;
+    width: 400px;
+    display:inline-block;
+    overflow: auto;
     text-align: center;
 }
 
@@ -97,10 +100,10 @@
 .tabcontent {
     float: left;
     padding: 0px 12px;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     width: 70%;
     border-left: none;
-    height: 300px;
+    height: 100%;
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
 }
 
@@ -108,6 +111,18 @@
 @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
+}
+
+#Feed {
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
+}
+
+#history{
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
 }
 
 #profile_pic {
@@ -226,4 +241,142 @@ textarea {
     border: 1px solid #888;
     font-size: 14px;
     resize: none;
+}
+.feed1{
+    height:40%;
+    width:600px;
+    border:2px solid black;
+    float:left;
+}
+
+.pfp{
+    height:45px;
+    width:45px;
+    align-content: center;
+    float:left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.header { 
+color:black;
+font-size:24pt;
+text-decoration:underline;
+line-height:.1;
+font-weight:bold;
+padding-top: 10px;
+ }
+
+ .details{
+color:black;
+font-size:14pt;
+line-height:.2;
+}
+
+.destination{
+    height:125px;
+    width:250px;
+    display:block;
+    margin: 0 auto;
+}
+
+.buttons{
+    color:black;
+    display:block;
+    background-color:white;
+    padding: 4px 4px;
+    width: 18%;
+    border: 2px solid black; 
+    outline: 2px solid red;
+    text-align: right;
+    float:right;
+    font-size:24px;
+}
+.buttonhouse{
+    padding-right: 5%;
+    color:background;
+}
+#bigfeed {
+    padding-left: 20%;
+    width:100%;
+    display:block;
+    overflow: auto;
+}
+.login {
+    display: block;
+    background-color: inherit;
+    color: #ac00e6;
+    padding: 8px 32px;
+    border: 1px solid #ac00e6;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    float: center;
+    margin: auto; 
+    font-weight: 700;
+    font-family: "Segoe UI",Arial,sans-serif;
+    margin-bottom: 15px;
+    width: 18%;
+}
+.login:hover {
+    background-color: #f9e6ff;
+}
+.login_wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+}
+.content-right {
+    width: 50%;
+    height: 100%;
+    display: table;
+    position: absolute;
+    left:50%;
+    top:0%;
+}
+.content-left {
+    width: 50%;
+    height: 100%;
+    display: table;
+    position: absolute;
+    left:0%;
+    top:0%;
+    /*background-color: #f2ccff;*/
+    background-color: #d8c3ec;
+    text-align: center;
+}
+.login_info {
+    color: white;
+    font-size: 32px;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: "Segoe UI",Arial,sans-serif;
+}
+.slogans {
+    font-size: 24px;
+}
+.circle {
+    position:absolute;
+    border-radius: 50%;
+    width: 1500px;
+    height: 1500px; 
+    background-color: #ac00e6;
+    z-index: 2;
+    top:10%;
+    left:10%;
+}
+.right-background {
+    width:465px;
+    height: 100vh;
+    top:0;
+    right:0;
+    position:fixed;
+    background-color: #f1f1f1;
+    text-align: center;
+    display:inline-block;
+}
+body {
+    font-family: "Segoe UI",Arial,sans-serif;
 }

@@ -1,3 +1,5 @@
+var blocks = 1;
+var span;
 init();
 function init(){
     // window.addEventListener("resize", onWindowResize());
@@ -18,7 +20,7 @@ function init(){
     var btn = document.getElementById("Post");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on the button, open the modal 
     btn.onclick = function() {
@@ -91,8 +93,25 @@ function changeModalTab(evt, tab){
     evt.currentTarget.className += " active";
 }
 
-function submitOffer(){
+function submit(type){
     span.click();
+    if(type == 'offer')
+    {
+        var departureDate = document.getElementById("departureOffer").value;
+        var pickup = document.getElementById("pickupOffer").value;
+        var destination = document.getElementById("destinationOffer").value;
+        var price = document.getElementById("priceOffer").value;
+        var capacity = document.getElementById("capacityOffer").value;
+        var comments = document.getElementById("commentsOffer").value;
+        addPost(departureDate, pickup, destination, comments, price, capacity);
+    }
+    else{
+        var departureDate = document.getElementById("departureRequest").value;
+        var pickup = document.getElementById("pickupRequest").value;
+        var destination = document.getElementById("destinationRequest").value;
+        var comments = document.getElementById("commentsOffer").value;
+        addPost(departureDate, pickup, destination, comments);
+    }
 }
 
 function filter(newsType){
@@ -122,4 +141,62 @@ function filter(newsType){
             offerContent[i].style.display = "block";
         }
     }
+}
+function toHistory(){
+    location.href="http://localhost:8080/components/history/history_page.html";
+}
+function toSettings(){
+    location.href="http://localhost:8080/components/settings/settings_page.html";
+}
+function addPost(date, pickup, destination, comments, price, capacity) {
+    var div = document.createElement("div");
+    div.id = "feed"+blocks;
+    div.className = "feed1";
+    div.style.display = "all";
+    div.style.marginTop = "50px";
+    div.style.marginBottom = "50px";
+    //div.style.paddingLeft = "20%";
+    //div.style.width = "40%";
+    document.getElementById('bigfeed').appendChild(div);
+    
+    var divtext = document.createElement("div");
+    document.getElementById('feed'+blocks).appendChild(divtext);
+    divtext.id = "text"+blocks;
+    
+    var img = document.createElement("IMG");
+    document.getElementById('text'+blocks).appendChild(img);
+    img.id = "pfp"+blocks;
+    document.getElementById("pfp");
+    img.className = "pfp";
+    img.src = "../../img/sample_profile.jpg";
+    
+    var header1 = document.createElement("h1");
+    document.getElementById('text'+blocks).appendChild(header1);
+    header1.id = "name"+blocks;
+    header1.innerHTML = "Adam Yee";
+    header1.className = "header";
+    
+    var p1 = document.createElement('p');
+    document.getElementById('text'+blocks).appendChild(p1);
+    p1.id = "details"+blocks;
+    p1.innerHTML = "Leaving " + date + " from " + pickup + " to " + destination + " for " + price;
+    p1.className = "details";
+    
+    var map1 = document.createElement("IMG")
+    document.getElementById('text'+blocks).appendChild(map1);
+    map1.id = "map"+blocks;
+    map1.className = "destination";
+    map1.src = "../../img/virginia_map.jpg";
+
+    var buttonhouse1 = document.createElement("div");
+    document.getElementById('text'+blocks).appendChild(buttonhouse1);
+    buttonhouse1.id = "buttonhouse"+blocks;
+    buttonhouse1.className = "buttonhouse";
+    
+    var connect = document.createElement("button");
+    document.getElementById('buttonhouse'+blocks).appendChild(connect);
+    connect.id = "connect"+blocks;
+    connect.className = "buttons";
+    connect.innerHTML = "Connect";
+    blocks++;
 }
