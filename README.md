@@ -1,6 +1,6 @@
 # CollegePool
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.##Running the appFirst, run `npm install` to install all dependencies. Then, `npm start` will start a dev server on `http://localhost:4200/`.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.## Running the appFirst, run `npm install` to install all dependencies. Then, `npm start` will start a dev server on `http://localhost:4200/`.
 
 ## Development server
 
