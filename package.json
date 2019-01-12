@@ -20,7 +20,9 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@auth0/angular-jwt": "^2.0.0",
     "amazon-cognito-auth-js": "^1.2.4",
+    "amazon-cognito-js": "^1.1.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"

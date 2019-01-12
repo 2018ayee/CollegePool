@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,6 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 	blocks = 1;
 	span;
+	userInfo;
 	constructor(private router: Router) { }
 
 	ngOnInit() {
@@ -21,7 +24,7 @@ export class HomeComponent implements OnInit {
 	    var tabcontents = document.getElementsByClassName('tabcontent')
 	    for(var x = 0; x < tabcontents.length; x++)
 	    {
-	        tabcontents[x].style.width = size;
+	        (tabcontents[x] as HTMLInputElement).style.width = size;
 	    }
 
 	    // Get the modal
@@ -49,6 +52,21 @@ export class HomeComponent implements OnInit {
 	            modal.style.display = "none";
 	        }
 	    }
+
+		var idToken = this.getParameterByName("id_token");
+		this.userInfo = this.decodeToken(idToken);
+
+		(document.getElementById("username") as HTMLInputElement).innerHTML = this.userInfo.name;
+	}
+	decodeToken(idToken)
+	{
+		const helper = new JwtHelperService();
+
+		const decodedToken = helper.decodeToken(idToken);
+		const expirationDate = helper.getTokenExpirationDate(idToken);
+		const isExpired = helper.isTokenExpired(idToken);
+		console.log(decodedToken);
+		return decodedToken;
 	}
 	// window.onresize = function(event){
 	//     console.log("resize")
@@ -61,6 +79,16 @@ export class HomeComponent implements OnInit {
 	//     }
 	// }
 
+	getParameterByName(name) {
+	    var url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&#]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+
 	changeTab(evt, tab){
 		// Declare all variables
 	    var i, tabcontent, tablinks;
@@ -68,7 +96,7 @@ export class HomeComponent implements OnInit {
 	    // Get all elements with class="tabcontent" and hide them
 	    tabcontent = document.getElementsByClassName("tabcontent");
 	    for (i = 0; i < tabcontent.length; i++) {
-	        tabcontent[i].style.display = "none";
+	        (tabcontent[i] as HTMLElement).style.display = "none";
 	    }
 
 	    // Get all elements with class="tablinks" and remove the class "active"
@@ -107,53 +135,53 @@ export class HomeComponent implements OnInit {
 	    this.span.click();
 	    if(type == 'offer')
 	    {
-	        var departureDate = document.getElementById("departureOffer").value;
-	        var pickup = document.getElementById("pickupOffer").value;
-	        var destination = document.getElementById("destinationOffer").value;
-	        var price = document.getElementById("priceOffer").value;
-	        var capacity = document.getElementById("capacityOffer").value;
-	        var comments = document.getElementById("commentsOffer").value;
+	        var departureDate = (document.getElementById("departureOffer") as HTMLInputElement).value;
+	        var pickup = (document.getElementById("pickupOffer") as HTMLInputElement).value;
+	        var destination = (document.getElementById("destinationOffer") as HTMLInputElement).value;
+	        var price = (document.getElementById("priceOffer") as HTMLInputElement).value;
+	        var capacity = (document.getElementById("capacityOffer") as HTMLInputElement).value;
+	        var comments = (document.getElementById("commentsOffer") as HTMLInputElement).value;
 	        this.addPost(departureDate, pickup, destination, comments, price, capacity);
 	    }
 	    else{
-	        var departureDate = document.getElementById("departureRequest").value;
-	        var pickup = document.getElementById("pickupRequest").value;
-	        var destination = document.getElementById("destinationRequest").value;
-	        var comments = document.getElementById("commentsOffer").value;
+	        var departureDate = (document.getElementById("departureRequest") as HTMLInputElement).value;
+	        var pickup = (document.getElementById("pickupRequest") as HTMLInputElement).value;
+	        var destination = (document.getElementById("destinationRequest") as HTMLInputElement).value;
+	        var comments = (document.getElementById("commentsOffer") as HTMLInputElement).value;
 	        this.addPost(departureDate, pickup, destination, comments);
 	    }
 	}
 
 	filter(newsType){
-	    requestContent = document.getElementsByClassName("request");
-	    offerContent = document.getElementsByClassName("offer");
+	    var requestContent = (document.getElementsByClassName("request") as HTMLCollectionOf<HTMLInputElement>);
+	    var offerContent = (document.getElementsByClassName("offer") as HTMLCollectionOf<HTMLInputElement>);
 	    if(newsType == "offer"){
-	        for (i = 0; i < requestContent.length; i++) {
-	            requestContent[i].style.display = "none";
+	        for (var i = 0; i < requestContent.length; i++) {
+	            (requestContent[i] as HTMLInputElement).style.display = "none";
 	        }
-	        for (i = 0; i < offerContent.length; i++) {
-	            offerContent[i].style.display = "block";
+	        for (var i = 0; i < offerContent.length; i++) {
+	            (offerContent[i] as HTMLInputElement).style.display = "block";
 	        }
 	    }
 	    else if(newsType == "request"){
-	        for (i = 0; i < requestContent.length; i++) {
-	            requestContent[i].style.display = "block";
+	        for (var i = 0; i < requestContent.length; i++) {
+	            (requestContent[i] as HTMLInputElement).style.display = "block";
 	        }
-	        for (i = 0; i < offerContent.length; i++) {
-	            offerContent[i].style.display = "none";
+	        for (var i = 0; i < offerContent.length; i++) {
+	            (offerContent[i] as HTMLInputElement).style.display = "none";
 	        }
 	    }
 	    else if(newsType == "all"){
-	        for (i = 0; i < requestContent.length; i++) {
-	            requestContent[i].style.display = "block";
+	        for (var i = 0; i < requestContent.length; i++) {
+	            (requestContent[i] as HTMLInputElement).style.display = "block";
 	        }
-	        for (i = 0; i < offerContent.length; i++) {
-	            offerContent[i].style.display = "block";
+	        for (var i = 0; i < offerContent.length; i++) {
+	            (offerContent[i] as HTMLInputElement).style.display = "block";
 	        }
 	    }
 	}
 
-	addPost(date, pickup, destination, comments, price, capacity) {
+	addPost(date, pickup, destination, comments, price="", capacity="") {
 	    var div = document.createElement("div");
 	    div.id = "feed"+this.blocks;
 	    div.className = "feed1";
@@ -173,7 +201,7 @@ export class HomeComponent implements OnInit {
 	    img.id = "pfp"+this.blocks;
 	    document.getElementById("pfp");
 	    img.className = "pfp";
-	    img.src = "src/img/sample_profile.jpg";
+	    (img as HTMLInputElement).src = "src/img/sample_profile.jpg";
 	    
 	    var header1 = document.createElement("h1");
 	    document.getElementById('text'+this.blocks).appendChild(header1);
@@ -191,7 +219,7 @@ export class HomeComponent implements OnInit {
 	    document.getElementById('text'+this.blocks).appendChild(map1);
 	    map1.id = "map"+this.blocks;
 	    map1.className = "destination";
-	    map1.src = "src/img/virginia_map.jpg";
+	    (map1 as HTMLInputElement).src = "src/img/virginia_map.jpg";
 
 	    var buttonhouse1 = document.createElement("div");
 	    document.getElementById('text'+this.blocks).appendChild(buttonhouse1);
