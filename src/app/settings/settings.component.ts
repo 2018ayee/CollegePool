@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Home } from './home';
+import { HomeComponent } from '../home/home.component';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
   constructor(private router: Router) { }
 
   	ngOnInit() {
-  		@Input('userInfo') userInfo: String;
-  		console.log(userInfo);
+  		// @Input('userInfo') userInfo: String;
+  		// console.log(userInfo);
 	}
 }
