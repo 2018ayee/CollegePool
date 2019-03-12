@@ -14,20 +14,13 @@ import { SettingsComponent } from './settings/settings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PostingService } from './posting.service';
-import { TransferService } from './datatransfer.service';
-import { DynamicAddService } from './dynamic-add.service';
-import { PostingComponent } from './posting/posting.component';
-import { UpdateComponent } from './update/update.component';
-import { ConnectComponent } from './connect/connect.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'history', component: HistoryComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'update', component: UpdateComponent },
-  { path: 'connect', component: ConnectComponent }
+  { path: 'settings', component: SettingsComponent }
 ];
 
 @NgModule({
@@ -38,10 +31,7 @@ const appRoutes: Routes = [
     HomeComponent,
     HomeDirective,
     HistoryComponent,
-    SettingsComponent,
-    PostingComponent,
-    UpdateComponent,
-    ConnectComponent
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +42,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [PostingService, TransferService, DynamicAddService],
-  bootstrap: [AppComponent],
-  entryComponents: [PostingComponent]
+  providers: [PostingService],
+  bootstrap: [AppComponent]
 })
 
 export class AppModule { }

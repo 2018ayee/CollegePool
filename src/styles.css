@@ -102,7 +102,7 @@
     float: left;
     padding: 0px 12px;
     /*border: 1px solid #ccc;*/
-    width: 20%;
+    width: 70%;
     border-left: none;
     height: 100%;
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
@@ -117,7 +117,13 @@
 #Feed {
     display: inline-block;
     text-align: center;
-    /*position:absolute;*/
+    position:absolute;
+    font-size: 30px;
+}
+
+#history{
+    display: inline-block;
+    text-align: center;
     font-size: 30px;
 }
 
@@ -292,6 +298,12 @@ line-height:.2;
     padding-right: 5%;
     color:background;
 }
+#bigfeed {
+    padding-left: 25%;
+    width:100%;
+    display:inline-block;
+    overflow: auto;
+}
 .login {
     display: block;
     background-color: inherit;
@@ -360,8 +372,9 @@ line-height:.2;
 .right-background {
     width:400px;
     height: 100vh;
-    float:right;
-    /*position:fixed;*/
+    top:0;
+    right:0;
+    position:fixed;
     background-color: #f1f1f1;
     text-align: center;
     display:inline-block;

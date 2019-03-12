@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { PostingService } from '../posting.service';
 import { Posting } from '../posting.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { TransferService } from '../datatransfer.service';
-import { DynamicAddService } from '../dynamic-add.service';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +12,13 @@ import { DynamicAddService } from '../dynamic-add.service';
 export class HomeComponent implements OnInit {
 	blocks = 1;
 	span;
-	idToken = this.getParameterByName("id_token");
-	userInfo = this.decodeToken(this.idToken);
+	userInfo;
 	p : Posting[];
-	constructor(private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
+	constructor(private router: Router, private postingService: PostingService) { }
 
 	ngOnInit() {
+
+		// window.addEventListener("resize", onWindowResize());
 	    document.getElementById("defaultTab").click();
 	    document.getElementById("defaultModalTab").click();
 	    var size = "" + (window.innerWidth - 600) + "px";
@@ -56,12 +55,12 @@ export class HomeComponent implements OnInit {
 	        }
 	    }
 
-		this.loadPostings();
-	}
+		var idToken = this.getParameterByName("id_token");
+		this.userInfo = this.decodeToken(idToken);
 
-	onResize(event) {
-	  console.log(event.target.innerWidth);
-	  //this.loadPostings();
+		(document.getElementById("username") as HTMLInputElement).innerHTML = this.userInfo.name;
+
+		this.loadPostings();
 	}
 
 	cleanFeed()
@@ -80,14 +79,61 @@ export class HomeComponent implements OnInit {
 			this.p = data;
 			this.blocks = 0;
 			for(var i = 0; i < this.p.length; i++) {
-				this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
+				this.createPosting(this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
 			}
 		});
 	}
 
-	createPosting(id, user, startadr, endadr, date, cost, capacity, comments) {
-		this.transferService.setData([{"index": this.blocks, "id": id, "user": user, "startadr": startadr, "endadr": endadr, "date": date, "cost": cost, "capacity": capacity, "comments": comments, "buttonType": "Connect"}]);
-		this.addService.appendComponentToBody();
+	createPosting(user, startadr, endadr, date, cost, capacity, comments) {
+		var div = document.createElement("div");
+	    div.id = "feed"+this.blocks;
+	    div.className = "feed1";
+	    div.style.display = "all";
+	    div.style.marginTop = "50px";
+	    div.style.marginBottom = "50px";
+	    //div.style.paddingLeft = "20%";
+	    //div.style.width = "40%";
+	    document.getElementById('bigfeed').appendChild(div);
+	    
+	    var divtext = document.createElement("div");
+	    document.getElementById('feed'+this.blocks).appendChild(divtext);
+	    divtext.id = "text"+this.blocks;
+	    
+	    var img = document.createElement("IMG");
+	    document.getElementById('text'+this.blocks).appendChild(img);
+	    img.id = "pfp"+this.blocks;
+	    document.getElementById("pfp");
+	    img.className = "pfp";
+	    (img as HTMLInputElement).src = "src/img/sample_profile.jpg";
+	    
+	    var header1 = document.createElement("h1");
+	    document.getElementById('text'+this.blocks).appendChild(header1);
+	    header1.id = "name"+this.blocks;
+	    header1.innerHTML = user;
+	    header1.className = "header";
+	    
+	    var p1 = document.createElement('p');
+	    document.getElementById('text'+this.blocks).appendChild(p1);
+	    p1.id = "details"+this.blocks;
+	    p1.innerHTML = "Leaving " + date + " from " + startadr + " to " + endadr + " for " + cost;
+	    p1.className = "details";
+	    
+	    var map1 = document.createElement("IMG")
+	    document.getElementById('text'+this.blocks).appendChild(map1);
+	    map1.id = "map"+this.blocks;
+	    map1.className = "destination";
+	    (map1 as HTMLInputElement).src = "src/img/virginia_map.jpg";
+
+	    var buttonhouse1 = document.createElement("div");
+	    document.getElementById('text'+this.blocks).appendChild(buttonhouse1);
+	    buttonhouse1.id = "buttonhouse"+this.blocks;
+	    buttonhouse1.className = "buttonhouse";
+	    
+	    var connect = document.createElement("button");
+	    document.getElementById('buttonhouse'+this.blocks).appendChild(connect);
+	    connect.id = "connect"+this.blocks;
+	    connect.className = "buttons";
+	    connect.innerHTML = "Connect";
 	    this.blocks++;
 	}
 
@@ -101,6 +147,16 @@ export class HomeComponent implements OnInit {
 		console.log(decodedToken);
 		return decodedToken;
 	}
+	// window.onresize = function(event){
+	//     console.log("resize")
+	//     var size = "" + (window.innerWidth - 600) + "px";
+	//     console.log(size);
+	//     var tabcontents = document.getElementsByClassName('tabcontent')
+	//     for(var x = 0; x < tabcontents.length; x++)
+	//     {
+	//         tabcontents[x].style.width = size;
+	//     }
+	// }
 
 	getParameterByName(name) {
 	    var url = window.location.href;
@@ -204,7 +260,7 @@ export class HomeComponent implements OnInit {
 	    }
 	}
 
-	addPost(date, pickup, destination, comments, price="", capacity="-1") {
+	addPost(date, pickup, destination, comments, price="", capacity="") {
 		this.postingService.addPosting(this.userInfo.name, pickup, destination, date, price, capacity, comments).subscribe(() => {
 			this.loadPostings();
 		});
@@ -212,7 +268,6 @@ export class HomeComponent implements OnInit {
 
 	toHistory()
 	{
-		this.transferService.setData(this.userInfo);
 		this.router.navigateByUrl('/history');
 	}
 

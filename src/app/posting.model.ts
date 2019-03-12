@@ -1,5 +1,5 @@
 export interface Posting {
-	_id: String;
+	id: String;
 	user: String;
 	startadr: String;
 	endadr: String;

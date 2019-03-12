@@ -3,8 +3,8 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <div class="modaltab">
-      <button class="modaltablinks" (click)="changeModalTab($event, 'Request')" id="defaultModalTab">Ride</button>
-	  <button class="modaltablinks" (click)="changeModalTab($event, 'Offer')">Drive</button>
+	  <button class="modaltablinks" (click)="changeModalTab($event, 'Offer')" id="defaultModalTab">Offer Ride</button>
+	  <button class="modaltablinks" (click)="changeModalTab($event, 'Request')">Request Ride</button>
 	</div>
 	<div id="Offer" class="modaltabcontent">
 	    <form class="form">
@@ -43,7 +43,7 @@
 	<div class="info">
 		<img src="src/img/sample_profile.jpg" alt="Profile Photo" id="profile_pic">
 		<div id="name_info">
-			<h3 id="username">{{userInfo.name}}</h3>
+			<h3 id="username">Test User</h3>
 			<h3 id="user_university">University of Virginia</h3>
 		</div>
 		<div class="userStats">
@@ -65,7 +65,7 @@
 <!-- Tab content -->
 <div id="Feed" class="tabcontent">
   <h3 id="news_header">News Feed</h3>
- 	<div id="bigfeed" (window:resize)="onResize($event)">
+ 	<div id="bigfeed">
 <!-- 		<div id="N1" class="feed1" style="display: all; margin-top: 50px; margin-bottom:50px">
 			<div id="text"> 
 				<img src="src/img/sample_profile.jpg" class="pfp">
