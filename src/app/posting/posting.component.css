@@ -1,0 +1,6 @@
+#bigfeed {
+    padding-left: 25%;
+    width:100%;
+    display:inline-block;
+    overflow: auto;
+}
