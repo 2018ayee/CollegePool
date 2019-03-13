@@ -13,7 +13,8 @@ import { DynamicAddService } from '../dynamic-add.service';
 export class HistoryComponent implements OnInit {
 
   userInfo = this.transferService.getData();
-  username = "Adam Yee";
+  username = "2022ayee";
+  name = "Adam Yee";
   rides : Posting[];
   p : Posting[];
   blocks = 0;
@@ -23,14 +24,16 @@ export class HistoryComponent implements OnInit {
   	this.rides = [];
   	this.loginCheck();
   	this.loadPostings();
+  	document.getElementById('num_rides_given').innerHTML = this.userInfo.rides_given;
+	document.getElementById('num_rides_received').innerHTML = this.userInfo.rides_received;
   }
 
   loginCheck() {
   	if(this.userInfo == null)
-  		this.username = "Adam Yee";
+  		this.username = "2022ayee";
   		//this.router.navigateByUrl('/login');
   	else
-  		this.username = this.userInfo.name;
+  		this.username = this.userInfo.username;
   }	
 
   cleanFeed()

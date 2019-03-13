@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"cognito4f6bb2a7": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

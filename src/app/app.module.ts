@@ -14,11 +14,15 @@ import { SettingsComponent } from './settings/settings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PostingService } from './posting.service';
+import { UserService } from './user.service';
 import { TransferService } from './datatransfer.service';
 import { DynamicAddService } from './dynamic-add.service';
 import { PostingComponent } from './posting/posting.component';
 import { UpdateComponent } from './update/update.component';
 import { ConnectComponent } from './connect/connect.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -50,9 +54,13 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    AmplifyAngularModule
   ],
-  providers: [PostingService, TransferService, DynamicAddService],
+  providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent]
 })

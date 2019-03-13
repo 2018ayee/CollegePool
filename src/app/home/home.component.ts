@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostingService } from '../posting.service';
+import { UserService } from '../user.service';
 import { Posting } from '../posting.model';
+import { User } from '../user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransferService } from '../datatransfer.service';
 import { DynamicAddService } from '../dynamic-add.service';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +20,31 @@ export class HomeComponent implements OnInit {
 	idToken = this.getParameterByName("id_token");
 	userInfo = this.decodeToken(this.idToken);
 	p : Posting[];
-	constructor(private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
+	users : User[];
+	user;
+	constructor(private transferService: TransferService, private router: Router, private postingService: PostingService, private userService: UserService, private addService: DynamicAddService) { }
 
 	ngOnInit() {
-	    document.getElementById("defaultTab").click();
+		Auth.configure({
+			Auth: {
+				identityPoolId: 'us-east-2:c0841e3d-805d-4cd3-bc35-53d05a0fe8c8',
+				region: 'us-east-2',
+				userPoolId: 'us-east-2_1PnaMFKRK'
+			}
+		});
+		Auth.currentSession()
+	    .then(data => console.log(data))
+	    .catch(err => console.log(err));
+
+		this.checkUser();
+
+	    this.loadViews();
+
+		this.loadPostings();
+	}
+
+	loadViews() {
+		document.getElementById("defaultTab").click();
 	    document.getElementById("defaultModalTab").click();
 	    var size = "" + (window.innerWidth - 600) + "px";
 	    console.log(size);
@@ -55,8 +79,30 @@ export class HomeComponent implements OnInit {
 	            modal.style.display = "none";
 	        }
 	    }
+	}
 
-		this.loadPostings();
+	checkUser() {
+		this.userService.getUsers()
+		.subscribe((data: User[]) => {
+			this.users = data;
+			this.blocks = 0;
+			var isUser = false;
+			for(var i = 0; i < this.users.length; i++) {
+				if(this.userInfo['cognito:username'] == this.users[i].username)
+				{
+					isUser = true;
+					this.user = this.users[i];
+				}
+			}
+			if(!isUser)
+			{
+				this.userService.addUser(this.userInfo.name, this.userInfo['cognito:username'], this.userInfo.address, this.userInfo.birthdate, this.userInfo.email, this.userInfo.gender, this.userInfo.phone_number);
+				this.user = {"name" : this.userInfo.name, "username" : this.userInfo['cognito:username'], "address": this.userInfo.address,
+				"email": this.userInfo.email, "gender": this.userInfo.gender, "phone_number": this.userInfo.phone_number, "rides_given": "0", "rides_received": "0"};
+			}
+			document.getElementById('num_rides_given').innerHTML = this.user.rides_given;
+	    	document.getElementById('num_rides_received').innerHTML = this.user.rides_received;
+		});
 	}
 
 	onResize(event) {
@@ -212,12 +258,13 @@ export class HomeComponent implements OnInit {
 
 	toHistory()
 	{
-		this.transferService.setData(this.userInfo);
+		this.transferService.setData(this.user);
 		this.router.navigateByUrl('/history');
 	}
 
 	toSettings()
 	{
+		this.transferService.setData(this.user);
 		this.router.navigateByUrl('/settings');
 	}
 }

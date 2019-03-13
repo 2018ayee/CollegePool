@@ -171,7 +171,7 @@ button:hover {
     padding: 7%;
 }
 #user_rides_received {
-    padding-left: 6em;
+    padding-left: 5em;
 }
 .info{
     display: inline-block;
@@ -369,5 +369,6 @@ line-height:.2;
 body {
     font-family: "Segoe UI",Arial,sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%;
+margin: 0; }
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/

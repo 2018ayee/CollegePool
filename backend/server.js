@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
 import Posting from './models/postings';
+import User from './models/users';
 
 const app = express();
 const router = express.Router();
@@ -11,6 +12,7 @@ const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
 
+//Establish MongoDB connection, default database is postings
 mongoose.connect('mongodb://localhost:27017/postings');
 
 const connection = mongoose.connection;
@@ -19,6 +21,66 @@ connection.once('open', () => {
 	console.log('MongoDB database connection established successfully!')
 });
 
+//Router information for user database
+router.route('/users').get((req, res) => {
+	User.find((err, users) => {
+		if(err)
+			console.log(err);
+		else
+			res.json(users);
+	});
+});
+
+router.route('/users/:id').get((req, res) => {
+	User.findById(req.params.id, (err, users) => {
+		if(err)
+			console.log(err);
+		else
+			res.json(users);
+	});
+});
+
+router.route('/users/add').post((req, res) => {
+	let user = new User(req.body);
+	user.save()
+		.then(user => {
+			res.status(200).json({'posting': 'Added successfully'});
+		})
+		.catch(err => {
+			res.status(400).send('Failed to create new posting');
+		});
+});
+
+router.route('/users/update/:id').post((req, res) => {
+	User.findById(req.params.id, (err, user) => {
+		if(!user)
+			return next(new Error('Could not load'));
+		else
+		{
+			user.name = req.params.name;
+
+			user.save().then(user => {
+				res.json('Update successful');
+			}).catch(err => {
+				res.status(400).send('Update failed');
+			});
+		}
+	});
+});
+
+router.route('/users/delete/:id').get((req, res) => {
+	User.findByIdAndRemove(req.params.id, (err, user) => {
+		if(err)
+		{
+			console.log(_id);
+			res.json(err);
+		}
+		else
+			res.json('Remove successful');
+	});
+});
+
+//Router information for postings database
 router.route('/postings').get((req, res) => {
 	Posting.find((err, postings) => {
 		if(err)

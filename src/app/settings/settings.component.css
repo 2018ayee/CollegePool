@@ -1,0 +1,60 @@
+#body {
+    background-color: #f1f1f1;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.submit{
+    display: block;
+    background-color: #ffffff;
+    color: black;
+    color: #ac00e6;
+    padding: 8px 16px;
+    border: 1px solid #ac00e6;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    margin:auto;
+    border-radius: 4px;
+    margin-top: 50px;
+    font-weight: 700;
+}
+
+.submit:hover {
+    background-color: #f9e6ff;
+}
+
+#form {
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    background-color: #ffffff;
+    position: relative;
+    top: 30px;
+    border-radius: 4px;
+}
+
+form {
+    overflow: hidden;
+    width: 300px;
+    margin: auto;
+}
+
+input {
+    float: right;
+    clear: both;
+    /*margin-bottom: 5px;*/
+    width: 175px;
+}
+
+
+.field {
+    margin-bottom: 15px;
+}
+
+html, body{
+    margin: 0;
+    background-color: #f1f1f1;
+}

@@ -1,3 +1,80 @@
-<p>
-  settings works!
-</p>
+<div id="body">
+<div layout-align="center center" id="form">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="user-settings" layout="column">
+  
+  <div formGroupName="user">
+  	<h3>User Settings</h3>
+  	<div class="field">
+	  <label>
+	    First Name: 
+	  </label>
+	    <input type="text" formControlName="firstName">
+	  <br>
+	</div>
+
+	<div class="field">
+	  <label>
+	    Last Name: 
+	  </label>
+	    <input type="text" formControlName="lastName">
+	  <br>
+	</div>
+
+	<div class="field">
+	  <label>
+	    Email: 
+	  </label>
+	    <input type="email" formControlName="email">
+	  <br>
+	</div>
+
+	<div class="field">
+	  <label>
+	    Phone Number: 
+	  </label>
+	    <input type="text" formControlName="phone">
+	  <br>
+	</div>
+
+  </div>
+
+  	<div formGroupName="address" layout="column">
+	  <h3>Address</h3>
+		<div class="field">
+		  <label>
+		    Street:
+		  </label>
+		    <input type="text" formControlName="street">
+		  <br>
+		</div>
+
+<!-- 		<div class="field">
+		  <label>
+		    City:
+		    <input type="text" formControlName="city">
+		  </label>
+		  <br>
+		</div>
+		  
+		<div class="field">
+		  <label>
+		    State:
+		  </label>
+		    <input type="text" formControlName="state">
+		  <br>
+		</div>
+
+		<div class="field">
+		  <label>
+		    Zip Code:
+		  </label>
+		    <input type="text" formControlName="zip">
+		</div> -->
+	</div>
+
+  <button type="submit" [disabled]="!profileForm.valid" class="submit">Save changes</button>
+
+</form>
+
+</div>
+</div>
