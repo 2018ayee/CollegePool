@@ -117,8 +117,21 @@
 #Feed {
     display: inline-block;
     text-align: center;
-    /*position:absolute;*/
+    position:absolute;
+    /*left: 50px;*/
     font-size: 30px;
+    /*width: 800px;*/
+    margin: auto;
+    min-width: 650px;
+}
+
+#bigfeed {
+    /*padding-left: 25%;*/
+    width:100%;
+    display:inline-block;
+    overflow: auto;
+    margin: auto;
+    text-align: center;
 }
 
 #profile_pic {
@@ -238,11 +251,12 @@ textarea {
     font-size: 14px;
     resize: none;
 }
+
 .feed1{
-    height:40%;
+    height:250px;
     width:600px;
     border:2px solid black;
-    float:left;
+    margin: auto;
 }
 
 .pfp{
@@ -369,6 +383,8 @@ line-height:.2;
 body {
     font-family: "Segoe UI",Arial,sans-serif;
 }
-html, body { height: 100%;
-margin: 0; }
+html, body { 
+    height: 100%;
+    margin: 0;
+}
 /*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/

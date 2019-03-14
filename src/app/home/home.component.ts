@@ -25,16 +25,17 @@ export class HomeComponent implements OnInit {
 	constructor(private transferService: TransferService, private router: Router, private postingService: PostingService, private userService: UserService, private addService: DynamicAddService) { }
 
 	ngOnInit() {
-		Auth.configure({
-			Auth: {
-				identityPoolId: 'us-east-2:c0841e3d-805d-4cd3-bc35-53d05a0fe8c8',
-				region: 'us-east-2',
-				userPoolId: 'us-east-2_1PnaMFKRK'
-			}
-		});
-		Auth.currentSession()
-	    .then(data => console.log(data))
-	    .catch(err => console.log(err));
+		// Auth.configure({
+		// 	Auth: {
+		// 		identityPoolId: 'us-east-2:c0841e3d-805d-4cd3-bc35-53d05a0fe8c8',
+		// 		region: 'us-east-2',
+		// 		userPoolId: 'us-east-2_1PnaMFKRK',
+		// 		clientId: '4sslmmgv9pn5lb5087aaj5r599'
+		// 	}
+		// });
+		// Auth.currentSession()
+	 //    .then(data => console.log(data))
+	 //    .catch(err => console.log(err));
 
 		this.checkUser();
 
@@ -44,6 +45,9 @@ export class HomeComponent implements OnInit {
 	}
 
 	loadViews() {
+
+
+
 		document.getElementById("defaultTab").click();
 	    document.getElementById("defaultModalTab").click();
 	    var size = "" + (window.innerWidth - 600) + "px";
@@ -79,6 +83,11 @@ export class HomeComponent implements OnInit {
 	            modal.style.display = "none";
 	        }
 	    }
+
+	    if(window.innerWidth < 1075)
+	  		(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "hidden";
+	    var feedSize = window.innerWidth - 424;
+	  	document.getElementById('Feed').style.width = String(feedSize) + "px";
 	}
 
 	checkUser() {
@@ -107,7 +116,13 @@ export class HomeComponent implements OnInit {
 
 	onResize(event) {
 	  console.log(event.target.innerWidth);
+	  var feedSize = event.target.innerWidth - 424;
+	  document.getElementById('Feed').style.width = String(feedSize) + "px";
 	  //this.loadPostings();
+	  if(event.target.innerWidth < 1075)
+	  	(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "hidden";
+	  else
+	  	(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "visible";
 	}
 
 	cleanFeed()
