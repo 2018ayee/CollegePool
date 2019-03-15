@@ -8,6 +8,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransferService } from '../datatransfer.service';
 import { DynamicAddService } from '../dynamic-add.service';
 import { Auth } from 'aws-amplify';
+import { CognitoAuth } from 'amazon-cognito-auth-js';
+import { LogincheckService } from '../logincheck.service';
 
 @Component({
   selector: 'app-home',
@@ -18,26 +20,21 @@ export class HomeComponent implements OnInit {
 	blocks = 1;
 	span;
 	idToken = this.getParameterByName("id_token");
-	userInfo = this.decodeToken(this.idToken);
+	//userInfo = this.decodeToken(this.idToken);
 	p : Posting[];
 	users : User[];
 	user;
-	constructor(private transferService: TransferService, private router: Router, private postingService: PostingService, private userService: UserService, private addService: DynamicAddService) { }
+
+	constructor(private logincheckService: LogincheckService, private transferService: TransferService, private router: Router, 
+		private postingService: PostingService, private userService: UserService, private addService: DynamicAddService) { }
 
 	ngOnInit() {
-		// Auth.configure({
-		// 	Auth: {
-		// 		identityPoolId: 'us-east-2:c0841e3d-805d-4cd3-bc35-53d05a0fe8c8',
-		// 		region: 'us-east-2',
-		// 		userPoolId: 'us-east-2_1PnaMFKRK',
-		// 		clientId: '4sslmmgv9pn5lb5087aaj5r599'
-		// 	}
-		// });
-		// Auth.currentSession()
-	 //    .then(data => console.log(data))
-	 //    .catch(err => console.log(err));
 
-		this.checkUser();
+		this.logincheckService.loginCheck();
+
+		this.user = this.logincheckService.getUser();
+
+		console.log(this.user);
 
 	    this.loadViews();
 
@@ -46,7 +43,9 @@ export class HomeComponent implements OnInit {
 
 	loadViews() {
 
-
+		document.getElementById('num_rides_given').innerHTML = this.user.rides_given;
+	    document.getElementById('num_rides_received').innerHTML = this.user.rides_received;
+	    document.getElementById('username').innerHTML = this.user.name;
 
 		document.getElementById("defaultTab").click();
 	    document.getElementById("defaultModalTab").click();
@@ -88,30 +87,6 @@ export class HomeComponent implements OnInit {
 	  		(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "hidden";
 	    var feedSize = window.innerWidth - 424;
 	  	document.getElementById('Feed').style.width = String(feedSize) + "px";
-	}
-
-	checkUser() {
-		this.userService.getUsers()
-		.subscribe((data: User[]) => {
-			this.users = data;
-			this.blocks = 0;
-			var isUser = false;
-			for(var i = 0; i < this.users.length; i++) {
-				if(this.userInfo['cognito:username'] == this.users[i].username)
-				{
-					isUser = true;
-					this.user = this.users[i];
-				}
-			}
-			if(!isUser)
-			{
-				this.userService.addUser(this.userInfo.name, this.userInfo['cognito:username'], this.userInfo.address, this.userInfo.birthdate, this.userInfo.email, this.userInfo.gender, this.userInfo.phone_number);
-				this.user = {"name" : this.userInfo.name, "username" : this.userInfo['cognito:username'], "address": this.userInfo.address,
-				"email": this.userInfo.email, "gender": this.userInfo.gender, "phone_number": this.userInfo.phone_number, "rides_given": "0", "rides_received": "0"};
-			}
-			document.getElementById('num_rides_given').innerHTML = this.user.rides_given;
-	    	document.getElementById('num_rides_received').innerHTML = this.user.rides_received;
-		});
 	}
 
 	onResize(event) {
@@ -266,7 +241,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	addPost(date, pickup, destination, comments, price="", capacity="-1") {
-		this.postingService.addPosting(this.userInfo.name, pickup, destination, date, price, capacity, comments).subscribe(() => {
+		this.postingService.addPosting(this.user.name, pickup, destination, date, price, capacity, comments).subscribe(() => {
 			this.loadPostings();
 		});
 	}

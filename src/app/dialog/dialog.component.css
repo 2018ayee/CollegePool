@@ -1,0 +1,16 @@
+p {
+	background-color: #d8c3ec;
+	text-align: center;
+}
+
+#close-dialog {
+	float: right;
+}
+
+.close {
+	font-color: black;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 0.5em;
+}

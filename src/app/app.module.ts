@@ -23,6 +23,8 @@ import { ConnectComponent } from './connect/connect.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+import { LoginrouteComponent } from './loginroute/loginroute.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
   { path: 'history', component: HistoryComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'update', component: UpdateComponent },
-  { path: 'connect', component: ConnectComponent }
+  { path: 'connect', component: ConnectComponent },
+  { path: 'loginroute', component: LoginrouteComponent }
 ];
 
 @NgModule({
@@ -45,7 +48,9 @@ const appRoutes: Routes = [
     SettingsComponent,
     PostingComponent,
     UpdateComponent,
-    ConnectComponent
+    ConnectComponent,
+    LoginrouteComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

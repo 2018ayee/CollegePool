@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransferService } from '../datatransfer.service';
 import { UserService } from '../user.service';
 import { Auth } from 'aws-amplify';
+import { LogincheckService } from '../logincheck.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,44 +17,56 @@ export class SettingsComponent implements OnInit {
   userInfo = this.transferService.getData();
   profileForm;
   user;
+  span;
 
-  constructor(private router: Router, private transferService: TransferService, private userService: UserService) { }
+  constructor(private logincheckService: LogincheckService, private router: Router, private transferService: TransferService, private userService: UserService) { }
 
   	ngOnInit() {
-  		console.log(this.userInfo);
-  		var nameSplit = this.userInfo.name.split(" ");
+  		this.span = document.getElementsByClassName("close")[0];
+		this.span.onclick = function() {
+		    document.getElementById('update-dialog').style.visibility = 'hidden';
+		}
+
+  		this.logincheckService.loginCheck();
+  		this.user = this.logincheckService.getUser();
+  		console.log(this.user);
+
+
+  		var nameSplit = this.user.name.split(" ");
   		this.profileForm = new FormGroup({
 	  	user: new FormGroup({
 	  		firstName: new FormControl(nameSplit[0]),
 	    	lastName: new FormControl(nameSplit[1]),
-	    	email: new FormControl(this.userInfo.email, Validators.compose([
+	    	email: new FormControl(this.user.email, Validators.compose([
 				Validators.required,
 				Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-	    	phone: new FormControl(this.userInfo.phone_number)
+	    	phone: new FormControl(this.user.phone_number)
 	   	}),
 	    address: new FormGroup({
-		    street: new FormControl(this.userInfo.address)
+		    street: new FormControl(this.user.address)
 		    // city: new FormControl(''),
 		    // state: new FormControl(''),
 		    // zip: new FormControl('')
 		  })
 	  });
-
-  // 		Auth.currentAuthenticatedUser({
-		//     bypassCache: true  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-		// }).then(user => this.user)
-		// .catch(err => console.log(err));
 	}
 
 	onSubmit() {
 	  var updatedValues = this.profileForm.value;
-	  this.userInfo.name = updatedValues.firstName + " " + updatedValues.lastName;
-	  this.userInfo.email = updatedValues.email;
-	  this.userInfo.phone = updatedValues.phone;
-	  this.userInfo.address = updatedValues.street;
+	  console.log(updatedValues);
+	  this.user.name = updatedValues.user.firstName + " " + updatedValues.user.lastName;
+	  console.log(this.user.name);
+	  this.user.email = updatedValues.user.email;
+	  this.user.phone = updatedValues.user.phone;
+	  this.user.address = updatedValues.address.street;
 
-	  console.log(this.userInfo);
+	  console.log(this.user);
 
-	  this.userService.updateUser(this.userInfo.id, this.userInfo.name, this.userInfo.username, this.userInfo.address, this.userInfo.birthdate, this.userInfo.email, this.userInfo.gender, this.userInfo.phone_number, this.userInfo.rides_given, this.userInfo.rides_received);
+	  this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received)
+	  .subscribe(() => {
+	  		document.getElementById('update-dialog').style.visibility = 'visible';
+
+			this.router.navigateByUrl('/settings');
+		});
 	}
 }

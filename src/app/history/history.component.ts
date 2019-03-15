@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PostingService } from '../posting.service';
 import { Posting } from '../posting.model';
 import { DynamicAddService } from '../dynamic-add.service';
+import { LogincheckService } from '../logincheck.service';
 
 @Component({
   selector: 'app-history',
@@ -14,14 +15,16 @@ export class HistoryComponent implements OnInit {
 
   userInfo = this.transferService.getData();
   username = "2022ayee";
+  user = this.logincheckService.getUser();
   name = "Adam Yee";
   rides : Posting[];
   p : Posting[];
   blocks = 0;
-  constructor(private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
+  constructor(private logincheckService: LogincheckService, private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
 
   ngOnInit() {
   	this.rides = [];
+  	this.logincheckService.loginCheck();
   	this.loginCheck();
   	this.loadPostings();
   	document.getElementById('num_rides_given').innerHTML = this.userInfo.rides_given;

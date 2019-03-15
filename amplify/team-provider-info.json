@@ -1,18 +1,35 @@
 {
-    "aws": {
+    "cpool": {
         "awscloudformation": {
-            "AuthRoleName": "collegepool-20190312212510-authRole",
-            "UnauthRoleArn": "arn:aws:iam::024017510574:role/collegepool-20190312212510-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::024017510574:role/collegepool-20190312212510-authRole",
+            "AuthRoleName": "collegepool-20190314195759-authRole",
+            "UnauthRoleArn": "arn:aws:iam::024017510574:role/collegepool-20190314195759-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::024017510574:role/collegepool-20190314195759-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "collegepool-20190312212510-deployment",
-            "UnauthRoleName": "collegepool-20190312212510-unauthRole",
-            "StackName": "collegepool-20190312212510",
-            "StackId": "arn:aws:cloudformation:us-east-1:024017510574:stack/collegepool-20190312212510/d99a6fe0-452e-11e9-9183-12713880e578"
+            "DeploymentBucketName": "collegepool-20190314195759-deployment",
+            "UnauthRoleName": "collegepool-20190314195759-unauthRole",
+            "StackName": "collegepool-20190314195759",
+            "StackId": "arn:aws:cloudformation:us-east-1:024017510574:stack/collegepool-20190314195759/01990060-46b5-11e9-a294-0e6c5fec19cc"
         },
         "categories": {
             "auth": {
-                "cognito4f6bb2a7": {}
+                "cognitoada7bcb4": {}
+            }
+        }
+    },
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "collegepool-20190314205607-authRole",
+            "UnauthRoleArn": "arn:aws:iam::024017510574:role/collegepool-20190314205607-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::024017510574:role/collegepool-20190314205607-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "collegepool-20190314205607-deployment",
+            "UnauthRoleName": "collegepool-20190314205607-unauthRole",
+            "StackName": "collegepool-20190314205607",
+            "StackId": "arn:aws:cloudformation:us-east-2:024017510574:stack/collegepool-20190314205607/206194a0-46bd-11e9-8d34-027d76990372"
+        },
+        "categories": {
+            "auth": {
+                "cognitoada7bcb4": {}
             }
         }
     }

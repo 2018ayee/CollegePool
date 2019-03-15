@@ -57,7 +57,16 @@ router.route('/users/update/:id').post((req, res) => {
 			return next(new Error('Could not load'));
 		else
 		{
-			user.name = req.params.name;
+			user.name = req.body.name;
+			user.username = req.body.username;
+			user.address = req.body.address;
+			user.birthdate = req.body.birthdate;
+			user.email = req.body.email;
+			user.gender = req.body.gender;
+			user.phone_number = req.body.phone_number;
+			user.rides_given = req.body.rides_given;
+			user.rides_received = req.body.rides_received;
+
 
 			user.save().then(user => {
 				res.json('Update successful');

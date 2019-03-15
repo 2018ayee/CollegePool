@@ -322,7 +322,10 @@ line-height:.2;
     font-weight: 700;
     font-family: "Segoe UI",Arial,sans-serif;
     margin-bottom: 15px;
-    width: 18%;
+    width: 100px;
+}
+#login2 {
+    padding: 8px 26px;
 }
 .login:hover {
     background-color: #f9e6ff;
