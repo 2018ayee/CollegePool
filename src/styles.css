@@ -257,6 +257,7 @@ textarea {
     width:600px;
     border:2px solid black;
     margin: auto;
+    background-color: #ffffff;
 }
 
 .pfp{
@@ -342,6 +343,7 @@ line-height:.2;
     position: absolute;
     left:50%;
     top:0%;
+    background-color: #ffffff;
 }
 .content-left {
     width: 50%;
@@ -393,4 +395,8 @@ html, body {
 /*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #f1f1f1;
+}
