@@ -29,8 +29,8 @@ export class PostingComponent implements OnInit {
     div.className = "feed1";
     div.style.display = "all";
     div.style.margin = "auto";
-    div.style.marginTop = "50px";
-    div.style.marginBottom = "50px";
+    div.style.marginTop = "0.5em";
+    div.style.marginBottom = "0.5em";
 
     //div.style.paddingLeft = "20%";
     //div.style.width = "40%";

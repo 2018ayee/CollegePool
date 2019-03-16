@@ -13,7 +13,6 @@ import { LogincheckService } from '../logincheck.service';
 })
 export class HistoryComponent implements OnInit {
 
-  userInfo = this.transferService.getData();
   username = "2022ayee";
   user = this.logincheckService.getUser();
   name = "Adam Yee";
@@ -27,16 +26,16 @@ export class HistoryComponent implements OnInit {
   	this.logincheckService.loginCheck();
   	this.loginCheck();
   	this.loadPostings();
-  	document.getElementById('num_rides_given').innerHTML = this.userInfo.rides_given;
-	document.getElementById('num_rides_received').innerHTML = this.userInfo.rides_received;
+  	document.getElementById('num_rides_given').innerHTML = this.user.rides_given;
+	document.getElementById('num_rides_received').innerHTML = this.user.rides_received;
   }
 
   loginCheck() {
-  	if(this.userInfo == null)
+  	if(this.user == null)
   		this.username = "2022ayee";
   		//this.router.navigateByUrl('/login');
   	else
-  		this.username = this.userInfo.username;
+  		this.username = this.user.username;
   }	
 
   cleanFeed()

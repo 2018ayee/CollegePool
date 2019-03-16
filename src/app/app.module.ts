@@ -25,6 +25,10 @@ import {MatInputModule} from '@angular/material/input';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 import { LoginrouteComponent } from './loginroute/loginroute.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import {MatButtonModule, MatCheckboxModule, MatIcon} from '@angular/material';
+
+
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -50,7 +54,8 @@ const appRoutes: Routes = [
     UpdateComponent,
     ConnectComponent,
     LoginrouteComponent,
-    DialogComponent
+    DialogComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,9 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    AmplifyAngularModule
+    AmplifyAngularModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService],
   bootstrap: [AppComponent],

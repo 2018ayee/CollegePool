@@ -14,7 +14,6 @@ import { LogincheckService } from '../logincheck.service';
 })
 export class SettingsComponent implements OnInit {
 
-  userInfo = this.transferService.getData();
   profileForm;
   user;
   span;

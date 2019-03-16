@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
 	    document.getElementById('num_rides_received').innerHTML = this.user.rides_received;
 	    document.getElementById('username').innerHTML = this.user.name;
 
-		document.getElementById("defaultTab").click();
+		//document.getElementById("defaultTab").click();
 	    document.getElementById("defaultModalTab").click();
 	    var size = "" + (window.innerWidth - 600) + "px";
 	    console.log(size);
@@ -61,15 +61,15 @@ export class HomeComponent implements OnInit {
 	    var modal = document.getElementById('myModal');
 
 	    // Get the button that opens the modal
-	    var btn = document.getElementById("Post");
+	    //var btn = document.getElementById("Post");
 
 	    // Get the <span> element that closes the modal
 	    this.span = document.getElementsByClassName("close")[0];
 
 	    // When the user clicks on the button, open the modal 
-	    btn.onclick = function() {
-	        modal.style.display = "block";
-	    }
+	    // btn.onclick = function() {
+	    //     modal.style.display = "block";
+	    // }
 
 	    // When the user clicks on <span> (x), close the modal
 	    this.span.onclick = function() {
