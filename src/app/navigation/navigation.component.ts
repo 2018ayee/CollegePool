@@ -17,7 +17,10 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
   	this.activebtn = this.transferService.getData();
   	if(this.activebtn == null)
+  	{
+  		this.activebtn = 'homenav';
   		this.paintActive('homenav');
+  	}
   	else if(this.activebtn == 'post')
   		document.getElementById('myModal').style.display = "block";
   	else
@@ -26,8 +29,13 @@ export class NavigationComponent implements OnInit {
   }
 
   post() {
-  	this.transferService.setData('post');
-  	this.router.navigateByUrl('/home');
+  	if(this.activebtn == 'homenav')
+  		document.getElementById('myModal').style.display = "block";
+  	else
+  	{
+	  	this.transferService.setData('post');
+	  	this.router.navigateByUrl('/home');
+	}
   }
 
   paintActive(btn) {

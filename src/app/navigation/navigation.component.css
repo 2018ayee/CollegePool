@@ -2,6 +2,7 @@
 .topnav {
   overflow: hidden;
   border-bottom: 1px solid black;
+  text-align: center;
 }
 
 /* Style the links inside the navigation bar */
@@ -33,11 +34,14 @@
   height: 100%;
   margin-left: 1em;
   display: inline-block;
+  float: left;
 }
 
 .imgnav {
-  margin: auto;
+  margin-top: 0.25em;
   display: inline-block;
+  margin-right: 1em;
+  float: right;
 }
 
 img:hover {
