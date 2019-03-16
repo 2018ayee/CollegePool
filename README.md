@@ -1,6 +1,6 @@
 # CollegePool
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4. To run, first execute `npm install` in terminal to install all dependencies. Then, run `npm run dev` in a separate terminal and `mongod` in another to start the server and databse. Finally, running `npm start` will start a dev server on `http://localhost:4200/`.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4. To run, first execute `npm install` in terminal to install all dependencies. Then, run `npm run dev` in a separate terminal and `mongod` in another to start the server and databse. Errors such as `failed to open minidump file` may be temporarily solved by deleting the data/db folder. Finally, running `npm start` will start a dev server on `http://localhost:4200/`.
 
 ## Development server
 
