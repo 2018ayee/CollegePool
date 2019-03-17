@@ -44,12 +44,28 @@ export class LogincheckService {
 			}
 			if(!isUser)
 			{
-				this.userService.addUser(this.userInfo.name, this.userInfo['cognito:username'], this.userInfo.address, this.userInfo.birthdate, this.userInfo.email, this.userInfo.gender, this.userInfo.phone_number);
-				this.user = {"_id": this.userInfo._id, "name" : this.userInfo.name, "username" : this.userInfo['cognito:username'], "address": this.userInfo.address, "birthdate": this.userInfo.birthdate,
-				"email": this.userInfo.email, "gender": this.userInfo.gender, "phone_number": this.userInfo.phone_number, "rides_given": "0", "rides_received": "0"};
+				console.log('hi');
+				this.userService.addUser(this.userInfo.name, this.userInfo['cognito:username'], this.userInfo.address, this.userInfo.birthdate, this.userInfo.email, this.userInfo.gender, this.userInfo.phone_number)
+				.subscribe(() => {
+					this.userService.getUsers()
+					.subscribe((data: User[]) => {
+						this.users = data;
+						for(var i = 0; i < this.users.length; i++) {
+							if(this.userInfo['cognito:username'] == this.users[i].username)
+							{
+								this.user = this.users[i];
+							}
+						}
+						this.setLocalStorage();
+						this.router.navigateByUrl('/home');
+					});
+				});
 			}
-			this.setLocalStorage();
-			this.router.navigateByUrl('/home');
+			else{
+				this.setLocalStorage();
+				this.router.navigateByUrl('/home');
+			}
+
 		});
 	}
 

@@ -16,7 +16,7 @@ export class UserService {
   	return this.http.get(`${this.uri}/users/${id}`);
   }
 
-  addUser(name, username, address, birthdate, email, gender, phone_number, rides_given="0", rides_received="0") {
+  addUser(name='', username='', address='', birthdate='', email='', gender='', phone_number='', rides_given="0", rides_received="0") {
   	const user = {
   		name: name,
       username: username,

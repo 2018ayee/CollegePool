@@ -111,7 +111,7 @@ router.route('/postings/:id').get((req, res) => {
 router.route('/postings/add').post((req, res) => {
 	let posting = new Posting(req.body);
 	posting.save()
-		.then(issue => {
+		.then(posting => {
 			res.status(200).json({'posting': 'Added successfully'});
 		})
 		.catch(err => {

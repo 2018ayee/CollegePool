@@ -17,6 +17,7 @@ export class SettingsComponent implements OnInit {
   profileForm;
   user;
   span;
+  myStorage = window.localStorage;
 
   constructor(private logincheckService: LogincheckService, private router: Router, private transferService: TransferService, private userService: UserService) { }
 
@@ -70,6 +71,16 @@ export class SettingsComponent implements OnInit {
 	  this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received)
 	  .subscribe(() => {
 	  		window.localStorage.setItem('visibility', 'visible');
+	  		this.myStorage.setItem('_id', this.user._id);
+		this.myStorage.setItem('name', this.user.name);
+		this.myStorage.setItem('username', this.user.username);
+		this.myStorage.setItem('address', this.user.address);
+		this.myStorage.setItem('birthdate', this.user.birthdate);
+		this.myStorage.setItem('email', this.user.email);
+		this.myStorage.setItem('gender', this.user.gender);
+		this.myStorage.setItem('phone_number', this.user.phone_number);
+		this.myStorage.setItem('rides_given', this.user.rides_given);
+		this.myStorage.setItem('rides_received', this.user.rides_received);
 	  		location.reload();
 		});
 	}
