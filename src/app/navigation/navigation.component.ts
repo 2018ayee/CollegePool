@@ -15,16 +15,22 @@ export class NavigationComponent implements OnInit {
   user;
   activebtn;
   ngOnInit() {
-  	this.activebtn = this.transferService.getData();
-  	if(this.activebtn == null)
-  	{
-  		this.activebtn = 'homenav';
-  		this.paintActive('homenav');
-  	}
-  	else if(this.activebtn == 'post')
+  	// this.activebtn = this.transferService.getData();
+  	// if(this.activebtn == null)
+  	// {
+  	// 	this.activebtn = this.router.url + 'nav';
+  	// 	this.paintActive(this.activebtn);
+  	// }
+  	// else if(this.activebtn == 'post')
+  	// 	document.getElementById('myModal').style.display = "block";
+  	// else
+  	// 	this.paintActive(this.activebtn);
+  	var route = this.router.url + 'nav';
+  	this.activebtn = route.substring(1);
+  	console.log(this.activebtn);
+  	this.paintActive(this.activebtn);
+  	if(this.activebtn == 'post')
   		document.getElementById('myModal').style.display = "block";
-  	else
-  		this.paintActive(this.activebtn);
   	this.user = this.logincheckService.getUser();
   }
 
@@ -37,6 +43,8 @@ export class NavigationComponent implements OnInit {
 	  	this.router.navigateByUrl('/home');
 	}
   }
+
+
 
   paintActive(btn) {
   	var navcontents = document.getElementsByClassName('navigation')

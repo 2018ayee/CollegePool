@@ -27,6 +27,8 @@ import { LoginrouteComponent } from './loginroute/loginroute.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
+import { AgmCoreModule } from '@agm/core';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -65,7 +67,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    AmplifyAngularModule
+    AmplifyAngularModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
+    })
   ],
   providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService],
   bootstrap: [AppComponent],

@@ -26,7 +26,7 @@ export class PostingComponent implements OnInit {
   	console.log(this.info.index);
 	  var div = document.createElement("div");
     div.id = "feed"+ this.info.index;
-    div.className = "feed1";
+    div.className = "posting-block";
     div.style.display = "all";
     div.style.margin = "auto";
     div.style.marginTop = "0.5em";
@@ -64,16 +64,11 @@ export class PostingComponent implements OnInit {
     map.id = "map"+ this.info.index;
     map.className = "destination";
     (map as HTMLInputElement).src = "src/img/virginia_map.jpg";
-
-    // var buttonhouse = document.createElement("div");
-    // document.getElementById('text'+ this.info.index).appendChild(buttonhouse);
-    // buttonhouse.id = "buttonhouse"+ this.info.index;
-    // buttonhouse.className = "buttonhouse";
     
     var connect = document.createElement("button");
     document.getElementById('text'+ this.info.index).appendChild(connect);
     connect.id = this.buttonType + this.info.index;
-    connect.className = "buttons";
+    connect.className = "posting-button";
     connect.innerHTML = this.info.buttonType;
     connect.style.marginRight = "1em";
     connect.addEventListener("click", (e:Event) => this.clicked(this.info.buttonType));

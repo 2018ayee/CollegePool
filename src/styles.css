@@ -252,10 +252,11 @@ textarea {
     resize: none;
 }
 
-.feed1{
+.posting-block{
     height:250px;
     width:600px;
-    border:2px solid black;
+    /*border:1px solid gray;*/
+    border-radius: 5px;
     margin: auto;
     background-color: #ffffff;
 }
@@ -267,15 +268,14 @@ textarea {
     float:left;
     padding-left: 2%;
     padding-right: 2%;
+    margin-top: 0.2em;
 }
 
 .header { 
-color:black;
-font-size:24pt;
-text-decoration:underline;
-line-height:.1;
-font-weight:bold;
-padding-top: 10px;
+    color:black;
+    font-size:24pt;
+    margin-top: 0px;
+    /*float: left;*/
  }
 
  .details{
@@ -291,22 +291,24 @@ line-height:.2;
     margin: 0 auto;
 }
 
-.buttons{
-    color:black;
+.posting-button{
+    background-color: #ffffff;
+    color: #ac00e6;
+    padding: 8px 26px;
+    border: 1px solid #ac00e6;
+    border-radius: 5px;
     display:block;
-    background-color:white;
-    padding: 4px 4px;
     width: 18%;
-    border: 2px solid black; 
-    outline: 2px solid red;
-    text-align: right;
+    text-align: center;
     float:right;
-    font-size:24px;
+    font-weight: 700;
 }
-.buttonhouse{
-    padding-right: 5%;
-    color:background;
+
+.posting-button:hover {
+    background-color: #f9e6ff;
+    cursor: pointer;
 }
+
 .login {
     display: block;
     background-color: inherit;

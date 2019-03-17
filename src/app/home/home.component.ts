@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
 		//document.getElementById("defaultTab").click();
 	    document.getElementById("defaultModalTab").click();
 	    var size = "" + (window.innerWidth - 600) + "px";
-	    console.log(size);
+	    //console.log(size);
 	    var tabcontents = document.getElementsByClassName('tabcontent')
 	    for(var x = 0; x < tabcontents.length; x++)
 	    {
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	onResize(event) {
-	  console.log(event.target.innerWidth);
+	  //console.log(event.target.innerWidth);
 	  var feedSize = event.target.innerWidth - 424;
 	  document.getElementById('Feed').style.width = String(feedSize) + "px";
 	  //this.loadPostings();
@@ -241,7 +241,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	addPost(date, pickup, destination, comments, price="", capacity="-1") {
-		this.postingService.addPosting(this.user.name, pickup, destination, date, price, capacity, comments).subscribe(() => {
+		this.postingService.addPosting(this.user.username, pickup, destination, date, price, capacity, comments).subscribe(() => {
 			this.loadPostings();
 		});
 	}
