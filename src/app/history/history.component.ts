@@ -26,9 +26,29 @@ export class HistoryComponent implements OnInit {
   	this.logincheckService.loginCheck();
   	this.loginCheck();
   	this.loadPostings();
-  	document.getElementById('num_rides_given').innerHTML = this.user.rides_given;
+  	this.loadViews();
+  }
+
+  loadViews() {
+  	if(window.innerWidth < 1075)
+	  		(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "hidden";
+	var feedSize = window.innerWidth - 424;
+	document.getElementById('history').style.width = String(feedSize) + "px";
+
+	document.getElementById('num_rides_given').innerHTML = this.user.rides_given;
 	document.getElementById('num_rides_received').innerHTML = this.user.rides_received;
   }
+
+  onResize(event) {
+	  //console.log(event.target.innerWidth);
+	  var feedSize = event.target.innerWidth - 424;
+	  document.getElementById('history').style.width = String(feedSize) + "px";
+	  //this.loadPostings();
+	  if(event.target.innerWidth < 1075)
+	  	(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "hidden";
+	  else
+	  	(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "visible";
+	}
 
   loginCheck() {
   	if(this.user == null)

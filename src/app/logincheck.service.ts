@@ -54,7 +54,7 @@ export class LogincheckService {
 	}
 
 	setLocalStorage() {
-		this.myStorage.setItem('_id', this.user.id);
+		this.myStorage.setItem('_id', this.user._id);
 		this.myStorage.setItem('name', this.user.name);
 		this.myStorage.setItem('username', this.user.username);
 		this.myStorage.setItem('address', this.user.address);
@@ -68,7 +68,7 @@ export class LogincheckService {
 
 	getUserFromLocalStorage() {
 		this.user = {
-			"id" : this.myStorage.getItem('_id'),
+			"_id" : this.myStorage.getItem('_id'),
 			"name" : this.myStorage.getItem('name'), 
 			"username" : this.myStorage.getItem('username'), 
 			"address": this.myStorage.getItem('address'), 

@@ -21,6 +21,12 @@ export class SettingsComponent implements OnInit {
   constructor(private logincheckService: LogincheckService, private router: Router, private transferService: TransferService, private userService: UserService) { }
 
   	ngOnInit() {
+  		console.log(this.transferService.getData());
+  		if(window.localStorage.getItem('visibility') == 'visible')
+  			document.getElementById('update-dialog').style.visibility = 'visible';
+
+  		window.localStorage.setItem('visibility', 'hidden');
+
   		this.span = document.getElementsByClassName("close")[0];
 		this.span.onclick = function() {
 		    document.getElementById('update-dialog').style.visibility = 'hidden';
@@ -63,9 +69,8 @@ export class SettingsComponent implements OnInit {
 
 	  this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received)
 	  .subscribe(() => {
-	  		document.getElementById('update-dialog').style.visibility = 'visible';
-
-			this.router.navigateByUrl('/settings');
+	  		window.localStorage.setItem('visibility', 'visible');
+	  		location.reload();
 		});
 	}
 }

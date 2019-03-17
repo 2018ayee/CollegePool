@@ -1,20 +1,21 @@
 <app-navigation></app-navigation>
-<h1 align="center">Your Rides</h1>
 
-<div class="user-card-right info">
-	<img src="src/img/sample_profile.jpg" alt="Profile Photo" id="profile_pic">
-	<div id="name_info">
-		<h3 id="username">{{name}}</h3>
-		<h3 id="user_university">University of Virginia</h3>
-	</div>
-	<div class="userStats">
-		<span id="user_rides_given" class="userData">Rides Given: </span>
-		<span id="num_rides_given"></span>
-		<span id="user_rides_received" class="userData">Rides Received: </span>
-		<span id="num_rides_received"></span>
+<div class="right-background">
+	<div class="user-card-right info">
+		<img src="src/img/sample_profile.jpg" alt="Profile Photo" id="profile_pic">
+		<div id="name_info">
+			<h3 id="username">{{name}}</h3>
+			<h3 id="user_university">University of Virginia</h3>
+		</div>
+		<div class="userStats">
+			<span id="user_rides_given" class="userData">Rides Given: </span>
+			<span id="num_rides_given"></span>
+			<span id="user_rides_received" class="userData">Rides Received: </span>
+			<span id="num_rides_received"></span>
+		</div>
 	</div>
 </div>
-
-<div id="history">
-	<div id="bigfeed"></div>
+<div id="history" class="tabcontent">
+	<h3 align="center">Your Rides</h3>
+	<div id="bigfeed" (window:resize)="onResize($event)"></div>
 </div>

@@ -86,6 +86,9 @@ export class HomeComponent implements OnInit {
 	    if(window.innerWidth < 1075)
 	  		(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "hidden";
 	    var feedSize = window.innerWidth - 424;
+
+	    if(this.transferService.getData() == 'post')
+	    	document.getElementById('myModal').style.display = "block";
 	  	document.getElementById('Feed').style.width = String(feedSize) + "px";
 	}
 

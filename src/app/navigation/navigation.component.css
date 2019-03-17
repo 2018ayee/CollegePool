@@ -19,7 +19,7 @@
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #f9e6ff;
+  color: #ac00e6;
   border-bottom: 2px solid #ac00e6;
   cursor: pointer;
 }

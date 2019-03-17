@@ -41,7 +41,7 @@ export class NavigationComponent implements OnInit {
   	{
 	  	this.transferService.setData('post');
 	  	this.router.navigateByUrl('/home');
-	}
+	  }
   }
 
 
