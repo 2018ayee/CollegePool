@@ -47,7 +47,7 @@ router.route('/users/add').post((req, res) => {
 			res.status(200).json({'posting': 'Added successfully'});
 		})
 		.catch(err => {
-			res.status(400).send('Failed to create new posting');
+			res.status(400).send('Failed to create new user');
 		});
 });
 

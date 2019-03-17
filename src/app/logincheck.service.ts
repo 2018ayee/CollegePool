@@ -44,8 +44,7 @@ export class LogincheckService {
 			}
 			if(!isUser)
 			{
-				console.log('hi');
-				this.userService.addUser(this.userInfo.name, this.userInfo['cognito:username'], this.userInfo.address, this.userInfo.birthdate, this.userInfo.email, this.userInfo.gender, this.userInfo.phone_number)
+				this.userService.addUser(this.userInfo.name, this.userInfo['cognito:username'], this.userInfo.address.formatted, this.userInfo.birthdate, this.userInfo.email, this.userInfo.gender, this.userInfo.phone_number)
 				.subscribe(() => {
 					this.userService.getUsers()
 					.subscribe((data: User[]) => {
