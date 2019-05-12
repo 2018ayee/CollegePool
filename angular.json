@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "CollegePool"
+  "defaultProject": "CollegePool",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }

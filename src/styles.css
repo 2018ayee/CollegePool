@@ -144,6 +144,34 @@
 img{
     border-radius: 50%;
 }
+#filter_icon {
+    border-radius: 0%;
+    height: 25px;
+    width: 25px;
+    padding: 5px;
+    border-radius: 20%;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #ffffff;
+}
+#num_rides_given {
+    font-weight: 550;
+    color: #ac00e6;
+}
+#num_rides_received {
+    font-weight: 550;
+    color: #ac00e6;
+}
+#dots {
+    font-size: 1.2em;
+    font-weight: 600;
+    display: inline-block;
+    margin: auto;
+}
+#news_header {
+    margin-top: 0.6em;
+    display: inline-block;
+}
 .submitbutton{
     display: block;
     background-color: #f1f1f1;

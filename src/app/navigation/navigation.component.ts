@@ -73,4 +73,10 @@ export class NavigationComponent implements OnInit {
 		this.router.navigateByUrl('/settings');
 	}
 
+  toPayments()
+  {
+    this.transferService.setData('settingsnav');
+    this.router.navigateByUrl('/payments');
+  }
+
 }

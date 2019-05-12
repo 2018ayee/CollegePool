@@ -34,6 +34,7 @@ export class HistoryComponent implements OnInit {
 	  		(document.getElementsByClassName('right-background')[0] as HTMLInputElement).style.visibility = "hidden";
 	var feedSize = window.innerWidth - 424;
 	document.getElementById('history').style.width = String(feedSize) + "px";
+	
 
 	document.getElementById('num_rides_given').innerHTML = this.user.rides_given;
 	document.getElementById('num_rides_received').innerHTML = this.user.rides_received;
