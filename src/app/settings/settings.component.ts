@@ -1,23 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators,FormGroupDirective, NgForm } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransferService } from '../datatransfer.service';
 import { UserService } from '../user.service';
 import { Auth } from 'aws-amplify';
 import { LogincheckService } from '../logincheck.service';
+import {MatButtonModule} from '@angular/material/button';
+import {ErrorStateMatcher} from '@angular/material/core';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+/** @title Input with a custom ErrorStateMatcher */
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
+
+
 export class SettingsComponent implements OnInit {
 
   profileForm;
   user;
   span;
   myStorage = window.localStorage;
+
+
+    emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  matcher = new MyErrorStateMatcher();
 
   constructor(private logincheckService: LogincheckService, private router: Router, private transferService: TransferService, private userService: UserService) { }
 

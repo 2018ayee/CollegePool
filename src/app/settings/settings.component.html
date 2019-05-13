@@ -3,52 +3,57 @@
 <div layout-align="center center" id="form">
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="user-settings" layout="column">
   
-  <div formGroupName="user">
-  	<h3>User Settings</h3>
-  	<div class="field">
-	  <label>
-	    First Name: 
-	  </label>
-	    <input type="text" formControlName="firstName">
-	  <br>
-	</div>
+<div formGroupName="user">
+	<h3>User Settings</h3>
+  <div class="field">
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName = "firstName">
+  </mat-form-field>
+</div>
 
-	<div class="field">
-	  <label>
-	    Last Name: 
-	  </label>
-	    <input type="text" formControlName="lastName">
-	  <br>
-	</div>
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName = "lastName">
+  </mat-form-field>
+</div>
 
-	<div class="field">
-	  <label>
-	    Email: 
-	  </label>
-	    <input type="email" formControlName="email">
-	  <br>
-	</div>
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Email " formControlName = "email">
+  </mat-form-field>
+</div>
 
-	<div class="field">
-	  <label>
-	    Phone Number: 
-	  </label>
-	    <input type="text" formControlName="phone">
-	  <br>
-	</div>
 
-  </div>
+<!--<form class ="example-form" >
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [formControl]="emailFormControl"
+           [errorStateMatcher]="matcher" formControlName = "email">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>-->
 
-  	<div formGroupName="address" layout="column">
-	  <h3>Address</h3>
-		<div class="field">
-		  <label>
-		    Street:
-		  </label>
-		    <input type="text" formControlName="street">
-		  <br>
-		</div>
-	</div>
+
+
+
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Phone Number " formControlName = "phone">
+  </mat-form-field>
+</div>
+</div>
+
+<div formGroupName="address" layout="column">
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder = "Address" formControlName="street">
+  </mat-form-field>
+</div>
+</div>
 
   <button type="submit" [disabled]="!profileForm.valid" class="submit">Save changes</button>
 

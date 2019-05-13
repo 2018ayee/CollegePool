@@ -105,7 +105,7 @@ export class LogincheckService {
 	}
 
 	loginCheck() {
-		if(this.userInfo == null && window.localStorage.getItem('user') == null)
+		if(this.userInfo == null && window.localStorage.getItem('_id') == null)
 			this.router.navigateByUrl('/login');
 	}
 }
