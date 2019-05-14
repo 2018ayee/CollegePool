@@ -9,7 +9,6 @@
 .submit{
     display: block;
     background-color: #ffffff;
-    color: black;
     color: #ac00e6;
     padding: 8px 16px;
     border: 1px solid #ac00e6;
@@ -19,7 +18,7 @@
     transition: 0.3s;
     margin:auto;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 40px;
     font-weight: 700;
 }
 
@@ -35,6 +34,7 @@
     position: relative;
     top: 30px;
     border-radius: 4px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
 }
 
 form {
@@ -47,7 +47,7 @@ input {
     float: right;
     clear: both;
     /*margin-bottom: 5px;*/
-    width: 175px;
+    width: 250px;
 }
 
 

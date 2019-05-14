@@ -1,4 +1,26 @@
 <app-navigation></app-navigation>
-<p>
-  payments works!
-</p>
+<div id="body">
+<div layout-align="center center" id="form">
+	<div id="payment-methods">
+		<h3>Payment methods</h3>
+	</div>
+	<div class="payments-bottom-add-container">
+		<button class="payment-footer-button" (click)="toAddPayment()">
+			<span class="plus-sign">+</span> 
+			<span class="payment-footer-text">Add a payment method </span>
+		</button>
+	</div>
+</div>
+
+<div layout-align="center center" id="payment-form">
+	<div id="payment-methods">
+		<h3>Add payment method</h3>
+	</div>
+	<div class="payments-bottom-add-container">
+		<button class="payment-footer-button" (click)="toPaymentMethods()">
+			<span class="payment-footer-text">Cancel </span>
+		</button>
+	</div>
+</div>
+
+</div>

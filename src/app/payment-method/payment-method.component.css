@@ -1,0 +1,38 @@
+.payment-type-icon {
+	height: 24px;
+	width: 24px;
+	background-position: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 30px;
+	margin-right: 20px;
+}
+
+.credit-card-icon {
+	content: url("/src/img/credit-card-icon.png");
+}
+
+.paypal-icon {
+	content: url("/src/img/paypal-icon.png");
+}
+
+.venmo-icon {
+	content: url("/src/img/venmo-icon.png");
+}
+
+.payment-type-details {
+	/*display: inline-block;*/
+	font-size: 12px;
+	font-weight: 450;
+	vertical-align: middle;
+	position: absolute;
+	line-height: 55px;
+}
+
+.payment-method {
+	cursor: pointer;
+	position: relative;
+}
+.payment-method:hover {
+	background-color: #f1f1f1;
+}

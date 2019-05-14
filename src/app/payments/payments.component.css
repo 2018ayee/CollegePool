@@ -1,0 +1,63 @@
+#form {
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    background-color: #ffffff;
+    position: relative;
+    top: 30px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+
+#payment-form {
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    background-color: #ffffff;
+    position: relative;
+    top: 30px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    display: none;
+}
+
+#payment-methods {
+	overflow: hidden;
+    width: 300px;
+    margin: auto;
+}
+
+.payment-footer-button{
+    display: inline-block;
+    background-color: #ffffff;
+    color: #ac00e6;
+    border: none;
+    outline: none;
+    text-align: center;
+    margin-left: 34px;
+    margin-bottom: 5px;
+}
+
+.plus-sign {
+	vertical-align: middle;
+	font-size: 30px;
+	margin-right: 7px;
+	cursor: pointer;
+}
+
+.payment-footer-text {
+	vertical-align: middle;
+	line-height: 42px;
+	font-weight: 400;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.payment-footer-text:hover {
+	text-decoration: underline;
+}
+
+.payments-bottom-add-container {
+	position: absolute;
+	bottom: 0;
+}

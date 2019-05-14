@@ -9,11 +9,13 @@ src/**/*.js
 /out-tsc
 *.wt
 *.turtle
+*.lock
+backend/WiredTiger
 
 # dependencies
 /node_modules
-/backend
-backend/
+/backend/data/db
+backend/data/db/
 
 # IDEs and editors
 /.idea
