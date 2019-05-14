@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators,FormGroupDirective, NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators,FormGroupDirective, NgForm, FormBuilder } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransferService } from '../datatransfer.service';
 import { UserService } from '../user.service';
