@@ -9,13 +9,18 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   addPaymentUser(id, username, name, email) {
-  	console.log('adding to braintree');
-  	const user = {
+  	return this.http.get(`${this.uri}/customers/add/${username}`);
+  }
+
+  getPaymentUserById(id) {
+    return this.http.get(`${this.uri}/customers/${id}`);
+  }
+
+  addPaymentMethodToUser(id, nonce) {
+  	const body = {
   		id: id,
-  		username: username,
-  		name: name,
-  		email: email
+  		nonce: nonce
   	};
-  	return this.http.post(`${this.uri}/customers/add/`, user);
+  	return this.http.post(`${this.uri}/customers/payment/`, body);
   }
 }

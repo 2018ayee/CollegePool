@@ -100,6 +100,7 @@ export class SettingsComponent implements OnInit {
 		this.myStorage.setItem('phone_number', this.user.phone_number);
 		this.myStorage.setItem('rides_given', this.user.rides_given);
 		this.myStorage.setItem('rides_received', this.user.rides_received);
+		this.myStorage.setItem('payment_id', this.user.payment_id);
 	  		location.reload();
 		});
 	}

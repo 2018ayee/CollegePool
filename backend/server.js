@@ -31,20 +31,20 @@ connection.once('open', () => {
 });
 
 //Router information for braintree payments
-router.route('/customers').get((req, res) => {
-	gateway.transaction.search(function (search) {
+router.route('/customers/:id').get((req, res) => {
+	var stream = gateway.customer.search(function (search) {
+	  search.id().is(req.params.id);
 	}, function (err, response) {
-		console.log(response.searchResponse);
-		response.each(function (err, customer) {
-			console.log(customer);
-		});
+	  response.each(function (err, customer) {
+	    res.json(customer);
+	  });
 	});
+
 });
 
 router.route('/customers/add/:username').get((req, res) => {
-	console.log(req.params.username);
-	gateway.customer.create({
-	username: req.params.username,
+	var customer = gateway.customer.create({
+	customFields: ({'username': req.params.username}),
 	}, function (err, result) {
 		if(err)
 		{
@@ -52,32 +52,25 @@ router.route('/customers/add/:username').get((req, res) => {
 		}
 		else
 		{
-			console.log(result);
-			User.findById(req.body._id, (err, user) => {
-				if(!user)
-					return next(new Error('Could not load'));
-				else
-				{
-					user.name = req.body.name;
-					user.username = req.body.username;
-					user.address = req.body.address;
-					user.birthdate = req.body.birthdate;
-					user.email = req.body.email;
-					user.gender = req.body.gender;
-					user.phone_number = req.body.phone_number;
-					user.rides_given = req.body.rides_given;
-					user.rides_received = req.body.rides_received;
-					user.payment_id = result.customer.id;
+			res.json(result);
+		}
+	});
+});
 
-
-					user.save().then(user => {
-						res.json('Update successful');
-					}).catch(err => {
-						res.status(400).send('Update failed');
-					});
-				}
-			});
-			result.cusomer.id;
+router.route('/customers/payment').post((req, res) => {
+	var paymentMethod = gateway.paymentMethod.create({
+	  customerId: req.body.id,
+	  paymentMethodNonce: req.body.nonce,
+	  // failOnDuplicatePaymentMethod: true
+	}, function (err, result) { 
+		if(err)
+		{
+			console.log(err);
+			res.json('Already exists');
+		}
+		else
+		{
+			res.status(200).json({'payment method': 'Added successfully'});
 		}
 	});
 });

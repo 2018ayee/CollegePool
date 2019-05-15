@@ -30,7 +30,7 @@
 }
 
 .payment-method {
-	cursor: pointer;
+	/*cursor: pointer;*/
 	position: relative;
 }
 .payment-method:hover {

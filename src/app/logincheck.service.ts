@@ -19,7 +19,17 @@ export class LogincheckService {
   constructor(private userService: UserService, private paymentService: PaymentService, private router: Router) { }
 
   addUserToBraintree() {
-  	this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email);
+  	this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email).subscribe((data: any) => {
+  		this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received, data.customer.id)
+		  .subscribe(() => {
+		  		this.user.payment_id = data.customer.id;
+				this.myStorage.setItem('payment_id', this.user.payment_id);
+				console.log(this.user);
+			});
+  	})
+  	// this.paymentService.getPaymentUserById('258703956').subscribe((data: any) => {
+  	// 	console.log(data);
+  	// })
   	console.log('added to braintree');
   }
 
@@ -61,17 +71,16 @@ export class LogincheckService {
 								this.user = this.users[i];
 							}
 						}
-						//this.addUserToBraintree();
+						this.addUserToBraintree();
 						this.setLocalStorage();
 						this.router.navigateByUrl('/home');
 					});
 				});
 			}
 			else{
-				//TODO: FIX ADDING USER TO BRAINTREE
-				if(this.user.payment_id == '')
+				if(this.user.payment_id == '' || this.user.payment_id == null)
 				{
-					//this.addUserToBraintree();
+					this.addUserToBraintree();
 				}
 				this.setLocalStorage();
 				this.router.navigateByUrl('/home');

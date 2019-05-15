@@ -78,3 +78,30 @@
 		</div>
 	</div>
 </div>
+
+<div id="payment-venmo-modal" class = "modal">
+	<div layout-align="center center" id="venmo-form">
+		<div id="paypal-header-container">
+			<div class="payment-methods" id="modal-payment-methods">
+				<h3 class="colored-header"><span class="close-modal" (click)="closeModal()">&times;</span>Add Venmo</h3>
+			</div>
+		</div>
+		<div id="venmo-button"></div>
+		<div class="payments-bottom-add-container">
+			<button class="payment-footer-button">
+				<span class="payment-footer-text" (click)="closeModal()">Cancel </span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<div id="error-modal" class = "modal">
+	<div layout-align="center center" id="error-form">
+		<div class="loader" id="loading-circle"></div>
+		<div id="error-header-container">
+			<div class="payment-methods" id="modal-payment-methods">
+				<h3 class="colored-header"><span class="close-modal" (click)="closeError()">&times;</span>Payment method already exists</h3>
+			</div>
+		</div>
+	</div>
+</div>

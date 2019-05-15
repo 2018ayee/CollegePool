@@ -3,6 +3,8 @@ import { DynamicAddService } from '../dynamic-add.service';
 import * as dropin from 'braintree-web-drop-in';
 import * as braintree from 'braintree-web';
 import { IPayPalConfig } from 'ngx-paypal';
+import { LogincheckService } from '../logincheck.service';
+import { PaymentService } from '../payment.service';
 
 declare let paypal: any;
 @Component({
@@ -11,13 +13,30 @@ declare let paypal: any;
   styleUrls: ['./payments.component.css']
 })
 export class PaymentsComponent implements OnInit {
-  
-  constructor(private addService: DynamicAddService) { }
+
+  user = this.logincheckService.getUser();
+  paymentCustomer;
+  constructor(private addService: DynamicAddService, private paymentService: PaymentService, private logincheckService: LogincheckService) { }
 
   ngOnInit() {
+  	this.logincheckService.loginCheck();
+  	this.getUser();
   	this.createViews();
   	this.createPayPal();
+  	this.createVenmo();
   	this.addMethods();
+  }
+
+  getUser() {
+  	this.paymentService.getPaymentUserById(this.user.payment_id).subscribe((data) => {
+  		this.paymentCustomer = data;
+  		console.log(this.paymentCustomer)
+  		for(var i = 0; i < this.paymentCustomer.paymentMethods.length; i++)
+  		{
+  			if(this.paymentCustomer.paymentMethods[i].cardType != "Unknown")
+  				this.addService.appendPaymentMethod("card", this.paymentCustomer.paymentMethods[i].cardType + " ending in " + this.paymentCustomer.paymentMethods[i].last4, "form", false);
+  		}
+  	});
   }
 
   loadExternalScript(scriptUrl: string) {
@@ -32,6 +51,13 @@ export class PaymentsComponent implements OnInit {
   closeModal() {
   	document.getElementById('payment-modal').style.display = 'none';
   	document.getElementById('payment-paypal-modal').style.display = 'none';
+  	document.getElementById('payment-venmo-modal').style.display = 'none';
+  }
+
+  closeError() {
+  	document.getElementById("error-modal").style.display = 'none';
+  	document.getElementById("loading-circle").style.display = 'block';
+  	document.getElementById("error-header-container").style.display = 'none';
   }
 
   toAddPayment() {
@@ -45,16 +71,121 @@ export class PaymentsComponent implements OnInit {
   }
 
   addMethods() {
-  	this.addService.appendPaymentMethod('card', 'Add credit or debit card', 'payment-form');
-  	this.addService.appendPaymentMethod('paypal', 'Add PayPal', 'payment-form');
-  	this.addService.appendPaymentMethod('venmo', 'Add Venmo', 'payment-form');
+  	this.addService.appendPaymentMethod('card', 'Add credit or debit card', 'payment-form', true);
+  	this.addService.appendPaymentMethod('paypal', 'Add PayPal', 'payment-form', true);
+  	this.addService.appendPaymentMethod('venmo', 'Add Venmo', 'payment-form', true);
+  }
+
+  createVenmo() {
+  	var venmoButton = <HTMLInputElement> document.getElementById('venmo-button');
+	// Create a client.
+	braintree.client.create({
+	  authorization: 'sandbox_9qsbyyq8_wmc3v88r36cbxjjz'
+	}, function (clientErr, clientInstance) {
+	  // Stop if there was a problem creating the client.
+	  // This could happen if there is a network error or if the authorization
+	  // is invalid.
+	  if (clientErr) {
+	    console.error('Error creating client:', clientErr);
+	    return;
+	  }
+
+	  braintree.dataCollector.create({
+	    client: clientInstance,
+	    paypal: true
+	  }, function (dataCollectorErr, dataCollectorInstance) {
+	    if (dataCollectorErr) {
+	      // Handle error in creation of data collector.
+	      return;
+	    }
+
+	    // At this point, you should access the deviceData value and provide it
+	    // to your server, e.g. by injecting it into your form as a hidden input.
+	    console.log('Got device data:', dataCollectorInstance.deviceData);
+	  });
+
+	  braintree.venmo.create({
+	    client: clientInstance,
+	    // Add allowNewBrowserTab: false if your checkout page does not support
+	    // relaunching in a new tab when returning from the Venmo app. This can
+	    // be omitted otherwise.
+	    profileId: '1953896702662410263'
+	    //allowNewBrowserTab: false
+
+	  }, function (venmoErr, venmoInstance) {
+	    if (venmoErr) {
+	      console.error('Error creating Venmo:', venmoErr);
+	      return;
+	    }
+
+	    // Verify browser support before proceeding.
+	    if (!venmoInstance.isBrowserSupported()) {
+	      console.log('Browser does not support Venmo');
+	      document.getElementById('add-venmo-button').style.display = 'none';
+	      return;
+	    }
+
+	    displayVenmoButton(venmoInstance);
+
+	    // Check if tokenization results already exist. This occurs when your
+	    // checkout page is relaunched in a new tab. This step can be omitted
+	    // if allowNewBrowserTab is false.
+	    if (venmoInstance.hasTokenizationResult()) {
+	      venmoInstance.tokenize(function (tokenizeErr, payload) {
+	        if (tokenizeErr) {
+	          handleVenmoError(tokenizeErr);
+	        } else {
+	          handleVenmoSuccess(payload);
+	        }
+	      });
+	      return;
+	    }
+	  });
+	});
+
+	function displayVenmoButton(venmoInstance) {
+	  // Assumes that venmoButton is initially display: none.
+	  venmoButton.style.display = 'block';
+
+	  venmoButton.addEventListener('click', function () {
+	    venmoButton.disabled = true;
+
+	    venmoInstance.tokenize(function (tokenizeErr, payload) {
+	      venmoButton.removeAttribute('disabled');
+
+	      if (tokenizeErr) {
+	        handleVenmoError(tokenizeErr);
+	      } else {
+	        handleVenmoSuccess(payload);
+	      }
+	    });
+	  });
+	}
+
+	function handleVenmoError(err) {
+	  if (err.code === 'VENMO_CANCELED') {
+	    console.log('App is not available or user aborted payment flow');
+	  } else if (err.code === 'VENMO_APP_CANCELED') {
+	    console.log('User canceled payment flow');
+	  } else {
+	    console.error('An error occurred:', err.message);
+	  }
+	}
+
+	function handleVenmoSuccess(payload) {
+	  // Send the payment method nonce to your server, e.g. by injecting
+	  // it into your form as a hidden input.
+	  console.log('Got a payment method nonce:', payload.nonce);
+	  // Display the Venmo username in your checkout UI.
+	  console.log('Venmo user:', payload.details.username);
+	}
   }
 
   createPayPal() {
   	this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
 	  	braintree.client.create({
 		  authorization: 'sandbox_9qsbyyq8_wmc3v88r36cbxjjz'
-		}, function (err, clientInstance) {
+		}, (err, clientInstance) => {
 		  if (err) {
 		    console.error(err);
 		    return;
@@ -62,7 +193,7 @@ export class PaymentsComponent implements OnInit {
 
 	  	braintree.paypalCheckout.create({
 		    client: clientInstance
-		  }, function (paypalCheckoutErr, paypalCheckoutInstance) {
+		  }, (paypalCheckoutErr, paypalCheckoutInstance) => {
 
 		    // Stop if there was a problem creating PayPal Checkout.
 		    // This could happen if there was a network error or if it's incorrectly
@@ -80,7 +211,7 @@ export class PaymentsComponent implements OnInit {
 			      	size: 'large'
 			      },
 
-			      payment: function () {
+			      payment: () => {
 			        return paypalCheckoutInstance.createPayment({
 			          flow: 'vault',
 			          billingAgreementDescription: 'Your agreement description',
@@ -89,20 +220,34 @@ export class PaymentsComponent implements OnInit {
 			        });
 			      },
 
-			      onAuthorize: function (data, actions) {
-			        return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
+			      onAuthorize: (data, actions) => {
+			        return paypalCheckoutInstance.tokenizePayment(data, (err, payload) => {
 			          // Submit `payload.nonce` to your server.
+			          this.paymentService.addPaymentMethodToUser(this.user.payment_id, payload.nonce).subscribe((res) => {
+			        	console.log(res);
+			        	if(res == "Already exists")
+			        	{
+			        		document.getElementById("loading-circle").style.display = 'none';
+			        		document.getElementById("error-header-container").style.display = 'block';
+			        	}
+			        	else
+			        	{
+			        		this.closeError();
+			        		this.closeModal();
+			        		location.reload();
+			        	}
+			        });
 			        });
 			      },
 
-			      onCancel: function (data) {
+			      onCancel: (data) => {
 			        console.log('checkout.js payment cancelled', JSON.stringify(data));
 			      },
 
-			      onError: function (err) {
+			      onError: (err) => {
 			        console.error('checkout.js error', err);
 			      }
-			    }, '#paypal-button').then(function () {
+			    }, '#paypal-button').then(() => {
 			      // The PayPal button will be rendered in an html element with the id
 			      // `paypal-button`. This function will be called when the PayPal button
 			      // is set up and ready to be used.
@@ -118,7 +263,7 @@ export class PaymentsComponent implements OnInit {
 
 	braintree.client.create({
 	  authorization: 'sandbox_9qsbyyq8_wmc3v88r36cbxjjz'
-	}, function (err, clientInstance) {
+	}, (err, clientInstance) => {
 	  if (err) {
 	    console.error(err);
 	    return;
@@ -168,15 +313,15 @@ export class PaymentsComponent implements OnInit {
 	        placeholder: '10 / 2019'
 	      }
 	    }
-	  }, function (err, hostedFieldsInstance) {
+	  }, (err, hostedFieldsInstance) => {
 	    if (err) {
 	      console.error(err);
 	      return;
 	    }
 
-	    hostedFieldsInstance.on('validityChange', function (event) {
+	    hostedFieldsInstance.on('validityChange', (event) => {
 	      // Check if all fields are valid, then show submit button
-	      var formValid = Object.keys(event.fields).every(function (key) {
+	      var formValid = Object.keys(event.fields).every((key) => {
 	        return event.fields[key].isValid;
 	      });
 
@@ -187,13 +332,13 @@ export class PaymentsComponent implements OnInit {
 	      }
 	    });
 
-	    hostedFieldsInstance.on('empty', function (event) {
+	    hostedFieldsInstance.on('empty', (event) => {
 	      //document.querySelector('header').classList.remove('header-slide');
 	      document.querySelector('#card-image').className = '';
 	      document.querySelector('form').className = '';
 	    });
 
-	    hostedFieldsInstance.on('cardTypeChange', function (event) {
+	    hostedFieldsInstance.on('cardTypeChange', (event) => {
 	      // Change card bg depending on card type
 	      if (event.cards.length === 1) {
 	        //document.querySelector('form').className = event.cards[0].type;
@@ -217,10 +362,10 @@ export class PaymentsComponent implements OnInit {
 	      }
 	    });
 
-	    submit.addEventListener('click', function (event) {
+	    submit.addEventListener('click', (event) => {
 	      event.preventDefault();
-
-	      hostedFieldsInstance.tokenize(function (err, payload) {
+	      document.getElementById("error-modal").style.display = 'block';
+	      hostedFieldsInstance.tokenize((err, payload) => {
 	        if (err) {
 	          console.error(err);
 	          return;
@@ -228,6 +373,20 @@ export class PaymentsComponent implements OnInit {
 
 	        // This is where you would submit payload.nonce to your server
 	        console.log(payload);
+	        this.paymentService.addPaymentMethodToUser(this.user.payment_id, payload.nonce).subscribe((res) => {
+	        	console.log(res);
+	        	if(res == "Already exists")
+	        	{
+	        		document.getElementById("loading-circle").style.display = 'none';
+	        		document.getElementById("error-header-container").style.display = 'block';
+	        	}
+	        	else
+	        	{
+	        		this.closeError();
+	        		this.closeModal();
+	        		location.reload();
+	        	}
+	        })
 	      });
 	    }, false);
 	  });

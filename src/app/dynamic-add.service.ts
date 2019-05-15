@@ -41,7 +41,7 @@ export class DynamicAddService {
     }, 3000);
   }
 
-  appendPaymentMethod(method, info, superbody) {
+  appendPaymentMethod(method, info, superbody, isAdd) {
     // 1. Create a component reference from the component 
     const componentRef = this.componentFactoryResolver
       .resolveComponentFactory(PaymentMethodComponent)
@@ -53,24 +53,41 @@ export class DynamicAddService {
     // 3. Get DOM element from component and add necessary info
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
       .rootNodes[0] as HTMLElement;
-
+    var elem = domElem.getElementsByClassName('payment-type-icon')[0];
+    var div = domElem.getElementsByClassName('payment-method')[0] as HTMLElement;
     if(method == 'card')
     {
-      domElem.getElementsByClassName('payment-type-icon')[0].className += ' credit-card-icon';
-      domElem.getElementsByClassName('payment-method')[0].addEventListener('click', function() {
-        document.getElementById('payment-modal').style.display = 'block';
-      })
+      elem.className += ' credit-card-icon';
+      if(isAdd)
+      {
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', function() {
+          document.getElementById('payment-modal').style.display = 'block';
+        });
+      }
     }
     else if(method == 'paypal')
     {
-      domElem.getElementsByClassName('payment-type-icon')[0].className += ' paypal-icon';
-      domElem.getElementsByClassName('payment-method')[0].addEventListener('click', function() {
-        document.getElementById('payment-paypal-modal').style.display = 'block';
-      })
+      elem.className += ' paypal-icon';
+      if(isAdd)
+      {
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', function() {
+          document.getElementById('payment-paypal-modal').style.display = 'block';
+        });
+      }
     }
     else if(method == 'venmo')
     {
-      domElem.getElementsByClassName('payment-type-icon')[0].className += ' venmo-icon';
+      elem.className += ' venmo-icon';
+      div.id = "add-venmo-button";
+      if(isAdd)
+      {
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', function() {
+          document.getElementById('payment-venmo-modal').style.display = 'block';
+        });
+      }
     }
     
     domElem.getElementsByClassName('payment-type-details')[0].innerHTML = info;
