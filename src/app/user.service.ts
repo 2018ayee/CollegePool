@@ -26,12 +26,13 @@ export class UserService {
       gender: gender,
       phone_number: phone_number,
       rides_given: rides_given,
-      rides_received: rides_received
+      rides_received: rides_received,
+      payment_id: ""
   	};
   	return this.http.post(`${this.uri}/users/add/`, user);
   }
 
-  updateUser(id, name, username, address, birthdate, email, gender, phone_number, rides_given, rides_received) {
+  updateUser(id, name, username, address, birthdate, email, gender, phone_number, rides_given, rides_received, payment_id) {
   	const user = {
       name: name,
       username: username,
@@ -41,7 +42,8 @@ export class UserService {
       gender: gender,
       phone_number: phone_number,
       rides_given: rides_given,
-      rides_received: rides_received
+      rides_received: rides_received,
+      payment_id: payment_id
     };
   	return this.http.post(`${this.uri}/users/update/${id}`, user);
   }

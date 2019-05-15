@@ -3,6 +3,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from './user.service';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { PaymentService } from './payment.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,12 @@ export class LogincheckService {
 	users;
 	//user info from cognito
 	userInfo = null;
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private paymentService: PaymentService, private router: Router) { }
+
+  addUserToBraintree() {
+  	this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email);
+  	console.log('added to braintree');
+  }
 
   decodeToken(idToken)
 	{
@@ -55,12 +61,18 @@ export class LogincheckService {
 								this.user = this.users[i];
 							}
 						}
+						//this.addUserToBraintree();
 						this.setLocalStorage();
 						this.router.navigateByUrl('/home');
 					});
 				});
 			}
 			else{
+				//TODO: FIX ADDING USER TO BRAINTREE
+				if(this.user.payment_id == '')
+				{
+					//this.addUserToBraintree();
+				}
 				this.setLocalStorage();
 				this.router.navigateByUrl('/home');
 			}
@@ -79,6 +91,7 @@ export class LogincheckService {
 		this.myStorage.setItem('phone_number', this.user.phone_number);
 		this.myStorage.setItem('rides_given', this.user.rides_given);
 		this.myStorage.setItem('rides_received', this.user.rides_received);
+		this.myStorage.setItem('payment_id', this.user.payment_id);
 	}
 
 	getUserFromLocalStorage() {
@@ -92,7 +105,8 @@ export class LogincheckService {
 			"gender": this.myStorage.getItem('gender'), 
 			"phone_number": this.myStorage.getItem('phone_number'), 
 			"rides_given": this.myStorage.getItem('rides_given'), 
-			"rides_received": this.myStorage.getItem('rides_received')
+			"rides_received": this.myStorage.getItem('rides_received'),
+			"payment_id": this.myStorage.getItem('payment_id')
 		};
 	}
 

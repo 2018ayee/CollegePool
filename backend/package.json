@@ -25,6 +25,7 @@
     "@types/socket.io": "^2.1.2",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
+    "braintree": "^2.16.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongoose": "^5.4.18",

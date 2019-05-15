@@ -1,7 +1,7 @@
 <app-navigation></app-navigation>
 <div id="body">
 <div layout-align="center center" id="form">
-	<div id="payment-methods">
+	<div class="payment-methods">
 		<h3>Payment methods</h3>
 	</div>
 	<div class="payments-bottom-add-container">
@@ -13,7 +13,7 @@
 </div>
 
 <div layout-align="center center" id="payment-form">
-	<div id="payment-methods">
+	<div class="payment-methods">
 		<h3>Add payment method</h3>
 	</div>
 	<div class="payments-bottom-add-container">
@@ -23,4 +23,58 @@
 	</div>
 </div>
 
+</div>
+
+<div id="payment-modal" class = "modal">
+	<div layout-align="center center" id="card-form">
+		<div class="payment-methods" id="modal-payment-methods">
+			<h3 class="colored-header"><span class="close-modal" (click)="closeModal()">&times;</span>Add card</h3>
+		</div>
+
+		<form id="payment-card-form" class="scale-down">
+	    <div class="cardinfo-card-number">
+	      <label class="cardinfo-label" for="card-number">Card Number</label>
+	      <div class='input-wrapper' id="card-number"></div>
+	      <div id="card-image"></div>
+	    </div>
+
+	    <div class="cardinfo-wrapper">
+	      <div class="cardinfo-exp-date">
+	        <label class="cardinfo-label" for="expiration-date">Valid Thru</label>
+	        <div class='input-wrapper' id="expiration-date"></div>
+	      </div>
+
+	      <div class="cardinfo-cvv">
+	        <label class="cardinfo-label" for="cvv">CVV</label>
+	        <div class='input-wrapper' id="cvv"></div>
+	      </div>
+	    </div>
+	  </form>
+
+		<div class="payments-bottom-add-container">
+			<button class="payment-footer-button">
+				<span class="payment-footer-text" (click)="closeModal()">Cancel </span>
+			</button>
+		  <button class="payment-footer-button" id="add-card-button" type="submit" value="Continue">
+		  	<span class="plus-sign">+</span> 
+			<span class="payment-footer-text">Add </span>
+		  </button>
+		</div>
+	</div>
+</div>
+
+<div id="payment-paypal-modal" class = "modal">
+	<div layout-align="center center" id="paypal-form">
+		<div id="paypal-header-container">
+			<div class="payment-methods" id="modal-payment-methods">
+				<h3 class="colored-header"><span class="close-modal" (click)="closeModal()">&times;</span>Add PayPal</h3>
+			</div>
+		</div>
+		<div id="paypal-button"></div>
+		<div class="payments-bottom-add-container">
+			<button class="payment-footer-button">
+				<span class="payment-footer-text" (click)="closeModal()">Cancel </span>
+			</button>
+		</div>
+	</div>
 </div>

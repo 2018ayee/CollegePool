@@ -12,11 +12,13 @@ import { HomeDirective } from './home.directive';
 import { HistoryComponent } from './history/history.component';
 import { SettingsComponent } from './settings/settings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 import { PostingService } from './posting.service';
 import { UserService } from './user.service';
 import { TransferService } from './datatransfer.service';
 import { DynamicAddService } from './dynamic-add.service';
+import { PaymentService } from './payment.service';
 import { PostingComponent } from './posting/posting.component';
 import { UpdateComponent } from './update/update.component';
 import { ConnectComponent } from './connect/connect.component';
@@ -79,9 +81,10 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
     }),
-    ChatModule
+    ChatModule,
+    NgxPayPalModule
   ],
-  providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService],
+  providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService, PaymentService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent]
 })

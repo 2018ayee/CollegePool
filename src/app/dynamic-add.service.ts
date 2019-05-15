@@ -55,11 +55,23 @@ export class DynamicAddService {
       .rootNodes[0] as HTMLElement;
 
     if(method == 'card')
+    {
       domElem.getElementsByClassName('payment-type-icon')[0].className += ' credit-card-icon';
+      domElem.getElementsByClassName('payment-method')[0].addEventListener('click', function() {
+        document.getElementById('payment-modal').style.display = 'block';
+      })
+    }
     else if(method == 'paypal')
+    {
       domElem.getElementsByClassName('payment-type-icon')[0].className += ' paypal-icon';
+      domElem.getElementsByClassName('payment-method')[0].addEventListener('click', function() {
+        document.getElementById('payment-paypal-modal').style.display = 'block';
+      })
+    }
     else if(method == 'venmo')
+    {
       domElem.getElementsByClassName('payment-type-icon')[0].className += ' venmo-icon';
+    }
     
     domElem.getElementsByClassName('payment-type-details')[0].innerHTML = info;
 

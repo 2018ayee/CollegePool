@@ -87,7 +87,7 @@ export class SettingsComponent implements OnInit {
 
 	  console.log(this.user);
 
-	  this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received)
+	  this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received, this.user.payment_id)
 	  .subscribe(() => {
 	  		window.localStorage.setItem('visibility', 'visible');
 	  		this.myStorage.setItem('_id', this.user._id);

@@ -29,6 +29,9 @@ let User = new Schema({
 	},
 	rides_received: {
 		type: String
+	},
+	payment_id: {
+		type: String
 	}
 });
 
