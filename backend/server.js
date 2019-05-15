@@ -58,21 +58,38 @@ router.route('/customers/add/:username').get((req, res) => {
 });
 
 router.route('/customers/payment').post((req, res) => {
-	var paymentMethod = gateway.paymentMethod.create({
-	  customerId: req.body.id,
-	  paymentMethodNonce: req.body.nonce,
-	  // failOnDuplicatePaymentMethod: true
-	}, function (err, result) { 
-		if(err)
-		{
-			console.log(err);
-			res.json('Already exists');
-		}
-		else
-		{
-			res.status(200).json({'payment method': 'Added successfully'});
-		}
+	var cards;
+	var stream = gateway.customer.search(function (search) {
+	  search.id().is(req.body.id);
+	}, function (err, response) {
+	  response.each(function (err, customer) {
+	    cards = customer.creditCards;
+
+	    var paymentMethod = gateway.paymentMethod.create({
+		  customerId: req.body.id,
+		  paymentMethodNonce: req.body.nonce,
+		}, function (err, result) { 
+			if(err)
+			{
+				console.log(err);
+			}
+			else
+			{
+				for(var i = 0; i < cards.length; i++)
+				{
+					if(cards[i].uniqueNumberIdentifier == result.creditCard.uniqueNumberIdentifier)
+					{
+						gateway.paymentMethod.delete(result.creditCard.token, function (err) {});
+						res.json('Already exists');
+					}
+				}
+				
+			}
+		});
+	  });
 	});
+
+	
 });
 
 //Router information for user database

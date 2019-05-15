@@ -354,9 +354,16 @@ Inputs
   height: 120px;
   animation: spin 2s linear infinite;
   margin: auto;
-  position: absolute;
+}
+
+#loading-circle {
   top: 12%;
   left: 30%;
+  position: absolute;
+}
+
+#list-loading-circle {
+	margin-top: 50px;
 }
 
 /*--------------------

@@ -36,6 +36,7 @@ export class PaymentsComponent implements OnInit {
   			if(this.paymentCustomer.paymentMethods[i].cardType != "Unknown")
   				this.addService.appendPaymentMethod("card", this.paymentCustomer.paymentMethods[i].cardType + " ending in " + this.paymentCustomer.paymentMethods[i].last4, "form", false);
   		}
+  		document.getElementById('list-loading-circle').style.display = 'none';
   	});
   }
 
@@ -384,7 +385,7 @@ export class PaymentsComponent implements OnInit {
 	        	{
 	        		this.closeError();
 	        		this.closeModal();
-	        		location.reload();
+	        		//location.reload();
 	        	}
 	        })
 	      });
