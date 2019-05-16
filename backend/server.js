@@ -77,7 +77,7 @@ router.route('/customers/payment').post((req, res) => {
 			{
 				for(var i = 0; i < cards.length; i++)
 				{
-					if(cards[i].uniqueNumberIdentifier == result.creditCard.uniqueNumberIdentifier)
+					if(result.creditCard != null && cards[i].uniqueNumberIdentifier == result.creditCard.uniqueNumberIdentifier)
 					{
 						gateway.paymentMethod.delete(result.creditCard.token, function (err) {});
 						res.json('Already exists');

@@ -31,11 +31,13 @@ export class PaymentsComponent implements OnInit {
   	this.paymentService.getPaymentUserById(this.user.payment_id).subscribe((data) => {
   		this.paymentCustomer = data;
   		console.log(this.paymentCustomer)
-  		for(var i = 0; i < this.paymentCustomer.paymentMethods.length; i++)
-  		{
-  			if(this.paymentCustomer.paymentMethods[i].cardType != "Unknown")
-  				this.addService.appendPaymentMethod("card", this.paymentCustomer.paymentMethods[i].cardType + " ending in " + this.paymentCustomer.paymentMethods[i].last4, "form", false);
-  		}
+  		if(this.paymentCustomer.creditCards != null)
+	  		for(var i = 0; i < this.paymentCustomer.creditCards.length; i++)
+		  		this.addService.appendPaymentMethod("card", this.paymentCustomer.creditCards[i].cardType + " ending in " + this.paymentCustomer.creditCards[i].last4, "form", false);
+
+  		if(this.paymentCustomer.paypalAccounts != null)
+  			for(var i = 0; i < this.paymentCustomer.paypalAccounts.length; i++)
+	  			this.addService.appendPaymentMethod("paypal", this.paymentCustomer.paypalAccounts[i].email, "form", false);
   		document.getElementById('list-loading-circle').style.display = 'none';
   	});
   }
@@ -224,8 +226,8 @@ export class PaymentsComponent implements OnInit {
 			      onAuthorize: (data, actions) => {
 			        return paypalCheckoutInstance.tokenizePayment(data, (err, payload) => {
 			          // Submit `payload.nonce` to your server.
+			          document.getElementById("error-modal").style.display = 'block';
 			          this.paymentService.addPaymentMethodToUser(this.user.payment_id, payload.nonce).subscribe((res) => {
-			        	console.log(res);
 			        	if(res == "Already exists")
 			        	{
 			        		document.getElementById("loading-circle").style.display = 'none';
@@ -238,6 +240,7 @@ export class PaymentsComponent implements OnInit {
 			        		location.reload();
 			        	}
 			        });
+			          location.reload();
 			        });
 			      },
 
