@@ -23,4 +23,8 @@ export class PaymentService {
   	};
   	return this.http.post(`${this.uri}/customers/payment/`, body);
   }
+
+  removePaymentMethodFromUser(token) {
+  	return this.http.get(`${this.uri}/customers/payment/remove/${token}`);
+  }
 }

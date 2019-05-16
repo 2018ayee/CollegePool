@@ -5,6 +5,7 @@ import * as braintree from 'braintree-web';
 import { IPayPalConfig } from 'ngx-paypal';
 import { LogincheckService } from '../logincheck.service';
 import { PaymentService } from '../payment.service';
+import { TransferService } from '../datatransfer.service';
 
 declare let paypal: any;
 @Component({
@@ -16,7 +17,8 @@ export class PaymentsComponent implements OnInit {
 
   user = this.logincheckService.getUser();
   paymentCustomer;
-  constructor(private addService: DynamicAddService, private paymentService: PaymentService, private logincheckService: LogincheckService) { }
+  paymentInfo;
+  constructor(private addService: DynamicAddService, private paymentService: PaymentService, private logincheckService: LogincheckService, private transferService: TransferService) { }
 
   ngOnInit() {
   	this.logincheckService.loginCheck();
@@ -33,11 +35,11 @@ export class PaymentsComponent implements OnInit {
   		console.log(this.paymentCustomer)
   		if(this.paymentCustomer.creditCards != null)
 	  		for(var i = 0; i < this.paymentCustomer.creditCards.length; i++)
-		  		this.addService.appendPaymentMethod("card", this.paymentCustomer.creditCards[i].cardType + " ending in " + this.paymentCustomer.creditCards[i].last4, "form", false);
+		  		this.addService.appendPaymentMethod("card", this.paymentCustomer.creditCards[i].cardType + " ending in " + this.paymentCustomer.creditCards[i].last4, "form", false, this.paymentCustomer.creditCards[i].token);
 
   		if(this.paymentCustomer.paypalAccounts != null)
   			for(var i = 0; i < this.paymentCustomer.paypalAccounts.length; i++)
-	  			this.addService.appendPaymentMethod("paypal", this.paymentCustomer.paypalAccounts[i].email, "form", false);
+	  			this.addService.appendPaymentMethod("paypal", this.paymentCustomer.paypalAccounts[i].email, "form", false, this.paymentCustomer.paypalAccounts[i].token);
   		document.getElementById('list-loading-circle').style.display = 'none';
   	});
   }
@@ -49,6 +51,12 @@ export class PaymentsComponent implements OnInit {
 	  scriptElement.onload = resolve
 	  document.body.appendChild(scriptElement)
 	})
+  }
+
+  openEdit() {
+	document.getElementById("edit-modal").style.display = 'block';
+	this.paymentInfo = this.transferService.getData();
+	document.getElementById('method-information-text').innerHTML = this.paymentInfo.info;
   }
 
   closeModal() {
@@ -63,6 +71,10 @@ export class PaymentsComponent implements OnInit {
   	document.getElementById("error-header-container").style.display = 'none';
   }
 
+  closeEdit() {
+  	document.getElementById("edit-modal").style.display = 'none';
+  }
+
   toAddPayment() {
   	document.getElementById('form').style.display = 'none';
   	document.getElementById('payment-form').style.display = 'block';
@@ -74,9 +86,18 @@ export class PaymentsComponent implements OnInit {
   }
 
   addMethods() {
-  	this.addService.appendPaymentMethod('card', 'Add credit or debit card', 'payment-form', true);
-  	this.addService.appendPaymentMethod('paypal', 'Add PayPal', 'payment-form', true);
-  	this.addService.appendPaymentMethod('venmo', 'Add Venmo', 'payment-form', true);
+  	this.addService.appendPaymentMethod('card', 'Add credit or debit card', 'payment-form', true, '');
+  	this.addService.appendPaymentMethod('paypal', 'Add PayPal', 'payment-form', true, '');
+  	this.addService.appendPaymentMethod('venmo', 'Add Venmo', 'payment-form', true, '');
+  }
+
+  removeMethod() {
+  	document.getElementById("error-modal").style.display = 'block';
+  	this.paymentService.removePaymentMethodFromUser(this.paymentInfo.token).subscribe((res) => {
+	  	this.closeError();
+		this.closeEdit();
+		location.reload();
+  	});
   }
 
   createVenmo() {

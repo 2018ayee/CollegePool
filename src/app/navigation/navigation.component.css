@@ -48,3 +48,47 @@
 img:hover {
   cursor: pointer;
 }
+
+.dropdown {
+  display: none;
+  height: 192px;
+  width: 144px;
+  background-color: #ffffff;
+  margin-top: 10px;
+  margin-right: 5px;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+  z-index: 1;
+  position: absolute;
+  right: 0;
+}
+
+.dropdown-option {
+  width: inherit;
+  height: 48px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 48px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.group-two {
+  border-top: 2px solid #dbdbdb;
+}
+
+.dropdown-option:hover {
+  background-color: #f1f1f1;
+}
+
+.caret {
+    border-color: transparent transparent #ffffff transparent;
+    border-style: solid;
+    border-width: 0px 10px 10px 10px;
+    height: 0px;
+    width: 0px;
+    float: right;
+    margin-right: 22px;
+    z-index: 1000;
+    display: none;
+    color: #ffffff;
+}

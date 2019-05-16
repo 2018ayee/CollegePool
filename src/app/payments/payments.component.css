@@ -68,6 +68,18 @@
     z-index: 1;
 }
 
+#edit-form {
+    margin: auto;
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    position: relative;
+    top: 25%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    font-weight: 400;
+    z-index: 1;
+}
+
 .payment-methods {
 	overflow: hidden;
     width: 300px;
@@ -88,9 +100,19 @@
 	background-color: #890000;
 }
 
+#edit-header-container {
+	background-color: #580968;
+}
+
 .colored-header {
 	color: white;
 	font-weight: 400;
+}
+
+#method-information-text {
+	margin-left: 40px;
+	margin-top: 32px;
+	font-size: 16px;
 }
 
 .payment-footer-button{
@@ -114,6 +136,11 @@
 	float: right;
 	margin-right: 34px;
 	display: none;
+}
+
+#remove-payment-button {
+	float: right;
+	margin-right: 34px;
 }
 
 .plus-sign {

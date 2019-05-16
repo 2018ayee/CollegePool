@@ -8,6 +8,22 @@
 	</div>
 
 	<div class="imgnav">
-		<img src="src/icon.png" (click)="toHome()">
+		<img src="src/icon.png" (click)="dropMenu()">
+	</div>
+</div>
+
+<div class="caret" id="dropdown-caret"></div>
+<div class="dropdown" id="dropdown-menu">
+	<div class="dropdown-option" (click)="toHome()">
+		<span>Home</span>
+	</div>
+	<div class="dropdown-option" (click)="toSettings()">
+		<span>Settings</span>
+	</div>
+	<div class="dropdown-option" (click)="logout()">
+		<span>Logout</span>
+	</div>
+	<div class="dropdown-option group-two" (click)="dropMenu()">
+		<span>Close</span>
 	</div>
 </div>

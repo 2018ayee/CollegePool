@@ -18,6 +18,13 @@ export class LogincheckService {
 	userInfo = null;
   constructor(private userService: UserService, private paymentService: PaymentService, private router: Router) { }
 
+  clearInfo() {
+  	this.user = null;
+  	this.userInfo = null;
+  	this.users = null;
+  	this.myStorage.clear();
+  }
+  
   addUserToBraintree() {
   	this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email).subscribe((data: any) => {
   		this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received, data.customer.id)

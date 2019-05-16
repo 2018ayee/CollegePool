@@ -35,9 +35,10 @@ router.route('/customers/:id').get((req, res) => {
 	var stream = gateway.customer.search(function (search) {
 	  search.id().is(req.params.id);
 	}, function (err, response) {
-	  response.each(function (err, customer) {
-	    res.json(customer);
-	  });
+		if(response)
+		  response.each(function (err, customer) {
+		    res.json(customer);
+		  });
 	});
 
 });
@@ -92,8 +93,15 @@ router.route('/customers/payment').post((req, res) => {
 		});
 	  });
 	});
+});
 
-	
+router.route('/customers/payment/remove/:token').get((req, res) => {
+	var remove = gateway.paymentMethod.delete(req.params.token, function (err) {
+		if(err)
+			res.json(err);
+		else
+			res.json("Remove successful");
+	});
 });
 
 //Router information for user database

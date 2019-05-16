@@ -288,6 +288,7 @@ textarea {
     border-radius: 5px;
     margin: auto;
     background-color: #ffffff;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
 }
 
 .pfp{
@@ -410,11 +411,12 @@ line-height:.2;
 .right-background {
     width:400px;
     height: 100vh;
-    float:right;
-    /*position:fixed;*/
+    right: 200px;
+    position:absolute;
     /*background-color: #f1f1f1;*/
     text-align: center;
-    display:inline-block;
+    display:block;
+    z-index: -1;
 }
 body {
     font-family: "Segoe UI",Arial,sans-serif;

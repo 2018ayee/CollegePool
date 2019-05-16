@@ -44,7 +44,23 @@ export class NavigationComponent implements OnInit {
 	  }
   }
 
+  logout() {
+    this.logincheckService.clearInfo();
+    this.router.navigateByUrl('/login');
+  }
 
+  dropMenu() {
+    const menu = document.getElementById('dropdown-menu');
+    const caret = document.getElementById('dropdown-caret');
+    if(menu.style.display == 'block'){
+      caret.style.display = 'none';
+      menu.style.display = 'none';
+    }
+    else{
+      caret.style.display = 'block';
+      menu.style.display = 'block';
+    }
+  }
 
   paintActive(btn) {
   	var navcontents = document.getElementsByClassName('navigation')
@@ -57,24 +73,32 @@ export class NavigationComponent implements OnInit {
   }
 
   toHome() {
+    document.getElementById('dropdown-menu').style.display = 'none';
+    document.getElementById('dropdown-caret').style.display = 'none';
   	this.transferService.setData('homenav');
-	this.router.navigateByUrl('/home');
+	  this.router.navigateByUrl('/home');
   }
 
   toHistory()
 	{
+    document.getElementById('dropdown-menu').style.display = 'none';
+    document.getElementById('dropdown-caret').style.display = 'none';
 		this.transferService.setData('historynav');
 		this.router.navigateByUrl('/history');
 	}
 
 	toSettings()
 	{
+    document.getElementById('dropdown-menu').style.display = 'none';
+    document.getElementById('dropdown-caret').style.display = 'none';
 		this.transferService.setData('settingsnav');
 		this.router.navigateByUrl('/settings');
 	}
 
   toPayments()
   {
+    document.getElementById('dropdown-menu').style.display = 'none';
+    document.getElementById('dropdown-caret').style.display = 'none';
     this.transferService.setData('settingsnav');
     this.router.navigateByUrl('/payments');
   }
