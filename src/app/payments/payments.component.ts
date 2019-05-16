@@ -240,7 +240,6 @@ export class PaymentsComponent implements OnInit {
 			        		location.reload();
 			        	}
 			        });
-			          location.reload();
 			        });
 			      },
 
@@ -388,7 +387,7 @@ export class PaymentsComponent implements OnInit {
 	        	{
 	        		this.closeError();
 	        		this.closeModal();
-	        		//location.reload();
+	        		location.reload();
 	        	}
 	        })
 	      });

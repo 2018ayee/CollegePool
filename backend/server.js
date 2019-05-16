@@ -59,6 +59,7 @@ router.route('/customers/add/:username').get((req, res) => {
 
 router.route('/customers/payment').post((req, res) => {
 	var cards;
+	var exists = false;
 	var stream = gateway.customer.search(function (search) {
 	  search.id().is(req.body.id);
 	}, function (err, response) {
@@ -71,7 +72,7 @@ router.route('/customers/payment').post((req, res) => {
 		}, function (err, result) { 
 			if(err)
 			{
-				console.log(err);
+				res.json(err);
 			}
 			else
 			{
@@ -80,10 +81,13 @@ router.route('/customers/payment').post((req, res) => {
 					if(result.creditCard != null && cards[i].uniqueNumberIdentifier == result.creditCard.uniqueNumberIdentifier)
 					{
 						gateway.paymentMethod.delete(result.creditCard.token, function (err) {});
-						res.json('Already exists');
+						exists = true;
 					}
 				}
-				
+				if(exists)
+					res.json('Already exists');
+				else
+					res.json('Success');
 			}
 		});
 	  });
