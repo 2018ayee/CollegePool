@@ -17,26 +17,22 @@
   </mat-form-field>
 </div>
 
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Email " formControlName = "email" class="input-field">
-  </mat-form-field>
-</div>
+<!--
+	Email validator
+-->
 
-
-
-<!--<form class ="example-form" >
+<div class ="example-container" >
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Email" [formControl]="emailFormControl"
-           [errorStateMatcher]="matcher" formControlName = "email">
+    <input matInput placeholder="Email" formControlName = "email"
+           [errorStateMatcher]="matcher" >
     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
       Please enter a valid email address
     </mat-error>
     <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
+      Please enter a <strong>valid</strong> email address
     </mat-error>
   </mat-form-field>
-</form>-->
+</div>
 
 
 
@@ -47,6 +43,7 @@
   </mat-form-field>
 </div>
 </div>
+
 
 <div formGroupName="address" layout="column">
 <div class="example-container">

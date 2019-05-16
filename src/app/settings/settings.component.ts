@@ -82,7 +82,7 @@ export class SettingsComponent implements OnInit {
 	  this.user.name = updatedValues.user.firstName + " " + updatedValues.user.lastName;
 	  console.log(this.user.name);
 	  this.user.email = updatedValues.user.email;
-	  this.user.phone = updatedValues.user.phone;
+	  this.user.phone_number = updatedValues.user.phone;
 	  this.user.address = updatedValues.address.street;
 
 	  console.log(this.user);
