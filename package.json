@@ -28,7 +28,6 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@auth0/angular-jwt": "^2.0.0",
-    "@nativescript/schematics": "^0.5.2",
     "@types/jquery": "^3.3.29",
     "amazon-cognito-auth-js": "^1.2.4",
     "amazon-cognito-js": "^1.1.0",
@@ -51,13 +50,12 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "nativescript-dev-webpack": "^0.20.0",
-    "@nativescript/schematics": "~0.4.0",
     "@angular-devkit/build-angular": "~0.8.0",
     "@angular/cli": "~6.2.4",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",
-    "@types/jasmine": "~2.8.8",
+    "@nativescript/schematics": "^0.5.2",
+    "@types/jasmine": "^2.8.16",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^8.9.5",
     "codelyzer": "~4.3.0",
@@ -68,12 +66,16 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nativescript-dev-webpack": "^0.20.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
   },
   "nativescript": {
-    "id": "org.nativescript.ngsample"
+    "id": "org.nativescript.ngsample",
+    "tns-android": {
+      "version": "5.3.1"
+    }
   }
 }

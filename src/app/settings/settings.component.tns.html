@@ -1,0 +1,72 @@
+<StackLayout>
+  <Label text="settings works" textWrap="true"></Label>
+  <Label text="This is a migrated component" textWrap="true"></Label>
+  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label>
+</StackLayout>
+
+<!--
+Original Web template:
+
+<app-navigation></app-navigation>
+<div id="body">
+<div layout-align="center center" id="form">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="user-settings" layout="column">
+  
+<div formGroupName="user">
+	<h3>User Settings</h3>
+  <div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName = "firstName" class="input-field">
+  </mat-form-field>
+</div>
+
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName = "lastName" class="input-field">
+  </mat-form-field>
+</div>
+
+<!--
+	Email validator
+->
+
+<div class ="example-container" >
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" formControlName = "email"
+           [errorStateMatcher]="matcher" >
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Please enter a <strong>valid</strong> email address
+    </mat-error>
+  </mat-form-field>
+</div>
+
+
+
+
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Phone Number " formControlName = "phone" class="input-field">
+  </mat-form-field>
+</div>
+</div>
+
+
+<div formGroupName="address" layout="column">
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder = "Address" formControlName="street" class="input-field">
+  </mat-form-field>
+</div>
+</div>
+
+  <button type="submit" [disabled]="!profileForm.valid" class="submit">Save changes</button>
+
+</form>
+<app-dialog id="update-dialog"></app-dialog>
+</div>
+
+</div>
+-->

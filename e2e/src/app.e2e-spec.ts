@@ -1,4 +1,5 @@
 import { AppPage } from './app.po';
+import {} from 'jasmine';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -9,6 +10,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to CollegePool!');
+    expect<any>(page.getParagraphText()).toEqual('Welcome to CollegePool!');
   });
 });
