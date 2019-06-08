@@ -1,7 +1,15 @@
-<StackLayout>
-  <Label text="login works" textWrap="true"></Label>
-  <Label text="This is a migrated component" textWrap="true"></Label>
-  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label>
+<StackLayout class="login-wrapper">
+  <StackLayout class="login-info">
+    <Image src="~/img/logo.png" height="180" width="180" class="homescreen-logo"></Image>
+<!--     <StackLayout class="slogans">
+      <Label class="h3" text="Find Rides Fast"></Label>
+      <Label class="h3" text="Connect with other students"></Label>
+    </StackLayout> -->
+  </StackLayout>
+  <StackLayout class="login_wrapper">
+    <Button class="login" (tap)="toLogIn()" text="Login"></Button>
+    <Button class="login" (tap)="toSignUp()" text="Sign up"></Button>
+  </StackLayout>
 </StackLayout>
 
 <!--
