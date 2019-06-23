@@ -251,7 +251,7 @@ var AppRoutingModule = /** @class */ (function () {
 /***/ "./app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->\r\n<page-router-outlet></page-router-outlet>\r\n"
+module.exports = "<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->\r\n\r\n<Page xmlns:sd=\"nativescript-ui-sidedrawer\">\r\n\t<sd:RadSideDrawer tkExampleTitle tkToggleNavButton id=\"sideDrawer\">\r\n\t    <GridLayout tkDrawerContent rows=\"auto, *\" class=\"sideStackLayout\">\r\n\t        <StackLayout class=\"sideTitleStackLayout\">\r\n\t            <Label text=\"Navigation Menu\"></Label>\r\n\t        </StackLayout>\r\n\t        <ScrollView row=\"1\">\r\n\t            <StackLayout class=\"sideStackLayout\">\r\n\t                <Label text=\"Home\" class=\"sideLabel\"></Label>\r\n\t                <Label text=\"Payment\" class=\"sideLabel\"></Label>\r\n\t                <Label text=\"History\" class=\"sideLabel\"></Label>\r\n\t                <Label text=\"Settings\" class=\"sideLabel\"></Label>\r\n\t            </StackLayout>\r\n\t        </ScrollView>\r\n\t    </GridLayout>\r\n\t    <page-router-outlet></page-router-outlet>\r\n\t</sd:RadSideDrawer>\r\n</Page>"
 
 /***/ }),
 
@@ -309,27 +309,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _settings_settings_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/settings/settings.component.ts");
 /* harmony import */ var _update_update_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("./app/update/update.component.ts");
 /* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("./app/dialog/dialog.component.ts");
-/* harmony import */ var _login_directive__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("./app/login.directive.ts");
-/* harmony import */ var _home_directive__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__("./app/home.directive.ts");
-/* harmony import */ var _posting_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__("./app/posting.service.ts");
-/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__("./app/user.service.ts");
-/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__("./app/datatransfer.service.ts");
-/* harmony import */ var _dynamic_add_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__("./app/dynamic-add.service.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__("../node_modules/@agm/core/index.js");
-/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("./app/chat/chat.module.ts");
-/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_28___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_28__);
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_29__);
+/* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("./app/search/search.component.ts");
+/* harmony import */ var _login_directive__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__("./app/login.directive.ts");
+/* harmony import */ var _home_directive__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__("./app/home.directive.ts");
+/* harmony import */ var _posting_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__("./app/posting.service.ts");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__("./app/user.service.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__("./app/dynamic-add.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("../node_modules/@agm/core/index.js");
+/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("./app/chat/chat.module.ts");
+/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29__);
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -372,10 +374,10 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-                _login_directive__WEBPACK_IMPORTED_MODULE_17__["LoginDirective"],
+                _login_directive__WEBPACK_IMPORTED_MODULE_18__["LoginDirective"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_9__["HomeComponent"],
-                _home_directive__WEBPACK_IMPORTED_MODULE_18__["HomeDirective"],
+                _home_directive__WEBPACK_IMPORTED_MODULE_19__["HomeDirective"],
                 _history_history_component__WEBPACK_IMPORTED_MODULE_8__["HistoryComponent"],
                 _settings_settings_component__WEBPACK_IMPORTED_MODULE_14__["SettingsComponent"],
                 _posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"],
@@ -386,22 +388,23 @@ var AppModule = /** @class */ (function () {
                 _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_12__["NavigationComponent"],
                 _auto_generated_auto_generated_component__WEBPACK_IMPORTED_MODULE_4__["AutoGeneratedComponent"],
                 _payments_payments_component__WEBPACK_IMPORTED_MODULE_5__["PaymentsComponent"],
-                _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"]
+                _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"],
+                _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
                 _app_routing_module_tns__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_29__["NativeScriptHttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_23__["ReactiveFormsModule"],
-                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_28__["NativeScriptFormsModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_24__["MatInputModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_25__["AgmCoreModule"].forRoot({
+                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30__["NativeScriptHttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_24__["ReactiveFormsModule"],
+                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29__["NativeScriptFormsModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_25__["MatInputModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_26__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
                 }),
-                _chat_chat_module__WEBPACK_IMPORTED_MODULE_26__["ChatModule"],
-                ngx_paypal__WEBPACK_IMPORTED_MODULE_27__["NgxPayPalModule"]
+                _chat_chat_module__WEBPACK_IMPORTED_MODULE_27__["ChatModule"],
+                ngx_paypal__WEBPACK_IMPORTED_MODULE_28__["NgxPayPalModule"]
             ],
-            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_19__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_21__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_22__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_20__["UserService"]],
+            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
             entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NO_ERRORS_SCHEMA"]]
@@ -706,7 +709,7 @@ var DialogComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./app/dynamic-add.service.ts":
+/***/ "./app/dynamic-add.service.tns.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -714,8 +717,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DynamicAddService", function() { return DynamicAddService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _posting_posting_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/posting/posting.component.ts");
-/* harmony import */ var _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/payment-method/payment-method.component.ts");
-/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/datatransfer.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -728,7 +730,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var DynamicAddService = /** @class */ (function () {
     function DynamicAddService(componentFactoryResolver, appRef, injector, transferService) {
         this.componentFactoryResolver = componentFactoryResolver;
@@ -736,8 +737,8 @@ var DynamicAddService = /** @class */ (function () {
         this.injector = injector;
         this.transferService = transferService;
     }
-    DynamicAddService.prototype.appendComponentToBody = function () {
-        var _this = this;
+    DynamicAddService.prototype.appendComponentToBody = function (layout) {
+        if (layout === void 0) { layout = null; }
         // 1. Create a component reference from the component 
         var componentRef = this.componentFactoryResolver
             .resolveComponentFactory(_posting_posting_component__WEBPACK_IMPORTED_MODULE_1__["PostingComponent"])
@@ -748,79 +749,74 @@ var DynamicAddService = /** @class */ (function () {
         var domElem = componentRef.hostView
             .rootNodes[0];
         // 4. Append DOM element to the body
-        document.body.appendChild(domElem);
-        // 5. Wait some time and remove it from the component tree and from the DOM
-        setTimeout(function () {
-            _this.appRef.detachView(componentRef.hostView);
-            componentRef.destroy();
-        }, 3000);
+        layout.addChild(domElem);
     };
     DynamicAddService.prototype.appendPaymentMethod = function (method, info, superbody, isAdd, token) {
-        var _this = this;
-        // 1. Create a component reference from the component 
-        var componentRef = this.componentFactoryResolver
-            .resolveComponentFactory(_payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_2__["PaymentMethodComponent"])
-            .create(this.injector);
-        // 2. Attach component to the appRef so that it's inside the ng component tree
-        this.appRef.attachView(componentRef.hostView);
-        // 3. Get DOM element from component and add necessary info
-        var domElem = componentRef.hostView
-            .rootNodes[0];
-        var elem = domElem.getElementsByClassName('payment-type-icon')[0];
-        var div = domElem.getElementsByClassName('payment-method')[0];
-        div.style.cursor = 'pointer';
-        var body = {
-            info: info,
-            token: token
-        };
-        if (method == 'card') {
-            elem.className += ' credit-card-icon';
-            if (isAdd)
-                div.addEventListener('click', function () {
-                    document.getElementById('payment-modal').style.display = 'block';
-                });
-            else
-                div.addEventListener('click', function () {
-                    _this.transferService.setData(body);
-                    document.getElementById('open-edit').click();
-                });
-        }
-        else if (method == 'paypal') {
-            elem.className += ' paypal-icon';
-            if (isAdd)
-                div.addEventListener('click', function () {
-                    document.getElementById('payment-paypal-modal').style.display = 'block';
-                });
-            else
-                div.addEventListener('click', function () {
-                    _this.transferService.setData(body);
-                    document.getElementById('open-edit').click();
-                });
-        }
-        else if (method == 'venmo') {
-            elem.className += ' venmo-icon';
-            div.id = "add-venmo-button";
-            if (isAdd)
-                div.addEventListener('click', function () {
-                    document.getElementById('payment-venmo-modal').style.display = 'block';
-                });
-            else
-                div.addEventListener('click', function () {
-                    _this.transferService.setData(body);
-                    document.getElementById('open-edit').click();
-                });
-        }
-        domElem.getElementsByClassName('payment-type-details')[0].innerHTML = info;
-        // 4. Append DOM element to the body
-        var b = document.getElementById(superbody);
-        b.appendChild(domElem);
     };
     DynamicAddService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"],
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"],
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"],
-            _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__["TransferService"]])
+            _datatransfer_service__WEBPACK_IMPORTED_MODULE_2__["TransferService"]])
+    ], DynamicAddService);
+    return DynamicAddService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/dynamic-add.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DynamicAddService", function() { return DynamicAddService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _posting_posting_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/posting/posting.component.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/datatransfer.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var DynamicAddService = /** @class */ (function () {
+    function DynamicAddService(componentFactoryResolver, appRef, injector, transferService) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.appRef = appRef;
+        this.injector = injector;
+        this.transferService = transferService;
+    }
+    DynamicAddService.prototype.appendComponentToBody = function (layout) {
+        if (layout === void 0) { layout = null; }
+        // 1. Create a component reference from the component 
+        var componentRef = this.componentFactoryResolver
+            .resolveComponentFactory(_posting_posting_component__WEBPACK_IMPORTED_MODULE_1__["PostingComponent"])
+            .create(this.injector);
+        // 2. Attach component to the appRef so that it's inside the ng component tree
+        this.appRef.attachView(componentRef.hostView);
+        // 3. Get DOM element from component
+        var domElem = componentRef.hostView
+            .rootNodes[0];
+        // 4. Append DOM element to the body
+        layout.addChild(domElem);
+    };
+    DynamicAddService.prototype.appendPaymentMethod = function (method, info, superbody, isAdd, token) {
+    };
+    DynamicAddService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"],
+            _datatransfer_service__WEBPACK_IMPORTED_MODULE_2__["TransferService"]])
     ], DynamicAddService);
     return DynamicAddService;
 }());
@@ -878,16 +874,17 @@ var HistoryComponent = /** @class */ (function () {
         this.postingService = postingService;
         this.addService = addService;
         this.username = "2022ayee";
-        this.user = this.logincheckService.getUser();
+        //user = this.logincheckService.getUser();
+        this.user = null;
         this.name = "Adam Yee";
         this.blocks = 0;
     }
     HistoryComponent.prototype.ngOnInit = function () {
         this.rides = [];
-        this.logincheckService.loginCheck();
-        this.loginCheck();
-        this.loadPostings();
-        this.loadViews();
+        //this.logincheckService.loginCheck();
+        //this.loginCheck();
+        //this.loadPostings();
+        //this.loadViews();
     };
     HistoryComponent.prototype.loadViews = function () {
         if (window.innerWidth < 1075)
@@ -991,14 +988,14 @@ var HomeDirective = /** @class */ (function () {
 /***/ "./app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}"
 
 /***/ }),
 
 /***/ "./app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"home works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\n-->"
+module.exports = "<ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar>\r\n\r\n<ScrollView>\r\n\t<StackLayout id=\"feed\">\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t</StackLayout>\r\n</ScrollView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -1009,6 +1006,12 @@ module.exports = "<StackLayout>\n  <Label text=\"home works\" textWrap=\"true\">
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var _dynamic_add_service_tns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/dynamic-add.service.tns.ts");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _user_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/user.service.tns.ts");
+/* harmony import */ var _posting_service_tns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/posting.service.tns.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1019,18 +1022,54 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(transferService, addService, page, userService, postingService) {
+        this.transferService = transferService;
+        this.addService = addService;
+        this.page = page;
+        this.userService = userService;
+        this.postingService = postingService;
+        this.blocks = 1;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        this.loadPostings();
+    };
+    HomeComponent.prototype.showSideDrawer = function () {
+        //const drawer = <RadSideDrawer>this.sd.nativeView;
+        //console.dir(drawer);
+        //console.dir(this.page);
+        // drawer.showDrawer();
+    };
+    HomeComponent.prototype.loadPostings = function () {
+        var _this = this;
+        this.postingService.getPostings()
+            .subscribe(function (data) {
+            _this.p = data;
+            _this.blocks = 0;
+            for (var i = 0; i < _this.p.length; i++) {
+                _this.createPosting(_this.p[i]._id, _this.p[i].user, _this.p[i].startadr, _this.p[i].endadr, _this.p[i].date, _this.p[i].cost, _this.p[i].capacity, _this.p[i].comments);
+            }
+        });
+    };
+    HomeComponent.prototype.createPosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
+        this.transferService.setData([{ "index": this.blocks, "id": id, "user": user, "startadr": startadr, "endadr": endadr, "date": date, "cost": cost, "capacity": capacity, "comments": comments, "buttonType": "Connect" }]);
+        this.addService.appendComponentToBody(this.page.getViewById('feed'));
+        this.blocks++;
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home',
+            providers: [_dynamic_add_service_tns__WEBPACK_IMPORTED_MODULE_2__["DynamicAddService"]],
             template: __webpack_require__("./app/home/home.component.html"),
             styles: [__webpack_require__("./app/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], _dynamic_add_service_tns__WEBPACK_IMPORTED_MODULE_2__["DynamicAddService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__["Page"],
+            _user_service_tns__WEBPACK_IMPORTED_MODULE_4__["UserService"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_5__["PostingService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -1095,8 +1134,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var ui_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
-/* harmony import */ var ui_page__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ui_page__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1131,7 +1170,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__("./app/login/login.component.html"),
             styles: [__webpack_require__("./app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterExtensions"], ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"]])
+        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -1379,7 +1418,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/navigation/navigation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"navigation works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\n-->"
+module.exports = "<TabView [(ngModel)]=\"tabSelectedIndex\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\">\r\n    <StackLayout *tabItem=\"{title: 'Home'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"{title: 'Search'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"{title: 'History'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"{title: 'Settings'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n</TabView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -2027,6 +2066,76 @@ var PaymentsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/posting.service.tns.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostingService", function() { return PostingService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PostingService = /** @class */ (function () {
+    function PostingService(http) {
+        this.http = http;
+        this.uri = 'http://192.168.1.12:4000';
+    }
+    PostingService.prototype.getPostings = function () {
+        return this.http.get(this.uri + "/postings");
+    };
+    PostingService.prototype.getPostingbyId = function (id) {
+        return this.http.get(this.uri + "/postings/" + id);
+    };
+    PostingService.prototype.addPosting = function (user, startadr, endadr, date, cost, capacity, comments) {
+        var posting = {
+            user: user,
+            startadr: startadr,
+            endadr: endadr,
+            date: date,
+            cost: cost,
+            capacity: capacity,
+            comments: comments
+        };
+        return this.http.post(this.uri + "/postings/add/", posting);
+    };
+    PostingService.prototype.updatePosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
+        var posting = {
+            user: user,
+            startadr: startadr,
+            endadr: endadr,
+            date: date,
+            cost: cost,
+            capacity: capacity,
+            comments: comments
+        };
+        return this.http.post(this.uri + "/postings/update/" + id, posting);
+    };
+    PostingService.prototype.deletePosting = function (id) {
+        return this.http.get(this.uri + "/postings/delete/" + id);
+    };
+    PostingService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], PostingService);
+    return PostingService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/posting.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2049,7 +2158,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var PostingService = /** @class */ (function () {
     function PostingService(http) {
         this.http = http;
-        this.uri = 'http://localhost:4000';
+        this.uri = 'http://192.168.1.12:4000';
     }
     PostingService.prototype.getPostings = function () {
         return this.http.get(this.uri + "/postings");
@@ -2100,14 +2209,14 @@ var PostingService = /** @class */ (function () {
 /***/ "./app/posting/posting.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 24;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 18;\n}\n\n.info-label {\n\tmargin-top: 12;\n\tmargin-left: 24;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n}\n\n.post:highlighted {\n\tbackground-color: #f1f1f1;\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\t/*align-content: center;*/\n}"
 
 /***/ }),
 
 /***/ "./app/posting/posting.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"posting works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n\n-->"
+module.exports = "<StackLayout class=\"post\">\n  <Label textWrap=\"true\" id=\"post-name\" class=\"name-label\"></Label>\n  <Label textWrap=\"true\" id=\"post-info\" class=\"info-label\"></Label>\n  <Image src=\"~/img/cville-map.png\" stretch=\"none\" height=\"220\" width=\"300\" class=\"posting-map\"></Image>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n\n-->"
 
 /***/ }),
 
@@ -2120,6 +2229,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2132,16 +2243,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var PostingComponent = /** @class */ (function () {
-    function PostingComponent(transferService, router) {
+    function PostingComponent(transferService, router, page) {
         this.transferService = transferService;
         this.router = router;
+        this.page = page;
         this.info = this.transferService.getData()[0];
     }
     PostingComponent.prototype.ngOnInit = function () {
         this.id = this.info.id;
         this.buttonType = this.info.buttonType;
-        this.create();
+        var name_label = this.page.getViewById('post-name');
+        name_label.text = this.info.user;
+        name_label.id = 'post-name' + this.info.index;
+        var info_label = this.page.getViewById('post-info');
+        info_label.text = "Leaving " + this.info.date + " from " + this.info.startadr + " to " + this.info.endadr + " for " + this.info.cost;
+        info_label.id = 'post-info' + this.info.index;
+        // this.create();
     };
     PostingComponent.prototype.create = function () {
         var _this = this;
@@ -2202,9 +2321,60 @@ var PostingComponent = /** @class */ (function () {
             template: __webpack_require__("./app/posting/posting.component.html"),
             styles: [__webpack_require__("./app/posting/posting.component.css")]
         }),
-        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_2__["TransferService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_2__["TransferService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__["Page"]])
     ], PostingComponent);
     return PostingComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/search/search.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\n"
+
+/***/ }),
+
+/***/ "./app/search/search.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<Button text=\"search works!\" class=\"btn btn-primary\"></Button>"
+
+/***/ }),
+
+/***/ "./app/search/search.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchComponent", function() { return SearchComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SearchComponent = /** @class */ (function () {
+    function SearchComponent() {
+    }
+    SearchComponent.prototype.ngOnInit = function () {
+    };
+    SearchComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-search',
+            template: __webpack_require__("./app/search/search.component.html"),
+            styles: [__webpack_require__("./app/search/search.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], SearchComponent);
+    return SearchComponent;
 }());
 
 
@@ -2405,6 +2575,91 @@ var UpdateComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/user.service.tns.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UserService = /** @class */ (function () {
+    function UserService(http) {
+        this.http = http;
+        this.uri = 'http://192.168.1.12:4000';
+    }
+    UserService.prototype.getUsers = function () {
+        return this.http.get(this.uri + "/users");
+    };
+    UserService.prototype.getUserbyId = function (id) {
+        return this.http.get(this.uri + "/users/" + id);
+    };
+    UserService.prototype.addUser = function (name, username, address, birthdate, email, gender, phone_number, rides_given, rides_received) {
+        if (name === void 0) { name = ''; }
+        if (username === void 0) { username = ''; }
+        if (address === void 0) { address = ''; }
+        if (birthdate === void 0) { birthdate = ''; }
+        if (email === void 0) { email = ''; }
+        if (gender === void 0) { gender = ''; }
+        if (phone_number === void 0) { phone_number = ''; }
+        if (rides_given === void 0) { rides_given = "0"; }
+        if (rides_received === void 0) { rides_received = "0"; }
+        var user = {
+            name: name,
+            username: username,
+            address: address,
+            birthdate: birthdate,
+            email: email,
+            gender: gender,
+            phone_number: phone_number,
+            rides_given: rides_given,
+            rides_received: rides_received,
+            payment_id: ""
+        };
+        return this.http.post(this.uri + "/users/add/", user);
+    };
+    UserService.prototype.updateUser = function (id, name, username, address, birthdate, email, gender, phone_number, rides_given, rides_received, payment_id) {
+        var user = {
+            name: name,
+            username: username,
+            address: address,
+            birthdate: birthdate,
+            email: email,
+            gender: gender,
+            phone_number: phone_number,
+            rides_given: rides_given,
+            rides_received: rides_received,
+            payment_id: payment_id
+        };
+        return this.http.post(this.uri + "/users/update/" + id, user);
+    };
+    UserService.prototype.deleteUser = function (id) {
+        return this.http.get(this.uri + "/users/delete/" + id);
+    };
+    UserService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], UserService);
+    return UserService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/user.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2427,7 +2682,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
-        this.uri = 'http://localhost:4000';
+        this.uri = 'http://192.168.1.12:4000';
     }
     UserService.prototype.getUsers = function () {
         return this.http.get(this.uri + "/users");

@@ -1,8 +1,15 @@
-<StackLayout>
-  <Label text="home works" textWrap="true"></Label>
-  <Label text="This is a migrated component" textWrap="true"></Label>
-  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label>
-</StackLayout>
+<ActionBar title="Home" class="actionbar">
+	<NavigationButton ios:visibility="collapsed" icon="~/img/menu-icon.png" (tap)="showSideDrawer()" ></NavigationButton>
+<ActionItem android:visibility="collapsed" icon="~/img/menu-icon.png" ios.position="left" (tap)="showSideDrawer()" ></ActionItem>
+</ActionBar>
+
+<ScrollView>
+	<StackLayout id="feed">
+<!-- 	  <Label text="home works" textWrap="true"></Label>
+	  <Label text="This is a migrated component" textWrap="true"></Label>
+	  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label> -->
+	</StackLayout>
+</ScrollView>
 
 <!--
 Original Web template:

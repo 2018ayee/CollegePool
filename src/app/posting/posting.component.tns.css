@@ -3,3 +3,37 @@ Add your NativeScript specific styles here.
 To learn more about styling in NativeScript see:
 https://docs.nativescript.org/angular/ui/styling
 */
+
+Label {
+	text-align: left;
+}
+
+.name-label {
+	margin-top: 16;
+	margin-left: 24;
+	color: black;
+	font-weight: 700;
+	font-size: 18;
+}
+
+.info-label {
+	margin-top: 12;
+	margin-left: 24;
+	margin-bottom: 16;
+	color: black;
+}
+
+.post {
+	border-bottom-width: 1;
+	border-color: #f1f1f1;
+}
+
+.post:highlighted {
+	background-color: #f1f1f1;
+}
+
+.posting-map {
+	margin-bottom: 16;
+	border-radius: 10;
+	/*align-content: center;*/
+}
