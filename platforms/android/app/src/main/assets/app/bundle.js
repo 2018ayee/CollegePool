@@ -205,12 +205,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _connect_connect_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./app/connect/connect.component.ts");
 /* harmony import */ var _loginroute_loginroute_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("./app/loginroute/loginroute.component.ts");
 /* harmony import */ var _payments_payments_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("./app/payments/payments.component.ts");
+/* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("./app/search/search.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -230,7 +232,8 @@ var routes = [
     { path: 'update', component: _update_update_component__WEBPACK_IMPORTED_MODULE_6__["UpdateComponent"] },
     { path: 'connect', component: _connect_connect_component__WEBPACK_IMPORTED_MODULE_7__["ConnectComponent"] },
     { path: 'loginroute', component: _loginroute_loginroute_component__WEBPACK_IMPORTED_MODULE_8__["LoginrouteComponent"] },
-    { path: 'payments', component: _payments_payments_component__WEBPACK_IMPORTED_MODULE_9__["PaymentsComponent"] }
+    { path: 'payments', component: _payments_payments_component__WEBPACK_IMPORTED_MODULE_9__["PaymentsComponent"] },
+    { path: 'search', component: _search_search_component__WEBPACK_IMPORTED_MODULE_10__["SearchComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -251,7 +254,7 @@ var AppRoutingModule = /** @class */ (function () {
 /***/ "./app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->\r\n\r\n<Page xmlns:sd=\"nativescript-ui-sidedrawer\">\r\n\t<sd:RadSideDrawer tkExampleTitle tkToggleNavButton id=\"sideDrawer\">\r\n\t    <GridLayout tkDrawerContent rows=\"auto, *\" class=\"sideStackLayout\">\r\n\t        <StackLayout class=\"sideTitleStackLayout\">\r\n\t            <Label text=\"Navigation Menu\"></Label>\r\n\t        </StackLayout>\r\n\t        <ScrollView row=\"1\">\r\n\t            <StackLayout class=\"sideStackLayout\">\r\n\t                <Label text=\"Home\" class=\"sideLabel\"></Label>\r\n\t                <Label text=\"Payment\" class=\"sideLabel\"></Label>\r\n\t                <Label text=\"History\" class=\"sideLabel\"></Label>\r\n\t                <Label text=\"Settings\" class=\"sideLabel\"></Label>\r\n\t            </StackLayout>\r\n\t        </ScrollView>\r\n\t    </GridLayout>\r\n\t    <page-router-outlet></page-router-outlet>\r\n\t</sd:RadSideDrawer>\r\n</Page>"
+module.exports = "<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->\r\n\r\n<Page>\r\n\t    <page-router-outlet></page-router-outlet>\r\n</Page>"
 
 /***/ }),
 
@@ -835,7 +838,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/history/history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"history works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\n-->"
+module.exports = "<app-navigation></app-navigation>\r\n<StackLayout>\r\n  <Label text=\"history works\" textWrap=\"true\"></Label>\r\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\r\n-->"
 
 /***/ }),
 
@@ -995,7 +998,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar>\r\n\r\n<ScrollView>\r\n\t<StackLayout id=\"feed\">\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t</StackLayout>\r\n</ScrollView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n<ScrollView>\r\n\t<StackLayout id=\"feed\">\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t</StackLayout>\r\n</ScrollView>\r\n<app-navigation></app-navigation>\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -1209,7 +1212,8 @@ var LogincheckService = /** @class */ (function () {
         this.userService = userService;
         this.paymentService = paymentService;
         this.router = router;
-        this.myStorage = window.localStorage;
+        //myStorage = window.localStorage;
+        this.myStorage = null;
         //user info from cognito
         this.userInfo = null;
     }
@@ -1317,8 +1321,8 @@ var LogincheckService = /** @class */ (function () {
         return this.user;
     };
     LogincheckService.prototype.loginCheck = function () {
-        if (this.userInfo == null && window.localStorage.getItem('_id') == null)
-            this.router.navigateByUrl('/login');
+        //if(this.userInfo == null && window.localStorage.getItem('_id') == null)
+        this.router.navigateByUrl('/login');
     };
     LogincheckService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -1408,17 +1412,17 @@ var LoginrouteComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./app/navigation/navigation.component.css":
+/***/ "./app/navigation/navigation.component.tns.css":
 /***/ (function(module, exports) {
 
 module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
 
 /***/ }),
 
-/***/ "./app/navigation/navigation.component.html":
+/***/ "./app/navigation/navigation.component.tns.html":
 /***/ (function(module, exports) {
 
-module.exports = "<TabView [(ngModel)]=\"tabSelectedIndex\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\">\r\n    <StackLayout *tabItem=\"{title: 'Home'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"{title: 'Search'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"{title: 'History'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"{title: 'Settings'}\">\r\n        <StackLayout>\r\n            <Label [text]=\"tabSelectedIndexResult\" class=\"h2 m-t-16 text-center\" textWrap=\"true\"></Label>\r\n            <Button text=\"Change Tab via ngModel\" (tap)=\"changeTab()\" class=\"btn btn-primary btn-active\"></Button>\r\n        </StackLayout>\r\n    </StackLayout>\r\n</TabView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<TabView [(ngModel)]=\"tabSelectedIndex\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\">\r\n    <StackLayout *tabItem=\"homeTab\">\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"searchTab\">\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"historyTab\">\r\n    </StackLayout>\r\n    <StackLayout *tabItem=\"settingsTab\">\r\n    </StackLayout>\r\n</TabView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -1430,8 +1434,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavigationComponent", function() { return NavigationComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/datatransfer.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _logincheck_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/logincheck.service.ts");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var nativescript_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-dom/dom.js");
+/* harmony import */ var nativescript_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_dom__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1445,93 +1453,105 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var NavigationComponent = /** @class */ (function () {
-    function NavigationComponent(transferService, router, logincheckService) {
+    function NavigationComponent(transferService, router, page) {
         this.transferService = transferService;
         this.router = router;
-        this.logincheckService = logincheckService;
+        this.page = page;
+        this.homeTab = { iconSource: 'res://home_highlighted' };
+        this.searchTab = { iconSource: 'res://search' };
+        this.historyTab = { iconSource: 'res://history' };
+        this.settingsTab = { iconSource: 'res://settings' };
     }
     NavigationComponent.prototype.ngOnInit = function () {
-        // this.activebtn = this.transferService.getData();
-        // if(this.activebtn == null)
-        // {
-        // 	this.activebtn = this.router.url + 'nav';
-        // 	this.paintActive(this.activebtn);
-        // }
+        this.activebtn = this.transferService.getData();
+        if (this.activebtn == "homenav") {
+            this.homeTab = { iconSource: 'res://home_highlighted' };
+            this.searchTab = { iconSource: 'res://search' };
+            this.historyTab = { iconSource: 'res://history' };
+            this.settingsTab = { iconSource: 'res://settings' };
+            this.tabSelectedIndex = 0;
+        }
+        else if (this.activebtn == "searchnav") {
+            this.homeTab = { iconSource: 'res://home' };
+            this.searchTab = { iconSource: 'res://search_highlighted' };
+            this.historyTab = { iconSource: 'res://history' };
+            this.settingsTab = { iconSource: 'res://settings' };
+            this.tabSelectedIndex = 1;
+        }
+        else if (this.activebtn == "historynav") {
+            this.homeTab = { iconSource: 'res://home' };
+            this.searchTab = { iconSource: 'res://search' };
+            this.historyTab = { iconSource: 'res://history_highlighted' };
+            this.settingsTab = { iconSource: 'res://settings' };
+            this.tabSelectedIndex = 2;
+        }
+        else if (this.activebtn == "settingsnav") {
+            this.homeTab = { iconSource: 'res://home' };
+            this.searchTab = { iconSource: 'res://search' };
+            this.historyTab = { iconSource: 'res://history' };
+            this.settingsTab = { iconSource: 'res://settings_highlighted' };
+            this.tabSelectedIndex = 3;
+        }
         // else if(this.activebtn == 'post')
         // 	document.getElementById('myModal').style.display = "block";
         // else
         // 	this.paintActive(this.activebtn);
-        var route = this.router.url + 'nav';
-        this.activebtn = route.substring(1);
-        console.log(this.activebtn);
-        this.paintActive(this.activebtn);
-        if (this.activebtn == 'post')
-            document.getElementById('myModal').style.display = "block";
-        this.user = this.logincheckService.getUser();
-    };
-    NavigationComponent.prototype.post = function () {
-        if (this.activebtn == 'homenav')
-            document.getElementById('myModal').style.display = "block";
-        else {
-            this.transferService.setData('post');
-            this.router.navigateByUrl('/home');
-        }
-    };
-    NavigationComponent.prototype.logout = function () {
-        this.logincheckService.clearInfo();
-        this.router.navigateByUrl('/login');
-    };
-    NavigationComponent.prototype.dropMenu = function () {
-        var menu = document.getElementById('dropdown-menu');
-        var caret = document.getElementById('dropdown-caret');
-        if (menu.style.display == 'block') {
-            caret.style.display = 'none';
-            menu.style.display = 'none';
-        }
-        else {
-            caret.style.display = 'block';
-            menu.style.display = 'block';
-        }
+        //var route = this.router.router + 'nav';
+        //this.activebtn = route.substring(1);
+        //console.log(this.activebtn);
+        //this.paintActive(this.activebtn);
+        //this.user = this.logincheckService.getUser();
     };
     NavigationComponent.prototype.paintActive = function (btn) {
-        var navcontents = document.getElementsByClassName('navigation');
+        var navcontents = nativescript_dom__WEBPACK_IMPORTED_MODULE_4__["getElementsByClassName"]('navigation');
         for (var x = 0; x < navcontents.length; x++) {
             navcontents[x].className = 'navigation';
         }
-        document.getElementById(btn).classList.add('active');
+        var button = this.page.getViewById(btn);
+        button.className += ' active';
+    };
+    NavigationComponent.prototype.onSelectedIndexChanged = function (args) {
+        if (args.oldIndex !== -1) {
+            var newIndex = args.newIndex;
+            if (newIndex === 0) {
+                this.toHome();
+            }
+            else if (newIndex === 1) {
+                this.toSearch();
+            }
+            else if (newIndex === 2) {
+                this.toHistory();
+            }
+            else if (newIndex === 3) {
+                this.toSettings();
+            }
+        }
     };
     NavigationComponent.prototype.toHome = function () {
-        document.getElementById('dropdown-menu').style.display = 'none';
-        document.getElementById('dropdown-caret').style.display = 'none';
         this.transferService.setData('homenav');
-        this.router.navigateByUrl('/home');
+        this.router.navigate(['home']);
     };
     NavigationComponent.prototype.toHistory = function () {
-        document.getElementById('dropdown-menu').style.display = 'none';
-        document.getElementById('dropdown-caret').style.display = 'none';
         this.transferService.setData('historynav');
-        this.router.navigateByUrl('/history');
+        this.router.navigate(['history']);
     };
     NavigationComponent.prototype.toSettings = function () {
-        document.getElementById('dropdown-menu').style.display = 'none';
-        document.getElementById('dropdown-caret').style.display = 'none';
         this.transferService.setData('settingsnav');
-        this.router.navigateByUrl('/settings');
+        this.router.navigate(['settings']);
     };
-    NavigationComponent.prototype.toPayments = function () {
-        document.getElementById('dropdown-menu').style.display = 'none';
-        document.getElementById('dropdown-caret').style.display = 'none';
-        this.transferService.setData('settingsnav');
-        this.router.navigateByUrl('/payments');
+    NavigationComponent.prototype.toSearch = function () {
+        this.transferService.setData('searchnav');
+        this.router.navigate(['search']);
     };
     NavigationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-navigation',
-            template: __webpack_require__("./app/navigation/navigation.component.html"),
-            styles: [__webpack_require__("./app/navigation/navigation.component.css")]
+            template: __webpack_require__("./app/navigation/navigation.component.tns.html"),
+            styles: [__webpack_require__("./app/navigation/navigation.component.tns.css")]
         }),
-        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _logincheck_service__WEBPACK_IMPORTED_MODULE_3__["LogincheckService"]])
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__["Page"]])
     ], NavigationComponent);
     return NavigationComponent;
 }());
@@ -2086,9 +2106,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var PostingService = /** @class */ (function () {
+    //uri = 'http://10.0.2.2:4000';
     function PostingService(http) {
         this.http = http;
-        this.uri = 'http://192.168.1.12:4000';
+        this.uri = 'http://192.168.1.7:4000';
     }
     PostingService.prototype.getPostings = function () {
         return this.http.get(this.uri + "/postings");
@@ -2156,9 +2177,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var PostingService = /** @class */ (function () {
+    //uri = 'http://10.0.2.2:4000';
     function PostingService(http) {
         this.http = http;
-        this.uri = 'http://192.168.1.12:4000';
+        this.uri = 'http://192.168.1.7:4000';
     }
     PostingService.prototype.getPostings = function () {
         return this.http.get(this.uri + "/postings");
@@ -2340,7 +2362,7 @@ module.exports = "/* Add mobile styles for the component here.  */\n"
 /***/ "./app/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<Button text=\"search works!\" class=\"btn btn-primary\"></Button>"
+module.exports = "<app-navigation></app-navigation>\r\n<StackLayout>\r\n  <Label text=\"search works\" textWrap=\"true\"></Label>\r\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\r\n</StackLayout>"
 
 /***/ }),
 
@@ -2391,7 +2413,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/settings/settings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"settings works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n<app-navigation></app-navigation>\r\n<div id=\"body\">\r\n<div layout-align=\"center center\" id=\"form\">\r\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"onSubmit()\" class=\"user-settings\" layout=\"column\">\r\n  \r\n<div formGroupName=\"user\">\r\n\t<h3>User Settings</h3>\r\n  <div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"First Name\" formControlName = \"firstName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Last Name\" formControlName = \"lastName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<!--\r\n\tEmail validator\r\n->\r\n\r\n<div class =\"example-container\" >\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput placeholder=\"Email\" formControlName = \"email\"\r\n           [errorStateMatcher]=\"matcher\" >\r\n    <mat-error *ngIf=\"emailFormControl.hasError('email') && !emailFormControl.hasError('required')\">\r\n      Please enter a valid email address\r\n    </mat-error>\r\n    <mat-error *ngIf=\"emailFormControl.hasError('required')\">\r\n      Please enter a <strong>valid</strong> email address\r\n    </mat-error>\r\n  </mat-form-field>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Phone Number \" formControlName = \"phone\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n\r\n<div formGroupName=\"address\" layout=\"column\">\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder = \"Address\" formControlName=\"street\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n  <button type=\"submit\" [disabled]=\"!profileForm.valid\" class=\"submit\">Save changes</button>\r\n\r\n</form>\r\n<app-dialog id=\"update-dialog\"></app-dialog>\r\n</div>\r\n\r\n</div>\n-->"
+module.exports = "<app-navigation></app-navigation>\r\n<StackLayout>\r\n  <Label text=\"settings works\" textWrap=\"true\"></Label>\r\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"body\">\r\n<div layout-align=\"center center\" id=\"form\">\r\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"onSubmit()\" class=\"user-settings\" layout=\"column\">\r\n  \r\n<div formGroupName=\"user\">\r\n\t<h3>User Settings</h3>\r\n  <div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"First Name\" formControlName = \"firstName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Last Name\" formControlName = \"lastName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<!--\r\n\tEmail validator\r\n->\r\n\r\n<div class =\"example-container\" >\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput placeholder=\"Email\" formControlName = \"email\"\r\n           [errorStateMatcher]=\"matcher\" >\r\n    <mat-error *ngIf=\"emailFormControl.hasError('email') && !emailFormControl.hasError('required')\">\r\n      Please enter a valid email address\r\n    </mat-error>\r\n    <mat-error *ngIf=\"emailFormControl.hasError('required')\">\r\n      Please enter a <strong>valid</strong> email address\r\n    </mat-error>\r\n  </mat-form-field>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Phone Number \" formControlName = \"phone\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n\r\n<div formGroupName=\"address\" layout=\"column\">\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder = \"Address\" formControlName=\"street\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n  <button type=\"submit\" [disabled]=\"!profileForm.valid\" class=\"submit\">Save changes</button>\r\n\r\n</form>\r\n<app-dialog id=\"update-dialog\"></app-dialog>\r\n</div>\r\n\r\n</div>\r\n-->"
 
 /***/ }),
 
@@ -2407,7 +2429,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/datatransfer.service.ts");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/user.service.ts");
-/* harmony import */ var _logincheck_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/logincheck.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2417,7 +2438,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -2435,12 +2455,12 @@ var MyErrorStateMatcher = /** @class */ (function () {
 
 /** @title Input with a custom ErrorStateMatcher */
 var SettingsComponent = /** @class */ (function () {
-    function SettingsComponent(logincheckService, router, transferService, userService) {
-        this.logincheckService = logincheckService;
+    function SettingsComponent(router, transferService, userService) {
         this.router = router;
         this.transferService = transferService;
         this.userService = userService;
-        this.myStorage = window.localStorage;
+        //myStorage = window.localStorage;
+        this.myStorage = null;
         this.emailFormControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email,
@@ -2448,35 +2468,35 @@ var SettingsComponent = /** @class */ (function () {
         this.matcher = new MyErrorStateMatcher();
     }
     SettingsComponent.prototype.ngOnInit = function () {
-        console.log(this.transferService.getData());
-        if (window.localStorage.getItem('visibility') == 'visible')
-            document.getElementById('update-dialog').style.visibility = 'visible';
-        window.localStorage.setItem('visibility', 'hidden');
-        this.span = document.getElementsByClassName("close")[0];
-        this.span.onclick = function () {
-            document.getElementById('update-dialog').style.visibility = 'hidden';
-        };
-        this.logincheckService.loginCheck();
-        this.user = this.logincheckService.getUser();
-        console.log(this.user);
-        var nameSplit = this.user.name.split(" ");
-        this.profileForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            user: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-                firstName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](nameSplit[0]),
-                lastName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](nameSplit[1]),
-                email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.user.email, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-                ])),
-                phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.user.phone_number)
-            }),
-            address: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-                street: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](this.user.address)
-                // city: new FormControl(''),
-                // state: new FormControl(''),
-                // zip: new FormControl('')
-            })
-        });
+        // 		console.log(this.transferService.getData());
+        // 		if(window.localStorage.getItem('visibility') == 'visible')
+        // 			document.getElementById('update-dialog').style.visibility = 'visible';
+        // 		window.localStorage.setItem('visibility', 'hidden');
+        // 		this.span = document.getElementsByClassName("close")[0];
+        // this.span.onclick = function() {
+        //     document.getElementById('update-dialog').style.visibility = 'hidden';
+        // }
+        // 		//this.logincheckService.loginCheck();
+        // 		//this.user = this.logincheckService.getUser();
+        // 		this.user = null;
+        // 		//console.log(this.user);
+        // 		var nameSplit = this.user.name.split(" ");
+        // 		this.profileForm = new FormGroup({
+        //  	user: new FormGroup({
+        //  		firstName: new FormControl(nameSplit[0]),
+        //    	lastName: new FormControl(nameSplit[1]),
+        //    	email: new FormControl(this.user.email, Validators.compose([
+        // 		Validators.required,
+        // 		Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+        //    	phone: new FormControl(this.user.phone_number)
+        //   	}),
+        //    address: new FormGroup({
+        //     street: new FormControl(this.user.address)
+        //     // city: new FormControl(''),
+        //     // state: new FormControl(''),
+        //     // zip: new FormControl('')
+        //   })
+        //  });
     };
     SettingsComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -2511,7 +2531,7 @@ var SettingsComponent = /** @class */ (function () {
             template: __webpack_require__("./app/settings/settings.component.html"),
             styles: [__webpack_require__("./app/settings/settings.component.css")]
         }),
-        __metadata("design:paramtypes", [_logincheck_service__WEBPACK_IMPORTED_MODULE_5__["LogincheckService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__["TransferService"], _user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__["TransferService"], _user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
     ], SettingsComponent);
     return SettingsComponent;
 }());

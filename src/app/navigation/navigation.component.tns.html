@@ -1,27 +1,11 @@
-<TabView [(ngModel)]="tabSelectedIndex" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom">
-    <StackLayout *tabItem="{title: 'Home'}">
-        <StackLayout>
-            <Label [text]="tabSelectedIndexResult" class="h2 m-t-16 text-center" textWrap="true"></Label>
-            <Button text="Change Tab via ngModel" (tap)="toHome()" class="btn btn-primary btn-active"></Button>
-        </StackLayout>
+<TabView [(ngModel)]="tabSelectedIndex" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom" selectedTabTextColor="#ac00e6">
+    <StackLayout *tabItem="homeTab">
     </StackLayout>
-    <StackLayout *tabItem="{title: 'Search'}">
-        <StackLayout>
-            <Label [text]="tabSelectedIndexResult" class="h2 m-t-16 text-center" textWrap="true"></Label>
-            <Button text="Change Tab via ngModel" (tap)="toSearch()" class="btn btn-primary btn-active"></Button>
-        </StackLayout>
+    <StackLayout *tabItem="searchTab">
     </StackLayout>
-    <StackLayout *tabItem="{title: 'History'}">
-        <StackLayout>
-            <Label [text]="tabSelectedIndexResult" class="h2 m-t-16 text-center" textWrap="true"></Label>
-            <Button text="Change Tab via ngModel" (tap)="toHistory()" class="btn btn-primary btn-active"></Button>
-        </StackLayout>
+    <StackLayout *tabItem="historyTab">
     </StackLayout>
-    <StackLayout *tabItem="{title: 'Settings'}">
-        <StackLayout>
-            <Label [text]="tabSelectedIndexResult" class="h2 m-t-16 text-center" textWrap="true"></Label>
-            <Button text="Change Tab via ngModel" (tap)="toSettings()" class="btn btn-primary btn-active"></Button>
-        </StackLayout>
+    <StackLayout *tabItem="settingsTab">
     </StackLayout>
 </TabView>
 

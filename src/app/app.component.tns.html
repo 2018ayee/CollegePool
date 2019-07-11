@@ -1,20 +1,5 @@
 <!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
 
-<Page xmlns:sd="nativescript-ui-sidedrawer">
-	<sd:RadSideDrawer tkExampleTitle tkToggleNavButton id="sideDrawer">
-	    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">
-	        <StackLayout class="sideTitleStackLayout">
-	            <Label text="Navigation Menu"></Label>
-	        </StackLayout>
-	        <ScrollView row="1">
-	            <StackLayout class="sideStackLayout">
-	                <Label text="Home" class="sideLabel"></Label>
-	                <Label text="Payment" class="sideLabel"></Label>
-	                <Label text="History" class="sideLabel"></Label>
-	                <Label text="Settings" class="sideLabel"></Label>
-	            </StackLayout>
-	        </ScrollView>
-	    </GridLayout>
+<Page>
 	    <page-router-outlet></page-router-outlet>
-	</sd:RadSideDrawer>
 </Page>
