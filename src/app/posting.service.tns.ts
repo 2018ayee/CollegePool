@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PostingService {
   uri = 'http://192.168.1.7:4000';
-  //uri = 'http://10.0.2.2:4000';
+  // uri = 'http://10.5.11.25:4000';
   constructor(private http: HttpClient) { }
 
   getPostings() {

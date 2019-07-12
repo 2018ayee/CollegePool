@@ -187,6 +187,64 @@ exports.push([module.i, "/*\r\nIn NativeScript, the app.css file is where you pl
 
 /***/ }),
 
+/***/ "./app/add-modal/add-modal.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\n"
+
+/***/ }),
+
+/***/ "./app/add-modal/add-modal.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<StackLayout>\r\n\t<Button text=\"Close\" (tap)=\"close()\"></Button>\r\n\t<Label text=\"Add post\"></Label>\r\n</StackLayout>"
+
+/***/ }),
+
+/***/ "./app/add-modal/add-modal.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddModalComponent", function() { return AddModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AddModalComponent = /** @class */ (function () {
+    function AddModalComponent(params) {
+        this.params = params;
+    }
+    AddModalComponent.prototype.ngOnInit = function () {
+    };
+    AddModalComponent.prototype.close = function () {
+        this.params.closeCallback("tapped");
+    };
+    AddModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-add-modal',
+            template: __webpack_require__("./app/add-modal/add-modal.component.html"),
+            styles: [__webpack_require__("./app/add-modal/add-modal.component.css")]
+        }),
+        __metadata("design:paramtypes", [nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"]])
+    ], AddModalComponent);
+    return AddModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/app-routing.module.tns.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -319,15 +377,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__("./app/user.service.ts");
 /* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__("./app/datatransfer.service.ts");
 /* harmony import */ var _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__("./app/dynamic-add.service.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("../node_modules/@agm/core/index.js");
-/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("./app/chat/chat.module.ts");
-/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29__);
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30__);
+/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__("../node_modules/nativescript-angular/modal-dialog.js");
+/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_24__);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("../node_modules/@agm/core/index.js");
+/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("./app/chat/chat.module.ts");
+/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_30__);
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_31___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_31__);
+/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -363,9 +425,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 // Uncomment and add to NgModule imports if you need to use two-way binding
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
+
+
 
 var AppModule = /** @class */ (function () {
     /*
@@ -392,24 +457,26 @@ var AppModule = /** @class */ (function () {
                 _auto_generated_auto_generated_component__WEBPACK_IMPORTED_MODULE_4__["AutoGeneratedComponent"],
                 _payments_payments_component__WEBPACK_IMPORTED_MODULE_5__["PaymentsComponent"],
                 _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"],
-                _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"]
+                _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"],
+                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_32__["FloatBtnComponent"],
+                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_33__["AddModalComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
                 _app_routing_module_tns__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_30__["NativeScriptHttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_24__["ReactiveFormsModule"],
-                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_29__["NativeScriptFormsModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_25__["MatInputModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_26__["AgmCoreModule"].forRoot({
+                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_31__["NativeScriptHttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_25__["ReactiveFormsModule"],
+                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_30__["NativeScriptFormsModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_26__["MatInputModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_27__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
                 }),
-                _chat_chat_module__WEBPACK_IMPORTED_MODULE_27__["ChatModule"],
-                ngx_paypal__WEBPACK_IMPORTED_MODULE_28__["NgxPayPalModule"]
+                _chat_chat_module__WEBPACK_IMPORTED_MODULE_28__["ChatModule"],
+                ngx_paypal__WEBPACK_IMPORTED_MODULE_29__["NgxPayPalModule"]
             ],
-            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"]],
+            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_24__["ModalDialogService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"]],
+            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_33__["AddModalComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NO_ERRORS_SCHEMA"]]
         })
         /*
@@ -828,6 +895,57 @@ var DynamicAddService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/float-btn/float-btn.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ".float-btn {\n\tbackground-color: #ac00e6;\n\twidth: 56;\n\theight: 56;\n\ttext-align: center;\n\tvertical-align: middle;\n\tborder-radius: 50%;\n}\n\n.float-btn-text {\n\tcolor: #ffffff;\n\tfont-size: 36;\n\t/*margin-top: -6;*/\n}"
+
+/***/ }),
+
+/***/ "./app/float-btn/float-btn.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<StackLayout class=\"float-btn\">\r\n\t<Label class=\"float-btn-text\" text=\"+\"></Label>\r\n</StackLayout>"
+
+/***/ }),
+
+/***/ "./app/float-btn/float-btn.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FloatBtnComponent", function() { return FloatBtnComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var FloatBtnComponent = /** @class */ (function () {
+    function FloatBtnComponent() {
+    }
+    FloatBtnComponent.prototype.ngOnInit = function () {
+    };
+    FloatBtnComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-float-btn',
+            template: __webpack_require__("./app/float-btn/float-btn.component.html"),
+            styles: [__webpack_require__("./app/float-btn/float-btn.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], FloatBtnComponent);
+    return FloatBtnComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/history/history.component.css":
 /***/ (function(module, exports) {
 
@@ -991,14 +1109,14 @@ var HomeDirective = /** @class */ (function () {
 /***/ "./app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}"
+module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\n.add-btn-container {\n\tvertical-align: bottom;\n\toverflow: none;\n\tz-index: 1;\n}\n\n.fab-button {\n  height: 56;\n  width: 56;\n  margin: 15;\n  margin-bottom: 64;\n  background-color: #ac00e6;\n  /*float: right;*/\n  horizontal-align: right;\n  vertical-align: bottom;\n}"
 
 /***/ }),
 
 /***/ "./app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n<ScrollView>\r\n\t<StackLayout id=\"feed\">\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t</StackLayout>\r\n</ScrollView>\r\n<app-navigation></app-navigation>\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n<ScrollView>\r\n\t<StackLayout id=\"feed\">\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t</StackLayout>\r\n</ScrollView>\r\n\r\n<StackLayout class=\"add-btn-container\">\r\n\t<FAB (tap)=\"showModal()\" icon=\"res://ic_add_white_3x\" rippleColor=\"#f1f1f1\" class=\"fab-button\"></FAB>\r\n</StackLayout>\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -1015,6 +1133,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _user_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/user.service.tns.ts");
 /* harmony import */ var _posting_service_tns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/posting.service.tns.ts");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_8__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1030,17 +1153,47 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_8__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(transferService, addService, page, userService, postingService) {
+    function HomeComponent(transferService, addService, page, userService, postingService, modal, vcRef) {
         this.transferService = transferService;
         this.addService = addService;
         this.page = page;
         this.userService = userService;
         this.postingService = postingService;
+        this.modal = modal;
+        this.vcRef = vcRef;
         this.blocks = 1;
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.loadPostings();
+        this.transferService.setData([{ "index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect" }]);
+        this.addService.appendComponentToBody(this.page.getViewById('feed'));
+        this.blocks++;
+        this.transferService.setData([{ "index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect" }]);
+        this.addService.appendComponentToBody(this.page.getViewById('feed'));
+        this.blocks++;
+        this.transferService.setData([{ "index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect" }]);
+        this.addService.appendComponentToBody(this.page.getViewById('feed'));
+        this.blocks++;
+        this.transferService.setData([{ "index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect" }]);
+        this.addService.appendComponentToBody(this.page.getViewById('feed'));
+        this.blocks++;
+    };
+    HomeComponent.prototype.showModal = function () {
+        var options = {
+            context: {},
+            fullscreen: true,
+            viewContainerRef: this.vcRef
+            // animated: true,
+            // transition: { name: "slideTop" }
+        };
+        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_7__["AddModalComponent"], options).then(function (res) {
+            // console.log(res);
+        });
     };
     HomeComponent.prototype.showSideDrawer = function () {
         //const drawer = <RadSideDrawer>this.sd.nativeView;
@@ -1064,6 +1217,8 @@ var HomeComponent = /** @class */ (function () {
         this.addService.appendComponentToBody(this.page.getViewById('feed'));
         this.blocks++;
     };
+    HomeComponent.prototype.viewAdd = function () {
+    };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home',
@@ -1072,7 +1227,7 @@ var HomeComponent = /** @class */ (function () {
             styles: [__webpack_require__("./app/home/home.component.css")]
         }),
         __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], _dynamic_add_service_tns__WEBPACK_IMPORTED_MODULE_2__["DynamicAddService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__["Page"],
-            _user_service_tns__WEBPACK_IMPORTED_MODULE_4__["UserService"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_5__["PostingService"]])
+            _user_service_tns__WEBPACK_IMPORTED_MODULE_4__["UserService"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_5__["PostingService"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -2106,7 +2261,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var PostingService = /** @class */ (function () {
-    //uri = 'http://10.0.2.2:4000';
+    // uri = 'http://10.5.11.25:4000';
     function PostingService(http) {
         this.http = http;
         this.uri = 'http://192.168.1.7:4000';
@@ -2177,7 +2332,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var PostingService = /** @class */ (function () {
-    //uri = 'http://10.0.2.2:4000';
+    // uri = 'http://10.5.11.25:4000';
     function PostingService(http) {
         this.http = http;
         this.uri = 'http://192.168.1.7:4000';

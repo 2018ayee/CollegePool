@@ -8,6 +8,10 @@
         "directory": "..\\..\\node_modules\\nativescript-dom"
     },
     {
+        "name": "nativescript-floatingactionbutton",
+        "directory": "..\\..\\node_modules\\nativescript-floatingactionbutton"
+    },
+    {
         "name": "nativescript-theme-core",
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
     },
