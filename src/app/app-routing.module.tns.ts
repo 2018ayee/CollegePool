@@ -43,7 +43,8 @@ export const routes: Routes = [
   { path: 'connect', component: ConnectComponent },
   { path: 'loginroute', component: LoginrouteComponent },
   { path: 'payments', component: PaymentsComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'search', component: SearchComponent },
+  { path: 'navigation', component: NavigationComponent }
 ];
 
 @NgModule({

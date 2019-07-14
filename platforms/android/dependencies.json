@@ -12,6 +12,14 @@
         "directory": "..\\..\\node_modules\\nativescript-floatingactionbutton"
     },
     {
+        "name": "nativescript-modal-datetimepicker",
+        "directory": "..\\..\\node_modules\\nativescript-modal-datetimepicker"
+    },
+    {
+        "name": "nativescript-pulltorefresh",
+        "directory": "..\\..\\node_modules\\nativescript-pulltorefresh"
+    },
+    {
         "name": "nativescript-theme-core",
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
     },

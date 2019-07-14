@@ -2,19 +2,35 @@
 	<NavigationButton ios:visibility="collapsed" icon="~/img/menu-icon.png" (tap)="showSideDrawer()" ></NavigationButton>
 <ActionItem android:visibility="collapsed" icon="~/img/menu-icon.png" ios.position="left" (tap)="showSideDrawer()" ></ActionItem>
 </ActionBar> -->
-<ScrollView>
-	<StackLayout id="feed">
+
+    <StackLayout class="add-btn-container">
+		<FAB (tap)="showModal()" icon="res://ic_add_white_3x" rippleColor="#f1f1f1" class="fab-button"></FAB>
+	</StackLayout>
+
+	<PullToRefresh (refresh)="refreshList($event)" class="list">
+		<ListView [items]="postings" (itemTap)="onItemTap($event)" #listView id="listView">
+		    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+		        <StackLayout [class.odd]="odd" [class.even]="even" class="post">
+		              <Label textWrap="true" id="post-name" class="name-label" [text]="item.username"></Label>
+					  <Label textWrap="true" id="post-info" class="info-label" [text]="item.info"></Label>
+					  <Image src="~/img/cville-map.png" stretch="none" height="220" width="300" class="posting-map"></Image>
+		        </StackLayout>
+		    </ng-template>
+		</ListView>
+	</PullToRefresh>
+
+	<!-- <StackLayout id="feed"> -->
 <!-- 	  <Label text="home works" textWrap="true"></Label>
 	  <Label text="This is a migrated component" textWrap="true"></Label>
 	  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label> -->
-	</StackLayout>
-</ScrollView>
+	<!-- </StackLayout> -->
 
-<StackLayout class="add-btn-container">
-	<FAB (tap)="showModal()" icon="res://ic_add_white_3x" rippleColor="#f1f1f1" class="fab-button"></FAB>
-</StackLayout>
+	
 
-<app-navigation></app-navigation>
+
+
+
+<!-- <app-navigation></app-navigation> -->
 
 <!--
 Original Web template:

@@ -26,10 +26,12 @@
         <item name="colorPrimary">@color/ns_primary</item>
         <item name="colorPrimaryDark">@color/ns_primaryDark</item>
         <item name="colorAccent">@color/ns_accent</item>
+        <item name="android:colorEdgeEffect">@color/cpool_purple</item>
 
     </style>
 
     <style name="AppTheme" parent="AppThemeBase">
+        <item name="android:colorEdgeEffect">@color/cpool_purple</item>
     </style>
 
     <!-- theme for action-bar -->

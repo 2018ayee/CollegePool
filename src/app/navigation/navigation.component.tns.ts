@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransferService } from '../datatransfer.service';
 import { RouterExtensions } from 'nativescript-angular/router';
 import {Page} from 'tns-core-modules/ui/page';
@@ -6,6 +6,7 @@ import * as dom from 'nativescript-dom';
 import { Button } from 'tns-core-modules/ui/button';
 import { TabView } from "tns-core-modules/ui/tab-view";
 import { SelectedIndexChangedEventData } from "tns-core-modules/ui/tab-view";
+import { ListView } from "tns-core-modules/ui/list-view";
 
 
 @Component({
@@ -91,26 +92,46 @@ export class NavigationComponent implements OnInit {
     }
 
   toHome() {
-  	this.transferService.setData('homenav');
-	  this.router.navigate(['home']);
+  	// this.transferService.setData('homenav');
+	  // this.router.navigate(['home']);
+    this.homeTab = {iconSource: 'res://home_highlighted'};
+    this.searchTab = {iconSource: 'res://search'};
+    this.historyTab = {iconSource: 'res://history'};
+    this.settingsTab = {iconSource: 'res://settings'};
+    this.tabSelectedIndex = 0;
   }
 
-  toHistory()
-	{
-		this.transferService.setData('historynav');
-		this.router.navigate(['history']);
-	}
-
-	toSettings()
-	{
-		this.transferService.setData('settingsnav');
-		this.router.navigate(['settings']);
-	}
-
   toSearch()
+	{
+		// this.transferService.setData('historynav');
+		// this.router.navigate(['history']);
+    this.homeTab = {iconSource: 'res://home'};
+    this.searchTab = {iconSource: 'res://search_highlighted'};
+    this.historyTab = {iconSource: 'res://history'};
+    this.settingsTab = {iconSource: 'res://settings'};
+    this.tabSelectedIndex = 1;
+	}
+
+	toHistory()
+	{
+		// this.transferService.setData('settingsnav');
+		// this.router.navigate(['settings']);
+    this.homeTab = {iconSource: 'res://home'};
+    this.searchTab = {iconSource: 'res://search'};
+    this.historyTab = {iconSource: 'res://history_highlighted'};
+    this.settingsTab = {iconSource: 'res://settings'};
+    this.tabSelectedIndex = 2;
+	}
+
+  toSettings()
   {
-    this.transferService.setData('searchnav');
-    this.router.navigate(['search']);
+    // this.transferService.setData('searchnav');
+    // this.router.navigate(['search']);
+    this.homeTab = {iconSource: 'res://home'};
+    this.searchTab = {iconSource: 'res://search'};
+    this.historyTab = {iconSource: 'res://history'};
+    this.settingsTab = {iconSource: 'res://settings_highlighted'};
+    this.tabSelectedIndex = 3;
   }
 
 }

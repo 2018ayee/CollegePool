@@ -1,1 +1,64 @@
 /* Add mobile styles for the component here.  */
+.page {
+  /*align-items: center;*/
+  flex-direction: column;
+}
+
+.form {
+  margin-left: 30;
+  margin-right: 30;
+  flex-grow: 2;
+  vertical-align: middle;
+}
+
+.close {
+	margin: 10;
+	font-size: 28;
+	width: 48;
+	height: 48;
+}
+
+.close-button-container {
+	position: absolute;
+	left: 0;
+}
+
+.header-label {
+	margin-top: 60;
+	margin-bottom: 0;
+	font-size: 20;
+}
+
+.header-label-2 {
+	font-size: 20;
+}
+
+.header-label-3 {
+	margin-top: 14;
+	margin-left: 16;
+	margin-right: 16;
+	font-size: 18;
+}
+
+.riding-label {
+	font-weight: 700;
+	color: #ac00e6;
+}
+
+.driving-label {
+	color: #5c687c;
+}
+
+.switch-container {
+	text-align: center;
+}
+
+.switch {
+	color: #ac00e6;
+	background-color: #cd94e0;
+}
+
+.submit-btn {
+	background-color: #ac00e6;
+	margin-top: 20;
+}

@@ -14,6 +14,8 @@ export class PostingComponent implements OnInit {
   buttonType;
 
   info = this.transferService.getData()[0];
+
+  infoText = "Leaving " + this.info.date + " from " + this.info.startadr + " to " + this.info.endadr + " for " + this.info.cost;
   constructor(private transferService: TransferService, private router: Router, private page: Page) {
   }
 
@@ -24,8 +26,12 @@ export class PostingComponent implements OnInit {
     name_label.text = this.info.user;
     name_label.id = 'post-name' + this.info.index;
     const info_label = <Label>this.page.getViewById('post-info');
-    info_label.text = "Leaving " + this.info.date + " from " + this.info.startadr + " to " + this.info.endadr + " for " + this.info.cost;
+    if(this.info.capacity > 0)
+      info_label.text = "Offering ride leaving " + this.info.date + " from " + this.info.startadr + " to " + this.info.endadr + " for " + this.info.cost;
+    else
+      info_label.text = "Requesting ride leaving " + this.info.date + " from " + this.info.startadr + " to " + this.info.endadr;
     info_label.id = 'post-info' + this.info.index;
+    // console.log("created post");
   	// this.create();
   }
 

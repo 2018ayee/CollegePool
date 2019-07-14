@@ -1,12 +1,16 @@
 <TabView [(ngModel)]="tabSelectedIndex" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom" selectedTabTextColor="#ac00e6">
-    <StackLayout *tabItem="homeTab">
-    </StackLayout>
-    <StackLayout *tabItem="searchTab">
-    </StackLayout>
-    <StackLayout *tabItem="historyTab">
-    </StackLayout>
-    <StackLayout *tabItem="settingsTab">
-    </StackLayout>
+    <Page *tabItem="homeTab">
+    	<app-home></app-home>
+    </Page>
+    <Page *tabItem="searchTab">
+    	<app-search></app-search>
+    </Page>
+    <Page *tabItem="historyTab">
+    	<app-history></app-history>
+    </Page>
+    <Page *tabItem="settingsTab">
+    	<app-settings></app-settings>
+    </Page>
 </TabView>
 
 <!--

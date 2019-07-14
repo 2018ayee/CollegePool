@@ -12,8 +12,10 @@ https://docs.nativescript.org/angular/ui/styling
 }
 
 .add-btn-container {
+	/*position: absolute;*/
+	/*bottom: 0;*/
+	/*right: 0;*/
 	vertical-align: bottom;
-	overflow: none;
 	z-index: 1;
 }
 
@@ -21,9 +23,43 @@ https://docs.nativescript.org/angular/ui/styling
   height: 56;
   width: 56;
   margin: 15;
-  margin-bottom: 64;
+  /*margin-bottom: 64;*/
   background-color: #ac00e6;
   /*float: right;*/
   horizontal-align: right;
   vertical-align: bottom;
+}
+
+Label {
+	text-align: left;
+}
+
+.name-label {
+	margin-top: 16;
+	margin-left: 24;
+	color: black;
+	font-weight: 700;
+	font-size: 18;
+}
+
+.info-label {
+	margin-top: 12;
+	margin-left: 24;
+	margin-bottom: 16;
+	color: black;
+}
+
+.post {
+	border-bottom-width: 1;
+	border-color: #f1f1f1;
+}
+
+.post:highlighted {
+	background-color: #f1f1f1;
+}
+
+.posting-map {
+	margin-bottom: 16;
+	border-radius: 10;
+	/*align-content: center;*/
 }
