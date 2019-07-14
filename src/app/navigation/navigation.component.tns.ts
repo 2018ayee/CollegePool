@@ -20,11 +20,14 @@ export class NavigationComponent implements OnInit {
 
   user;
   activebtn;
-  tabSelectedIndex;
+  tabSelectedIndex = 0;
   homeTab = {iconSource: 'res://home_highlighted'};
   searchTab = {iconSource: 'res://search'};
   historyTab = {iconSource: 'res://history'};
   settingsTab = {iconSource: 'res://settings'};
+
+  // @ViewChild('listView') lv: ElementRef;
+  // listView = <ListView> this.lv.nativeElement;
 
   ngOnInit() {
   	this.activebtn = this.transferService.getData();
@@ -90,6 +93,15 @@ export class NavigationComponent implements OnInit {
             }
         }
     }
+
+  home() {
+    console.log(this.tabSelectedIndex);
+    if(this.tabSelectedIndex == 0)
+    {
+      let listView = <ListView> this.page.getViewById('listView');
+      listView.scrollToIndex(0);
+    }
+  }
 
   toHome() {
   	// this.transferService.setData('homenav');
