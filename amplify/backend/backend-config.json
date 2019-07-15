@@ -1,8 +1,9 @@
 {
 	"auth": {
-		"cognitoada7bcb4": {
+		"colpool": {
 			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
 		}
 	}
 }
