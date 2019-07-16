@@ -43,6 +43,7 @@
     "nativescript-angular": "~7.2.0",
     "nativescript-dom": "^2.0.2",
     "nativescript-floatingactionbutton": "^5.1.0",
+    "nativescript-google-places-autocomplete": "^1.0.3",
     "nativescript-modal-datetimepicker": "^1.2.0",
     "nativescript-pulltorefresh": "^2.3.0",
     "nativescript-theme-core": "~1.0.4",

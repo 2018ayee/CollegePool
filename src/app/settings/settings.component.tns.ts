@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators,FormGroupDirective, NgForm, FormBuil
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransferService } from '../datatransfer.service';
 import { UserService } from '../user.service';
-import { Auth } from 'aws-amplify';
+// import { Auth } from 'aws-amplify';
 import { LogincheckService } from '../logincheck.service';
 import {MatButtonModule} from '@angular/material/button';
 import {ErrorStateMatcher} from '@angular/material/core';

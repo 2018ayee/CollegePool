@@ -12,5 +12,10 @@
 	},
 	"nativescript-floatingactionbutton": {
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-floatingactionbutton\\platforms\\android\\include.gradle": "8c1fe5211f608e2cdeb32d726de040ca97d7e0f1"
+	},
+	"nativescript-google-places-autocomplete": {
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-google-places-autocomplete\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-google-places-autocomplete\\platforms\\android\\AndroidManifest.xml": "a49c6297b29f6fca5b1b61650dae089ff2181ba0",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-google-places-autocomplete\\platforms\\android\\include.gradle": "53b76567baa961c7c860c839fa83c2587a228ea0"
 	}
 }

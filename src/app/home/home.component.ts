@@ -7,8 +7,8 @@ import { User } from '../user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransferService } from '../datatransfer.service';
 import { DynamicAddService } from '../dynamic-add.service';
-import { Auth } from 'aws-amplify';
-import { CognitoAuth } from 'amazon-cognito-auth-js';
+// import { Auth } from 'aws-amplify';
+// import { CognitoAuth } from 'amazon-cognito-auth-js';
 import { LogincheckService } from '../logincheck.service';
 
 @Component({

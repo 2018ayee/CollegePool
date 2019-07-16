@@ -215,6 +215,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var tns_core_modules_color__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/tns-core-modules/color/color.js");
 /* harmony import */ var tns_core_modules_color__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_color__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-google-places-autocomplete/google-places-autocomplete.js");
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -229,7 +231,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-// import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
+
 var AddModalComponent = /** @class */ (function () {
     function AddModalComponent(params, postingService, page) {
         this.params = params;
@@ -243,8 +245,8 @@ var AddModalComponent = /** @class */ (function () {
         };
         this.isDriving = false;
         this.API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
+        this.googlePlacesAutocomplete = new nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__["GooglePlacesAutocomplete"](this.API_KEY);
     }
-    // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
     AddModalComponent.prototype.ngOnInit = function () {
     };
     AddModalComponent.prototype.submitPost = function () {
@@ -352,6 +354,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+// import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 
 
@@ -1411,6 +1414,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-google-places-autocomplete/google-places-autocomplete.js");
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1421,6 +1426,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+// import { CognitoAuth } from 'amazon-cognito-auth-js/dist/amazon-cognito-auth';
 
 
 // Amplify.configure({
@@ -1443,6 +1450,13 @@ var LoginComponent = /** @class */ (function () {
         this.page.actionBarHidden = true;
     };
     LoginComponent.prototype.toLogIn = function () {
+        // Auth.signIn("phillim", "Collegepool69*")
+        // .then(user => {
+        //     console.log(user)
+        //     console.log("redirecting")
+        // })
+        var API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
+        var googlePlacesAutocomplete = new nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3__["GooglePlacesAutocomplete"](API_KEY);
         this.router.navigate(['navigation']);
         // window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
     };
@@ -3143,6 +3157,9 @@ __webpack_require__("../node_modules/tns-core-modules/ui/frame/activity.js");
         // this import should be first in order to load some required settings (like globals and reflect-metadata)
 
 
+// import Amplify from 'aws-amplify';
+// import awsconfig from './aws-exports';
+// Amplify.configure(awsconfig);
 // A traditional NativeScript application starts by initializing global objects, setting up global CSS rules, creating, and navigating to the main page. 
 // Angular applications need to take care of their own initialization: modules, components, directives, routes, DI providers. 
 // A NativeScript Angular app needs to make both paradigms work together, so we provide a wrapper platform object, platformNativeScriptDynamic, 

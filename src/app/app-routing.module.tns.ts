@@ -22,7 +22,7 @@ import { UpdateComponent } from './update/update.component';
 import { ConnectComponent } from './connect/connect.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+// import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 import { LoginrouteComponent } from './loginroute/loginroute.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { NavigationComponent } from './navigation/navigation.component';
