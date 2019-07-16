@@ -12,10 +12,6 @@
         "directory": "..\\..\\node_modules\\nativescript-floatingactionbutton"
     },
     {
-        "name": "nativescript-google-places-autocomplete",
-        "directory": "..\\..\\node_modules\\nativescript-google-places-autocomplete"
-    },
-    {
         "name": "nativescript-modal-datetimepicker",
         "directory": "..\\..\\node_modules\\nativescript-modal-datetimepicker"
     },

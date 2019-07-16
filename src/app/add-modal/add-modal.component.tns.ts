@@ -6,7 +6,7 @@ import { Switch } from "tns-core-modules/ui/switch";
 import { Page } from "tns-core-modules/ui/page";
 import { Label } from "tns-core-modules/ui/label";
 import { Color } from "tns-core-modules/color";
-import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
+// import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 
 @Component({
   selector: 'app-add-modal',
@@ -30,7 +30,7 @@ export class AddModalComponent implements OnInit {
   isDriving = false;
 
   API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
-  googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
+  // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
   ngOnInit() {
 
   }
