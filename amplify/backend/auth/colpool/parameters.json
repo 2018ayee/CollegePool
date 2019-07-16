@@ -1,0 +1,68 @@
+{
+    "resourceNameTruncated": "colpoo2e9311c8",
+    "userPoolName": "driversriders",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Verification Code for CollegePool",
+    "emailVerificationMessage": "Your verification code for CollegePool is {####}",
+    "defaultPasswordPolicy": true,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers"
+    ],
+    "requiredAttributes": [
+        "birthdate",
+        "email",
+        "family_name",
+        "given_name"
+    ],
+    "userpoolClientName": "colpoo2e9311c8_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": "3650",
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "colpoo2e9311c8_totp_lambda_role",
+    "userpoolClientLambdaRole": "colpoo2e9311c8_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "useDefault": "manual",
+    "authSelections": "userPoolOnly",
+    "resourceName": "colpool",
+    "triggers": "{}",
+    "hostedUI": false,
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "dependsOn": []
+}

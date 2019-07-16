@@ -5,7 +5,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  uri = 'http://192.168.1.7:4000';
+  	/**
+	* To get the server to recognize your mobile device, find your ipv4 address by running ipconfig in a terminal window
+	* and add a new uri line with your ipv4 address. Do this for network_security_config.xml, user.services.tns.ts, and
+	* posting.service.tns.ts.
+	*/
+	// Adam's testing server
+	// uri = 'http://192.168.1.7:4000';
+	// uri = 'http://10.5.11.25:4000';
+	// Phillip's Testing server
+	uri = 'http://192.168.1.3:4000';
   constructor(private http: HttpClient) { }
 
   getUsers() {

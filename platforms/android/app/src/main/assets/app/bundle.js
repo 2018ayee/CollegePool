@@ -215,6 +215,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var tns_core_modules_color__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/tns-core-modules/color/color.js");
 /* harmony import */ var tns_core_modules_color__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_color__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-google-places-autocomplete/google-places-autocomplete.js");
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -229,7 +231,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-// import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
+
 var AddModalComponent = /** @class */ (function () {
     function AddModalComponent(params, postingService, page) {
         this.params = params;
@@ -243,8 +245,8 @@ var AddModalComponent = /** @class */ (function () {
         };
         this.isDriving = false;
         this.API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
+        this.googlePlacesAutocomplete = new nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__["GooglePlacesAutocomplete"](this.API_KEY);
     }
-    // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
     AddModalComponent.prototype.ngOnInit = function () {
     };
     AddModalComponent.prototype.submitPost = function () {
@@ -352,6 +354,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+// import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 
 
@@ -707,14 +710,14 @@ var ChatModule = /** @class */ (function () {
 /***/ "./app/connect/connect.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/"
 
 /***/ }),
 
 /***/ "./app/connect/connect.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"connect works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n<p>\r\n  connect works!\r\n</p>\r\n\n-->"
+module.exports = "<StackLayout>\r\n  <Label text=\"connect works\" textWrap=\"true\"></Label>\r\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<p>\r\n  connect works!\r\n</p>\r\n\r\n-->"
 
 /***/ }),
 
@@ -814,7 +817,7 @@ module.exports = "p {\r\n\tbackground-color: #d8c3ec;\r\n\ttext-align: center;\r
 /***/ "./app/dialog/dialog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p id=\"dialog\">\n  Your settings have been updated!\n  <span class=\"close\" id=\"close-dialog\">&times;</span>\n</p>\n"
+module.exports = "<p id=\"dialog\">\r\n  Your settings have been updated!\r\n  <span class=\"close\" id=\"close-dialog\">&times;</span>\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1025,7 +1028,7 @@ var FloatBtnComponent = /** @class */ (function () {
 /***/ "./app/history/history.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/"
 
 /***/ }),
 
@@ -1389,7 +1392,7 @@ var LoginDirective = /** @class */ (function () {
 /***/ "./app/login/login.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.login {\n    display: block;\n    color: #ac00e6;\n    /*padding: 6px 24px;*/\n    border-width: 1;\n    border-color: #ac00e6;\n    border-radius: 5;\n    text-align: center;\n    float: center;\n    margin: auto; \n    font-weight: 700;\n    font-family: \"Segoe UI\",Arial,sans-serif;\n    margin-bottom: 15;\n    width: 120;\n    height: 40;\n}\n\n.login:highlighted {\n    background-color: #f9e6ff;\n}\n\n.login-info {\n\tmargin-top: 120;\n}\n\n.homescreen-logo {\n\tmargin-bottom: 200;\n}\n\n.h1 {\n\tfont-size: 50;\n\tfont-weight: 700;\n\tcolor: #ac00e6;\n}\n\n.login-wrapper {\n\tbackground-color: #f1f1f1;\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.login {\r\n    display: block;\r\n    color: #ac00e6;\r\n    /*padding: 6px 24px;*/\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 120;\r\n    height: 40;\r\n}\r\n\r\n.login:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n\r\n.login-info {\r\n\tmargin-top: 120;\r\n}\r\n\r\n.homescreen-logo {\r\n\tmargin-bottom: 200;\r\n}\r\n\r\n.h1 {\r\n\tfont-size: 50;\r\n\tfont-weight: 700;\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.login-wrapper {\r\n\tbackground-color: #f1f1f1;\r\n}"
 
 /***/ }),
 
@@ -1411,6 +1414,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-google-places-autocomplete/google-places-autocomplete.js");
+/* harmony import */ var nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1422,7 +1427,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+// import { CognitoAuth } from 'amazon-cognito-auth-js/dist/amazon-cognito-auth';
 
+
+// Amplify.configure({
+//   Auth: {
+//     // REQUIRED - Amazon Cognito Identity Pool ID,
+//     // identityPoolId: "us-east-2:f0bb0da8-544c-41aa-9cae-289f5aec7336",
+//     // REQUIRED - Amazon Cognito Region
+//     region: "us-east-2",
+//     // OPTIONAL - Amazon Cognito User Pool ID
+//     userPoolId: "us-east-2_1PnaMFKRK",
+//     //userPoolWebClientId: "2o6dsp7lolkgu660olfeq5igt3"
+//   }
+// });
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(router, page) {
         this.router = router;
@@ -1432,6 +1450,13 @@ var LoginComponent = /** @class */ (function () {
         this.page.actionBarHidden = true;
     };
     LoginComponent.prototype.toLogIn = function () {
+        // Auth.signIn("phillim", "Collegepool69*")
+        // .then(user => {
+        //     console.log(user)
+        //     console.log("redirecting")
+        // })
+        var API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
+        var googlePlacesAutocomplete = new nativescript_google_places_autocomplete__WEBPACK_IMPORTED_MODULE_3__["GooglePlacesAutocomplete"](API_KEY);
         this.router.navigate(['navigation']);
         // window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
     };
@@ -1612,14 +1637,14 @@ var LogincheckService = /** @class */ (function () {
 /***/ "./app/loginroute/loginroute.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/"
 
 /***/ }),
 
 /***/ "./app/loginroute/loginroute.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"loginroute works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n<p>\n  Redirecting...\n</p>\n\n-->"
+module.exports = "<StackLayout>\r\n  <Label text=\"loginroute works\" textWrap=\"true\"></Label>\r\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<p>\r\n  Redirecting...\r\n</p>\r\n\r\n-->"
 
 /***/ }),
 
@@ -1687,7 +1712,7 @@ var LoginrouteComponent = /** @class */ (function () {
 /***/ "./app/navigation/navigation.component.tns.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/"
 
 /***/ }),
 
@@ -1865,14 +1890,14 @@ var NavigationComponent = /** @class */ (function () {
 /***/ "./app/payment-method/payment-method.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/"
 
 /***/ }),
 
 /***/ "./app/payment-method/payment-method.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\n  <Label text=\"payment-method works\" textWrap=\"true\"></Label>\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n<div class=\"payment-method\">\r\n\t<span class=\"payment-type-icon\"></span>\r\n\t<span class=\"payment-type-details\"></span>\r\n</div>\n-->"
+module.exports = "<StackLayout>\r\n  <Label text=\"payment-method works\" textWrap=\"true\"></Label>\r\n  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"payment-method\">\r\n\t<span class=\"payment-type-icon\"></span>\r\n\t<span class=\"payment-type-details\"></span>\r\n</div>\r\n-->"
 
 /***/ }),
 
@@ -2408,10 +2433,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var PostingService = /** @class */ (function () {
-    // uri = 'http://10.5.11.25:4000';
     function PostingService(http) {
         this.http = http;
-        this.uri = 'http://192.168.1.7:4000';
+        /**
+        * To get the server to recognize your mobile device, find your ipv4 address by running ipconfig in a terminal window
+        * and add a new uri line with your ipv4 address. Do this for network_security_config.xml, user.services.tns.ts, and
+        * posting.service.tns.ts.
+        */
+        // Adam's testing server
+        // uri = 'http://192.168.1.7:4000';
+        // uri = 'http://10.5.11.25:4000';
+        // Phillip's Testing server
+        this.uri = 'http://192.168.1.3:4000';
     }
     PostingService.prototype.getPostings = function () {
         return this.http.get(this.uri + "/postings");
@@ -2479,10 +2512,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var PostingService = /** @class */ (function () {
-    // uri = 'http://10.5.11.25:4000';
     function PostingService(http) {
         this.http = http;
-        this.uri = 'http://192.168.1.7:4000';
+        /**
+        * To get the server to recognize your mobile device, find your ipv4 address by running ipconfig in a terminal window
+        * and add a new uri line with your ipv4 address. Do this for network_security_config.xml, user.services.tns.ts, and
+        * posting.service.tns.ts.
+        */
+        // Adam's testing server
+        // uri = 'http://192.168.1.7:4000';
+        // uri = 'http://10.5.11.25:4000';
+        // Phillip's Testing server
+        this.uri = 'http://192.168.1.3:4000';
     }
     PostingService.prototype.getPostings = function () {
         return this.http.get(this.uri + "/postings");
@@ -2533,14 +2574,14 @@ var PostingService = /** @class */ (function () {
 /***/ "./app/posting/posting.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 24;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 18;\n}\n\n.info-label {\n\tmargin-top: 12;\n\tmargin-left: 24;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n}\n\n.post:highlighted {\n\tbackground-color: #f1f1f1;\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\t/*align-content: center;*/\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 24;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 18;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 12;\r\n\tmargin-left: 24;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\tborder-bottom-width: 1;\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\tbackground-color: #f1f1f1;\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\t/*align-content: center;*/\r\n}"
 
 /***/ }),
 
 /***/ "./app/posting/posting.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout class=\"post\">\n  <Label textWrap=\"true\" id=\"post-name\" class=\"name-label\"></Label>\n  <Label textWrap=\"true\" id=\"post-info\" class=\"info-label\"></Label>\n  <Image src=\"~/img/cville-map.png\" stretch=\"none\" height=\"220\" width=\"300\" class=\"posting-map\"></Image>\n</StackLayout>\n\n<!--\nOriginal Web template:\n\n\n-->"
+module.exports = "<StackLayout class=\"post\">\r\n  <Label textWrap=\"true\" id=\"post-name\" class=\"name-label\"></Label>\r\n  <Label textWrap=\"true\" id=\"post-info\" class=\"info-label\"></Label>\r\n  <Image src=\"~/img/cville-map.png\" stretch=\"none\" height=\"220\" width=\"300\" class=\"posting-map\"></Image>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n\r\n-->"
 
 /***/ }),
 
@@ -2662,7 +2703,7 @@ var PostingComponent = /** @class */ (function () {
 /***/ "./app/search/search.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\n"
+module.exports = "/* Add mobile styles for the component here.  */\r\n"
 
 /***/ }),
 
@@ -2713,7 +2754,7 @@ var SearchComponent = /** @class */ (function () {
 /***/ "./app/settings/settings.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/"
 
 /***/ }),
 
@@ -2924,7 +2965,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
-        this.uri = 'http://192.168.1.7:4000';
+        /**
+        * To get the server to recognize your mobile device, find your ipv4 address by running ipconfig in a terminal window
+        * and add a new uri line with your ipv4 address. Do this for network_security_config.xml, user.services.tns.ts, and
+        * posting.service.tns.ts.
+        */
+        // Adam's testing server
+        // uri = 'http://192.168.1.7:4000';
+        // uri = 'http://10.5.11.25:4000';
+        // Phillip's Testing server
+        this.uri = 'http://192.168.1.3:4000';
     }
     UserService.prototype.getUsers = function () {
         return this.http.get(this.uri + "/users");
@@ -3009,7 +3059,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
-        this.uri = 'http://192.168.1.7:4000';
+        /**
+        * To get the server to recognize your mobile device, find your ipv4 address by running ipconfig in a terminal window
+        * and add a new uri line with your ipv4 address. Do this for network_security_config.xml, user.services.tns.ts, and
+        * posting.service.tns.ts.
+        */
+        // Adam's testing server
+        // uri = 'http://192.168.1.7:4000';
+        // uri = 'http://10.5.11.25:4000';
+        // Phillip's Testing server
+        this.uri = 'http://192.168.1.3:4000';
     }
     UserService.prototype.getUsers = function () {
         return this.http.get(this.uri + "/users");
@@ -3098,6 +3157,9 @@ __webpack_require__("../node_modules/tns-core-modules/ui/frame/activity.js");
         // this import should be first in order to load some required settings (like globals and reflect-metadata)
 
 
+// import Amplify from 'aws-amplify';
+// import awsconfig from './aws-exports';
+// Amplify.configure(awsconfig);
 // A traditional NativeScript application starts by initializing global objects, setting up global CSS rules, creating, and navigating to the main page. 
 // Angular applications need to take care of their own initialization: modules, components, directives, routes, DI providers. 
 // A NativeScript Angular app needs to make both paradigms work together, so we provide a wrapper platform object, platformNativeScriptDynamic, 

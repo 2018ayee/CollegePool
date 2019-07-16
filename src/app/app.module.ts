@@ -24,7 +24,7 @@ import { UpdateComponent } from './update/update.component';
 import { ConnectComponent } from './connect/connect.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+// import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 import { LoginrouteComponent } from './loginroute/loginroute.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -85,14 +85,15 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    AmplifyAngularModule,
+    // AmplifyAngularModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
     }),
     ChatModule,
     NgxPayPalModule
   ],
-  providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService],
+  // providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService],
+  providers: [PostingService, TransferService, DynamicAddService, UserService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent]
 })
