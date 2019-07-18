@@ -27,7 +27,7 @@ export class PostingService {
 
   addPosting(user, startadr, endadr, date, cost, capacity, comments) {
 
-    //const price = req(./pricing)({start: startadr, end: endadr});
+    //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
 
   	const posting = {
   		user : user,
@@ -42,7 +42,7 @@ export class PostingService {
   }
 
   updatePosting(id, user, startadr, endadr, date, cost, capacity, comments) {
-    //const price = req(./pricing)({start: startadr, end: endadr});
+    //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
   	const posting = {
   		user : user,
   		startadr : startadr,
