@@ -2243,6 +2243,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var PaymentsComponent = /** @class */ (function () {
     function PaymentsComponent() {
     }
+    PaymentsComponent.prototype.ngOnInit = function () {
+    };
     PaymentsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-payments',
