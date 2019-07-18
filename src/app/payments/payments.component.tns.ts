@@ -15,6 +15,8 @@ declare let paypal: any;
 })
 export class PaymentsComponent implements OnInit {
 
+	ngOnInit() {
+	}
 /*  user = this.logincheckService.getUser();
   paymentCustomer;
   paymentInfo;
