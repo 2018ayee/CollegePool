@@ -6,26 +6,28 @@
 
 
 		<StackLayout class="form">
-			<Label text="I am..." class="header-label-2"></Label>
+			<Label text="I am..." class="header-label-2 bold"></Label>
 
 		  <StackLayout class="input-field switch-container" orientation="horizontal" horizontalAlignment="center">
 		  	<Label text="Driving" class="header-label-3 driving-label" #drivingLabel></Label>
 		  	<Switch checked="true" (checkedChange)="onCheckedChange($event)" class="m-15 switch"></Switch>
 		  	<Label text="Riding" class="header-label-3 riding-label" #ridingLabel></Label>
 		  </StackLayout>
-		  <StackLayout class="input-field">
-		    <TextField class="input" autocorrect="false" hint="Where from?" [(ngModel)]="startAddress" required></TextField>
+		  <StackLayout class="input-field start-field">
+<!-- 		    <TextField class="input" autocorrect="false" hint="Where from?" [(ngModel)]="startAddress" (textChange)="startAutocomplete()" (tap)="showModal('start')" required></TextField> -->
+			<Label text="{{ startLabel }}" class="header-label-3" (tap)="showModal('start')"></Label>
 		    <StackLayout class="hr-light"></StackLayout>
 		  </StackLayout>
 
 		  <StackLayout class="input-field">
-		    <TextField class="input" autocorrect="false" hint="Where to?" [(ngModel)]="endAddress" required></TextField>
+<!-- 		    <TextField class="input" autocorrect="false" hint="Where to?" [(ngModel)]="endAddress" (textChange)="endAutocomplete()" (tap)="showModal('end')" required></TextField> -->
+				<Label text="{{ endLabel }}" class="header-label-3" (tap)="showModal('end')"></Label>
 		    <StackLayout class="hr-light"></StackLayout>
 		  </StackLayout>
 
 	<!-- 	  <DatePicker (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)" 
 	(dayChange)="onDayChanged($event)" (monthChange)="onMonthChanged($event)" (yearChange)="onYearChanged($event)" verticalAlignment="center"></DatePicker> -->
-			<Label text="When?" class="header-label"></Label>
+			<Label text="When?" class="header-label bold"></Label>
 
 		  <DatePicker (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)" verticalAlignment="center"></DatePicker>
 

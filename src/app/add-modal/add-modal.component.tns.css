@@ -40,6 +40,11 @@
 	font-size: 18;
 }
 
+.header-label-4 {
+	font-size: 18;
+	margin-top: 14;
+}
+
 .riding-label {
 	font-weight: 700;
 	color: #ac00e6;
@@ -61,4 +66,12 @@
 .submit-btn {
 	background-color: #ac00e6;
 	margin-top: 20;
+}
+
+.bold {
+	font-weight: 700;
+}
+
+.start-field {
+	margin-top: 14;
 }

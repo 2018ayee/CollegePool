@@ -26,6 +26,7 @@ import { UserService } from './user.service';
 import { TransferService } from './datatransfer.service';
 import { DynamicAddService } from './dynamic-add.service';
 import { PaymentService } from './payment.service';
+import { PlacesAutocompleteService } from './places-autocomplete.service';
 
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 
@@ -43,6 +44,7 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { FloatBtnComponent } from './float-btn/float-btn.component';
 import { AddModalComponent } from './add-modal/add-modal.component';
+import { LocationComponent } from './location/location.component';
 
 
 
@@ -66,7 +68,8 @@ import { AddModalComponent } from './add-modal/add-modal.component';
     PaymentMethodComponent,
     SearchComponent,
     FloatBtnComponent,
-    AddModalComponent
+    AddModalComponent,
+    LocationComponent
   ],
   imports: [
     NativeScriptModule,
@@ -81,9 +84,9 @@ import { AddModalComponent } from './add-modal/add-modal.component';
     ChatModule,
     NgxPayPalModule
   ],
-  providers: [PostingService, TransferService, DynamicAddService, UserService, ModalDialogService],
+  providers: [PostingService, TransferService, DynamicAddService, UserService, ModalDialogService, PlacesAutocompleteService],
   bootstrap: [AppComponent],
-  entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent],
+  entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*

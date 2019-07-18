@@ -10,6 +10,7 @@ import { DynamicAddService } from '../dynamic-add.service';
 // import { Auth } from 'aws-amplify';
 // import { CognitoAuth } from 'amazon-cognito-auth-js';
 import { LogincheckService } from '../logincheck.service';
+import { PlacesAutocompleteService } from '../places-autocomplete.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
 	user;
 
 	constructor(private logincheckService: LogincheckService, private transferService: TransferService, private router: Router, 
-		private postingService: PostingService, private userService: UserService, private addService: DynamicAddService) { }
+		private postingService: PostingService, private userService: UserService, private addService: DynamicAddService, private placesService: PlacesAutocompleteService) { }
 
 	ngOnInit() {
 

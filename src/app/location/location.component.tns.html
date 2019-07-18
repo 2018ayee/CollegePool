@@ -1,0 +1,22 @@
+<ScrollView>
+	<StackLayout height="100%">
+		<StackLayout class="close-button-container" orientation="horizontal">
+			<Label text="&times;" class="close" (tap)="close()"></Label>
+		</StackLayout>
+
+		<StackLayout class="input-field">
+<!-- 			<TextField class="input" autocorrect="false" hint="Find a location" [(ngModel)]="address" (textChange)="autocomplete()" #searchLabel id="searchLabel" required></TextField> -->
+			<SearchBar hint="Find a location" [text]="address" (textChange)="search($event)"></SearchBar>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<ListView [items]="suggestions" height="100%">
+			<ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+				<StackLayout [class.odd]="odd" [class.even]="even" class="post" (tap)="selectPlace(item.placeSuggestion, item.placeAddress)">
+					<Label textWrap="true" [text]="item.placeSuggestion" class="header-label-2"></Label>
+					<Label textWrap="true" [text]="item.placeAddress" class="header-label-3"></Label>
+				</StackLayout>
+			</ng-template>
+		</ListView>
+	</StackLayout>
+</ScrollView>

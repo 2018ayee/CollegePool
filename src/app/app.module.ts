@@ -38,6 +38,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { SearchComponent } from './search/search.component';
 import { FloatBtnComponent } from './float-btn/float-btn.component';
 import { AddModalComponent } from './add-modal/add-modal.component';
+import { LocationComponent } from './location/location.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
     PaymentComponent,
     SearchComponent,
     FloatBtnComponent,
-    AddModalComponent
+    AddModalComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
