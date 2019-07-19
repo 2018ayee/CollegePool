@@ -2355,6 +2355,7 @@ var PostingService = /** @class */ (function () {
         return this.http.get(this.uri + "/postings/" + id);
     };
     PostingService.prototype.addPosting = function (user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2367,6 +2368,7 @@ var PostingService = /** @class */ (function () {
         return this.http.post(this.uri + "/postings/add/", posting);
     };
     PostingService.prototype.updatePosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2434,6 +2436,7 @@ var PostingService = /** @class */ (function () {
         return this.http.get(this.uri + "/postings/" + id);
     };
     PostingService.prototype.addPosting = function (user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2446,6 +2449,7 @@ var PostingService = /** @class */ (function () {
         return this.http.post(this.uri + "/postings/add/", posting);
     };
     PostingService.prototype.updatePosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,

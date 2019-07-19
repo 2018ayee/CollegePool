@@ -2,7 +2,7 @@
 import { platformNativeScriptDynamic } from 'nativescript-angular/platform';
 
 import { AppModule } from './app/app.module';
-// import Amplify from 'aws-amplify';
+// import Amplify from "@aws-amplify/core";
 // import awsconfig from './aws-exports';
 
 // Amplify.configure(awsconfig);

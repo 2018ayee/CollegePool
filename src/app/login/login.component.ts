@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CognitoAuth } from 'amazon-cognito-auth-js/dist/amazon-cognito-auth';
-
+import Auth from '@aws-amplify/auth';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,14 @@ export class LoginComponent implements OnInit {
   }
 
   toLogIn() {
-  	window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
+    console.log("HIE")
+    Auth.signIn("phillim", "Collegepool69*")
+    .then(user => {
+        console.log(user)
+        console.log("redirecting")
+
+    })
+  	//window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
     //window.location.href='https://collegepool.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=9pt5k8jg7mfupl900k5fq0gqi&redirect_uri=http://localhost:4200/home&state=STATE&scope=aws.cognito.signin.user.admin+openid';
   }
 
