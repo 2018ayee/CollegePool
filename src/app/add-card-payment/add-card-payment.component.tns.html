@@ -1,0 +1,50 @@
+<!-- <ngx-braintree 
+  [getClientToken]="getClientToken()" 
+  [createPurchase]="createPurchaseFunction" 
+  (paymentStatus)="onPaymentStatus($event)">
+</ngx-braintree> -->
+
+<StackLayout #form>
+	<StackLayout class="close-button-container" orientation="horizontal">
+		<Label text="&times;" class="close" (tap)="close()"></Label>
+	</StackLayout>
+
+	<StackLayout class="cardinfo-card-number">
+		<Label text="Card Number" class="cardinfo-label"></Label>
+		<StackLayout #cardNumber class="input-wrapper"></StackLayout>
+		<StackLayout #cardImage></StackLayout>
+	</StackLayout>
+
+	<StackLayout class="cardinfo-wrapper">
+		<StackLayout class="cardinfo-exp-date">
+			<Label text="Valid Thru" class="cardinfo-label"></Label>
+			<StackLayout #expirationDate class="input-wrapper"></StackLayout>
+		</StackLayout>
+
+		<StackLayout class="cardinfo-cvv">
+			<Label text="CVV" class="cardinfo-label"></Label>
+			<StackLayout #cvv class="input-wrapper"></StackLayout>
+		</StackLayout>
+	</StackLayout>
+
+	<Button text="Add" class="btn btn-primary" #submitButton></Button>
+</StackLayout>
+<!-- 		<form id="payment-card-form" class="scale-down">
+	    <div class="cardinfo-card-number">
+	      <label class="cardinfo-label" for="card-number">Card Number</label>
+	      <div class='input-wrapper' id="card-number"></div>
+	      <div id="card-image"></div>
+	    </div>
+
+	    <div class="cardinfo-wrapper">
+	      <div class="cardinfo-exp-date">
+	        <label class="cardinfo-label" for="expiration-date">Valid Thru</label>
+	        <div class='input-wrapper' id="expiration-date"></div>
+	      </div>
+
+	      <div class="cardinfo-cvv">
+	        <label class="cardinfo-label" for="cvv">CVV</label>
+	        <div class='input-wrapper' id="cvv"></div>
+	      </div>
+	    </div>
+	  </form> -->

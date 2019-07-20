@@ -35,6 +35,8 @@ import {MatInputModule} from '@angular/material/input';
 import { AgmCoreModule } from '@agm/core';
 import { ChatModule } from './chat/chat.module';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { NgxBraintreeModule } from 'ngx-braintree';
+import { HttpClientModule } from '@angular/common/http';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -45,6 +47,10 @@ import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { FloatBtnComponent } from './float-btn/float-btn.component';
 import { AddModalComponent } from './add-modal/add-modal.component';
 import { LocationComponent } from './location/location.component';
+import { AddPaymentComponent } from './add-payment/add-payment.component';
+import { AddCardPaymentComponent } from './add-card-payment/add-card-payment.component';
+import { PaymentInfoComponent } from './payment-info/payment-info.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 
@@ -69,7 +75,11 @@ import { LocationComponent } from './location/location.component';
     SearchComponent,
     FloatBtnComponent,
     AddModalComponent,
-    LocationComponent
+    LocationComponent,
+    AddPaymentComponent,
+    AddCardPaymentComponent,
+    PaymentInfoComponent,
+    ConfirmationComponent
   ],
   imports: [
     NativeScriptModule,
@@ -82,11 +92,14 @@ import { LocationComponent } from './location/location.component';
       apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
     }),
     ChatModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    // NgxBraintreeModule,
+    HttpClientModule
   ],
-  providers: [PostingService, TransferService, DynamicAddService, UserService, ModalDialogService, PlacesAutocompleteService],
+  providers: [PostingService, TransferService, DynamicAddService, UserService, PaymentService, ModalDialogService, PlacesAutocompleteService],
   bootstrap: [AppComponent],
-  entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent],
+  entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
+  PaymentInfoComponent, ConfirmationComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*

@@ -1,4 +1,27 @@
-<StackLayout>
-    <Label text="Payments works" textWrap="true"></Label>
-  </StackLayout>
-  
+<Page>
+	<Page.actionBar>
+		<ActionBar title="Payments">
+		  <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+		</ActionBar>
+	</Page.actionBar>
+
+
+
+	<StackLayout>
+		<ListView [items]="payments" separatorColor="transparent" (itemTap)="onSelect($event)">
+			<ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+				<StackLayout [class.odd]="odd" [class.even]="even" class="post" orientation="horizontal">
+					<Image [src]="item.paymentType" class="payment-type-icon"></Image>
+					<Label textWrap="true" [text]="item.info" class="payment-info-label"></Label>
+				</StackLayout>
+			</ng-template>
+		</ListView>
+
+		<StackLayout (tap)="showModal()" #addContainer class="add-container">
+			<Label textWrap="true" text="Add payment method" class="add-payment-label"></Label>
+		</StackLayout>  
+	</StackLayout>
+</Page>
+
+<ActivityIndicator #activityIndicator busy="true" width="100" height="100" class="activity-indicator">
+</ActivityIndicator>

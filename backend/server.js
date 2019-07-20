@@ -97,10 +97,10 @@ router.route('/customers/payment').post((req, res) => {
 
 router.route('/customers/payment/remove/:token').get((req, res) => {
 	var remove = gateway.paymentMethod.delete(req.params.token, function (err) {
-		if(err)
+		if(err) 
 			res.json(err);
 		else
-			res.json("Remove successful");
+			res.status(200).json({'posting': 'Added successfully'});
 	});
 });
 

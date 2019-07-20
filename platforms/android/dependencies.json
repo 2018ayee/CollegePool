@@ -20,6 +20,10 @@
         "directory": "..\\..\\node_modules\\nativescript-pulltorefresh"
     },
     {
+        "name": "nativescript-ripple",
+        "directory": "..\\..\\node_modules\\nativescript-ripple"
+    },
+    {
         "name": "nativescript-theme-core",
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
     },

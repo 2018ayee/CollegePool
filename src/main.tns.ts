@@ -2,6 +2,9 @@
 import { platformNativeScriptDynamic } from 'nativescript-angular/platform';
 
 import { AppModule } from './app/app.module';
+import {registerElement} from "nativescript-angular/element-registry";
+
+registerElement("Ripple", () => require("nativescript-ripple").Ripple);
 // import Amplify from 'aws-amplify';
 // import awsconfig from './aws-exports';
 

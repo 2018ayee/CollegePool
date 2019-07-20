@@ -1,0 +1,14 @@
+<StackLayout>
+	<StackLayout class="close-button-container" orientation="horizontal">
+		<Label text="&times;" class="close" (tap)="close('cancel')"></Label>
+	</StackLayout>
+
+	<ListView [items]="methods" separatorColor="transparent" (itemTap)="onSelect($event)">
+		<ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+			<StackLayout [class.odd]="odd" [class.even]="even" orientation="horizontal">
+				<Image [src]="item.paymentType" class="payment-type-icon"></Image>
+				<Label textWrap="true" [text]="item.info" class="payment-info-label"></Label>
+			</StackLayout>
+		</ng-template>
+	</ListView>
+</StackLayout>

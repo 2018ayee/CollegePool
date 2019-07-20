@@ -1,0 +1,465 @@
+/* Add mobile styles for the component here.  */
+.close {
+	margin: 10;
+	font-size: 28;
+	width: 48;
+	height: 48;
+}
+
+.close-button-container {
+	position: absolute;
+	left: 0;
+}
+
+/* styles from payments.component.css */
+
+#form {
+    margin: auto;
+    width: 600px;
+    height: 400px;
+    background-color: #ffffff;
+    position: relative;
+    top: 30px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+
+#payment-form {
+    margin: auto;
+    width: 600px;
+    height: 400px;
+    background-color: #ffffff;
+    position: relative;
+    top: 30px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    display: none;
+}
+
+#card-form {
+    margin: auto;
+    width: 400px;
+    background-color: #580968;
+    position: relative;
+    top: 25%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    font-weight: 400;
+    z-index: 1;
+}
+
+#paypal-form {
+    margin: auto;
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    position: relative;
+    top: 25%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    font-weight: 400;
+    z-index: 1;
+}
+
+#venmo-form {
+    margin: auto;
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    position: relative;
+    top: 25%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    font-weight: 400;
+    z-index: 1;
+}
+
+#error-form {
+    margin: auto;
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    position: relative;
+    top: 25%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    font-weight: 400;
+    z-index: 1;
+}
+
+#edit-form {
+    margin: auto;
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    position: relative;
+    top: 25%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    font-weight: 400;
+    z-index: 1;
+}
+
+.payment-methods {
+	overflow: hidden;
+    width: 300px;
+    margin: auto;
+    margin-left: 40px;
+}
+
+#modal-payment-methods {
+	margin-left: 24px;
+}
+
+#paypal-header-container {
+	background-color: #580968;
+}
+
+#error-header-container {
+	display: none;
+	background-color: #890000;
+}
+
+#edit-header-container {
+	background-color: #580968;
+}
+
+.colored-header {
+	color: white;
+	font-weight: 400;
+}
+
+#method-information-text {
+	margin-left: 40px;
+	margin-top: 32px;
+	font-size: 16px;
+}
+
+.payment-footer-button{
+    display: inline-block;
+    background-color: #ffffff;
+    color: #ac00e6;
+    border: none;
+    outline: none;
+    text-align: center;
+    margin-left: 34px;
+    margin-bottom: 5px;
+}
+
+#paypal-button {
+	width: 350px;
+	margin: auto;
+	margin-top: 32px;
+}
+
+#add-card-button {
+	float: right;
+	margin-right: 34px;
+	display: none;
+}
+
+#remove-payment-button {
+	float: right;
+	margin-right: 34px;
+}
+
+.plus-sign {
+	vertical-align: middle;
+	font-size: 30px;
+	margin-right: 7px;
+	cursor: pointer;
+}
+
+.payment-footer-text {
+	vertical-align: middle;
+	line-height: 42px;
+	font-weight: 400;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.payment-footer-text:hover {
+	text-decoration: underline;
+}
+
+.payments-bottom-add-container {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+
+/* Other modal styling in styles.css */
+.close-modal {
+	font-size: 24px;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+/*--------------------
+Shared Variables
+--------------------*/
+/*--------------------
+General
+--------------------*/
+html,
+body {
+  font-size: 100%;
+  height: 100%;
+  color: #282c37;
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.form-container {
+  display: flex;
+  background-color: #EEE;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  border: 1em solid #fff;
+  box-sizing: border-box;
+  position: relative;
+}
+@media (max-width: 476px) {
+  .form-container {
+    border: none;
+  }
+}
+
+.cardinfo-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bg-illustration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+.bg-illustration svg {
+  width: 100%;
+}
+
+.card-shape, #my-sample-form.visa, #my-sample-form.master-card, #my-sample-form.maestro, #my-sample-form.american-express, #my-sample-form.discover, #my-sample-form.unionpay, #my-sample-form.jcb, #my-sample-form.diners-club {
+  border-radius: 6px;
+  padding: 2em 2em 1em;
+}
+@media (max-width: 476px) {
+  .card-shape, #my-sample-form.visa, #my-sample-form.master-card, #my-sample-form.maestro, #my-sample-form.american-express, #my-sample-form.discover, #my-sample-form.unionpay, #my-sample-form.jcb, #my-sample-form.diners-club {
+    padding: 2em 1.5em 1em;
+  }
+}
+
+#payment-card-form {
+  background-color: #FFF;
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);*/
+  padding: 1em 3em 3em;
+  margin-bottom: 2em;
+/*  transition: all 600ms cubic-bezier(0.2, 1.3, 0.7, 1);
+  -webkit-animation: cardIntro 500ms cubic-bezier(0.2, 1.3, 0.7, 1);
+          animation: cardIntro 500ms cubic-bezier(0.2, 1.3, 0.7, 1);*/
+  /*z-index: 1;*/
+}
+#my-sample-form:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+@media (max-width: 476px) {
+  #my-sample-form {
+    box-sizing: border-box;
+    padding: 7em 2em 2em;
+    width: 100%;
+  }
+}
+#my-sample-form.visa {
+  color: #fff;
+  background-color: #0D4AA2;
+}
+#my-sample-form.master-card {
+  color: #fff;
+  background-color: #363636;
+  background: linear-gradient(115deg, #d82332, #d82332 50%, #f1ad3d 50%, #f1ad3d);
+}
+#my-sample-form.maestro {
+  color: #fff;
+  background-color: #363636;
+  background: linear-gradient(115deg, #009ddd, #009ddd 50%, #ed1c2e 50%, #ed1c2e);
+}
+#my-sample-form.american-express {
+  color: #fff;
+  background-color: #007CC3;
+}
+#my-sample-form.discover {
+  color: #fff;
+  background-color: #ff6000;
+  background: linear-gradient(#d14310, #f7961e);
+}
+#my-sample-form.unionpay, #my-sample-form.jcb, #my-sample-form.diners-club {
+  color: #fff;
+  background-color: #363636;
+}
+
+.cardinfo-label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+
+.cardinfo-exp-date {
+  margin-right: 1em;
+  width: 100%;
+}
+
+.cardinfo-cvv {
+  width: 100%;
+}
+
+.cardinfo-card-number {
+  position: relative;
+}
+
+#cardImage {
+  position: absolute;
+  top: 2em;
+  right: 1em;
+  width: 44px;
+  height: 28px;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/346994/card_sprite.png);
+  background-size: 86px 458px;
+  border-radius: 4px;
+  background-position: -100px 0;
+  background-repeat: no-repeat;
+  margin-bottom: 1em;
+}
+#cardImage.visa {
+  background-position: 0 -398px;
+}
+#cardImage.master-card {
+  background-position: 0 -281px;
+}
+#cardImage.american-express {
+  background-position: 0 -370px;
+}
+#cardImage.discover {
+  background-position: 0 -163px;
+}
+#cardImage.maestro {
+  background-position: 0 -251px;
+}
+#cardImage.jcb {
+  background-position: 0 -221px;
+}
+#cardImage.diners-club {
+  background-position: 0 -133px;
+}
+
+/*--------------------
+Inputs 
+--------------------*/
+.input-wrapper {
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.86);
+  height: 2.75em;
+  border: 1px solid #eee;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  padding: 5px 10px;
+  margin-bottom: 1em;
+}
+
+.cardinfo-card-number,
+.cardinfo-exp-date,
+.cardinfo-cvv {
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.braintree-hosted-fields-focused {
+  border-color: #5db6e8;
+}
+
+.braintree-hosted-fields-invalid {
+  border-color: #E53A40;
+/*  -webkit-animation: shake 500ms cubic-bezier(0.2, 1.3, 0.7, 1) both;
+          animation: shake 500ms cubic-bezier(0.2, 1.3, 0.7, 1) both;*/
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #ac00e6; /* Purple */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+#loading-circle {
+  top: 12%;
+  left: 30%;
+  position: absolute;
+}
+
+#list-loading-circle {
+	margin-top: 50px;
+}
+
+/*--------------------
+Animations
+--------------------*/
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    -webkit-transform: translate3d(1px, 0, 0);
+            transform: translate3d(1px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-3px, 0, 0);
+            transform: translate3d(-3px, 0, 0);
+  }
+  40%,
+  60% {
+    -webkit-transform: translate3d(3px, 0, 0);
+            transform: translate3d(3px, 0, 0);
+  }
+}
+@keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    -webkit-transform: translate3d(1px, 0, 0);
+            transform: translate3d(1px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-3px, 0, 0);
+            transform: translate3d(-3px, 0, 0);
+  }
+  40%,
+  60% {
+    -webkit-transform: translate3d(3px, 0, 0);
+            transform: translate3d(3px, 0, 0);
+  }
+}
+
