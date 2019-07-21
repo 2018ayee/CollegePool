@@ -43,6 +43,18 @@ router.route('/customers/:id').get((req, res) => {
 
 });
 
+router.route('/token/:id').get((req, res) => {
+	gateway.clientToken.generate({
+	  // customerId: req.params.id
+	}, function (err, response) {
+		if(response) {
+		  var clientToken = response.clientToken
+		  res.status(200).json({'clientToken': clientToken})
+		}
+	});
+
+});
+
 router.route('/customers/add/:username').get((req, res) => {
 	var customer = gateway.customer.create({
 	customFields: ({'username': req.params.username}),
@@ -85,10 +97,12 @@ router.route('/customers/payment').post((req, res) => {
 						exists = true;
 					}
 				}
-				if(exists)
-					res.json('Already exists');
-				else
-					res.json('Success');
+				if(exists) {
+					res.status(200).json({'message': 'Already exists'});
+				}
+				else {
+					res.status(200).json({'message': 'Success'});
+				}
 			}
 		});
 	  });

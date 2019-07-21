@@ -20,5 +20,10 @@
 	},
 	"nativescript-ripple": {
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ripple\\platforms\\android\\include.gradle": "836c8bb8daac6779214a7f80b47d9837d29b2917"
+	},
+	"nativescript-braintree": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\include.gradle": "4e85aba00f5de781cc76166bf79eb46192db652b",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\nativescript_braintree.aar": "85addd52f589f33bf535b8bf0e4e49349da0768d"
 	}
 }

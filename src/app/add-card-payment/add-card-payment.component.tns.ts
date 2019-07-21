@@ -9,6 +9,12 @@ import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 // import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 // import { NgxBraintreeModule } from 'ngx-braintree';
 import { Observable } from 'tns-core-modules/data/observable';
+import { Braintree, BrainTreeOptions } from 'nativescript-braintree';
+import { RouterExtensions } from 'nativescript-angular/router';
+
+// require("nativescript-nodeify");
+// import * as Nodeify from 'nativescript-nodeify';
+// const braintree = require('braintree-web');
 
 @Component({
   selector: 'app-add-card-payment',
@@ -17,7 +23,7 @@ import { Observable } from 'tns-core-modules/data/observable';
 })
 export class AddCardPaymentComponent implements OnInit {
 
-  constructor(private params: ModalDialogParams, private paymentService: PaymentService) { }
+  constructor(private params: ModalDialogParams, private paymentService: PaymentService, private router: RouterExtensions) { }
 
   // @ViewChild("dropinContainter") container: ElementRef;
   @ViewChild("submitButton") sB: ElementRef;
@@ -30,8 +36,27 @@ export class AddCardPaymentComponent implements OnInit {
   user = {
   	payment_id: '507305706'
   }
+  opts :BrainTreeOptions = {
+	amount: null,
+	collectDeviceData: true,
+	requestThreeDSecureVerification: false,
+  }
+  clientToken = '';
+
+  // token = this.paymentService.getIdToken(this.user.payment_id);
   ngOnInit() {
-  	// this.createViews();
+ //  	braintree.client.create({
+	//   authorization: 'sandbox_9qsbyyq8_wmc3v88r36cbxjjz'
+	// }, function (clientErr, clientInstance) {
+	//   // Stop if there was a problem creating the client.
+	//   // This could happen if there is a network error or if the authorization
+	//   // is invalid.
+	//   if (clientErr) {
+	//     console.error('Error creating client:', clientErr);
+	//     return;
+	//   }
+	// });
+
   }
 
   createViews() {

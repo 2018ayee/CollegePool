@@ -3,6 +3,7 @@ import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { DynamicAddService } from '../dynamic-add.service';
 import * as dropin from 'braintree-web-drop-in';
 import * as braintree from 'braintree-web';
+import { Braintree, BrainTreeOptions } from 'nativescript-braintree';
 import { IPayPalConfig } from 'ngx-paypal';
 import { LogincheckService } from '../logincheck.service';
 import { PaymentService } from '../payment.service.tns';
@@ -34,6 +35,12 @@ export class PaymentsComponent implements OnInit {
   user = {
   	payment_id: '507305706'
   }
+  opts :BrainTreeOptions = {
+    amount: null,
+    collectDeviceData: true,
+    requestThreeDSecureVerification: false,
+  }
+  clientToken = '';
   paymentCustomer;
   paymentInfo;
   payments = new ObservableArray<PaymentItem>();
@@ -46,20 +53,56 @@ export class PaymentsComponent implements OnInit {
   }
 
   showModal() {
-    let options = {
-        context: {},
-        fullscreen: true,
-        viewContainerRef: this.vcRef
-        // animated: true,
-        // transition: { name: "slideTop" }
-    };
-    
-    this.modal.showModal(AddPaymentComponent, options).then(res => {
+    let braintree = new Braintree();
+    // this.createViews();
 
-    });
+    braintree.startPayment(this.clientToken, this.opts);
+
+    braintree.on("success", (res) => {
+        let output = res.object.get("output");
+        // console.dir(output);
+        this.payments.splice(0);
+        var addContainer = <StackLayout> this.aC.nativeElement;
+        addContainer.style.visibility = 'collapse';
+        var activityIndicator = <ActivityIndicator> this.aI.nativeElement;
+        activityIndicator.busy = true;
+        this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res) => {
+          this.getUser();
+          // this.router.navigate(['payments']);
+        })
+        // this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res) => {
+        //   this.router.navigate(['payments']);
+        // });
+    })
+     
+    braintree.on("cancel", function (res) {
+        let output = res.object.get("output");
+        // console.dir(output);
+    })
+     
+    braintree.on("error", function (res) {
+        let output = res.object.get("output");
+        // console.dir(output);
+    })
+    // let options = {
+    //     context: {},
+    //     fullscreen: true,
+    //     viewContainerRef: this.vcRef
+    //     // animated: true,
+    //     // transition: { name: "slideTop" }
+    // };
+    
+    // this.modal.showModal(AddPaymentComponent, options).then(res => {
+
+    // });
   }
 
   getUser() {
+    this.payments.splice(0);
+
+    var addContainer = <StackLayout> this.aC.nativeElement;
+    addContainer.style.visibility = 'collapse';
+
   	this.paymentService.getPaymentUserById(this.user.payment_id).subscribe((data) => {
 
       this.setupViews();
@@ -74,9 +117,12 @@ export class PaymentsComponent implements OnInit {
   				this.payments.push(new PaymentItem("~/img/paypal-icon.png", this.paymentCustomer.paypalAccounts[i].email, this.paymentCustomer.paypalAccounts[i].token, "PayPal"))
   		if(this.paymentCustomer.venmoAccounts != null)
   			for(var i = 0; i < this.paymentCustomer.venmoAccounts.length; i++)
-  				this.payments.push(new PaymentItem("~/img/venmo-icon.png", this.paymentCustomer.venmoAccounts[i].email, this.paymentCustomer.venmoAccounts[i].token, "Venmo"))
+  				this.payments.push(new PaymentItem("~/img/venmo-icon.png", this.paymentCustomer.venmoAccounts[i].venmoUserId, this.paymentCustomer.venmoAccounts[i].token, "Venmo"))
   		// document.getElementById('list-loading-circle').style.display = 'none';
   	});
+    this.paymentService.getIdToken(this.user.payment_id).subscribe((res: any) => {
+      this.clientToken = res.clientToken;
+    });
   }
 
   setupViews() {

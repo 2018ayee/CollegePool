@@ -213,6 +213,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _payment_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/payment.service.ts");
 /* harmony import */ var tns_core_modules_data_observable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/tns-core-modules/data/observable/observable.js");
 /* harmony import */ var tns_core_modules_data_observable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -228,16 +230,38 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 // import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 // import { NgxBraintreeModule } from 'ngx-braintree';
 
+
+// require("nativescript-nodeify");
+// import * as Nodeify from 'nativescript-nodeify';
+// const braintree = require('braintree-web');
 var AddCardPaymentComponent = /** @class */ (function () {
-    function AddCardPaymentComponent(params, paymentService) {
+    function AddCardPaymentComponent(params, paymentService, router) {
         this.params = params;
         this.paymentService = paymentService;
+        this.router = router;
         this.user = {
             payment_id: '507305706'
         };
+        this.opts = {
+            amount: null,
+            collectDeviceData: true,
+            requestThreeDSecureVerification: false,
+        };
+        this.clientToken = '';
     }
+    // token = this.paymentService.getIdToken(this.user.payment_id);
     AddCardPaymentComponent.prototype.ngOnInit = function () {
-        // this.createViews();
+        //  	braintree.client.create({
+        //   authorization: 'sandbox_9qsbyyq8_wmc3v88r36cbxjjz'
+        // }, function (clientErr, clientInstance) {
+        //   // Stop if there was a problem creating the client.
+        //   // This could happen if there is a network error or if the authorization
+        //   // is invalid.
+        //   if (clientErr) {
+        //     console.error('Error creating client:', clientErr);
+        //     return;
+        //   }
+        // });
     };
     AddCardPaymentComponent.prototype.createViews = function () {
         var form = this.formLayout.nativeElement;
@@ -291,7 +315,7 @@ var AddCardPaymentComponent = /** @class */ (function () {
             template: __webpack_require__("./app/add-card-payment/add-card-payment.component.html"),
             styles: [__webpack_require__("./app/add-card-payment/add-card-payment.component.css")]
         }),
-        __metadata("design:paramtypes", [nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"], _payment_service__WEBPACK_IMPORTED_MODULE_2__["PaymentService"]])
+        __metadata("design:paramtypes", [nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"], _payment_service__WEBPACK_IMPORTED_MODULE_2__["PaymentService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterExtensions"]])
     ], AddCardPaymentComponent);
     return AddCardPaymentComponent;
 }());
@@ -2601,6 +2625,9 @@ var PaymentService = /** @class */ (function () {
     PaymentService.prototype.removePaymentMethodFromUser = function (token) {
         return this.http.get(this.uri + "/customers/payment/remove/" + token);
     };
+    PaymentService.prototype.getIdToken = function (id) {
+        return this.http.get(this.uri + "/token/" + id);
+    };
     PaymentService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -2655,6 +2682,9 @@ var PaymentService = /** @class */ (function () {
     PaymentService.prototype.removePaymentMethodFromUser = function (token) {
         return this.http.get(this.uri + "/customers/payment/remove/" + token);
     };
+    PaymentService.prototype.getIdToken = function (id) {
+        return this.http.get(this.uri + "/token/" + id);
+    };
     PaymentService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -2692,12 +2722,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
 /* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _dynamic_add_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/dynamic-add.service.ts");
-/* harmony import */ var _logincheck_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/logincheck.service.ts");
-/* harmony import */ var _payment_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/payment.service.tns.ts");
-/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/datatransfer.service.ts");
-/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
-/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
+/* harmony import */ var nativescript_braintree__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-braintree/braintree.js");
+/* harmony import */ var nativescript_braintree__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_braintree__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _logincheck_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.ts");
+/* harmony import */ var _payment_service_tns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/payment.service.tns.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -2739,24 +2770,61 @@ var PaymentsComponent = /** @class */ (function () {
         this.user = {
             payment_id: '507305706'
         };
+        this.opts = {
+            amount: null,
+            collectDeviceData: true,
+            requestThreeDSecureVerification: false,
+        };
+        this.clientToken = '';
         this.payments = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__["ObservableArray"]();
     }
     PaymentsComponent.prototype.ngOnInit = function () {
         this.getUser();
     };
     PaymentsComponent.prototype.showModal = function () {
-        var options = {
-            context: {},
-            fullscreen: true,
-            viewContainerRef: this.vcRef
-            // animated: true,
-            // transition: { name: "slideTop" }
-        };
-        this.modal.showModal(_add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_7__["AddPaymentComponent"], options).then(function (res) {
+        var _this = this;
+        var braintree = new nativescript_braintree__WEBPACK_IMPORTED_MODULE_3__["Braintree"]();
+        // this.createViews();
+        braintree.startPayment(this.clientToken, this.opts);
+        braintree.on("success", function (res) {
+            var output = res.object.get("output");
+            // console.dir(output);
+            _this.payments.splice(0);
+            var addContainer = _this.aC.nativeElement;
+            addContainer.style.visibility = 'collapse';
+            var activityIndicator = _this.aI.nativeElement;
+            activityIndicator.busy = true;
+            _this.paymentService.addPaymentMethodToUser(_this.user.payment_id, output.nonce).subscribe(function (res) {
+                _this.getUser();
+                // this.router.navigate(['payments']);
+            });
+            // this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res) => {
+            //   this.router.navigate(['payments']);
+            // });
         });
+        braintree.on("cancel", function (res) {
+            var output = res.object.get("output");
+            // console.dir(output);
+        });
+        braintree.on("error", function (res) {
+            var output = res.object.get("output");
+            // console.dir(output);
+        });
+        // let options = {
+        //     context: {},
+        //     fullscreen: true,
+        //     viewContainerRef: this.vcRef
+        //     // animated: true,
+        //     // transition: { name: "slideTop" }
+        // };
+        // this.modal.showModal(AddPaymentComponent, options).then(res => {
+        // });
     };
     PaymentsComponent.prototype.getUser = function () {
         var _this = this;
+        this.payments.splice(0);
+        var addContainer = this.aC.nativeElement;
+        addContainer.style.visibility = 'collapse';
         this.paymentService.getPaymentUserById(this.user.payment_id).subscribe(function (data) {
             _this.setupViews();
             _this.paymentCustomer = data;
@@ -2769,8 +2837,11 @@ var PaymentsComponent = /** @class */ (function () {
                     _this.payments.push(new PaymentItem("~/img/paypal-icon.png", _this.paymentCustomer.paypalAccounts[i].email, _this.paymentCustomer.paypalAccounts[i].token, "PayPal"));
             if (_this.paymentCustomer.venmoAccounts != null)
                 for (var i = 0; i < _this.paymentCustomer.venmoAccounts.length; i++)
-                    _this.payments.push(new PaymentItem("~/img/venmo-icon.png", _this.paymentCustomer.venmoAccounts[i].email, _this.paymentCustomer.venmoAccounts[i].token, "Venmo"));
+                    _this.payments.push(new PaymentItem("~/img/venmo-icon.png", _this.paymentCustomer.venmoAccounts[i].venmoUserId, _this.paymentCustomer.venmoAccounts[i].token, "Venmo"));
             // document.getElementById('list-loading-circle').style.display = 'none';
+        });
+        this.paymentService.getIdToken(this.user.payment_id).subscribe(function (res) {
+            _this.clientToken = res.clientToken;
         });
     };
     PaymentsComponent.prototype.setupViews = function () {
@@ -2812,8 +2883,8 @@ var PaymentsComponent = /** @class */ (function () {
             template: __webpack_require__("./app/payments/payments.component.html"),
             styles: [__webpack_require__("./app/payments/payments.component.css")]
         }),
-        __metadata("design:paramtypes", [_dynamic_add_service__WEBPACK_IMPORTED_MODULE_2__["DynamicAddService"], _payment_service_tns__WEBPACK_IMPORTED_MODULE_4__["PaymentService"], _logincheck_service__WEBPACK_IMPORTED_MODULE_3__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_5__["TransferService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_6__["ModalDialogService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__["RouterExtensions"]])
+        __metadata("design:paramtypes", [_dynamic_add_service__WEBPACK_IMPORTED_MODULE_2__["DynamicAddService"], _payment_service_tns__WEBPACK_IMPORTED_MODULE_5__["PaymentService"], _logincheck_service__WEBPACK_IMPORTED_MODULE_4__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_6__["TransferService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__["ModalDialogService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__["RouterExtensions"]])
     ], PaymentsComponent);
     return PaymentsComponent;
 }());
