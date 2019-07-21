@@ -51,6 +51,7 @@ import { AddPaymentComponent } from './add-payment/add-payment.component';
 import { AddCardPaymentComponent } from './add-card-payment/add-card-payment.component';
 import { PaymentInfoComponent } from './payment-info/payment-info.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 
 
@@ -79,7 +80,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     AddPaymentComponent,
     AddCardPaymentComponent,
     PaymentInfoComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    MessageModalComponent
   ],
   imports: [
     NativeScriptModule,

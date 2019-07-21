@@ -32,13 +32,13 @@ connection.once('open', () => {
 
 //Router information for braintree payments
 router.route('/customers/:id').get((req, res) => {
-	var stream = gateway.customer.search(function (search) {
-	  search.id().is(req.params.id);
-	}, function (err, response) {
-		if(response)
-		  response.each(function (err, customer) {
-		    res.json(customer);
-		  });
+	gateway.customer.find(req.params.id, function(err, customer) {
+		if(err)
+			console.log(err)
+		else {
+			// console.log(customer)
+			res.json(customer)
+		}
 	});
 
 });
@@ -72,41 +72,63 @@ router.route('/customers/add/:username').get((req, res) => {
 
 router.route('/customers/payment').post((req, res) => {
 	var cards;
+	var venmoAccounts;
+	var paypalAccounts;
 	var exists = false;
-	var stream = gateway.customer.search(function (search) {
-	  search.id().is(req.body.id);
-	}, function (err, response) {
-	  response.each(function (err, customer) {
-	    cards = customer.creditCards;
-
-	    var paymentMethod = gateway.paymentMethod.create({
-		  customerId: req.body.id,
-		  paymentMethodNonce: req.body.nonce,
-		}, function (err, result) { 
-			if(err)
-			{
+	var stream = gateway.customer.gateway.customer.find(req.body.id, 
+		function(err, customer) {
+			if(err) {
 				res.json(err);
 			}
-			else
-			{
-				for(var i = 0; i < cards.length; i++)
+
+		    cards = customer.creditCards;
+		    venmoAccounts = customer.venmoAccounts;
+		    paypalAccounts = customer.paypalAccounts;
+
+		    var paymentMethod = gateway.paymentMethod.create({
+			  customerId: req.body.id,
+			  paymentMethodNonce: req.body.nonce,
+			}, function (err, result) { 
+				if(err)
 				{
-					if(result.creditCard != null && cards[i].uniqueNumberIdentifier == result.creditCard.uniqueNumberIdentifier)
-					{
-						gateway.paymentMethod.delete(result.creditCard.token, function (err) {});
-						exists = true;
+					res.json(err);
+				}
+				else
+				{
+					// console.log(result);
+					if(cards != null)
+						for(var i = 0; i < cards.length; i++)
+						{
+							if(result.creditCard != null && cards[i].uniqueNumberIdentifier == result.creditCard.uniqueNumberIdentifier)
+							{
+								gateway.paymentMethod.delete(result.creditCard.token, function (err) {});
+								exists = true;
+							}
+						}
+					if(venmoAccounts != null)
+						for(var i = 0; i < venmoAccounts.length; i++) {
+							if(result.venmoAccount != null && venmoAccounts[i].venmoUserId == result.venmoAccount.venmoUserId) {
+								gateway.paymentMethod.delete(result.venmoAccount.token, function (err) {});
+								exists = true;
+							}
+						}
+					if(paypalAccounts != null)
+						for(var i = 0; i < paypalAccounts.length; i++) {
+							if(result.paypalAccounts != null && paypalAccounts[i].email == result.paypalAccounts.email) {
+								gateway.paymentMethod.delete(result.paypalAccounts.token, function (err) {});
+								exists = true;
+							}
+						}
+					if(exists) {
+						res.status(200).json({'message': 'Already exists'});
+					}
+					else {
+						res.status(200).json({'message': 'Success'});
 					}
 				}
-				if(exists) {
-					res.status(200).json({'message': 'Already exists'});
-				}
-				else {
-					res.status(200).json({'message': 'Success'});
-				}
-			}
-		});
-	  });
-	});
+			});
+	    }
+	);
 });
 
 router.route('/customers/payment/remove/:token').get((req, res) => {

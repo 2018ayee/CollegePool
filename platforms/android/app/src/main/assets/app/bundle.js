@@ -766,6 +766,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
 /* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
 /* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
+/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -816,6 +817,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     /*
     Pass your application module to the bootstrapModule function located in main.ts to start your app
@@ -848,7 +850,8 @@ var AppModule = /** @class */ (function () {
                 _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_38__["AddPaymentComponent"],
                 _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddCardPaymentComponent"],
                 _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_40__["PaymentInfoComponent"],
-                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__["ConfirmationComponent"]
+                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__["ConfirmationComponent"],
+                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_42__["MessageModalComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
@@ -2243,6 +2246,57 @@ var LoginrouteComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/message-modal/message-modal.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\n"
+
+/***/ }),
+
+/***/ "./app/message-modal/message-modal.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<Button text=\"message-modal works!\" class=\"btn btn-primary\"></Button>"
+
+/***/ }),
+
+/***/ "./app/message-modal/message-modal.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageModalComponent", function() { return MessageModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MessageModalComponent = /** @class */ (function () {
+    function MessageModalComponent() {
+    }
+    MessageModalComponent.prototype.ngOnInit = function () {
+    };
+    MessageModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-message-modal',
+            template: __webpack_require__("./app/message-modal/message-modal.component.html"),
+            styles: [__webpack_require__("./app/message-modal/message-modal.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], MessageModalComponent);
+    return MessageModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/navigation/navigation.component.tns.css":
 /***/ (function(module, exports) {
 
@@ -2731,6 +2785,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/ui/dialogs/dialogs.js");
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2740,6 +2796,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2789,13 +2846,31 @@ var PaymentsComponent = /** @class */ (function () {
         braintree.on("success", function (res) {
             var output = res.object.get("output");
             // console.dir(output);
-            _this.payments.splice(0);
-            var addContainer = _this.aC.nativeElement;
-            addContainer.style.visibility = 'collapse';
-            var activityIndicator = _this.aI.nativeElement;
-            activityIndicator.busy = true;
             _this.paymentService.addPaymentMethodToUser(_this.user.payment_id, output.nonce).subscribe(function (res) {
-                _this.getUser();
+                var addContainer = _this.aC.nativeElement;
+                var activityIndicator = _this.aI.nativeElement;
+                console.log(res.message);
+                if (res.message == 'Success') {
+                    tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__["alert"]({
+                        title: "Added method",
+                        message: "Payment method added successfully",
+                        okButtonText: "Close"
+                    }).then(function () {
+                    });
+                    addContainer.style.visibility = 'collapse';
+                    activityIndicator.busy = true;
+                    _this.getUser();
+                }
+                else if (res.message == 'Already exists') {
+                    addContainer.style.visibility = 'visible';
+                    activityIndicator.busy = false;
+                    tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__["alert"]({
+                        title: "Could not add method",
+                        message: "Payment method already exists, please try another one.",
+                        okButtonText: "Close"
+                    }).then(function () {
+                    });
+                }
                 // this.router.navigate(['payments']);
             });
             // this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res) => {

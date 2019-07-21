@@ -16,6 +16,7 @@ import { PaymentInfoComponent } from '../payment-info/payment-info.component';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 declare let paypal: any;
 
@@ -61,13 +62,35 @@ export class PaymentsComponent implements OnInit {
     braintree.on("success", (res) => {
         let output = res.object.get("output");
         // console.dir(output);
-        this.payments.splice(0);
-        var addContainer = <StackLayout> this.aC.nativeElement;
-        addContainer.style.visibility = 'collapse';
-        var activityIndicator = <ActivityIndicator> this.aI.nativeElement;
-        activityIndicator.busy = true;
-        this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res) => {
-          this.getUser();
+        
+
+        this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res: any) => {
+          var addContainer = <StackLayout> this.aC.nativeElement;
+          
+          var activityIndicator = <ActivityIndicator> this.aI.nativeElement;
+          
+          console.log(res.message);
+          if(res.message == 'Success') {
+            dialogs.alert({
+                title: "Added method",
+                message: "Payment method added successfully",
+                okButtonText: "Close"
+            }).then(() => {
+            });
+            addContainer.style.visibility = 'collapse';
+            activityIndicator.busy = true;
+            this.getUser();
+          }
+          else if(res.message == 'Already exists') {
+            addContainer.style.visibility = 'visible';
+            activityIndicator.busy = false;
+            dialogs.alert({
+                title: "Could not add method",
+                message: "Payment method already exists, please try another one.",
+                okButtonText: "Close"
+            }).then(() => {
+            });
+          }
           // this.router.navigate(['payments']);
         })
         // this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res) => {
@@ -104,7 +127,6 @@ export class PaymentsComponent implements OnInit {
     addContainer.style.visibility = 'collapse';
 
   	this.paymentService.getPaymentUserById(this.user.payment_id).subscribe((data) => {
-
       this.setupViews();
 
   		this.paymentCustomer = data;
