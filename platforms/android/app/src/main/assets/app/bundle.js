@@ -187,6 +187,143 @@ exports.push([module.i, "/*\r\nIn NativeScript, the app.css file is where you pl
 
 /***/ }),
 
+/***/ "./app/add-card-payment/add-card-payment.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n/* styles from payments.component.css */\r\n\r\n#form {\r\n    margin: auto;\r\n    width: 600px;\r\n    height: 400px;\r\n    background-color: #ffffff;\r\n    position: relative;\r\n    top: 30px;\r\n    border-radius: 4px;\r\n    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);\r\n}\r\n\r\n#payment-form {\r\n    margin: auto;\r\n    width: 600px;\r\n    height: 400px;\r\n    background-color: #ffffff;\r\n    position: relative;\r\n    top: 30px;\r\n    border-radius: 4px;\r\n    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);\r\n    display: none;\r\n}\r\n\r\n#card-form {\r\n    margin: auto;\r\n    width: 400px;\r\n    background-color: #580968;\r\n    position: relative;\r\n    top: 25%;\r\n    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);\r\n    font-weight: 400;\r\n    z-index: 1;\r\n}\r\n\r\n#paypal-form {\r\n    margin: auto;\r\n    width: 400px;\r\n    height: 200px;\r\n    background-color: #ffffff;\r\n    position: relative;\r\n    top: 25%;\r\n    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);\r\n    font-weight: 400;\r\n    z-index: 1;\r\n}\r\n\r\n#venmo-form {\r\n    margin: auto;\r\n    width: 400px;\r\n    height: 200px;\r\n    background-color: #ffffff;\r\n    position: relative;\r\n    top: 25%;\r\n    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);\r\n    font-weight: 400;\r\n    z-index: 1;\r\n}\r\n\r\n#error-form {\r\n    margin: auto;\r\n    width: 400px;\r\n    height: 200px;\r\n    background-color: #ffffff;\r\n    position: relative;\r\n    top: 25%;\r\n    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);\r\n    font-weight: 400;\r\n    z-index: 1;\r\n}\r\n\r\n#edit-form {\r\n    margin: auto;\r\n    width: 400px;\r\n    height: 200px;\r\n    background-color: #ffffff;\r\n    position: relative;\r\n    top: 25%;\r\n    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);\r\n    font-weight: 400;\r\n    z-index: 1;\r\n}\r\n\r\n.payment-methods {\r\n\toverflow: hidden;\r\n    width: 300px;\r\n    margin: auto;\r\n    margin-left: 40px;\r\n}\r\n\r\n#modal-payment-methods {\r\n\tmargin-left: 24px;\r\n}\r\n\r\n#paypal-header-container {\r\n\tbackground-color: #580968;\r\n}\r\n\r\n#error-header-container {\r\n\tdisplay: none;\r\n\tbackground-color: #890000;\r\n}\r\n\r\n#edit-header-container {\r\n\tbackground-color: #580968;\r\n}\r\n\r\n.colored-header {\r\n\tcolor: white;\r\n\tfont-weight: 400;\r\n}\r\n\r\n#method-information-text {\r\n\tmargin-left: 40px;\r\n\tmargin-top: 32px;\r\n\tfont-size: 16px;\r\n}\r\n\r\n.payment-footer-button{\r\n    display: inline-block;\r\n    background-color: #ffffff;\r\n    color: #ac00e6;\r\n    border: none;\r\n    outline: none;\r\n    text-align: center;\r\n    margin-left: 34px;\r\n    margin-bottom: 5px;\r\n}\r\n\r\n#paypal-button {\r\n\twidth: 350px;\r\n\tmargin: auto;\r\n\tmargin-top: 32px;\r\n}\r\n\r\n#add-card-button {\r\n\tfloat: right;\r\n\tmargin-right: 34px;\r\n\tdisplay: none;\r\n}\r\n\r\n#remove-payment-button {\r\n\tfloat: right;\r\n\tmargin-right: 34px;\r\n}\r\n\r\n.plus-sign {\r\n\tvertical-align: middle;\r\n\tfont-size: 30px;\r\n\tmargin-right: 7px;\r\n\tcursor: pointer;\r\n}\r\n\r\n.payment-footer-text {\r\n\tvertical-align: middle;\r\n\tline-height: 42px;\r\n\tfont-weight: 400;\r\n\tfont-size: 13px;\r\n\tcursor: pointer;\r\n}\r\n\r\n.payment-footer-text:hover {\r\n\ttext-decoration: underline;\r\n}\r\n\r\n.payments-bottom-add-container {\r\n\tposition: absolute;\r\n\twidth: 100%;\r\n\tbottom: 0;\r\n}\r\n\r\n/* Other modal styling in styles.css */\r\n.close-modal {\r\n\tfont-size: 24px;\r\n\tmargin-right: 20px;\r\n\tcursor: pointer;\r\n}\r\n\r\n/*--------------------\r\nShared Variables\r\n--------------------*/\r\n/*--------------------\r\nGeneral\r\n--------------------*/\r\nhtml,\r\nbody {\r\n  font-size: 100%;\r\n  height: 100%;\r\n  color: #282c37;\r\n  font-family: sans-serif;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.form-container {\r\n  display: flex;\r\n  background-color: #EEE;\r\n  justify-content: center;\r\n  align-items: center;\r\n  height: 100%;\r\n  flex-direction: column;\r\n  border: 1em solid #fff;\r\n  box-sizing: border-box;\r\n  position: relative;\r\n}\r\n@media (max-width: 476px) {\r\n  .form-container {\r\n    border: none;\r\n  }\r\n}\r\n\r\n.cardinfo-wrapper {\r\n  display: flex;\r\n  justify-content: space-around;\r\n}\r\n\r\n.bg-illustration {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 0;\r\n}\r\n.bg-illustration svg {\r\n  width: 100%;\r\n}\r\n\r\n.card-shape, #my-sample-form.visa, #my-sample-form.master-card, #my-sample-form.maestro, #my-sample-form.american-express, #my-sample-form.discover, #my-sample-form.unionpay, #my-sample-form.jcb, #my-sample-form.diners-club {\r\n  border-radius: 6px;\r\n  padding: 2em 2em 1em;\r\n}\r\n@media (max-width: 476px) {\r\n  .card-shape, #my-sample-form.visa, #my-sample-form.master-card, #my-sample-form.maestro, #my-sample-form.american-express, #my-sample-form.discover, #my-sample-form.unionpay, #my-sample-form.jcb, #my-sample-form.diners-club {\r\n    padding: 2em 1.5em 1em;\r\n  }\r\n}\r\n\r\n#payment-card-form {\r\n  background-color: #FFF;\r\n  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);*/\r\n  padding: 1em 3em 3em;\r\n  margin-bottom: 2em;\r\n/*  transition: all 600ms cubic-bezier(0.2, 1.3, 0.7, 1);\r\n  -webkit-animation: cardIntro 500ms cubic-bezier(0.2, 1.3, 0.7, 1);\r\n          animation: cardIntro 500ms cubic-bezier(0.2, 1.3, 0.7, 1);*/\r\n  /*z-index: 1;*/\r\n}\r\n#my-sample-form:hover {\r\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);\r\n}\r\n@media (max-width: 476px) {\r\n  #my-sample-form {\r\n    box-sizing: border-box;\r\n    padding: 7em 2em 2em;\r\n    width: 100%;\r\n  }\r\n}\r\n#my-sample-form.visa {\r\n  color: #fff;\r\n  background-color: #0D4AA2;\r\n}\r\n#my-sample-form.master-card {\r\n  color: #fff;\r\n  background-color: #363636;\r\n  background: linear-gradient(115deg, #d82332, #d82332 50%, #f1ad3d 50%, #f1ad3d);\r\n}\r\n#my-sample-form.maestro {\r\n  color: #fff;\r\n  background-color: #363636;\r\n  background: linear-gradient(115deg, #009ddd, #009ddd 50%, #ed1c2e 50%, #ed1c2e);\r\n}\r\n#my-sample-form.american-express {\r\n  color: #fff;\r\n  background-color: #007CC3;\r\n}\r\n#my-sample-form.discover {\r\n  color: #fff;\r\n  background-color: #ff6000;\r\n  background: linear-gradient(#d14310, #f7961e);\r\n}\r\n#my-sample-form.unionpay, #my-sample-form.jcb, #my-sample-form.diners-club {\r\n  color: #fff;\r\n  background-color: #363636;\r\n}\r\n\r\n.cardinfo-label {\r\n  display: block;\r\n  font-size: 11px;\r\n  margin-bottom: 0.5em;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.cardinfo-exp-date {\r\n  margin-right: 1em;\r\n  width: 100%;\r\n}\r\n\r\n.cardinfo-cvv {\r\n  width: 100%;\r\n}\r\n\r\n.cardinfo-card-number {\r\n  position: relative;\r\n}\r\n\r\n#cardImage {\r\n  position: absolute;\r\n  top: 2em;\r\n  right: 1em;\r\n  width: 44px;\r\n  height: 28px;\r\n  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/346994/card_sprite.png);\r\n  background-size: 86px 458px;\r\n  border-radius: 4px;\r\n  background-position: -100px 0;\r\n  background-repeat: no-repeat;\r\n  margin-bottom: 1em;\r\n}\r\n#cardImage.visa {\r\n  background-position: 0 -398px;\r\n}\r\n#cardImage.master-card {\r\n  background-position: 0 -281px;\r\n}\r\n#cardImage.american-express {\r\n  background-position: 0 -370px;\r\n}\r\n#cardImage.discover {\r\n  background-position: 0 -163px;\r\n}\r\n#cardImage.maestro {\r\n  background-position: 0 -251px;\r\n}\r\n#cardImage.jcb {\r\n  background-position: 0 -221px;\r\n}\r\n#cardImage.diners-club {\r\n  background-position: 0 -133px;\r\n}\r\n\r\n/*--------------------\r\nInputs \r\n--------------------*/\r\n.input-wrapper {\r\n  border-radius: 2px;\r\n  background: rgba(255, 255, 255, 0.86);\r\n  height: 2.75em;\r\n  border: 1px solid #eee;\r\n  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);\r\n  padding: 5px 10px;\r\n  margin-bottom: 1em;\r\n}\r\n\r\n.cardinfo-card-number,\r\n.cardinfo-exp-date,\r\n.cardinfo-cvv {\r\n  transition: -webkit-transform 0.3s;\r\n  transition: transform 0.3s;\r\n  transition: transform 0.3s, -webkit-transform 0.3s;\r\n}\r\n\r\n.braintree-hosted-fields-focused {\r\n  border-color: #5db6e8;\r\n}\r\n\r\n.braintree-hosted-fields-invalid {\r\n  border-color: #E53A40;\r\n/*  -webkit-animation: shake 500ms cubic-bezier(0.2, 1.3, 0.7, 1) both;\r\n          animation: shake 500ms cubic-bezier(0.2, 1.3, 0.7, 1) both;*/\r\n  -webkit-transform: translate3d(0, 0, 0);\r\n          transform: translate3d(0, 0, 0);\r\n  -webkit-backface-visibility: hidden;\r\n          backface-visibility: hidden;\r\n  -webkit-perspective: 1000px;\r\n          perspective: 1000px;\r\n}\r\n\r\n.loader {\r\n  border: 16px solid #f3f3f3; /* Light grey */\r\n  border-top: 16px solid #ac00e6; /* Purple */\r\n  border-radius: 50%;\r\n  width: 120px;\r\n  height: 120px;\r\n  animation: spin 2s linear infinite;\r\n  margin: auto;\r\n}\r\n\r\n#loading-circle {\r\n  top: 12%;\r\n  left: 30%;\r\n  position: absolute;\r\n}\r\n\r\n#list-loading-circle {\r\n\tmargin-top: 50px;\r\n}\r\n\r\n/*--------------------\r\nAnimations\r\n--------------------*/\r\n@keyframes spin {\r\n  0% { transform: rotate(0deg); }\r\n  100% { transform: rotate(360deg); }\r\n}\r\n\r\n@-webkit-keyframes shake {\r\n  10%,\r\n  90% {\r\n    -webkit-transform: translate3d(-1px, 0, 0);\r\n            transform: translate3d(-1px, 0, 0);\r\n  }\r\n  20%,\r\n  80% {\r\n    -webkit-transform: translate3d(1px, 0, 0);\r\n            transform: translate3d(1px, 0, 0);\r\n  }\r\n  30%,\r\n  50%,\r\n  70% {\r\n    -webkit-transform: translate3d(-3px, 0, 0);\r\n            transform: translate3d(-3px, 0, 0);\r\n  }\r\n  40%,\r\n  60% {\r\n    -webkit-transform: translate3d(3px, 0, 0);\r\n            transform: translate3d(3px, 0, 0);\r\n  }\r\n}\r\n@keyframes shake {\r\n  10%,\r\n  90% {\r\n    -webkit-transform: translate3d(-1px, 0, 0);\r\n            transform: translate3d(-1px, 0, 0);\r\n  }\r\n  20%,\r\n  80% {\r\n    -webkit-transform: translate3d(1px, 0, 0);\r\n            transform: translate3d(1px, 0, 0);\r\n  }\r\n  30%,\r\n  50%,\r\n  70% {\r\n    -webkit-transform: translate3d(-3px, 0, 0);\r\n            transform: translate3d(-3px, 0, 0);\r\n  }\r\n  40%,\r\n  60% {\r\n    -webkit-transform: translate3d(3px, 0, 0);\r\n            transform: translate3d(3px, 0, 0);\r\n  }\r\n}\r\n\r\n"
+
+/***/ }),
+
+/***/ "./app/add-card-payment/add-card-payment.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!-- <ngx-braintree \r\n  [getClientToken]=\"getClientToken()\" \r\n  [createPurchase]=\"createPurchaseFunction\" \r\n  (paymentStatus)=\"onPaymentStatus($event)\">\r\n</ngx-braintree> -->\r\n\r\n<StackLayout #form>\r\n\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close()\"></Label>\r\n\t</StackLayout>\r\n\r\n\t<StackLayout class=\"cardinfo-card-number\">\r\n\t\t<Label text=\"Card Number\" class=\"cardinfo-label\"></Label>\r\n\t\t<StackLayout #cardNumber class=\"input-wrapper\"></StackLayout>\r\n\t\t<StackLayout #cardImage></StackLayout>\r\n\t</StackLayout>\r\n\r\n\t<StackLayout class=\"cardinfo-wrapper\">\r\n\t\t<StackLayout class=\"cardinfo-exp-date\">\r\n\t\t\t<Label text=\"Valid Thru\" class=\"cardinfo-label\"></Label>\r\n\t\t\t<StackLayout #expirationDate class=\"input-wrapper\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout class=\"cardinfo-cvv\">\r\n\t\t\t<Label text=\"CVV\" class=\"cardinfo-label\"></Label>\r\n\t\t\t<StackLayout #cvv class=\"input-wrapper\"></StackLayout>\r\n\t\t</StackLayout>\r\n\t</StackLayout>\r\n\r\n\t<Button text=\"Add\" class=\"btn btn-primary\" #submitButton></Button>\r\n</StackLayout>\r\n<!-- \t\t<form id=\"payment-card-form\" class=\"scale-down\">\r\n\t    <div class=\"cardinfo-card-number\">\r\n\t      <label class=\"cardinfo-label\" for=\"card-number\">Card Number</label>\r\n\t      <div class='input-wrapper' id=\"card-number\"></div>\r\n\t      <div id=\"card-image\"></div>\r\n\t    </div>\r\n\r\n\t    <div class=\"cardinfo-wrapper\">\r\n\t      <div class=\"cardinfo-exp-date\">\r\n\t        <label class=\"cardinfo-label\" for=\"expiration-date\">Valid Thru</label>\r\n\t        <div class='input-wrapper' id=\"expiration-date\"></div>\r\n\t      </div>\r\n\r\n\t      <div class=\"cardinfo-cvv\">\r\n\t        <label class=\"cardinfo-label\" for=\"cvv\">CVV</label>\r\n\t        <div class='input-wrapper' id=\"cvv\"></div>\r\n\t      </div>\r\n\t    </div>\r\n\t  </form> -->"
+
+/***/ }),
+
+/***/ "./app/add-card-payment/add-card-payment.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddCardPaymentComponent", function() { return AddCardPaymentComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _payment_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/payment.service.ts");
+/* harmony import */ var tns_core_modules_data_observable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/tns-core-modules/data/observable/observable.js");
+/* harmony import */ var tns_core_modules_data_observable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+// import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
+// import { NgxBraintreeModule } from 'ngx-braintree';
+
+
+// require("nativescript-nodeify");
+// import * as Nodeify from 'nativescript-nodeify';
+// const braintree = require('braintree-web');
+var AddCardPaymentComponent = /** @class */ (function () {
+    function AddCardPaymentComponent(params, paymentService, router) {
+        this.params = params;
+        this.paymentService = paymentService;
+        this.router = router;
+        this.user = {
+            payment_id: '507305706'
+        };
+        this.opts = {
+            amount: null,
+            collectDeviceData: true,
+            requestThreeDSecureVerification: false,
+        };
+        this.clientToken = '';
+    }
+    // token = this.paymentService.getIdToken(this.user.payment_id);
+    AddCardPaymentComponent.prototype.ngOnInit = function () {
+        //  	braintree.client.create({
+        //   authorization: 'sandbox_9qsbyyq8_wmc3v88r36cbxjjz'
+        // }, function (clientErr, clientInstance) {
+        //   // Stop if there was a problem creating the client.
+        //   // This could happen if there is a network error or if the authorization
+        //   // is invalid.
+        //   if (clientErr) {
+        //     console.error('Error creating client:', clientErr);
+        //     return;
+        //   }
+        // });
+    };
+    AddCardPaymentComponent.prototype.createViews = function () {
+        var form = this.formLayout.nativeElement;
+        var submit = this.sB.nativeElement;
+        var expirationDate = this.expirationText.nativeElement;
+        var cardNumber = this.numberText.nativeElement;
+        var cvv = this.cvvText.nativeElement;
+        var cardImage = this.cardLayout.nativeElement;
+        submit.isEnabled = false;
+    };
+    AddCardPaymentComponent.prototype.close = function () {
+        this.params.closeCallback();
+    };
+    AddCardPaymentComponent.prototype.getClientToken = function () {
+        var token = new tns_core_modules_data_observable__WEBPACK_IMPORTED_MODULE_3__["Observable"]();
+        token.set('Authorization', 'sandbox_9qsbyyq8_wmc3v88r36cbxjjz');
+        return token;
+    };
+    AddCardPaymentComponent.prototype.createPurchaseFunction = function (nonce, chargeAmount) {
+        return this.paymentService.addPaymentMethodToUser(this.user.payment_id, nonce);
+    };
+    AddCardPaymentComponent.prototype.onPaymentStatus = function (event) {
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("submitButton"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddCardPaymentComponent.prototype, "sB", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("expirationDate"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddCardPaymentComponent.prototype, "expirationText", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("cardNumber"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddCardPaymentComponent.prototype, "numberText", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("cvv"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddCardPaymentComponent.prototype, "cvvText", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("form"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddCardPaymentComponent.prototype, "formLayout", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("cardImage"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddCardPaymentComponent.prototype, "cardLayout", void 0);
+    AddCardPaymentComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-add-card-payment',
+            template: __webpack_require__("./app/add-card-payment/add-card-payment.component.html"),
+            styles: [__webpack_require__("./app/add-card-payment/add-card-payment.component.css")]
+        }),
+        __metadata("design:paramtypes", [nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"], _payment_service__WEBPACK_IMPORTED_MODULE_2__["PaymentService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterExtensions"]])
+    ], AddCardPaymentComponent);
+    return AddCardPaymentComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/add-modal/add-modal.component.css":
 /***/ (function(module, exports) {
 
@@ -373,6 +510,102 @@ var AddModalComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/add-payment/add-payment.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n.payment-type-icon {\r\n\theight: 34;\r\n\twidth: 34;\r\n\tbackground-position: center;\r\n\tmargin-top: 18;\r\n\tmargin-bottom: 18;\r\n\tmargin-left: 36;\r\n}\r\n\r\n.payment-info-label {\r\n\tfont-size: 16;\r\n\t/*font-weight: 700;*/\r\n\tpadding: 30;\r\n\ttext-align: center;\r\n\tcolor: black;\r\n}"
+
+/***/ }),
+
+/***/ "./app/add-payment/add-payment.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<StackLayout>\r\n\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t</StackLayout>\r\n\r\n\t<ListView [items]=\"methods\" separatorColor=\"transparent\" (itemTap)=\"onSelect($event)\">\r\n\t\t<ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t\t<StackLayout [class.odd]=\"odd\" [class.even]=\"even\" orientation=\"horizontal\">\r\n\t\t\t\t<Image [src]=\"item.paymentType\" class=\"payment-type-icon\"></Image>\r\n\t\t\t\t<Label textWrap=\"true\" [text]=\"item.info\" class=\"payment-info-label\"></Label>\r\n\t\t\t</StackLayout>\r\n\t\t</ng-template>\r\n\t</ListView>\r\n</StackLayout>"
+
+/***/ }),
+
+/***/ "./app/add-payment/add-payment.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddPaymentComponent", function() { return AddPaymentComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var MethodItem = /** @class */ (function () {
+    function MethodItem(paymentType, info) {
+        this.paymentType = paymentType;
+        this.info = info;
+    }
+    return MethodItem;
+}());
+var AddPaymentComponent = /** @class */ (function () {
+    function AddPaymentComponent(vcRef, modal, params) {
+        this.vcRef = vcRef;
+        this.modal = modal;
+        this.params = params;
+        this.methods = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_2__["ObservableArray"]();
+    }
+    AddPaymentComponent.prototype.ngOnInit = function () {
+        this.addMethods();
+    };
+    AddPaymentComponent.prototype.addMethods = function () {
+        this.methods.push(new MethodItem('~/img/credit-card-icon.png', 'Credit or Debit Card'));
+        this.methods.push(new MethodItem('~/img/paypal-icon.png', 'Paypal'));
+        this.methods.push(new MethodItem('~/img/venmo-icon.png', 'Venmo'));
+    };
+    AddPaymentComponent.prototype.openCardPayment = function () {
+        var options = {
+            context: {},
+            fullscreen: true,
+            viewContainerRef: this.vcRef
+            // animated: true,
+            // transition: { name: "slideTop" }
+        };
+        this.modal.showModal(_add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_3__["AddCardPaymentComponent"], options).then(function (res) {
+        });
+    };
+    AddPaymentComponent.prototype.close = function (res) {
+        this.params.closeCallback(res);
+    };
+    AddPaymentComponent.prototype.onSelect = function (event) {
+        //event.index stores which index was tapped
+        if (event.index == 0)
+            this.openCardPayment();
+    };
+    AddPaymentComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-add-payment',
+            template: __webpack_require__("./app/add-payment/add-payment.component.html"),
+            styles: [__webpack_require__("./app/add-payment/add-payment.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogService"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"]])
+    ], AddPaymentComponent);
+    return AddPaymentComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/app-routing.module.tns.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -393,6 +626,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("./app/navigation/navigation.component.ts");
 /* harmony import */ var _payments_payments_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("./app/payments/payments.component.ts");
 /* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("./app/search/search.component.ts");
+/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -412,6 +646,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -423,7 +658,8 @@ var routes = [
     { path: 'loginroute', component: _loginroute_loginroute_component__WEBPACK_IMPORTED_MODULE_8__["LoginrouteComponent"] },
     { path: 'payments', component: _payments_payments_component__WEBPACK_IMPORTED_MODULE_10__["PaymentsComponent"] },
     { path: 'search', component: _search_search_component__WEBPACK_IMPORTED_MODULE_11__["SearchComponent"] },
-    { path: 'navigation', component: _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_9__["NavigationComponent"] }
+    { path: 'navigation', component: _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_9__["NavigationComponent"] },
+    { path: 'paymentinfo', component: _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_12__["PaymentInfoComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -509,29 +745,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__("./app/user.service.ts");
 /* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__("./app/datatransfer.service.ts");
 /* harmony import */ var _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__("./app/dynamic-add.service.ts");
-/* harmony import */ var _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__("./app/places-autocomplete.service.ts");
-/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__("../node_modules/nativescript-angular/modal-dialog.js");
-/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_25___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_25__);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/@agm/core/index.js");
-/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("./app/chat/chat.module.ts");
-/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
-/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/nativescript-ui-dataform/angular/dataform-directives.js");
-/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31___default = /*#__PURE__*/__webpack_require__.n(nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31__);
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32__);
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33__);
-/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("./app/location/location.component.ts");
+/* harmony import */ var _payment_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__("./app/payment.service.ts");
+/* harmony import */ var _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__("./app/places-autocomplete.service.ts");
+/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("../node_modules/nativescript-angular/modal-dialog.js");
+/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/@agm/core/index.js");
+/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("./app/chat/chat.module.ts");
+/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/nativescript-ui-dataform/angular/dataform-directives.js");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34__);
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35__);
+/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__("./app/location/location.component.ts");
+/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
+/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
+/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
+/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
+/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -571,6 +816,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
+
 var AppModule = /** @class */ (function () {
     /*
     Pass your application module to the bootstrapModule function located in main.ts to start your app
@@ -597,27 +847,35 @@ var AppModule = /** @class */ (function () {
                 _payments_payments_component__WEBPACK_IMPORTED_MODULE_5__["PaymentsComponent"],
                 _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"],
                 _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"],
-                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_34__["FloatBtnComponent"],
-                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_35__["AddModalComponent"],
-                _location_location_component__WEBPACK_IMPORTED_MODULE_36__["LocationComponent"]
+                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_36__["FloatBtnComponent"],
+                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_37__["AddModalComponent"],
+                _location_location_component__WEBPACK_IMPORTED_MODULE_38__["LocationComponent"],
+                _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddPaymentComponent"],
+                _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_41__["PaymentInfoComponent"],
+                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__["ConfirmationComponent"],
+                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_43__["MessageModalComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
                 _app_routing_module_tns__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33__["NativeScriptHttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_26__["ReactiveFormsModule"],
-                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32__["NativeScriptFormsModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_27__["MatInputModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_28__["AgmCoreModule"].forRoot({
+                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35__["NativeScriptHttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_27__["ReactiveFormsModule"],
+                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34__["NativeScriptFormsModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_28__["MatInputModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_29__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
                 }),
-                _chat_chat_module__WEBPACK_IMPORTED_MODULE_29__["ChatModule"],
-                ngx_paypal__WEBPACK_IMPORTED_MODULE_30__["NgxPayPalModule"],
-                nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31__["NativeScriptUIDataFormModule"],
+                _chat_chat_module__WEBPACK_IMPORTED_MODULE_30__["ChatModule"],
+                ngx_paypal__WEBPACK_IMPORTED_MODULE_31__["NgxPayPalModule"],
+                nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__["NativeScriptUIDataFormModule"],
+                // NgxBraintreeModule,
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_33__["HttpClientModule"]
             ],
-            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_25__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_24__["PlacesAutocompleteService"]],
+            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_24__["PaymentService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__["PlacesAutocompleteService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_35__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_36__["LocationComponent"]],
+            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_37__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_38__["LocationComponent"], _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddPaymentComponent"], _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_41__["PaymentInfoComponent"], _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__["ConfirmationComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NO_ERRORS_SCHEMA"]]
         })
         /*
@@ -763,6 +1021,64 @@ var ChatModule = /** @class */ (function () {
         })
     ], ChatModule);
     return ChatModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/confirmation/confirmation.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\r\n.delete-btn {\r\n    display: block;\r\n    color: #ac00e6;\r\n    /*padding: 6px 24px;*/\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    margin-right: 15;\r\n    width: 120;\r\n    height: 40;\r\n    horizontal-align:right;\r\n}\r\n\r\n.delete-btn:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n\r\n.cancel-btn {\r\n    display: block;\r\n    /*color: white;*/\r\n    /*padding: 6px 24px;*/\r\n    border-width: 1;\r\n    border-color: black;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    margin-left: 15;\r\n    width: 120;\r\n    height: 40;\r\n    horizontal-align:left;\r\n}\r\n\r\n.cancel-btn:highlighted {\r\n    background-color: #f1f1f1;\r\n}\r\n\r\n.delete-label {\r\n\tfont-size: 20;\r\n\tmargin-top: 18;\r\n\tmargin-bottom: 48;\r\n\tmargin-left: 18;\r\n\tmargin-right: 18;\r\n\tcolor: black;\r\n}"
+
+/***/ }),
+
+/***/ "./app/confirmation/confirmation.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<StackLayout>\r\n\t<Label textWrap=\"true\" text=\"Are you sure you want to delete?\" class=\"delete-label\"></Label>\r\n\t<GridLayout rows=\"auto\" columns=\"*\">\r\n\t\t<Button row=\"0\" text=\"Cancel\" class=\"cancel-btn\" (tap)=\"close('cancel')\"></Button>\r\n\t\t<Button row=\"0\" text=\"Delete\" class=\"delete-btn\" (tap)=\"close('delete')\"></Button>\r\n\t</GridLayout>\r\n</StackLayout>"
+
+/***/ }),
+
+/***/ "./app/confirmation/confirmation.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmationComponent", function() { return ConfirmationComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ConfirmationComponent = /** @class */ (function () {
+    function ConfirmationComponent(params) {
+        this.params = params;
+    }
+    ConfirmationComponent.prototype.ngOnInit = function () {
+    };
+    ConfirmationComponent.prototype.close = function (res) {
+        this.params.closeCallback(res);
+    };
+    ConfirmationComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-confirmation',
+            template: __webpack_require__("./app/confirmation/confirmation.component.html"),
+            styles: [__webpack_require__("./app/confirmation/confirmation.component.css")]
+        }),
+        __metadata("design:paramtypes", [nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"]])
+    ], ConfirmationComponent);
+    return ConfirmationComponent;
 }());
 
 
@@ -1250,7 +1566,7 @@ var HomeDirective = /** @class */ (function () {
 /***/ "./app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 24;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 18;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 12;\r\n\tmargin-left: 24;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\tborder-bottom-width: 1;\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\tbackground-color: #f1f1f1;\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\t/*align-content: center;*/\r\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 24;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 18;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 12;\r\n\tmargin-left: 24;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\tborder-bottom-width: 1;\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\t/*align-content: center;*/\r\n}"
 
 /***/ }),
 
@@ -1421,7 +1737,7 @@ var HomeComponent = /** @class */ (function () {
 /***/ "./app/location/location.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n.header-label-2 {\r\n\tfont-size: 16;\r\n\tmargin-top: 12;\r\n\t/*margin-bottom: 12;*/\r\n\tfont-weight: 700;\r\n}\r\n\r\n.header-label-3 {\r\n\tmargin-bottom: 12;\r\n}"
+module.exports = "/* Add mobile styles for the component here.  */\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n.header-label-2 {\r\n\tfont-size: 16;\r\n\tmargin-top: 12;\r\n\t/*margin-bottom: 12;*/\r\n\tfont-weight: 700;\r\n}\r\n\r\n.header-label-3 {\r\n\tmargin-bottom: 12;\r\n}\r\n\r\n.post {\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\tbackground-color: #f1f1f1;\r\n}"
 
 /***/ }),
 
@@ -1921,6 +2237,57 @@ var LoginrouteComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/message-modal/message-modal.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\r\n"
+
+/***/ }),
+
+/***/ "./app/message-modal/message-modal.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<Button text=\"message-modal works!\" class=\"btn btn-primary\"></Button>"
+
+/***/ }),
+
+/***/ "./app/message-modal/message-modal.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageModalComponent", function() { return MessageModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MessageModalComponent = /** @class */ (function () {
+    function MessageModalComponent() {
+    }
+    MessageModalComponent.prototype.ngOnInit = function () {
+    };
+    MessageModalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-message-modal',
+            template: __webpack_require__("./app/message-modal/message-modal.component.html"),
+            styles: [__webpack_require__("./app/message-modal/message-modal.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], MessageModalComponent);
+    return MessageModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/navigation/navigation.component.tns.css":
 /***/ (function(module, exports) {
 
@@ -2099,6 +2466,118 @@ var NavigationComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/payment-info/payment-info.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\r\n.remove-payment-label {\r\n\tfont-size: 16;\r\n\tcolor: #ac00e6;\r\n\tmargin-left: 18;\r\n\ttext-align: left;\r\n\tpadding: 18;\r\n}\r\n\r\n.info-label {\r\n\tcolor: black;\r\n\tfont-size: 24;\r\n\ttext-align: left;\r\n\tmargin-left: 36;\r\n\tmargin-top: 36;\r\n}\r\n\r\n.details-label {\r\n\tcolor: black;\r\n\tfont-size: 16;\r\n\ttext-align: left;\r\n\tmargin-left: 36;\r\n\tmargin-top: 18;\r\n\tmargin-bottom: 72;\r\n}\r\n\r\n.activity-indicator {\r\n\tcolor: #ac00e6;\r\n}"
+
+/***/ }),
+
+/***/ "./app/payment-info/payment-info.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<Page>\r\n\t<Page.actionBar>\r\n\t\t<ActionBar title=\"Payment Info\">\r\n\t\t  <NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t\t</ActionBar>\r\n\t</Page.actionBar>\r\n\r\n\t<StackLayout #infoContainer>\r\n\t\t<StackLayout>\r\n\t\t\t<Label textWrap=\"true\" text=\"{{ paymentInfo.type }}\" class=\"info-label\"></Label>\r\n\t\t\t<Label textWrap=\"true\" text=\"{{ paymentInfo.info }}\" class=\"details-label\"></Label>\r\n\t\t</StackLayout>\r\n\t\t<StackLayout (tap)=\"remove()\">\r\n\t\t\t<Label textWrap=\"true\" text=\"Remove\" class=\"remove-payment-label\"></Label>\r\n\t\t</StackLayout>  \r\n\t</StackLayout>\r\n</Page>\r\n<ActivityIndicator row=\"1\" #activityIndicator busy=\"false\" width=\"100\" height=\"100\" class=\"activity-indicator\">\r\n</ActivityIndicator>"
+
+/***/ }),
+
+/***/ "./app/payment-info/payment-info.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentInfoComponent", function() { return PaymentInfoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var _payment_service_tns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/payment.service.tns.ts");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+// import { ModalDialogParams } from "nativescript-angular/directives/dialogs";
+
+
+
+var PaymentInfoComponent = /** @class */ (function () {
+    function PaymentInfoComponent(transferService, paymentService, router, vcRef, modal) {
+        this.transferService = transferService;
+        this.paymentService = paymentService;
+        this.router = router;
+        this.vcRef = vcRef;
+        this.modal = modal;
+        this.paymentInfo = {
+            paymentType: "loading",
+            info: "loading",
+            idToken: "loading",
+            type: "loading"
+        };
+    }
+    PaymentInfoComponent.prototype.ngOnInit = function () {
+        this.paymentInfo = this.transferService.getData();
+        // console.log(this.paymentInfo);
+    };
+    PaymentInfoComponent.prototype.remove = function () {
+        var _this = this;
+        var options = {
+            context: {},
+            fullscreen: false,
+            viewContainerRef: this.vcRef,
+            animated: true,
+        };
+        this.modal.showModal(_confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmationComponent"], options).then(function (result) {
+            if (result == "delete") {
+                var infoContainer = _this.iC.nativeElement;
+                infoContainer.style.visibility = "collapse";
+                _this.showBusy();
+                _this.paymentService.removePaymentMethodFromUser(_this.paymentInfo.idToken).subscribe(function (res) {
+                    _this.router.navigate(['payments']);
+                });
+            }
+        });
+    };
+    PaymentInfoComponent.prototype.onNavBtnTap = function () {
+        this.router.navigate(['payments']);
+    };
+    PaymentInfoComponent.prototype.showBusy = function () {
+        var activityIndicator = this.aI.nativeElement;
+        activityIndicator.busy = true;
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('activityIndicator'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PaymentInfoComponent.prototype, "aI", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('infoContainer'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PaymentInfoComponent.prototype, "iC", void 0);
+    PaymentInfoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-payment-info',
+            template: __webpack_require__("./app/payment-info/payment-info.component.html"),
+            styles: [__webpack_require__("./app/payment-info/payment-info.component.css")]
+        }),
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], _payment_service_tns__WEBPACK_IMPORTED_MODULE_2__["PaymentService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterExtensions"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_3__["ModalDialogService"]])
+    ], PaymentInfoComponent);
+    return PaymentInfoComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/payment-method/payment-method.component.css":
 /***/ (function(module, exports) {
 
@@ -2150,6 +2629,66 @@ var PaymentMethodComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/payment.service.tns.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentService", function() { return PaymentService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PaymentService = /** @class */ (function () {
+    function PaymentService(http) {
+        this.http = http;
+        // uri = 'http://localhost:4000';
+        //Adam's Testing Server
+        // uri = 'http://192.168.1.7:4000';
+        //Phillip's Testing Server
+        this.uri = 'http://192.168.1.3:4000';
+    }
+    PaymentService.prototype.addPaymentUser = function (id, username, name, email) {
+        return this.http.get(this.uri + "/customers/add/" + username);
+    };
+    PaymentService.prototype.getPaymentUserById = function (id) {
+        return this.http.get(this.uri + "/customers/" + id);
+    };
+    PaymentService.prototype.addPaymentMethodToUser = function (id, nonce) {
+        var body = {
+            id: id,
+            nonce: nonce
+        };
+        return this.http.post(this.uri + "/customers/payment/", body);
+    };
+    PaymentService.prototype.removePaymentMethodFromUser = function (token) {
+        return this.http.get(this.uri + "/customers/payment/remove/" + token);
+    };
+    PaymentService.prototype.getIdToken = function (id) {
+        return this.http.get(this.uri + "/token/" + id);
+    };
+    PaymentService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], PaymentService);
+    return PaymentService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/payment.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2172,7 +2711,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var PaymentService = /** @class */ (function () {
     function PaymentService(http) {
         this.http = http;
-        this.uri = 'http://localhost:4000';
+        // uri = 'http://localhost:4000';
+        //Adam's Testing Server
+        // uri = 'http://192.168.1.7:4000';
+        //Phillip's Testing Server
+        this.uri = 'http://192.168.1.3:4000';
     }
     PaymentService.prototype.addPaymentUser = function (id, username, name, email) {
         return this.http.get(this.uri + "/customers/add/" + username);
@@ -2190,6 +2733,9 @@ var PaymentService = /** @class */ (function () {
     PaymentService.prototype.removePaymentMethodFromUser = function (token) {
         return this.http.get(this.uri + "/customers/payment/remove/" + token);
     };
+    PaymentService.prototype.getIdToken = function (id) {
+        return this.http.get(this.uri + "/token/" + id);
+    };
     PaymentService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -2206,14 +2752,14 @@ var PaymentService = /** @class */ (function () {
 /***/ "./app/payments/payments.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".payment-type-icon {\r\n\theight: 34;\r\n\twidth: 34;\r\n\tbackground-position: center;\r\n\tmargin-top: 18;\r\n\tmargin-bottom: 18;\r\n\tmargin-left: 36;\r\n}\r\n\r\n.payment-info-label {\r\n\tfont-size: 16;\r\n\t/*font-weight: 700;*/\r\n\tpadding: 30;\r\n\ttext-align: center;\r\n\tcolor: black;\r\n}\r\n\r\n.add-payment-label {\r\n\tfont-size: 16;\r\n\tcolor: #ac00e6;\r\n\tmargin-left: 36;\r\n\ttext-align: left;\r\n\tpadding: 18;\r\n}\r\n\r\n.credit-card-icon {\r\n\tcontent: url(\"~/img/credit-card-icon.png\");\r\n}\r\n\r\n.paypal-icon {\r\n\tcontent: url(\"~/img/paypal-icon.png\");\r\n}\r\n\r\n.venmo-icon {\r\n\tcontent: url(\"~/img/venmo-icon.png\");\r\n}\r\n\r\n.post {\r\n\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\tbackground-color: #f1f1f1;\r\n}\r\n\r\n.activity-indicator {\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.add-container {\r\n\tvisibility: collapse;\r\n}"
 
 /***/ }),
 
 /***/ "./app/payments/payments.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\r\n    <Label text=\"Payments works\" textWrap=\"true\"></Label>\r\n  </StackLayout>\r\n  "
+module.exports = "<Page>\r\n\t<Page.actionBar>\r\n\t\t<ActionBar title=\"Payments\">\r\n\t\t  <NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t\t</ActionBar>\r\n\t</Page.actionBar>\r\n\r\n\r\n\r\n\t<StackLayout>\r\n\t\t<ListView [items]=\"payments\" separatorColor=\"transparent\" (itemTap)=\"onSelect($event)\">\r\n\t\t\t<ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t\t\t<StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\" orientation=\"horizontal\">\r\n\t\t\t\t\t<Image [src]=\"item.paymentType\" class=\"payment-type-icon\"></Image>\r\n\t\t\t\t\t<Label textWrap=\"true\" [text]=\"item.info\" class=\"payment-info-label\"></Label>\r\n\t\t\t\t</StackLayout>\r\n\t\t\t</ng-template>\r\n\t\t</ListView>\r\n\r\n\t\t<StackLayout (tap)=\"showModal()\" #addContainer class=\"add-container\">\r\n\t\t\t<Label textWrap=\"true\" text=\"Add payment method\" class=\"add-payment-label\"></Label>\r\n\t\t</StackLayout>  \r\n\t</StackLayout>\r\n</Page>\r\n\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"100\" height=\"100\" class=\"activity-indicator\">\r\n</ActivityIndicator>"
 
 /***/ }),
 
@@ -2224,24 +2770,193 @@ module.exports = "<StackLayout>\r\n    <Label text=\"Payments works\" textWrap=\
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentsComponent", function() { return PaymentsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _dynamic_add_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/dynamic-add.service.ts");
+/* harmony import */ var nativescript_braintree__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-braintree/braintree.js");
+/* harmony import */ var nativescript_braintree__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_braintree__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _logincheck_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.ts");
+/* harmony import */ var _payment_service_tns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/payment.service.tns.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/ui/dialogs/dialogs.js");
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
+
+
+
+
+
+
+
+
+
+var PaymentItem = /** @class */ (function () {
+    function PaymentItem(paymentType, info, idToken, type) {
+        this.paymentType = paymentType;
+        this.info = info;
+        this.idToken = idToken;
+        this.type = type;
+    }
+    return PaymentItem;
+}());
 var PaymentsComponent = /** @class */ (function () {
-    function PaymentsComponent() {
+    function PaymentsComponent(addService, paymentService, logincheckService, transferService, vcRef, modal, router) {
+        this.addService = addService;
+        this.paymentService = paymentService;
+        this.logincheckService = logincheckService;
+        this.transferService = transferService;
+        this.vcRef = vcRef;
+        this.modal = modal;
+        this.router = router;
+        this.user = {
+            payment_id: '507305706'
+        };
+        this.opts = {
+            amount: null,
+            collectDeviceData: true,
+            requestThreeDSecureVerification: false,
+        };
+        this.clientToken = '';
+        this.payments = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__["ObservableArray"]();
     }
     PaymentsComponent.prototype.ngOnInit = function () {
+        this.getUser();
     };
+    PaymentsComponent.prototype.showModal = function () {
+        var _this = this;
+        var braintree = new nativescript_braintree__WEBPACK_IMPORTED_MODULE_3__["Braintree"]();
+        // this.createViews();
+        braintree.startPayment(this.clientToken, this.opts);
+        braintree.on("success", function (res) {
+            var output = res.object.get("output");
+            // console.dir(output);
+            _this.paymentService.addPaymentMethodToUser(_this.user.payment_id, output.nonce).subscribe(function (res) {
+                var addContainer = _this.aC.nativeElement;
+                var activityIndicator = _this.aI.nativeElement;
+                console.log(res.message);
+                if (res.message == 'Success') {
+                    tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__["alert"]({
+                        title: "Added method",
+                        message: "Payment method added successfully",
+                        okButtonText: "Close"
+                    }).then(function () {
+                    });
+                    addContainer.style.visibility = 'collapse';
+                    activityIndicator.busy = true;
+                    _this.getUser();
+                }
+                else if (res.message == 'Already exists') {
+                    addContainer.style.visibility = 'visible';
+                    activityIndicator.busy = false;
+                    tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__["alert"]({
+                        title: "Could not add method",
+                        message: "Payment method already exists, please try another one.",
+                        okButtonText: "Close"
+                    }).then(function () {
+                    });
+                }
+                // this.router.navigate(['payments']);
+            });
+            // this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res) => {
+            //   this.router.navigate(['payments']);
+            // });
+        });
+        braintree.on("cancel", function (res) {
+            var output = res.object.get("output");
+            // console.dir(output);
+        });
+        braintree.on("error", function (res) {
+            var output = res.object.get("output");
+            // console.dir(output);
+        });
+        // let options = {
+        //     context: {},
+        //     fullscreen: true,
+        //     viewContainerRef: this.vcRef
+        //     // animated: true,
+        //     // transition: { name: "slideTop" }
+        // };
+        // this.modal.showModal(AddPaymentComponent, options).then(res => {
+        // });
+    };
+    PaymentsComponent.prototype.getUser = function () {
+        var _this = this;
+        this.payments.splice(0);
+        var addContainer = this.aC.nativeElement;
+        addContainer.style.visibility = 'collapse';
+        this.paymentService.getPaymentUserById(this.user.payment_id).subscribe(function (data) {
+            _this.setupViews();
+            _this.paymentCustomer = data;
+            // console.log(this.paymentCustomer)
+            if (_this.paymentCustomer.creditCards != null)
+                for (var i = 0; i < _this.paymentCustomer.creditCards.length; i++)
+                    _this.payments.push(new PaymentItem("~/img/credit-card-icon.png", _this.paymentCustomer.creditCards[i].cardType + " ending in " + _this.paymentCustomer.creditCards[i].last4, _this.paymentCustomer.creditCards[i].token, "Card"));
+            if (_this.paymentCustomer.paypalAccounts != null)
+                for (var i = 0; i < _this.paymentCustomer.paypalAccounts.length; i++)
+                    _this.payments.push(new PaymentItem("~/img/paypal-icon.png", _this.paymentCustomer.paypalAccounts[i].email, _this.paymentCustomer.paypalAccounts[i].token, "PayPal"));
+            if (_this.paymentCustomer.venmoAccounts != null)
+                for (var i = 0; i < _this.paymentCustomer.venmoAccounts.length; i++)
+                    _this.payments.push(new PaymentItem("~/img/venmo-icon.png", _this.paymentCustomer.venmoAccounts[i].venmoUserId, _this.paymentCustomer.venmoAccounts[i].token, "Venmo"));
+            // document.getElementById('list-loading-circle').style.display = 'none';
+        });
+        this.paymentService.getIdToken(this.user.payment_id).subscribe(function (res) {
+            _this.clientToken = res.clientToken;
+        });
+    };
+    PaymentsComponent.prototype.setupViews = function () {
+        var activityIndicator = this.aI.nativeElement;
+        activityIndicator.busy = false;
+        var addContainer = this.aC.nativeElement;
+        addContainer.style.visibility = 'visible';
+    };
+    PaymentsComponent.prototype.selectPayment = function () {
+    };
+    PaymentsComponent.prototype.onSelect = function (event) {
+        // console.log(event.index);
+        var options = {
+            context: {},
+            fullscreen: true,
+            viewContainerRef: this.vcRef
+            // animated: true,
+            // transition: { name: "slideTop" }
+        };
+        this.transferService.setData(this.payments.getItem(event.index));
+        this.router.navigate(['paymentinfo']);
+        // this.modal.showModal(PaymentInfoComponent, options).then(res => {
+        // });
+    };
+    PaymentsComponent.prototype.onNavBtnTap = function () {
+        this.router.navigate(['settings']);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('activityIndicator'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PaymentsComponent.prototype, "aI", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('addContainer'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PaymentsComponent.prototype, "aC", void 0);
     PaymentsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-payments',
             template: __webpack_require__("./app/payments/payments.component.html"),
             styles: [__webpack_require__("./app/payments/payments.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [_dynamic_add_service__WEBPACK_IMPORTED_MODULE_2__["DynamicAddService"], _payment_service_tns__WEBPACK_IMPORTED_MODULE_5__["PaymentService"], _logincheck_service__WEBPACK_IMPORTED_MODULE_4__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_6__["TransferService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__["ModalDialogService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__["RouterExtensions"]])
     ], PaymentsComponent);
     return PaymentsComponent;
 }());
@@ -2367,6 +3082,7 @@ var PostingService = /** @class */ (function () {
         return this.http.get(this.uri + "/postings/" + id);
     };
     PostingService.prototype.addPosting = function (user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2379,6 +3095,7 @@ var PostingService = /** @class */ (function () {
         return this.http.post(this.uri + "/postings/add/", posting);
     };
     PostingService.prototype.updatePosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2446,6 +3163,7 @@ var PostingService = /** @class */ (function () {
         return this.http.get(this.uri + "/postings/" + id);
     };
     PostingService.prototype.addPosting = function (user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2458,6 +3176,7 @@ var PostingService = /** @class */ (function () {
         return this.http.post(this.uri + "/postings/add/", posting);
     };
     PostingService.prototype.updatePosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
+        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2991,6 +3710,8 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var nativescript_angular_platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/nativescript-angular/platform.js");
 /* harmony import */ var nativescript_angular_platform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_platform__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/app.module.ts");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_2__);
 
         let applicationCheckPlatform = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
         if (applicationCheckPlatform.android && !global["__snapshot"]) {
@@ -3009,6 +3730,8 @@ __webpack_require__("../node_modules/tns-core-modules/ui/frame/activity.js");
         // this import should be first in order to load some required settings (like globals and reflect-metadata)
 
 
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_2__["registerElement"])("Ripple", function () { return __webpack_require__("../node_modules/nativescript-ripple/ripple.js").Ripple; });
 // import Amplify from "@aws-amplify/core";
 // import awsconfig from './aws-exports';
 // Amplify.configure(awsconfig);

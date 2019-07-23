@@ -1,0 +1,29 @@
+/* Add mobile styles for the component here.  */
+.close {
+	margin: 10;
+	font-size: 28;
+	width: 48;
+	height: 48;
+}
+
+.close-button-container {
+	position: absolute;
+	left: 0;
+}
+
+.payment-type-icon {
+	height: 34;
+	width: 34;
+	background-position: center;
+	margin-top: 18;
+	margin-bottom: 18;
+	margin-left: 36;
+}
+
+.payment-info-label {
+	font-size: 16;
+	/*font-weight: 700;*/
+	padding: 30;
+	text-align: center;
+	color: black;
+}

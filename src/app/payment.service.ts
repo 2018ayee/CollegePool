@@ -27,4 +27,8 @@ export class PaymentService {
   removePaymentMethodFromUser(token) {
   	return this.http.get(`${this.uri}/customers/payment/remove/${token}`);
   }
+
+  getIdToken(id) {
+    return this.http.get(`${this.uri}/token/${id}`);
+  }
 }

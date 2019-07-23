@@ -1,30 +1,33 @@
 {
-	"tns-core-modules-widgets": {
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\tns-core-modules-widgets\\platforms\\android\\widgets-release.aar": "3ccd997e57128144d7d598fee13ec8f2c95f3834"
-	},
-	"nativescript-ui-sidedrawer": {
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\typings\\sidedrawer.d.ts": "91ef64e6d1864556d27ded671283ee4a05b7c4eb",
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\TNSSideDrawer-release.aar": "331c897ac7cc256daac53036a1bd48ba8f2380f5"
-	},
-	"nativescript-ui-core": {
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-core\\platforms\\android\\TNSCore-release.aar": "cce16a86c2a6f56ca7243ed8db86b004ecb0016e",
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-core\\platforms\\android\\typings\\core.d.ts": "5c032652edfa1719ef8c8190fc0f66d3b1c313c2"
+	"nativescript-braintree": {
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\nativescript_braintree.aar": "85addd52f589f33bf535b8bf0e4e49349da0768d",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\include.gradle": "4e85aba00f5de781cc76166bf79eb46192db652b"
 	},
 	"nativescript-floatingactionbutton": {
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-floatingactionbutton\\platforms\\android\\include.gradle": "8c1fe5211f608e2cdeb32d726de040ca97d7e0f1"
 	},
-	"nativescript-google-places-autocomplete": {
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-google-places-autocomplete\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-google-places-autocomplete\\platforms\\android\\AndroidManifest.xml": "a49c6297b29f6fca5b1b61650dae089ff2181ba0",
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-google-places-autocomplete\\platforms\\android\\include.gradle": "53b76567baa961c7c860c839fa83c2587a228ea0"
+	"nativescript-ripple": {
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ripple\\platforms\\android\\include.gradle": "836c8bb8daac6779214a7f80b47d9837d29b2917"
 	},
 	"nativescript-ui-dataform": {
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-dataform\\platforms\\android\\typings\\dataform.d.ts": "4e9ec450d20ae85cedd03a2122f492b136e4e22f",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-dataform\\platforms\\android\\TNSDataForm-release.aar": "b36d0300842c0dcb318b0f3702c80d9149ad5643"
 	},
+	"nativescript-ui-sidedrawer": {
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\typings\\sidedrawer.d.ts": "91ef64e6d1864556d27ded671283ee4a05b7c4eb",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\TNSSideDrawer-release.aar": "331c897ac7cc256daac53036a1bd48ba8f2380f5"
+	},
 	"nativescript-ui-autocomplete": {
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-autocomplete\\platforms\\android\\typings\\autocomplete.d.ts": "d1a17b079d745045d00d767ff5820d7a141e9401",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-autocomplete\\platforms\\android\\include.gradle": "5c54433fdec1e36014b77bbcf28e5c78db503f7d",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-autocomplete\\platforms\\android\\typings\\autocomplete.d.ts": "d1a17b079d745045d00d767ff5820d7a141e9401",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-autocomplete\\platforms\\android\\TNSAutoComplete-release.aar": "2f498a8c66d48706a56008896cee271f3aa12b69"
+	},
+	"nativescript-ui-core": {
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-core\\platforms\\android\\typings\\core.d.ts": "5c032652edfa1719ef8c8190fc0f66d3b1c313c2",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ui-core\\platforms\\android\\TNSCore-release.aar": "cce16a86c2a6f56ca7243ed8db86b004ecb0016e"
+	},
+	"tns-core-modules-widgets": {
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\tns-core-modules-widgets\\platforms\\android\\widgets-release.aar": "3ccd997e57128144d7d598fee13ec8f2c95f3834"
 	}
 }

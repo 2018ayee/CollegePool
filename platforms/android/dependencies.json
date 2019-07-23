@@ -4,6 +4,10 @@
         "directory": "..\\..\\node_modules\\nativescript-angular"
     },
     {
+        "name": "nativescript-braintree",
+        "directory": "..\\..\\node_modules\\nativescript-braintree"
+    },
+    {
         "name": "nativescript-dom",
         "directory": "..\\..\\node_modules\\nativescript-dom"
     },
@@ -18,6 +22,10 @@
     {
         "name": "nativescript-pulltorefresh",
         "directory": "..\\..\\node_modules\\nativescript-pulltorefresh"
+    },
+    {
+        "name": "nativescript-ripple",
+        "directory": "..\\..\\node_modules\\nativescript-ripple"
     },
     {
         "name": "nativescript-theme-core",

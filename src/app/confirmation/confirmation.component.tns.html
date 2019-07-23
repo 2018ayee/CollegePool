@@ -1,0 +1,7 @@
+<StackLayout>
+	<Label textWrap="true" text="Are you sure you want to delete?" class="delete-label"></Label>
+	<GridLayout rows="auto" columns="*">
+		<Button row="0" text="Cancel" class="cancel-btn" (tap)="close('cancel')"></Button>
+		<Button row="0" text="Delete" class="delete-btn" (tap)="close('delete')"></Button>
+	</GridLayout>
+</StackLayout>

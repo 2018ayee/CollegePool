@@ -36,6 +36,9 @@ import { AgmCoreModule } from '@agm/core';
 import { ChatModule } from './chat/chat.module';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
+import { NgxBraintreeModule } from 'ngx-braintree';
+import { HttpClientModule } from '@angular/common/http';
+
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -45,6 +48,11 @@ import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { FloatBtnComponent } from './float-btn/float-btn.component';
 import { AddModalComponent } from './add-modal/add-modal.component';
 import { LocationComponent } from './location/location.component';
+import { AddPaymentComponent } from './add-payment/add-payment.component';
+import { AddCardPaymentComponent } from './add-card-payment/add-card-payment.component';
+import { PaymentInfoComponent } from './payment-info/payment-info.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 
 
@@ -69,7 +77,12 @@ import { LocationComponent } from './location/location.component';
     SearchComponent,
     FloatBtnComponent,
     AddModalComponent,
-    LocationComponent
+    LocationComponent,
+    AddPaymentComponent,
+    AddCardPaymentComponent,
+    PaymentInfoComponent,
+    ConfirmationComponent,
+    MessageModalComponent
   ],
   imports: [
     NativeScriptModule,
@@ -84,10 +97,13 @@ import { LocationComponent } from './location/location.component';
     ChatModule,
     NgxPayPalModule,
     NativeScriptUIDataFormModule,
+    // NgxBraintreeModule,
+    HttpClientModule
   ],
-  providers: [PostingService, TransferService, DynamicAddService, UserService, ModalDialogService, PlacesAutocompleteService],
+  providers: [PostingService, TransferService, DynamicAddService, UserService, PaymentService, ModalDialogService, PlacesAutocompleteService],
   bootstrap: [AppComponent],
-  entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent],
+  entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
+  PaymentInfoComponent, ConfirmationComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*

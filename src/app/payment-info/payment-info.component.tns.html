@@ -1,0 +1,19 @@
+<Page>
+	<Page.actionBar>
+		<ActionBar title="Payment Info">
+		  <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+		</ActionBar>
+	</Page.actionBar>
+
+	<StackLayout #infoContainer>
+		<StackLayout>
+			<Label textWrap="true" text="{{ paymentInfo.type }}" class="info-label"></Label>
+			<Label textWrap="true" text="{{ paymentInfo.info }}" class="details-label"></Label>
+		</StackLayout>
+		<StackLayout (tap)="remove()">
+			<Label textWrap="true" text="Remove" class="remove-payment-label"></Label>
+		</StackLayout>  
+	</StackLayout>
+</Page>
+<ActivityIndicator row="1" #activityIndicator busy="false" width="100" height="100" class="activity-indicator">
+</ActivityIndicator>

@@ -1,0 +1,55 @@
+/* Add mobile styles for the component here.  */
+.delete-btn {
+    display: block;
+    color: #ac00e6;
+    /*padding: 6px 24px;*/
+    border-width: 1;
+    border-color: #ac00e6;
+    border-radius: 5;
+    text-align: center;
+    float: center;
+    margin: auto; 
+    font-weight: 700;
+    font-family: "Segoe UI",Arial,sans-serif;
+    margin-bottom: 15;
+    margin-right: 15;
+    width: 120;
+    height: 40;
+    horizontal-align:right;
+}
+
+.delete-btn:highlighted {
+    background-color: #f9e6ff;
+}
+
+.cancel-btn {
+    display: block;
+    /*color: white;*/
+    /*padding: 6px 24px;*/
+    border-width: 1;
+    border-color: black;
+    border-radius: 5;
+    text-align: center;
+    float: center;
+    margin: auto; 
+    font-weight: 700;
+    font-family: "Segoe UI",Arial,sans-serif;
+    margin-bottom: 15;
+    margin-left: 15;
+    width: 120;
+    height: 40;
+    horizontal-align:left;
+}
+
+.cancel-btn:highlighted {
+    background-color: #f1f1f1;
+}
+
+.delete-label {
+	font-size: 20;
+	margin-top: 18;
+	margin-bottom: 48;
+	margin-left: 18;
+	margin-right: 18;
+	color: black;
+}

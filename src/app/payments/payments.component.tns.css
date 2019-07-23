@@ -1,0 +1,53 @@
+.payment-type-icon {
+	height: 34;
+	width: 34;
+	background-position: center;
+	margin-top: 18;
+	margin-bottom: 18;
+	margin-left: 36;
+}
+
+.payment-info-label {
+	font-size: 16;
+	/*font-weight: 700;*/
+	padding: 30;
+	text-align: center;
+	color: black;
+}
+
+.add-payment-label {
+	font-size: 16;
+	color: #ac00e6;
+	margin-left: 36;
+	text-align: left;
+	padding: 18;
+}
+
+.credit-card-icon {
+	content: url("~/img/credit-card-icon.png");
+}
+
+.paypal-icon {
+	content: url("~/img/paypal-icon.png");
+}
+
+.venmo-icon {
+	content: url("~/img/venmo-icon.png");
+}
+
+.post {
+
+	border-color: #f1f1f1;
+}
+
+.post:highlighted {
+	background-color: #f1f1f1;
+}
+
+.activity-indicator {
+	color: #ac00e6;
+}
+
+.add-container {
+	visibility: collapse;
+}
