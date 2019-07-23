@@ -18,12 +18,12 @@ export class LoginComponent implements OnInit {
   }
 
   toLogIn() {
-    Auth.signIn("phillim", "Collegepool69*")
-    .then(user => {
-        console.log(user)
-        console.log("redirecting")
+    // Auth.signIn("phillim", "Collegepool69*")
+    // .then(user => {
+    //     console.log(user)
+    //     console.log("redirecting")
 
-    })
+    // })
 
     this.router.navigate(['navigation']);
   	// window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';

@@ -24,6 +24,10 @@
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
     },
     {
+        "name": "nativescript-ui-dataform",
+        "directory": "..\\..\\node_modules\\nativescript-ui-dataform"
+    },
+    {
         "name": "nativescript-ui-sidedrawer",
         "directory": "..\\..\\node_modules\\nativescript-ui-sidedrawer"
     },
@@ -34,6 +38,10 @@
     {
         "name": "nativescript-intl",
         "directory": "..\\..\\node_modules\\nativescript-intl"
+    },
+    {
+        "name": "nativescript-ui-autocomplete",
+        "directory": "..\\..\\node_modules\\nativescript-ui-autocomplete"
     },
     {
         "name": "nativescript-ui-core",

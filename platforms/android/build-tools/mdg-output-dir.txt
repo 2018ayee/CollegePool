@@ -1,1 +1,1 @@
-C:\Users\phill\Documents\CS Projects\Cpool\CollegePool\platforms\android\app/src/main/assets/metadata
+C:\Users\phill\Documents\CS Projects\Colpool\CollegePool\platforms\android\app/src/main/assets/metadata

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
         console.log("redirecting")
 
     })
-  	//window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
+  	window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
     //window.location.href='https://collegepool.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=9pt5k8jg7mfupl900k5fq0gqi&redirect_uri=http://localhost:4200/home&state=STATE&scope=aws.cognito.signin.user.admin+openid';
   }
 

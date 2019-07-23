@@ -35,7 +35,7 @@ import {MatInputModule} from '@angular/material/input';
 import { AgmCoreModule } from '@agm/core';
 import { ChatModule } from './chat/chat.module';
 import { NgxPayPalModule } from 'ngx-paypal';
-
+import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -82,7 +82,8 @@ import { LocationComponent } from './location/location.component';
       apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
     }),
     ChatModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    NativeScriptUIDataFormModule,
   ],
   providers: [PostingService, TransferService, DynamicAddService, UserService, ModalDialogService, PlacesAutocompleteService],
   bootstrap: [AppComponent],

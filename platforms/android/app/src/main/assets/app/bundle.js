@@ -517,19 +517,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/@agm/core/index.js");
 /* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("./app/chat/chat.module.ts");
 /* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_31___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_31__);
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_32__);
-/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("./app/location/location.component.ts");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/nativescript-ui-dataform/angular/dataform-directives.js");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31___default = /*#__PURE__*/__webpack_require__.n(nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31__);
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32__);
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33__);
+/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("./app/location/location.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -594,26 +597,27 @@ var AppModule = /** @class */ (function () {
                 _payments_payments_component__WEBPACK_IMPORTED_MODULE_5__["PaymentsComponent"],
                 _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"],
                 _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"],
-                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_33__["FloatBtnComponent"],
-                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_34__["AddModalComponent"],
-                _location_location_component__WEBPACK_IMPORTED_MODULE_35__["LocationComponent"]
+                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_34__["FloatBtnComponent"],
+                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_35__["AddModalComponent"],
+                _location_location_component__WEBPACK_IMPORTED_MODULE_36__["LocationComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
                 _app_routing_module_tns__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_32__["NativeScriptHttpClientModule"],
+                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_33__["NativeScriptHttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_26__["ReactiveFormsModule"],
-                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_31__["NativeScriptFormsModule"],
+                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_32__["NativeScriptFormsModule"],
                 _angular_material_input__WEBPACK_IMPORTED_MODULE_27__["MatInputModule"],
                 _agm_core__WEBPACK_IMPORTED_MODULE_28__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
                 }),
                 _chat_chat_module__WEBPACK_IMPORTED_MODULE_29__["ChatModule"],
-                ngx_paypal__WEBPACK_IMPORTED_MODULE_30__["NgxPayPalModule"]
+                ngx_paypal__WEBPACK_IMPORTED_MODULE_30__["NgxPayPalModule"],
+                nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_31__["NativeScriptUIDataFormModule"],
             ],
             providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_25__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_24__["PlacesAutocompleteService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_34__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_35__["LocationComponent"]],
+            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_35__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_36__["LocationComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NO_ERRORS_SCHEMA"]]
         })
         /*
@@ -1651,17 +1655,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 // import { CognitoAuth } from 'amazon-cognito-auth-js/dist/amazon-cognito-auth';
 
-// Amplify.configure({
-//   Auth: {
-//     // REQUIRED - Amazon Cognito Identity Pool ID,
-//     // identityPoolId: "us-east-2:f0bb0da8-544c-41aa-9cae-289f5aec7336",
-//     // REQUIRED - Amazon Cognito Region
-//     region: "us-east-2",
-//     // OPTIONAL - Amazon Cognito User Pool ID
-//     userPoolId: "us-east-2_1PnaMFKRK",
-//     //userPoolWebClientId: "2o6dsp7lolkgu660olfeq5igt3"
-//   }
-// });
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(router, page) {
         this.router = router;
@@ -1676,8 +1669,6 @@ var LoginComponent = /** @class */ (function () {
         //     console.log(user)
         //     console.log("redirecting")
         // })
-        var API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
-        // let googlePlacesAutocomplete = new GooglePlacesAutocomplete(API_KEY);
         this.router.navigate(['navigation']);
         // window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
     };
@@ -2259,6 +2250,27 @@ var PaymentsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/person.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Person", function() { return Person; });
+var Person = /** @class */ (function () {
+    function Person(firstName, lastName, email, phoneNumber, address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+    return Person;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/places-autocomplete.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2355,7 +2367,6 @@ var PostingService = /** @class */ (function () {
         return this.http.get(this.uri + "/postings/" + id);
     };
     PostingService.prototype.addPosting = function (user, startadr, endadr, date, cost, capacity, comments) {
-        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2368,7 +2379,6 @@ var PostingService = /** @class */ (function () {
         return this.http.post(this.uri + "/postings/add/", posting);
     };
     PostingService.prototype.updatePosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
-        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2436,7 +2446,6 @@ var PostingService = /** @class */ (function () {
         return this.http.get(this.uri + "/postings/" + id);
     };
     PostingService.prototype.addPosting = function (user, startadr, endadr, date, cost, capacity, comments) {
-        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2449,7 +2458,6 @@ var PostingService = /** @class */ (function () {
         return this.http.post(this.uri + "/postings/add/", posting);
     };
     PostingService.prototype.updatePosting = function (id, user, startadr, endadr, date, cost, capacity, comments) {
-        //const price = req(../../backend/data/pricing)({start: startadr, end: endadr});
         var posting = {
             user: user,
             startadr: startadr,
@@ -2660,14 +2668,14 @@ var SearchComponent = /** @class */ (function () {
 /***/ "./app/settings/settings.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n#Header {\r\n    color:black;\r\n    font-size: 24;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n}\r\n\r\n.Update {\r\n    display: block;\r\n    color: #ac00e6;\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.Update:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n.Payments {\r\n    /* background-color: white;\r\n    border-radius: 5;\r\n    color: #AC00E6;\r\n    font-family: Times;\r\n    font-size: 24;\r\n    vertical-align: middle;\r\n    width: 80%; */\r\n    display: block;\r\n    color: #ac00e6;\r\n    /*padding: 6px 24px;*/\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.Payments:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n"
 
 /***/ }),
 
 /***/ "./app/settings/settings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<StackLayout>\r\n  <Label text=\"settings works\" textWrap=\"true\"></Label>\r\n    <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"body\">\r\n<div layout-align=\"center center\" id=\"form\">\r\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"onSubmit()\" class=\"user-settings\" layout=\"column\">\r\n  \r\n<div formGroupName=\"user\">\r\n\t<h3>User Settings</h3>\r\n  <div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"First Name\" formControlName = \"firstName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Last Name\" formControlName = \"lastName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<!--\r\n\tEmail validator\r\n->\r\n\r\n<div class =\"example-container\" >\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput placeholder=\"Email\" formControlName = \"email\"\r\n           [errorStateMatcher]=\"matcher\" >\r\n    <mat-error *ngIf=\"emailFormControl.hasError('email') && !emailFormControl.hasError('required')\">\r\n      Please enter a valid email address\r\n    </mat-error>\r\n    <mat-error *ngIf=\"emailFormControl.hasError('required')\">\r\n      Please enter a <strong>valid</strong> email address\r\n    </mat-error>\r\n  </mat-form-field>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Phone Number \" formControlName = \"phone\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n\r\n<div formGroupName=\"address\" layout=\"column\">\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder = \"Address\" formControlName=\"street\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n  <button type=\"submit\" [disabled]=\"!profileForm.valid\" class=\"submit\">Save changes</button>\r\n\r\n</form>\r\n<app-dialog id=\"update-dialog\"></app-dialog>\r\n</div>\r\n\r\n</div>\r\n-->"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n\r\n<StackLayout>\r\n  <Label id= \"Header\" text=\"Account Settings\" textWrap=\"true\"></Label>\r\n  <RadDataForm tkExampleTitle tkToggleNavButton [source]=\"person\"></RadDataForm>  \r\n  <Button class=\"Update\"  text=\"Update Settings\"></Button>\r\n  <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n</StackLayout>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -2682,6 +2690,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _person__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/person.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2695,19 +2704,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 // import { Router } from '@angular/router';
 
 
+
 var SettingsComponent = /** @class */ (function () {
     function SettingsComponent(router, page) {
         this.router = router;
         this.page = page;
     }
     SettingsComponent.prototype.ngOnInit = function () {
+        this._person = new _person__WEBPACK_IMPORTED_MODULE_3__["Person"]("Phillim", "Das", "john@company.com", "12224443333", "232 Rodman Road");
+        console.log(this._person);
     };
+    Object.defineProperty(SettingsComponent.prototype, "person", {
+        get: function () {
+            return this._person;
+        },
+        enumerable: true,
+        configurable: true
+    });
     SettingsComponent.prototype.toPayments = function () {
         this.router.navigate(['payments']);
     };
     SettingsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-settings',
+            /*duleId: module.i*/
+            selector: "app-settings",
             template: __webpack_require__("./app/settings/settings.component.html"),
             styles: [__webpack_require__("./app/settings/settings.component.css")]
         }),
@@ -2989,7 +3009,7 @@ __webpack_require__("../node_modules/tns-core-modules/ui/frame/activity.js");
         // this import should be first in order to load some required settings (like globals and reflect-metadata)
 
 
-// import Amplify from 'aws-amplify';
+// import Amplify from "@aws-amplify/core";
 // import awsconfig from './aws-exports';
 // Amplify.configure(awsconfig);
 // A traditional NativeScript application starts by initializing global objects, setting up global CSS rules, creating, and navigating to the main page. 
