@@ -44,6 +44,7 @@ import { AddCardPaymentComponent } from './add-card-payment/add-card-payment.com
 import { PaymentInfoComponent } from './payment-info/payment-info.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -84,7 +85,8 @@ const appRoutes: Routes = [
     AddCardPaymentComponent,
     PaymentInfoComponent,
     ConfirmationComponent,
-    MessageModalComponent
+    MessageModalComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

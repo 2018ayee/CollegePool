@@ -52,6 +52,15 @@ import { AddCardPaymentComponent } from './add-card-payment/add-card-payment.com
 import { PaymentInfoComponent } from './payment-info/payment-info.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+// require('nativescript-nodeify')
+// import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireStorageModule } from '@angular/fire/storage';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { environment } from '../environments/environment';
 
 
 
@@ -81,7 +90,8 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
     AddCardPaymentComponent,
     PaymentInfoComponent,
     ConfirmationComponent,
-    MessageModalComponent
+    MessageModalComponent,
+    WelcomeComponent
   ],
   imports: [
     NativeScriptModule,
@@ -96,7 +106,11 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
     ChatModule,
     NgxPayPalModule,
     // NgxBraintreeModule,
-    HttpClientModule
+    HttpClientModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    // AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [PostingService, TransferService, DynamicAddService, UserService, PaymentService, ModalDialogService, PlacesAutocompleteService],
   bootstrap: [AppComponent],

@@ -627,6 +627,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _payments_payments_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("./app/payments/payments.component.ts");
 /* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("./app/search/search.component.ts");
 /* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
+/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("./app/welcome/welcome.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -647,9 +648,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/welcome', pathMatch: 'full' },
     { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
     { path: 'history', component: _history_history_component__WEBPACK_IMPORTED_MODULE_4__["HistoryComponent"] },
     { path: 'settings', component: _settings_settings_component__WEBPACK_IMPORTED_MODULE_5__["SettingsComponent"] },
@@ -660,6 +662,7 @@ var routes = [
     { path: 'search', component: _search_search_component__WEBPACK_IMPORTED_MODULE_11__["SearchComponent"] },
     { path: 'navigation', component: _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_9__["NavigationComponent"] },
     { path: 'paymentinfo', component: _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_12__["PaymentInfoComponent"] },
+    { path: 'welcome', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__["WelcomeComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -767,6 +770,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
 /* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
 /* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
+/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/welcome/welcome.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -818,6 +822,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+// require('nativescript-nodeify')
+// import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireStorageModule } from '@angular/fire/storage';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { environment } from '../environments/environment';
 var AppModule = /** @class */ (function () {
     /*
     Pass your application module to the bootstrapModule function located in main.ts to start your app
@@ -851,7 +863,8 @@ var AppModule = /** @class */ (function () {
                 _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddCardPaymentComponent"],
                 _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_40__["PaymentInfoComponent"],
                 _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__["ConfirmationComponent"],
-                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_42__["MessageModalComponent"]
+                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_42__["MessageModalComponent"],
+                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_43__["WelcomeComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
@@ -866,7 +879,7 @@ var AppModule = /** @class */ (function () {
                 _chat_chat_module__WEBPACK_IMPORTED_MODULE_30__["ChatModule"],
                 ngx_paypal__WEBPACK_IMPORTED_MODULE_31__["NgxPayPalModule"],
                 // NgxBraintreeModule,
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_32__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_32__["HttpClientModule"],
             ],
             providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_24__["PaymentService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__["PlacesAutocompleteService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
@@ -1590,9 +1603,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _posting_service_tns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/posting.service.tns.ts");
 /* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
 /* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1612,8 +1627,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_9__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_9__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
 var PostItem = /** @class */ (function () {
     function PostItem(username, info) {
         this.username = username;
@@ -1635,19 +1651,9 @@ var HomeComponent = /** @class */ (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.loadPostings();
-        // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-        // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-        // this.blocks++;
-        // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-        // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-        // this.blocks++;
-        // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-        // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-        // this.blocks++;
-        // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-        // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-        // this.blocks++;
-        // this.loadPostings();
+    };
+    HomeComponent.prototype.onBackButtonTap = function () {
+        tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__["android"].foregroundActivity.finish();
     };
     HomeComponent.prototype.showModal = function () {
         var _this = this;
@@ -1658,7 +1664,7 @@ var HomeComponent = /** @class */ (function () {
             // animated: true,
             // transition: { name: "slideTop" }
         };
-        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_8__["AddModalComponent"], options).then(function (res) {
+        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_9__["AddModalComponent"], options).then(function (res) {
             // console.log(res);
             if (res == 'posted')
                 _this.loadPostings();
@@ -1954,6 +1960,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1967,6 +1975,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 // import { CognitoAuth } from 'amazon-cognito-auth-js/dist/amazon-cognito-auth';
 
+// const firebase = require("nativescript-plugin-firebase");
+
+// import { AngularFireAuth } from '@angular/fire/auth';
+// import { auth } from 'firebase/app';
 // Amplify.configure({
 //   Auth: {
 //     // REQUIRED - Amazon Cognito Identity Pool ID,
@@ -1985,6 +1997,26 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.page.actionBarHidden = true;
+        var firebaseConfig = {
+            apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
+            authDomain: "collegepool-1552749118617.firebaseapp.com",
+            databaseURL: "https://collegepool-1552749118617.firebaseio.com",
+            projectId: "collegepool-1552749118617",
+            storageBucket: "collegepool-1552749118617.appspot.com",
+            messagingSenderId: "375263680183",
+            appID: "collegepool-1552749118617",
+        };
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["init"](firebaseConfig).then(function () {
+            console.log("firebase.init done");
+        }, function (error) {
+            console.log("firebase.init error: " + error);
+        });
+        // firebase.auth().createUserWithEmailAndPassword('admin', 'kyvern123').catch(function(error) {
+        //   // Handle Errors here.
+        //   var errorCode = error.code;
+        //   var errorMessage = error.message;
+        //   // ...
+        // });
     };
     LoginComponent.prototype.toLogIn = function () {
         // Auth.signIn("phillim", "Collegepool69*")
@@ -1992,12 +2024,30 @@ var LoginComponent = /** @class */ (function () {
         //     console.log(user)
         //     console.log("redirecting")
         // })
-        var API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
-        // let googlePlacesAutocomplete = new GooglePlacesAutocomplete(API_KEY);
+        var credentials = {
+            passwordOptions: {
+                email: 'adam.yee@gmail.com',
+                password: 'kyvern123',
+            },
+            type: nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["LoginType"].PASSWORD
+        };
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["login"](credentials).catch(function (err) {
+            console.log(err);
+        });
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["getCurrentUser"]().then(function (res) {
+            console.log(res);
+        });
         this.router.navigate(['navigation']);
         // window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
     };
     LoginComponent.prototype.toSignUp = function () {
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["createUser"]({
+            email: 'adam.yee@gmail.com',
+            password: 'kyvern123'
+        }).catch(function (err) {
+            console.log(err);
+        });
+        // this.afAuth.auth.createUserWithEmailAndPassword('adam.yee@gmail.com', 'kyvern123');
         this.router.navigate(['navigation']);
         // window.location.href='https://collegepooling.auth.us-east-2.amazoncognito.com/signup?response_type=token&client_id=4sslmmgv9pn5lb5087aaj5r599&redirect_uri=http://localhost:4200/loginroute&state=STATE&scope=aws.cognito.signin.user.admin+openid';
     };
@@ -2016,17 +2066,21 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./app/logincheck.service.ts":
+/***/ "./app/logincheck.service.tns.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogincheckService", function() { return LogincheckService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@auth0/angular-jwt/index.js");
-/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/user.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _payment_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/payment.service.ts");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/user.service.ts");
+/* harmony import */ var _payment_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/payment.service.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/tns-core-modules/application-settings/application-settings.js");
+/* harmony import */ var tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2036,6 +2090,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2051,11 +2106,30 @@ var LogincheckService = /** @class */ (function () {
         //user info from cognito
         this.userInfo = null;
     }
+    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received) {
+        var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users');
+        usersCollection.doc(uid).set({
+            address: address,
+            birthdate: birthdate,
+            email: email,
+            first_name: first_name,
+            last_name: last_name,
+            gender: gender,
+            phone_number: phone_number,
+            rides_given: rides_given,
+            rides_received: rides_received
+        });
+    };
+    LogincheckService.prototype.decodeToken = function (token) {
+    };
+    LogincheckService.prototype.checkUser = function () {
+    };
     LogincheckService.prototype.clearInfo = function () {
         this.user = null;
         this.userInfo = null;
         this.users = null;
-        this.myStorage.clear();
+        this.uid = null;
+        tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["clear"]();
     };
     LogincheckService.prototype.addUserToBraintree = function () {
         var _this = this;
@@ -2072,97 +2146,138 @@ var LogincheckService = /** @class */ (function () {
         // })
         console.log('added to braintree');
     };
-    LogincheckService.prototype.decodeToken = function (idToken) {
-        var helper = new _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_1__["JwtHelperService"]();
-        var decodedToken = helper.decodeToken(idToken);
-        var expirationDate = helper.getTokenExpirationDate(idToken);
-        var isExpired = helper.isTokenExpired(idToken);
-        console.log(decodedToken);
-        if (decodedToken == null)
-            this.router.navigateByUrl('/login');
-        this.userInfo = decodedToken;
-    };
-    LogincheckService.prototype.checkUser = function () {
-        var _this = this;
-        this.userService.getUsers()
-            .subscribe(function (data) {
-            _this.users = data;
-            var isUser = false;
-            for (var i = 0; i < _this.users.length; i++) {
-                if (_this.userInfo['cognito:username'] == _this.users[i].username) {
-                    isUser = true;
-                    _this.user = _this.users[i];
-                }
-            }
-            if (!isUser) {
-                _this.userService.addUser(_this.userInfo.name, _this.userInfo['cognito:username'], _this.userInfo.address.formatted, _this.userInfo.birthdate, _this.userInfo.email, _this.userInfo.gender, _this.userInfo.phone_number)
-                    .subscribe(function () {
-                    _this.userService.getUsers()
-                        .subscribe(function (data) {
-                        _this.users = data;
-                        for (var i = 0; i < _this.users.length; i++) {
-                            if (_this.userInfo['cognito:username'] == _this.users[i].username) {
-                                _this.user = _this.users[i];
-                            }
-                        }
-                        _this.addUserToBraintree();
-                        _this.setLocalStorage();
-                        _this.router.navigateByUrl('/home');
-                    });
-                });
-            }
-            else {
-                if (_this.user.payment_id == '' || _this.user.payment_id == null) {
-                    _this.addUserToBraintree();
-                }
-                _this.setLocalStorage();
-                _this.router.navigateByUrl('/home');
-            }
-        });
-    };
-    LogincheckService.prototype.setLocalStorage = function () {
-        this.myStorage.setItem('_id', this.user._id);
-        this.myStorage.setItem('name', this.user.name);
-        this.myStorage.setItem('username', this.user.username);
-        this.myStorage.setItem('address', this.user.address);
-        this.myStorage.setItem('birthdate', this.user.birthdate);
-        this.myStorage.setItem('email', this.user.email);
-        this.myStorage.setItem('gender', this.user.gender);
-        this.myStorage.setItem('phone_number', this.user.phone_number);
-        this.myStorage.setItem('rides_given', this.user.rides_given);
-        this.myStorage.setItem('rides_received', this.user.rides_received);
-        this.myStorage.setItem('payment_id', this.user.payment_id);
-    };
-    LogincheckService.prototype.getUserFromLocalStorage = function () {
-        this.user = {
-            "_id": this.myStorage.getItem('_id'),
-            "name": this.myStorage.getItem('name'),
-            "username": this.myStorage.getItem('username'),
-            "address": this.myStorage.getItem('address'),
-            "birthdate": this.myStorage.getItem('birthdate'),
-            "email": this.myStorage.getItem('email'),
-            "gender": this.myStorage.getItem('gender'),
-            "phone_number": this.myStorage.getItem('phone_number'),
-            "rides_given": this.myStorage.getItem('rides_given'),
-            "rides_received": this.myStorage.getItem('rides_received'),
-            "payment_id": this.myStorage.getItem('payment_id')
-        };
-    };
-    LogincheckService.prototype.getUser = function () {
-        if (this.user == null) {
-            this.getUserFromLocalStorage();
-        }
-        return this.user;
+    LogincheckService.prototype.loginUser = function (uid) {
+        tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["setString"]("uid", uid);
+        this.uid = uid;
     };
     LogincheckService.prototype.loginCheck = function () {
-        //if(this.userInfo == null && window.localStorage.getItem('_id') == null)
-        this.router.navigateByUrl('/login');
+        if (this.getUser == null)
+            this.router.navigate(['welcome']);
+    };
+    LogincheckService.prototype.getUserFromLocalStorage = function () {
+        return tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["getString"]("uid");
+    };
+    LogincheckService.prototype.getUser = function () {
+        if (this.uid == null) {
+            this.uid = this.getUserFromLocalStorage();
+        }
+        return this.uid;
     };
     LogincheckService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_4__["PaymentService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        __metadata("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_2__["PaymentService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterExtensions"]])
+    ], LogincheckService);
+    return LogincheckService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/logincheck.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogincheckService", function() { return LogincheckService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/user.service.ts");
+/* harmony import */ var _payment_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/payment.service.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/tns-core-modules/application-settings/application-settings.js");
+/* harmony import */ var tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var LogincheckService = /** @class */ (function () {
+    function LogincheckService(userService, paymentService, router) {
+        this.userService = userService;
+        this.paymentService = paymentService;
+        this.router = router;
+        //myStorage = window.localStorage;
+        this.myStorage = null;
+        //user info from cognito
+        this.userInfo = null;
+    }
+    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received) {
+        var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users');
+        usersCollection.doc(uid).set({
+            address: address,
+            birthdate: birthdate,
+            email: email,
+            first_name: first_name,
+            last_name: last_name,
+            gender: gender,
+            phone_number: phone_number,
+            rides_given: rides_given,
+            rides_received: rides_received
+        });
+    };
+    LogincheckService.prototype.decodeToken = function (token) {
+    };
+    LogincheckService.prototype.checkUser = function () {
+    };
+    LogincheckService.prototype.clearInfo = function () {
+        this.user = null;
+        this.userInfo = null;
+        this.users = null;
+        this.uid = null;
+        tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["clear"]();
+    };
+    LogincheckService.prototype.addUserToBraintree = function () {
+        var _this = this;
+        this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email).subscribe(function (data) {
+            _this.userService.updateUser(_this.user._id, _this.user.name, _this.user.username, _this.user.address, _this.user.birthdate, _this.user.email, _this.user.gender, _this.user.phone_number, _this.user.rides_given, _this.user.rides_received, data.customer.id)
+                .subscribe(function () {
+                _this.user.payment_id = data.customer.id;
+                _this.myStorage.setItem('payment_id', _this.user.payment_id);
+                console.log(_this.user);
+            });
+        });
+        // this.paymentService.getPaymentUserById('258703956').subscribe((data: any) => {
+        // 	console.log(data);
+        // })
+        console.log('added to braintree');
+    };
+    LogincheckService.prototype.loginUser = function (uid) {
+        tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["setString"]("uid", uid);
+        this.uid = uid;
+    };
+    LogincheckService.prototype.loginCheck = function () {
+        if (this.getUser == null)
+            this.router.navigate(['welcome']);
+    };
+    LogincheckService.prototype.getUserFromLocalStorage = function () {
+        return tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["getString"]("uid");
+    };
+    LogincheckService.prototype.getUser = function () {
+        if (this.uid == null) {
+            this.uid = this.getUserFromLocalStorage();
+        }
+        return this.uid;
+    };
+    LogincheckService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_2__["PaymentService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterExtensions"]])
     ], LogincheckService);
     return LogincheckService;
 }());
@@ -2307,7 +2422,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/navigation/navigation.component.tns.html":
 /***/ (function(module, exports) {
 
-module.exports = "<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\">\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -2382,15 +2497,20 @@ var NavigationComponent = /** @class */ (function () {
             this.settingsTab = { iconSource: 'res://settings_highlighted' };
             this.tabSelectedIndex = 3;
         }
-        // else if(this.activebtn == 'post')
-        // 	document.getElementById('myModal').style.display = "block";
-        // else
-        // 	this.paintActive(this.activebtn);
-        //var route = this.router.router + 'nav';
-        //this.activebtn = route.substring(1);
-        //console.log(this.activebtn);
-        //this.paintActive(this.activebtn);
-        //this.user = this.logincheckService.getUser();
+        // console.log(this.tabSelectedIndex)
+        // var justSet = false;
+        // if(isAndroid)
+        //   application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+        //     console.log(this.tabSelectedIndex)
+        //   if (this.tabSelectedIndex === 0 && !justSet) {
+        //     application.android.foregroundActivity.finish();
+        //   }
+        //   else {
+        //     this.tv.nativeElement.selectedIndex = 0;
+        //     justSet = true;
+        //     setTimeout(() => {justSet = false}, 500);
+        //   }
+        // });
     };
     NavigationComponent.prototype.paintActive = function (btn) {
         var navcontents = nativescript_dom__WEBPACK_IMPORTED_MODULE_4__["getElementsByClassName"]('navigation');
@@ -2460,6 +2580,10 @@ var NavigationComponent = /** @class */ (function () {
         this.settingsTab = { iconSource: 'res://settings_highlighted' };
         this.tabSelectedIndex = 3;
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('tabView'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], NavigationComponent.prototype, "tv", void 0);
     NavigationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-navigation',
@@ -3376,7 +3500,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/settings/settings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<StackLayout>\r\n  <Label text=\"settings works\" textWrap=\"true\"></Label>\r\n    <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"body\">\r\n<div layout-align=\"center center\" id=\"form\">\r\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"onSubmit()\" class=\"user-settings\" layout=\"column\">\r\n  \r\n<div formGroupName=\"user\">\r\n\t<h3>User Settings</h3>\r\n  <div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"First Name\" formControlName = \"firstName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Last Name\" formControlName = \"lastName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<!--\r\n\tEmail validator\r\n->\r\n\r\n<div class =\"example-container\" >\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput placeholder=\"Email\" formControlName = \"email\"\r\n           [errorStateMatcher]=\"matcher\" >\r\n    <mat-error *ngIf=\"emailFormControl.hasError('email') && !emailFormControl.hasError('required')\">\r\n      Please enter a valid email address\r\n    </mat-error>\r\n    <mat-error *ngIf=\"emailFormControl.hasError('required')\">\r\n      Please enter a <strong>valid</strong> email address\r\n    </mat-error>\r\n  </mat-form-field>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Phone Number \" formControlName = \"phone\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n\r\n<div formGroupName=\"address\" layout=\"column\">\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder = \"Address\" formControlName=\"street\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n  <button type=\"submit\" [disabled]=\"!profileForm.valid\" class=\"submit\">Save changes</button>\r\n\r\n</form>\r\n<app-dialog id=\"update-dialog\"></app-dialog>\r\n</div>\r\n\r\n</div>\r\n-->"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<StackLayout>\r\n  <Label text=\"settings works\" textWrap=\"true\"></Label>\r\n    <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n    <Button (tap)=\"logOut()\" text=\"Log out\"></Button>\r\n</StackLayout>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"body\">\r\n<div layout-align=\"center center\" id=\"form\">\r\n<form [formGroup]=\"profileForm\" (ngSubmit)=\"onSubmit()\" class=\"user-settings\" layout=\"column\">\r\n  \r\n<div formGroupName=\"user\">\r\n\t<h3>User Settings</h3>\r\n  <div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"First Name\" formControlName = \"firstName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Last Name\" formControlName = \"lastName\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n\r\n<!--\r\n\tEmail validator\r\n->\r\n\r\n<div class =\"example-container\" >\r\n  <mat-form-field class=\"example-full-width\">\r\n    <input matInput placeholder=\"Email\" formControlName = \"email\"\r\n           [errorStateMatcher]=\"matcher\" >\r\n    <mat-error *ngIf=\"emailFormControl.hasError('email') && !emailFormControl.hasError('required')\">\r\n      Please enter a valid email address\r\n    </mat-error>\r\n    <mat-error *ngIf=\"emailFormControl.hasError('required')\">\r\n      Please enter a <strong>valid</strong> email address\r\n    </mat-error>\r\n  </mat-form-field>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder=\"Phone Number \" formControlName = \"phone\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n\r\n<div formGroupName=\"address\" layout=\"column\">\r\n<div class=\"example-container\">\r\n  <mat-form-field>\r\n    <input matInput placeholder = \"Address\" formControlName=\"street\" class=\"input-field\">\r\n  </mat-form-field>\r\n</div>\r\n</div>\r\n\r\n  <button type=\"submit\" [disabled]=\"!profileForm.valid\" class=\"submit\">Save changes</button>\r\n\r\n</form>\r\n<app-dialog id=\"update-dialog\"></app-dialog>\r\n</div>\r\n\r\n</div>\r\n-->"
 
 /***/ }),
 
@@ -3391,6 +3515,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/logincheck.service.tns.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3404,15 +3529,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 // import { Router } from '@angular/router';
 
 
+
 var SettingsComponent = /** @class */ (function () {
-    function SettingsComponent(router, page) {
+    function SettingsComponent(router, page, logincheckService) {
         this.router = router;
         this.page = page;
+        this.logincheckService = logincheckService;
     }
     SettingsComponent.prototype.ngOnInit = function () {
     };
     SettingsComponent.prototype.toPayments = function () {
         this.router.navigate(['payments']);
+    };
+    SettingsComponent.prototype.logOut = function () {
+        this.logincheckService.clearInfo();
+        this.router.navigate(['welcome']);
     };
     SettingsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3420,7 +3551,7 @@ var SettingsComponent = /** @class */ (function () {
             template: __webpack_require__("./app/settings/settings.component.html"),
             styles: [__webpack_require__("./app/settings/settings.component.css")]
         }),
-        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__["Page"]])
+        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__["Page"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__["LogincheckService"]])
     ], SettingsComponent);
     return SettingsComponent;
 }());
@@ -3672,6 +3803,205 @@ var UserService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/welcome/welcome.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\n.page {\n  align-items: center;\n  flex-direction: column;\n  visibility: collapse;\n}\n.form {\n  margin-left: 30;\n  margin-right: 30;\n  flex-grow: 2;\n  vertical-align: middle;\n}\n\n.logo {\n  margin-bottom: 72;\n  height: 120;\n  font-weight: bold;\n}\n.header {\n  horizontal-align: center;\n  font-size: 25;\n  font-weight: 600;\n  margin-bottom: 70;\n  text-align: center;\n  color: #ac00e6;\n}\n\n.input-field {\n  margin-bottom: 25;\n}\n.input {\n  font-size: 18;\n  placeholder-color: #A8A8A8;\n}\n\n.btn-primary {\n  height: 50;\n  margin: 30 5 15 5;\n  background-color: #ac00e6;\n  border-radius: 5;\n  font-size: 20;\n  font-weight: 600;\n}\n.login-label {\n  horizontal-align: center;\n  color: #A8A8A8;\n  font-size: 16;\n}\n.sign-up-label {\n  margin-bottom: 20;\n}\n.bold {\n  color: #000000; \n}"
+
+/***/ }),
+
+/***/ "./app/welcome/welcome.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<FlexboxLayout class=\"page\" #welcomeContainer>\r\n\t<StackLayout class=\"form\">\r\n\t\t<Image class=\"logo\" src=\"~/img/logo.png\"></Image>\r\n\t\t<!-- <Label class=\"header\" text=\"CollegePool\"></Label> -->\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Email\" keyboardType=\"email\" autocorrect=\"false\" autocapitalizationType=\"none\" [(ngModel)]=\"email\" returnKeyType=\"next\" (returnPress)=\"focusPassword()\" #em></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Password\" secure=\"true\" [(ngModel)]=\"password\" [returnKeyType]=\"isLoggingIn ? 'done' : 'next'\" (returnPress)=\"focusConfirmPassword()\" #pw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout *ngIf=\"!isLoggingIn\" class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Confirm password\" secure=\"true\" [(ngModel)]=\"confirmPassword\" returnKeyType=\"done\" #cpw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<Button [text]=\"isLoggingIn ? 'Log In' : 'Sign Up'\" (tap)=\"submit()\" class=\"btn btn-primary m-t-20\"></Button>\r\n\t\t<Label *ngIf=\"isLoggingIn\" text=\"Forgot your password?\" class=\"login-label\" (tap)=\"forgotPassword()\"></Label>\r\n\t</StackLayout>\r\n\r\n\t<Label class=\"login-label sign-up-label\" (tap)=\"toggleForm()\">\r\n\t\t<FormattedString>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'\"></Span>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Sign up' : ''\" class=\"bold\"></Span>\r\n\t\t</FormattedString>\r\n\t</Label>\r\n</FlexboxLayout>"
+
+/***/ }),
+
+/***/ "./app/welcome/welcome.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelcomeComponent", function() { return WelcomeComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/tns-core-modules/ui/dialogs/dialogs.js");
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/logincheck.service.tns.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var WelcomeComponent = /** @class */ (function () {
+    function WelcomeComponent(page, router, logincheckService) {
+        this.page = page;
+        this.router = router;
+        this.logincheckService = logincheckService;
+        this.isLoggingIn = true;
+        this.firebaseConfig = {
+            apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
+            authDomain: "collegepool-1552749118617.firebaseapp.com",
+            databaseURL: "https://collegepool-1552749118617.firebaseio.com",
+            projectId: "collegepool-1552749118617",
+            storageBucket: "collegepool-1552749118617.appspot.com",
+            messagingSenderId: "375263680183",
+            appId: "1:375263680183:web:f2af3f2835638d7c"
+        };
+    }
+    WelcomeComponent.prototype.ngOnInit = function () {
+        this.createViews();
+    };
+    WelcomeComponent.prototype.createViews = function () {
+        // setTimeout(() => {this.em.nativeElement.focus();}, 500);
+        // console.log(this.logincheckService.getUserFromLocalStorage)
+        // this.logincheckService.getUserFromLocalStorage();
+        if (this.logincheckService.getUserFromLocalStorage() != null)
+            this.router.navigate(['navigation'], { clearHistory: true });
+        else
+            this.wc.nativeElement.style.visibility = 'visible';
+        this.page.actionBarHidden = true;
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["init"](this.firebaseConfig).then(function () {
+            console.log("firebase.init done");
+        }, function (error) {
+            console.log("firebase.init error: " + error);
+        });
+    };
+    WelcomeComponent.prototype.toggleForm = function () {
+        this.isLoggingIn = !this.isLoggingIn;
+    };
+    WelcomeComponent.prototype.submit = function () {
+        if (!this.email || !this.password) {
+            this.alert("Please provide both an email address and password");
+            return;
+        }
+        if (this.isLoggingIn) {
+            this.login();
+        }
+        else {
+            this.register();
+        }
+    };
+    WelcomeComponent.prototype.login = function () {
+        var _this = this;
+        var credentials = {
+            passwordOptions: {
+                email: this.email,
+                password: this.password,
+            },
+            type: nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["LoginType"].PASSWORD
+        };
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["login"](credentials).then(function (res) {
+            console.log(res);
+            _this.logincheckService.loginUser(res.uid);
+            _this.router.navigate(['navigation'], { clearHistory: true });
+        }).catch(function (err) {
+            console.log(err);
+            _this.alert("We could not find an account matching your email or password");
+            return;
+        });
+    };
+    WelcomeComponent.prototype.register = function () {
+        var _this = this;
+        if (this.password != this.confirmPassword) {
+            this.alert("Your passwords do not match");
+            return;
+        }
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["createUser"]({
+            email: this.email,
+            password: this.password
+        }).then(function (res) {
+            _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, null, null, null, null, null, null);
+            _this.logincheckService.loginUser(res.uid);
+            _this.router.navigate(['navigation'], { clearHistory: true });
+        }).catch(function (err) {
+            if (err == 'Creating a user failed. com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account.')
+                _this.alert('There is already an account associated with that email');
+            else if (err == 'Creating a user failed. Password should be at least 6 characters')
+                _this.alert('Password must be at least 6 characters');
+            console.log(err);
+            return;
+        });
+    };
+    WelcomeComponent.prototype.forgotPassword = function () {
+        var _this = this;
+        Object(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_1__["prompt"])({
+            title: "Forgot Password",
+            message: "Enter the email address you used to register for CollegePool to reset your password",
+            inputType: "email",
+            defaultText: "",
+            okButtonText: "Ok",
+            cancelButtonText: "Cancel"
+        }).then(function (data) {
+            if (data.result)
+                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["sendPasswordResetEmail"](data.text).then(function () {
+                    _this.alert('An email has been sent to ' + data.text + ' with details of how to recover your account');
+                }, function (errorMessage) {
+                    _this.alert('No account could be found with your email');
+                });
+        });
+    };
+    WelcomeComponent.prototype.focusPassword = function () {
+        this.pw.nativeElement.focus();
+    };
+    WelcomeComponent.prototype.focusConfirmPassword = function () {
+        if (!this.isLoggingIn) {
+            this.cpw.nativeElement.focus();
+        }
+    };
+    WelcomeComponent.prototype.alert = function (message) {
+        return Object(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_1__["alert"])({
+            title: "CollegePool",
+            okButtonText: "Close",
+            message: message
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("em"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], WelcomeComponent.prototype, "em", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("pw"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], WelcomeComponent.prototype, "pw", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("cpw"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], WelcomeComponent.prototype, "cpw", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("welcomeContainer"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], WelcomeComponent.prototype, "wc", void 0);
+    WelcomeComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-welcome',
+            template: __webpack_require__("./app/welcome/welcome.component.html"),
+            styles: [__webpack_require__("./app/welcome/welcome.component.css")]
+        }),
+        __metadata("design:paramtypes", [tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_5__["LogincheckService"]])
+    ], WelcomeComponent);
+    return WelcomeComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./main.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3702,6 +4032,7 @@ __webpack_require__("../node_modules/tns-core-modules/ui/frame/activity.js");
 
 
 Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_2__["registerElement"])("Ripple", function () { return __webpack_require__("../node_modules/nativescript-ripple/ripple.js").Ripple; });
+// require('nativescript-nodeify')
 // import Amplify from 'aws-amplify';
 // import awsconfig from './aws-exports';
 // Amplify.configure(awsconfig);

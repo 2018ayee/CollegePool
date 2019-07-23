@@ -1,4 +1,4 @@
-<TabView [(ngModel)]="tabSelectedIndex" (tabItemTap)="home()" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom" selectedTabTextColor="#ac00e6">
+<TabView [(ngModel)]="tabSelectedIndex" (tabItemTap)="home()" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom" selectedTabTextColor="#ac00e6" #tabView>
     <Page *tabItem="homeTab">
     	<app-home></app-home>
     </Page>
