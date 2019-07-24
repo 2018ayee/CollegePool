@@ -22,11 +22,15 @@
 		"D:\\Kyvern\\CollegePool\\node_modules\\tns-core-modules-widgets\\platforms\\android\\widgets-release.aar": "3ccd997e57128144d7d598fee13ec8f2c95f3834"
 	},
 	"nativescript-plugin-firebase": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\include.gradle": "57d730e59c0837e562a6e9c7f60604aa38495141",
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\firebase-release.aar": "e1a0244835b078d3faab4fcd4e1cc50828d2a161",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript_plugin_firebase.aar": "1998847b1e007eaa2ebf602459b3ea72e612366d",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript-firebase-mlkit-helper.jar-disabled": "5f4785cb9dd189914b2f75b00a10b9ebe47e335f",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\include.gradle": "57d730e59c0837e562a6e9c7f60604aa38495141",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript_plugin_firebase.aar": "1d76e8a745bedc991cec0cb1ac78697706cda0e9",
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\res\\raw\\beep.ogg": "1a522c83c9af8babf4b1aa83755ed93742a815c6",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\.DS_Store": "08b9fd18287f85a1099bda47d40aa99d1aa5c40b"
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\.DS_Store": "08b9fd18287f85a1099bda47d40aa99d1aa5c40b",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript-firebase-mlkit-helper.jar-disabled": "5f4785cb9dd189914b2f75b00a10b9ebe47e335f"
+	},
+	"nativescript-facebook": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\include.gradle": "c8e2566b235b01d9a48f7bcf3f4924e73eda6400",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\nativescript_facebook.aar": "9b8b730009555df1d7b394f5193a1164e51b1b3a"
 	}
 }

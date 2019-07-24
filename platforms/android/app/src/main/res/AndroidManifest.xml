@@ -27,6 +27,10 @@
 		android:usesCleartextTraffic="true"
 		android:networkSecurityConfig="@xml/network_security_config">
 
+		<provider android:authorities="com.facebook.app.FacebookContentProvider2272129649677747"
+				  android:name="com.facebook.FacebookContentProvider"
+				  android:exported="true"/>
+
 		<activity
 			android:name="com.tns.NativeScriptActivity"
 			android:label="@string/title_activity_kimera"

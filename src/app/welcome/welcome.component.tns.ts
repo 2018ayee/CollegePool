@@ -4,6 +4,7 @@ import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
 import * as firebase from 'nativescript-plugin-firebase';
 import { LogincheckService } from '../logincheck.service.tns';
+import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 
 @Component({
   selector: 'app-welcome',
@@ -32,6 +33,7 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("pw") pw: ElementRef;
   @ViewChild("cpw") cpw: ElementRef;
   @ViewChild("welcomeContainer") wc: ElementRef;
+  @ViewChild("activityIndicator") ai: ElementRef;
   
   ngOnInit() {
     this.createViews();
@@ -43,8 +45,11 @@ export class WelcomeComponent implements OnInit {
     // this.logincheckService.getUserFromLocalStorage();
     if(this.logincheckService.getUserFromLocalStorage() != null)
       this.router.navigate(['navigation'], {clearHistory: true});
-    else
+    else {
+      var activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+      activityIndicator.busy = false;
       this.wc.nativeElement.style.visibility = 'visible';
+    }
     this.page.actionBarHidden = true;
     firebase.init(this.firebaseConfig).then(
       () => {
@@ -85,6 +90,10 @@ export class WelcomeComponent implements OnInit {
     firebase.login(credentials).then((res) => {
     	console.log(res);
       this.logincheckService.loginUser(res.uid)
+      firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
+        if(doc.data().payment_id == null)
+          this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+      })
     	this.router.navigate(['navigation'], {clearHistory: true});
     }).catch((err) => {
       console.log(err);
@@ -102,8 +111,9 @@ export class WelcomeComponent implements OnInit {
   		email: this.email,
   		password: this.password
   	}).then((res) => {
-      	this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, null, null, null, null, null, null)
+      	this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, null, null, null, null, 0, 0)
         this.logincheckService.loginUser(res.uid)
+        this.logincheckService.addUserToBraintree('test', 'test user', res.email)
       	this.router.navigate(['navigation'], {clearHistory: true});
       }).catch((err) => {
         if(err == 'Creating a user failed. com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account.')
@@ -152,6 +162,37 @@ export class WelcomeComponent implements OnInit {
   	    okButtonText: "Close",
   	    message: message
   	});
+  }
+
+  fbLogin() {
+    this.wc.nativeElement.style.visibility = 'collapse';
+    var activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+    activityIndicator.busy = true;
+    firebase.login({
+      type: firebase.LoginType.FACEBOOK,
+      // Optional
+      facebookOptions: {
+        // defaults to ['public_profile', 'email']
+        scopes: ['public_profile', 'email', 'user_birthday', 'user_gender'] // note: this property was renamed from "scope" in 8.4.0
+      }
+    }).then(
+        (res) => {
+          
+          firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
+            if(doc == null)
+              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile.first_name, res.additionalUserInfo.profile.last_name, null, null, 0, 0);
+            else if(doc.data().payment_id == null)
+              this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+          })
+          this.logincheckService.loginUser(res.uid)
+          this.router.navigate(['navigation'], {clearHistory: true});
+        },
+        (errorMessage) => {
+          console.log(errorMessage);
+          this.wc.nativeElement.style.visibility = 'visible';
+        }
+    );
+
   }
 
 }

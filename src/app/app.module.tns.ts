@@ -53,6 +53,10 @@ import { PaymentInfoComponent } from './payment-info/payment-info.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import * as application from 'tns-core-modules/application';
+import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
+import * as nsFacebook from 'nativescript-facebook';
+
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
@@ -62,7 +66,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { environment } from '../environments/environment';
 
-
+application.on(application.launchEvent, function (args) {
+    nsFacebook.init("2272129649677747");
+});
 
 @NgModule({
   declarations: [
@@ -107,6 +113,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     NgxPayPalModule,
     // NgxBraintreeModule,
     HttpClientModule,
+    NativeScriptFacebookModule,
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,

@@ -11,6 +11,8 @@ import { PlacesAutocompleteService } from '../places-autocomplete.service';
 import { setInterval, clearInterval } from "tns-core-modules/timer";
 import { LocationComponent } from '../location/location.component';
 import { TransferService } from '../datatransfer.service';
+import { LogincheckService } from '../logincheck.service.tns';
+import * as firebase from 'nativescript-plugin-firebase';
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 
 @Component({
@@ -21,7 +23,7 @@ import { TransferService } from '../datatransfer.service';
 export class AddModalComponent implements OnInit {
 
   constructor(private params: ModalDialogParams, private postingService: PostingService, private page: Page, private placesService: PlacesAutocompleteService,
-    private modal: ModalDialogService, private vcRef: ViewContainerRef, private transferService: TransferService) { }
+    private modal: ModalDialogService, private vcRef: ViewContainerRef, private transferService: TransferService, private logincheckService: LogincheckService) { }
 
   @ViewChild('drivingLabel') dl: ElementRef;
   @ViewChild('ridingLabel') rl: ElementRef;
@@ -38,7 +40,8 @@ export class AddModalComponent implements OnInit {
   price = "$15";
   capacity = "-1";
   user = {
-  	username: "2022ayee"
+  	username: "2022ayee",
+    id: ""
   };
   startLabel = "Pick start location";
   endLabel = "Pick end location";
@@ -51,7 +54,12 @@ export class AddModalComponent implements OnInit {
   API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
   // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
   ngOnInit() {
-
+    firebase.getCurrentUser().then(user => {
+      this.user.username = user.displayName;
+      if(user.displayName == "")
+        this.user.username = user.email;
+      this.user.id = this.logincheckService.getUser();
+    })
   }
 
   startSelect(event: Event) {
@@ -103,10 +111,33 @@ export class AddModalComponent implements OnInit {
    }
 
    addPosting() {
-     if(this.startLocationPicked && this.endLocationPicked)
-      this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
-        this.close('posted');
-      });
+     if(this.startLocationPicked && this.endLocationPicked) {
+       var postingsCollection = firebase.firestore.collection('postings');
+       postingsCollection.add({
+         uid: this.user.id,
+         user: this.user.username,
+         startAddress: this.startPlace,
+         endAddress: this.endPlace,
+         date: this.date,
+         price: this.price,
+         capacity: this.capacity,
+         comments: ""
+       }).then(res => {
+         // console.log(res);
+
+         firebase.firestore.collection('users').doc(this.user.id).get().then(doc => {
+           var posts: String[] = doc.data().posts;
+           posts.push(res.id);
+           firebase.firestore.collection('users').doc(this.user.id).update({
+             posts: posts
+           })
+         })
+       })
+       this.close('posted');
+     }
+      // this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
+      //   this.close('posted');
+      // });
   }
 
   onPickerLoaded(args) {
