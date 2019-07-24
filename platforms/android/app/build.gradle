@@ -408,6 +408,7 @@ tasks.whenTaskAdded({ org.gradle.api.DefaultTask currentTask ->
         currentTask.dependsOn(runSbg)
         currentTask.finalizedBy(ensureMetadataOutDir)
         ensureMetadataOutDir.finalizedBy(buildMetadata)
+		buildMetadata.finalizedBy(copyMetadata)
     }
     if (currentTask =~ /merge.*Assets/) {
         currentTask.shouldRunAfter(buildMetadata)
@@ -810,3 +811,36 @@ task cleanMdg(type: Delete) {
 
 cleanSbg.dependsOn(cleanMdg)
 clean.dependsOn(cleanSbg)
+
+task copyMetadata {
+  doFirst {
+      // before tns-android 5.2.0 its gradle version didn't have this method implemented, so pri
+      android.applicationVariants.all { variant ->
+          if (variant.buildType.name == project.selectedBuildType) {
+              def task
+              if (variant.metaClass.respondsTo(variant, "getMergeAssetsProvider")) {
+                  def provider = variant.getMergeAssetsProvider()
+                  task = provider.get();
+              } else {
+                  // fallback for older android gradle plugin versions
+                  task = variant.getMergeAssets()
+              }
+              for (File file : task.getOutputs().getFiles()) {
+                  if (!file.getPath().contains("/incremental/")) {
+                      project.ext.mergedAssetsOutputPath = file.getPath()
+                  }
+              }
+          }
+      }
+  }
+  doLast {
+    copy {
+      if (!project.mergedAssetsOutputPath) {
+        // mergedAssetsOutputPath not found fallback to the default value for android gradle plugin 3.4.0
+        project.ext.mergedAssetsOutputPath = "$projectDir/build/intermediates/assets/" + project.selectedBuildType + "/out"
+      }
+      from "$projectDir/src/main/assets/metadata"
+      into project.mergedAssetsOutputPath + "/metadata"
+    }
+  }
+}

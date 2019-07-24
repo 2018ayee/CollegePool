@@ -32,11 +32,12 @@ import { PaymentsComponent } from './payments/payments.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { SearchComponent } from './search/search.component';
 import { PaymentInfoComponent } from './payment-info/payment-info.component'
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '',   redirectTo: '/welcome', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'settings', component: SettingsComponent },
@@ -47,7 +48,7 @@ export const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'navigation', component: NavigationComponent },
   { path: 'paymentinfo', component: PaymentInfoComponent },
-
+  { path: 'welcome', component: WelcomeComponent },
 ];
 
 @NgModule({

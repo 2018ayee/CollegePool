@@ -1,4 +1,4 @@
-rootProject.name = "ngsample"
+rootProject.name = "collegepool"
 include ':app'//, ':runtime', ':runtime-binding-generator'
 
 //project(':runtime').projectDir = new File("${System.env.ANDROID_RUNTIME_HOME}/test-app/runtime")

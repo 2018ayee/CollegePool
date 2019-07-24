@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Page } from "tns-core-modules/ui/page";
 import { RouterExtensions } from 'nativescript-angular/router';
 import { Person } from "../person";
+import { LogincheckService } from '../logincheck.service.tns';
+
 
 @Component({
 	moduleId: module.id,
@@ -15,7 +17,7 @@ import { Person } from "../person";
 export class SettingsComponent implements OnInit {
 	private _person: Person;
 
-  constructor(private router: RouterExtensions, private page: Page) { }
+  constructor(private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService) { }
 
   	ngOnInit() {
 		this._person = new Person("Phillim", "Das", "john@company.com", "12224443333", "232 Rodman Road");
@@ -26,5 +28,10 @@ export class SettingsComponent implements OnInit {
     }
 	toPayments(){
 		this.router.navigate(['payments']);
+	}
+
+	logOut() {
+		this.logincheckService.clearInfo();
+		this.router.navigate(['welcome']);
 	}
 }

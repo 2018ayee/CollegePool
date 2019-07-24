@@ -8,7 +8,8 @@
 android {  
   defaultConfig {  
     generatedDensities = []
-    applicationId = "org.nativescript.ngsample" 
+    applicationId = "org.nativescript.collegepool" 
+    multiDexEnabled true
     
     //override supported platforms
     // ndk {

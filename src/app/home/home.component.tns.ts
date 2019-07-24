@@ -8,6 +8,9 @@ import { getFrameById } from "tns-core-modules/ui/frame";
 import { UserService } from '../user.service.tns';
 import { PostingService } from '../posting.service.tns';
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
+import * as application from "tns-core-modules/application";
+import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
+import { isAndroid } from "tns-core-modules/platform";
 
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 import { ListView } from "tns-core-modules/ui/list-view";
@@ -46,20 +49,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   	this.loadPostings();
-    // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-    // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-    // this.blocks++;
-    // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-    // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-    // this.blocks++;
-    // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-    // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-    // this.blocks++;
-    // this.transferService.setData([{"index": this.blocks, "id": "xd", "user": "test", "startadr": "here", "endadr": "there", "date": "anytime", "cost": "whatever", "capacity": "3", "comments": "", "buttonType": "Connect"}]);
-    // this.addService.appendComponentToBody(this.page.getViewById('feed'));
-    // this.blocks++;
-    // this.loadPostings();
+    
   }
+
+  onBackButtonTap() {
+    application.android.foregroundActivity.finish();
+  }
+
   showModal() {
         let options = {
             context: {},

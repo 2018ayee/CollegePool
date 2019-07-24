@@ -21,6 +21,7 @@
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
     "@angular/core": "^6.1.0",
+    "@angular/fire": "^5.2.1",
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",
     "@angular/material": "^7.3.3",
@@ -38,6 +39,7 @@
     "braintree-web-drop-in": "^1.19.0",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "firebase": "^6.3.1",
     "hammerjs": "^2.0.8",
     "material-design-icons": "^3.0.1",
     "nativescript-angular": "~7.2.0",
@@ -46,6 +48,7 @@
     "nativescript-dom": "^2.0.2",
     "nativescript-floatingactionbutton": "^5.1.0",
     "nativescript-modal-datetimepicker": "^1.2.0",
+    "nativescript-plugin-firebase": "^9.0.4",
     "nativescript-pulltorefresh": "^2.3.0",
     "nativescript-ripple": "^2.2.1",
     "nativescript-theme-core": "~1.0.4",
@@ -85,7 +88,7 @@
     "typescript": "~2.9.2"
   },
   "nativescript": {
-    "id": "org.nativescript.ngsample",
+    "id": "org.nativescript.collegepool",
     "tns-android": {
       "version": "5.3.1"
     }

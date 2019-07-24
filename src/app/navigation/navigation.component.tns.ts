@@ -7,7 +7,9 @@ import { Button } from 'tns-core-modules/ui/button';
 import { TabView } from "tns-core-modules/ui/tab-view";
 import { SelectedIndexChangedEventData } from "tns-core-modules/ui/tab-view";
 import { ListView } from "tns-core-modules/ui/list-view";
-
+import * as application from "tns-core-modules/application";
+import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
+import { isAndroid } from "tns-core-modules/platform";
 
 @Component({
   selector: 'app-navigation',
@@ -18,6 +20,7 @@ export class NavigationComponent implements OnInit {
 
   constructor(private transferService: TransferService, private router: RouterExtensions, private page: Page) { }
 
+  @ViewChild('tabView') tv: ElementRef;
   user;
   activebtn;
   tabSelectedIndex = 0;
@@ -30,6 +33,7 @@ export class NavigationComponent implements OnInit {
   // listView = <ListView> this.lv.nativeElement;
 
   ngOnInit() {
+
   	this.activebtn = this.transferService.getData();
   	if(this.activebtn == "homenav") {
       this.homeTab = {iconSource: 'res://home_highlighted'};
@@ -58,15 +62,22 @@ export class NavigationComponent implements OnInit {
       this.settingsTab = {iconSource: 'res://settings_highlighted'};
       this.tabSelectedIndex = 3;
     }
-  	// else if(this.activebtn == 'post')
-  	// 	document.getElementById('myModal').style.display = "block";
-  	// else
-  	// 	this.paintActive(this.activebtn);
-  	//var route = this.router.router + 'nav';
-  	//this.activebtn = route.substring(1);
-  	//console.log(this.activebtn);
-  	//this.paintActive(this.activebtn);
-  	//this.user = this.logincheckService.getUser();
+    // console.log(this.tabSelectedIndex)
+
+    // var justSet = false;
+
+    // if(isAndroid)
+    //   application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+    //     console.log(this.tabSelectedIndex)
+    //   if (this.tabSelectedIndex === 0 && !justSet) {
+    //     application.android.foregroundActivity.finish();
+    //   }
+    //   else {
+    //     this.tv.nativeElement.selectedIndex = 0;
+    //     justSet = true;
+    //     setTimeout(() => {justSet = false}, 500);
+    //   }
+    // });
   }
   paintActive(btn) {
   	const navcontents = dom.getElementsByClassName('navigation')
