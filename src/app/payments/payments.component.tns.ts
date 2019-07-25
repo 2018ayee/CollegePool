@@ -184,7 +184,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   onNavBtnTap() {
-    this.router.navigate(['settings']);
+    this.router.navigate(['settings'], {clearHistory: true});
   }
 
 }

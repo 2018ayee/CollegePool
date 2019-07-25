@@ -69,12 +69,13 @@ export class LogincheckService {
 
   loginUser(uid) {
   	appSettings.setString("uid", uid);
+  	console.log(uid)
   	this.uid = uid;
   }
 
   loginCheck() {
 	if(this.getUser == null)
-		this.router.navigate(['welcome'])
+		this.router.navigate(['welcome'], {clearHistory: true})
   }
 
   getUserFromLocalStorage() {
@@ -82,10 +83,7 @@ export class LogincheckService {
   }
 
   getUser() {
-	if(this.uid == null)
-	{
-		this.uid = this.getUserFromLocalStorage();
-	}
+	this.uid = this.getUserFromLocalStorage();
 	return this.uid;
   }
 

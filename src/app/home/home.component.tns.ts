@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
 		// });
     var posts = [];
     var postingsCollection = firebase.firestore.collection('postings');
-    postingsCollection.get().then(querySnapshot => {
+    postingsCollection.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         posts.push({
           id: doc.id,
@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
         })
       });
       this.p = posts;
-      for(var i = posts.length - 1; i >= 0; i--) {
+      for(var i = 0; i < posts.length; i++) {
         this.createPosting(posts[i].data);
       }
       if(args != null)

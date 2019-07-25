@@ -213,6 +213,7 @@ com.google.android.gms.tasks.OnSuccessListener*vendor*100719*37**onSuccess***
 com.google.android.gms.tasks.OnFailureListener*vendor*100725*37**onFailure***
 com.google.android.gms.tasks.OnSuccessListener*vendor*100744*37**onSuccess***
 com.google.android.gms.tasks.OnFailureListener*vendor*100750*37**onFailure***
+com.google.firebase.storage.OnProgressListener*vendor*100906*38**onProgress***
 android.view.ViewTreeObserver.OnGlobalLayoutListener*vendor*115023*39**onGlobalLayout***
 android.app.Application.ActivityLifecycleCallbacks*vendor*115032*30**onActivityCreated,onActivityDestroyed,onActivityPaused,onActivityResumed,onActivitySaveInstanceState,onActivityStarted,onActivityStopped***
 android.content.ComponentCallbacks2*vendor*115078*30**onLowMemory,onTrimMemory,onConfigurationChanged***

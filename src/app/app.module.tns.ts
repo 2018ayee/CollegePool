@@ -56,6 +56,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import * as application from 'tns-core-modules/application';
 import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
 import * as nsFacebook from 'nativescript-facebook';
+import { DatePipe } from '@angular/common';
 
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
@@ -119,7 +120,7 @@ application.on(application.launchEvent, function (args) {
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
-  providers: [PostingService, TransferService, DynamicAddService, UserService, PaymentService, ModalDialogService, PlacesAutocompleteService],
+  providers: [PostingService, TransferService, DynamicAddService, UserService, PaymentService, ModalDialogService, PlacesAutocompleteService, DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
   PaymentInfoComponent, ConfirmationComponent],
