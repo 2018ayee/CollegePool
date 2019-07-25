@@ -46,6 +46,7 @@
     "nativescript-braintree": "^2.0.4",
     "nativescript-dialog": "^0.1.0",
     "nativescript-dom": "^2.0.2",
+    "nativescript-facebook": "^4.1.0",
     "nativescript-floatingactionbutton": "^5.1.0",
     "nativescript-modal-datetimepicker": "^1.2.0",
     "nativescript-plugin-firebase": "^9.0.4",

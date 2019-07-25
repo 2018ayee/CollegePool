@@ -4,15 +4,20 @@
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\nativescript_braintree.aar": "85addd52f589f33bf535b8bf0e4e49349da0768d",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f"
 	},
+	"nativescript-facebook": {
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\include.gradle": "c8e2566b235b01d9a48f7bcf3f4924e73eda6400",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\nativescript_facebook.aar": "9b8b730009555df1d7b394f5193a1164e51b1b3a"
+	},
 	"nativescript-floatingactionbutton": {
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-floatingactionbutton\\platforms\\android\\include.gradle": "8c1fe5211f608e2cdeb32d726de040ca97d7e0f1"
 	},
 	"nativescript-plugin-firebase": {
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\firebase-release.aar": "e1a0244835b078d3faab4fcd4e1cc50828d2a161",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\include.gradle": "57d730e59c0837e562a6e9c7f60604aa38495141",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript-firebase-mlkit-helper.jar-disabled": "5f4785cb9dd189914b2f75b00a10b9ebe47e335f",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript_plugin_firebase.aar": "1d76e8a745bedc991cec0cb1ac78697706cda0e9",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\res\\raw\\beep.ogg": "1a522c83c9af8babf4b1aa83755ed93742a815c6",
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\.DS_Store": "08b9fd18287f85a1099bda47d40aa99d1aa5c40b"
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\.DS_Store": "08b9fd18287f85a1099bda47d40aa99d1aa5c40b",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\firebase-release.aar": "e1a0244835b078d3faab4fcd4e1cc50828d2a161"
 	},
 	"nativescript-ripple": {
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ripple\\platforms\\android\\include.gradle": "836c8bb8daac6779214a7f80b47d9837d29b2917"

@@ -355,6 +355,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/places-autocomplete.service.ts");
 /* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/location/location.component.ts");
 /* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -373,9 +376,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 var AddModalComponent = /** @class */ (function () {
-    function AddModalComponent(params, postingService, page, placesService, modal, vcRef, transferService) {
+    function AddModalComponent(params, postingService, page, placesService, modal, vcRef, transferService, logincheckService) {
         this.params = params;
         this.postingService = postingService;
         this.page = page;
@@ -383,11 +388,13 @@ var AddModalComponent = /** @class */ (function () {
         this.modal = modal;
         this.vcRef = vcRef;
         this.transferService = transferService;
+        this.logincheckService = logincheckService;
         this.date = "now";
         this.price = "$15";
         this.capacity = "-1";
         this.user = {
-            username: "2022ayee"
+            username: "2022ayee",
+            id: ""
         };
         this.startLabel = "Pick start location";
         this.endLabel = "Pick end location";
@@ -398,6 +405,13 @@ var AddModalComponent = /** @class */ (function () {
     }
     // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
     AddModalComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["getCurrentUser"]().then(function (user) {
+            _this.user.username = user.displayName;
+            if (user.displayName == "")
+                _this.user.username = user.email;
+            _this.user.id = _this.logincheckService.getUser();
+        });
     };
     AddModalComponent.prototype.startSelect = function (event) {
         console.log(event.srcElement);
@@ -446,10 +460,32 @@ var AddModalComponent = /** @class */ (function () {
     };
     AddModalComponent.prototype.addPosting = function () {
         var _this = this;
-        if (this.startLocationPicked && this.endLocationPicked)
-            this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(function () {
-                _this.close('posted');
+        if (this.startLocationPicked && this.endLocationPicked) {
+            var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('postings');
+            postingsCollection.add({
+                uid: this.user.id,
+                user: this.user.username,
+                startAddress: this.startPlace,
+                endAddress: this.endPlace,
+                date: this.date,
+                price: this.price,
+                capacity: this.capacity,
+                comments: ""
+            }).then(function (res) {
+                // console.log(res);
+                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users').doc(_this.user.id).get().then(function (doc) {
+                    var posts = doc.data().posts;
+                    posts.push(res.id);
+                    nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users').doc(_this.user.id).update({
+                        posts: posts
+                    });
+                });
             });
+            this.close('posted');
+        }
+        // this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
+        //   this.close('posted');
+        // });
     };
     AddModalComponent.prototype.onPickerLoaded = function (args) {
         var datePicker = args.object;
@@ -501,7 +537,7 @@ var AddModalComponent = /** @class */ (function () {
             styles: [__webpack_require__("./app/add-modal/add-modal.component.css")]
         }),
         __metadata("design:paramtypes", [nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_2__["PostingService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__["Page"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_5__["PlacesAutocompleteService"],
-            nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_7__["TransferService"]])
+            nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_7__["TransferService"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_8__["LogincheckService"]])
     ], AddModalComponent);
     return AddModalComponent;
 }());
@@ -773,6 +809,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
 /* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
 /* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__("./app/welcome/welcome.component.ts");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__);
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__("../node_modules/nativescript-facebook/angular/index.js");
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46__);
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -826,6 +868,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 // import { AngularFireModule } from '@angular/fire';
@@ -833,6 +878,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { environment } from '../environments/environment';
+tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__["launchEvent"], function (args) {
+    nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__["init"]("2272129649677747");
+});
 var AppModule = /** @class */ (function () {
     /*
     Pass your application module to the bootstrapModule function located in main.ts to start your app
@@ -884,6 +932,7 @@ var AppModule = /** @class */ (function () {
                 nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__["NativeScriptUIDataFormModule"],
                 // NgxBraintreeModule,
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_33__["HttpClientModule"],
+                nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46__["NativeScriptFacebookModule"],
             ],
             providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_24__["PaymentService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__["PlacesAutocompleteService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
@@ -1609,9 +1658,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
 /* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1632,8 +1683,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_10__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
 var PostItem = /** @class */ (function () {
     function PostItem(username, info) {
         this.username = username;
@@ -1668,7 +1720,7 @@ var HomeComponent = /** @class */ (function () {
             // animated: true,
             // transition: { name: "slideTop" }
         };
-        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_9__["AddModalComponent"], options).then(function (res) {
+        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_10__["AddModalComponent"], options).then(function (res) {
             // console.log(res);
             if (res == 'posted')
                 _this.loadPostings();
@@ -1686,12 +1738,31 @@ var HomeComponent = /** @class */ (function () {
         // let layout = <StackLayout>this.page.getViewById('feed');
         // layout.removeChildren();
         this.postings.splice(0);
-        this.postingService.getPostings()
-            .subscribe(function (data) {
-            _this.p = data;
-            _this.blocks = 0;
-            for (var i = _this.p.length - 1; i >= 0; i--) {
-                _this.createPosting(_this.p[i]);
+        // 	this.postingService.getPostings()
+        // .subscribe((data: Posting[]) => {
+        // 	this.p = data;
+        // 	this.blocks = 0;
+        // 	for(var i = this.p.length - 1; i >= 0; i--) {
+        //         this.createPosting(this.p[i]);
+        //     }
+        //     if(args != null)
+        //     {
+        //       var pullRefresh = args.object;
+        //       pullRefresh.refreshing = false;
+        //     }
+        // });
+        var posts = [];
+        var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('postings');
+        postingsCollection.get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                posts.push({
+                    id: doc.id,
+                    data: doc.data()
+                });
+            });
+            _this.p = posts;
+            for (var i = posts.length - 1; i >= 0; i--) {
+                _this.createPosting(posts[i].data);
             }
             if (args != null) {
                 var pullRefresh = args.object;
@@ -1708,9 +1779,9 @@ var HomeComponent = /** @class */ (function () {
         var info_label = "";
         // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
         if (data.capacity != "-1")
-            info_label = "Offering ride leaving " + data.date + " from " + data.startadr + " to " + data.endadr + " for " + data.cost;
+            info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
         else
-            info_label = "Requesting ride leaving " + data.date + " from " + data.startadr + " to " + data.endadr;
+            info_label = "Requesting ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress;
         this.postings.push(new PostItem(data.user, info_label));
     };
     HomeComponent.prototype.refreshList = function (args) {
@@ -2110,7 +2181,8 @@ var LogincheckService = /** @class */ (function () {
             gender: gender,
             phone_number: phone_number,
             rides_given: rides_given,
-            rides_received: rides_received
+            rides_received: rides_received,
+            posts: []
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -2124,14 +2196,11 @@ var LogincheckService = /** @class */ (function () {
         this.uid = null;
         tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["clear"]();
     };
-    LogincheckService.prototype.addUserToBraintree = function () {
+    LogincheckService.prototype.addUserToBraintree = function (username, name, email) {
         var _this = this;
-        this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email).subscribe(function (data) {
-            _this.userService.updateUser(_this.user._id, _this.user.name, _this.user.username, _this.user.address, _this.user.birthdate, _this.user.email, _this.user.gender, _this.user.phone_number, _this.user.rides_given, _this.user.rides_received, data.customer.id)
-                .subscribe(function () {
-                _this.user.payment_id = data.customer.id;
-                _this.myStorage.setItem('payment_id', _this.user.payment_id);
-                console.log(_this.user);
+        this.paymentService.addPaymentUser(this.uid, username, name, email).subscribe(function (data) {
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users').doc(_this.uid).update({
+                payment_id: data.customer.id
             });
         });
         // this.paymentService.getPaymentUserById('258703956').subscribe((data: any) => {
@@ -2220,7 +2289,8 @@ var LogincheckService = /** @class */ (function () {
             gender: gender,
             phone_number: phone_number,
             rides_given: rides_given,
-            rides_received: rides_received
+            rides_received: rides_received,
+            posts: []
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -2234,14 +2304,11 @@ var LogincheckService = /** @class */ (function () {
         this.uid = null;
         tns_core_modules_application_settings__WEBPACK_IMPORTED_MODULE_4__["clear"]();
     };
-    LogincheckService.prototype.addUserToBraintree = function () {
+    LogincheckService.prototype.addUserToBraintree = function (username, name, email) {
         var _this = this;
-        this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email).subscribe(function (data) {
-            _this.userService.updateUser(_this.user._id, _this.user.name, _this.user.username, _this.user.address, _this.user.birthdate, _this.user.email, _this.user.gender, _this.user.phone_number, _this.user.rides_given, _this.user.rides_received, data.customer.id)
-                .subscribe(function () {
-                _this.user.payment_id = data.customer.id;
-                _this.myStorage.setItem('payment_id', _this.user.payment_id);
-                console.log(_this.user);
+        this.paymentService.addPaymentUser(this.uid, username, name, email).subscribe(function (data) {
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users').doc(_this.uid).update({
+                payment_id: data.customer.id
             });
         });
         // this.paymentService.getPaymentUserById('258703956').subscribe((data: any) => {
@@ -2910,6 +2977,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/ui/dialogs/dialogs.js");
 /* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2919,6 +2988,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2959,7 +3029,13 @@ var PaymentsComponent = /** @class */ (function () {
         this.payments = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__["ObservableArray"]();
     }
     PaymentsComponent.prototype.ngOnInit = function () {
-        this.getUser();
+        var _this = this;
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__["getCurrentUser"]().then(function (user) {
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__["firestore"].collection('users').doc(user.uid).get().then(function (doc) {
+                _this.user.payment_id = doc.data().payment_id;
+                _this.getUser();
+            });
+        });
     };
     PaymentsComponent.prototype.showModal = function () {
         var _this = this;
@@ -3520,7 +3596,7 @@ module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn 
 /***/ "./app/settings/settings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n\r\n<StackLayout>\r\n  <Label id= \"Header\" text=\"Account Settings\" textWrap=\"true\"></Label>\r\n  <RadDataForm tkExampleTitle tkToggleNavButton [source]=\"person\"></RadDataForm>  \r\n  <Button class=\"Update\"  text=\"Update Settings\"></Button>\r\n  <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n\r\n    <Button (tap)=\"logOut()\" text=\"Log out\"></Button>\r\n</StackLayout>\r\n\r\n\r\n"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n\r\n<StackLayout>\r\n  <Label id= \"Header\" text=\"Account Settings\" textWrap=\"true\"></Label>\r\n  <RadDataForm tkExampleTitle tkToggleNavButton [source]=\"person\"></RadDataForm>  \r\n  <Button class=\"Update\"  text=\"Update Settings\"></Button>\r\n  <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n    <Button (tap)=\"logOut()\" text=\"Log out\"></Button>\r\n</StackLayout>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -3537,6 +3613,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _person__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/person.ts");
 /* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3548,6 +3626,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 // import { Router } from '@angular/router';
+
 
 
 
@@ -3573,8 +3652,9 @@ var SettingsComponent = /** @class */ (function () {
         this.router.navigate(['payments']);
     };
     SettingsComponent.prototype.logOut = function () {
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__["logout"]();
         this.logincheckService.clearInfo();
-        this.router.navigate(['welcome']);
+        this.router.navigate(['welcome'], { clearHistory: true });
     };
     SettingsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3838,14 +3918,14 @@ var UserService = /** @class */ (function () {
 /***/ "./app/welcome/welcome.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\n  align-items: center;\r\n  flex-direction: column;\r\n  visibility: collapse;\r\n}\r\n.form {\r\n  margin-left: 30;\r\n  margin-right: 30;\r\n  flex-grow: 2;\r\n  vertical-align: middle;\r\n}\r\n\r\n.logo {\r\n  margin-bottom: 72;\r\n  height: 120;\r\n  font-weight: bold;\r\n}\r\n.header {\r\n  horizontal-align: center;\r\n  font-size: 25;\r\n  font-weight: 600;\r\n  margin-bottom: 70;\r\n  text-align: center;\r\n  color: #ac00e6;\r\n}\r\n\r\n.input-field {\r\n  margin-bottom: 25;\r\n}\r\n.input {\r\n  font-size: 18;\r\n  placeholder-color: #A8A8A8;\r\n}\r\n\r\n.btn-primary {\r\n  height: 50;\r\n  margin: 30 5 15 5;\r\n  background-color: #ac00e6;\r\n  border-radius: 5;\r\n  font-size: 20;\r\n  font-weight: 600;\r\n}\r\n.login-label {\r\n  horizontal-align: center;\r\n  color: #A8A8A8;\r\n  font-size: 16;\r\n}\r\n.sign-up-label {\r\n  margin-bottom: 20;\r\n}\r\n.bold {\r\n  color: #000000; \r\n}"
+module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\n  align-items: center;\r\n  flex-direction: column;\r\n  visibility: collapse;\r\n}\r\n.form {\r\n  margin-left: 30;\r\n  margin-right: 30;\r\n  flex-grow: 2;\r\n  vertical-align: middle;\r\n}\r\n\r\n.logo {\r\n  margin-bottom: 72;\r\n  height: 120;\r\n  font-weight: bold;\r\n}\r\n.header {\r\n  horizontal-align: center;\r\n  font-size: 25;\r\n  font-weight: 600;\r\n  margin-bottom: 70;\r\n  text-align: center;\r\n  color: #ac00e6;\r\n}\r\n\r\n.input-field {\r\n  margin-bottom: 25;\r\n}\r\n.input {\r\n  font-size: 18;\r\n  placeholder-color: #A8A8A8;\r\n}\r\n\r\n.btn-primary {\r\n  height: 50;\r\n  margin: 30 5 15 5;\r\n  background-color: #ac00e6;\r\n  border-radius: 5;\r\n  font-size: 20;\r\n  font-weight: 600;\r\n}\r\n\r\n.btn-fb {\r\n  height: 100;\r\n  margin: 0 5 15 5;\r\n  /*border-radius: 5;*/\r\n  font-size: 20;\r\n  font-weight: 600;\r\n}\r\n\r\n.login-label {\r\n  horizontal-align: center;\r\n  color: #A8A8A8;\r\n  font-size: 16;\r\n}\r\n.sign-up-label {\r\n  margin-bottom: 20;\r\n}\r\n.bold {\r\n  color: #000000; \r\n}\r\n.activity-indicator {\r\n  color: #ac00e6;\r\n}"
 
 /***/ }),
 
 /***/ "./app/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<FlexboxLayout class=\"page\" #welcomeContainer>\r\n\t<StackLayout class=\"form\">\r\n\t\t<Image class=\"logo\" src=\"~/img/logo.png\"></Image>\r\n\t\t<!-- <Label class=\"header\" text=\"CollegePool\"></Label> -->\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Email\" keyboardType=\"email\" autocorrect=\"false\" autocapitalizationType=\"none\" [(ngModel)]=\"email\" returnKeyType=\"next\" (returnPress)=\"focusPassword()\" #em></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Password\" secure=\"true\" [(ngModel)]=\"password\" [returnKeyType]=\"isLoggingIn ? 'done' : 'next'\" (returnPress)=\"focusConfirmPassword()\" #pw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout *ngIf=\"!isLoggingIn\" class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Confirm password\" secure=\"true\" [(ngModel)]=\"confirmPassword\" returnKeyType=\"done\" #cpw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<Button [text]=\"isLoggingIn ? 'Log In' : 'Sign Up'\" (tap)=\"submit()\" class=\"btn btn-primary m-t-20\"></Button>\r\n\t\t<Label *ngIf=\"isLoggingIn\" text=\"Forgot your password?\" class=\"login-label\" (tap)=\"forgotPassword()\"></Label>\r\n\t</StackLayout>\r\n\r\n\t<Label class=\"login-label sign-up-label\" (tap)=\"toggleForm()\">\r\n\t\t<FormattedString>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'\"></Span>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Sign up' : ''\" class=\"bold\"></Span>\r\n\t\t</FormattedString>\r\n\t</Label>\r\n</FlexboxLayout>"
+module.exports = "<FlexboxLayout class=\"page\" #welcomeContainer>\r\n\t<StackLayout class=\"form\">\r\n\t\t<Image class=\"logo\" src=\"~/img/logo.png\"></Image>\r\n\t\t<!-- <Label class=\"header\" text=\"CollegePool\"></Label> -->\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Email\" keyboardType=\"email\" autocorrect=\"false\" autocapitalizationType=\"none\" [(ngModel)]=\"email\" returnKeyType=\"next\" (returnPress)=\"focusPassword()\" #em></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Password\" secure=\"true\" [(ngModel)]=\"password\" [returnKeyType]=\"isLoggingIn ? 'done' : 'next'\" (returnPress)=\"focusConfirmPassword()\" #pw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout *ngIf=\"!isLoggingIn\" class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Confirm password\" secure=\"true\" [(ngModel)]=\"confirmPassword\" returnKeyType=\"done\" #cpw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<Button [text]=\"isLoggingIn ? 'Log In' : 'Sign Up'\" (tap)=\"submit()\" class=\"btn btn-primary m-t-20\"></Button>\r\n\t\t<StackLayout>\r\n\t\t\t<FacebookLoginButton (tap)=\"fbLogin()\" class=\"btn-fb\"></FacebookLoginButton>\r\n\t\t</StackLayout>\r\n\t\t<Label *ngIf=\"isLoggingIn\" text=\"Forgot your password?\" class=\"login-label\" (tap)=\"forgotPassword()\"></Label>\r\n\t</StackLayout>\r\n\r\n\t<Label class=\"login-label sign-up-label\" (tap)=\"toggleForm()\">\r\n\t\t<FormattedString>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'\"></Span>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Sign up' : ''\" class=\"bold\"></Span>\r\n\t\t</FormattedString>\r\n\t</Label>\r\n</FlexboxLayout>\r\n\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"100\" height=\"100\" class=\"activity-indicator\">\r\n</ActivityIndicator>"
 
 /***/ }),
 
@@ -3905,8 +3985,11 @@ var WelcomeComponent = /** @class */ (function () {
         // this.logincheckService.getUserFromLocalStorage();
         if (this.logincheckService.getUserFromLocalStorage() != null)
             this.router.navigate(['navigation'], { clearHistory: true });
-        else
+        else {
+            var activityIndicator = this.ai.nativeElement;
+            activityIndicator.busy = false;
             this.wc.nativeElement.style.visibility = 'visible';
+        }
         this.page.actionBarHidden = true;
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["init"](this.firebaseConfig).then(function () {
             console.log("firebase.init done");
@@ -3941,6 +4024,10 @@ var WelcomeComponent = /** @class */ (function () {
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["login"](credentials).then(function (res) {
             console.log(res);
             _this.logincheckService.loginUser(res.uid);
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(res.uid).get().then(function (doc) {
+                if (doc.data().payment_id == null)
+                    _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
+            });
             _this.router.navigate(['navigation'], { clearHistory: true });
         }).catch(function (err) {
             console.log(err);
@@ -3958,8 +4045,9 @@ var WelcomeComponent = /** @class */ (function () {
             email: this.email,
             password: this.password
         }).then(function (res) {
-            _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, null, null, null, null, null, null);
+            _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, null, null, null, null, 0, 0);
             _this.logincheckService.loginUser(res.uid);
+            _this.logincheckService.addUserToBraintree('test', 'test user', res.email);
             _this.router.navigate(['navigation'], { clearHistory: true });
         }).catch(function (err) {
             if (err == 'Creating a user failed. com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account.')
@@ -4003,6 +4091,37 @@ var WelcomeComponent = /** @class */ (function () {
             message: message
         });
     };
+    WelcomeComponent.prototype.fbLogin = function () {
+        var _this = this;
+        this.wc.nativeElement.style.visibility = 'collapse';
+        var activityIndicator = this.ai.nativeElement;
+        activityIndicator.busy = true;
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["login"]({
+            type: nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["LoginType"].FACEBOOK,
+            // Optional
+            facebookOptions: {
+                // defaults to ['public_profile', 'email']
+                scopes: ['public_profile', 'email', 'user_birthday', 'user_gender'] // note: this property was renamed from "scope" in 8.4.0
+            }
+        }).then(function (res) {
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(res.uid).get().then(function (doc) {
+                // console.log("doc", doc);
+                if (!doc.exists) {
+                    // console.log("PROFILE",res.additionalUserInfo.profile);
+                    _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0);
+                    _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
+                }
+                else if (doc.data().payment_id == null) {
+                    _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
+                }
+            });
+            _this.logincheckService.loginUser(res.uid);
+            _this.router.navigate(['navigation'], { clearHistory: true });
+        }, function (errorMessage) {
+            console.log(errorMessage);
+            _this.wc.nativeElement.style.visibility = 'visible';
+        });
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("em"),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
@@ -4019,6 +4138,10 @@ var WelcomeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("welcomeContainer"),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], WelcomeComponent.prototype, "wc", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("activityIndicator"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], WelcomeComponent.prototype, "ai", void 0);
     WelcomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-welcome',

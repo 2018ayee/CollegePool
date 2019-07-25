@@ -11,6 +11,7 @@ import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { isAndroid } from "tns-core-modules/platform";
+import * as firebase from 'nativescript-plugin-firebase';
 
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 import { ListView } from "tns-core-modules/ui/list-view";
@@ -49,7 +50,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   	this.loadPostings();
-    
   }
 
   onBackButtonTap() {
@@ -82,19 +82,39 @@ export class HomeComponent implements OnInit {
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
     this.postings.splice(0);
-  	this.postingService.getPostings()
-		.subscribe((data: Posting[]) => {
-			this.p = data;
-			this.blocks = 0;
-			for(var i = this.p.length - 1; i >= 0; i--) {
-          this.createPosting(this.p[i]);
+  // 	this.postingService.getPostings()
+		// .subscribe((data: Posting[]) => {
+		// 	this.p = data;
+		// 	this.blocks = 0;
+		// 	for(var i = this.p.length - 1; i >= 0; i--) {
+  //         this.createPosting(this.p[i]);
+  //     }
+  //     if(args != null)
+  //     {
+  //       var pullRefresh = args.object;
+  //       pullRefresh.refreshing = false;
+  //     }
+		// });
+    var posts = [];
+    var postingsCollection = firebase.firestore.collection('postings');
+    postingsCollection.get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        posts.push({
+          id: doc.id,
+          data: doc.data()
+        })
+      });
+      this.p = posts;
+      for(var i = posts.length - 1; i >= 0; i--) {
+        this.createPosting(posts[i].data);
       }
       if(args != null)
       {
         var pullRefresh = args.object;
         pullRefresh.refreshing = false;
       }
-		});
+    });
+
   }
 
  //  createPosting(id, user, startadr, endadr, date, cost, capacity, comments) {
@@ -107,9 +127,9 @@ export class HomeComponent implements OnInit {
     let info_label = "";
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
     if(data.capacity != "-1")
-      info_label = "Offering ride leaving " + data.date + " from " + data.startadr + " to " + data.endadr + " for " + data.cost;
+      info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
     else
-      info_label = "Requesting ride leaving " + data.date + " from " + data.startadr + " to " + data.endadr;
+      info_label = "Requesting ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress;
     this.postings.push(new PostItem(data.user, info_label));
   }
 

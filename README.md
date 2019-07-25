@@ -1,6 +1,14 @@
 # CollegePool
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4. To run, first execute `npm install` in terminal to install all dependencies. Then, run `npm run dev` in a separate terminal and `mongod` in another to start the server and database. Errors such as `failed to open minidump file` may be temporarily solved by deleting the db folder in CollegePool\backend\data and rerunning the mongod command. Finally, running `npm start` in another terminal will start a dev server on `http://localhost:4200/`.
+## Setup
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4. First, clone the repo to your local machine. To run, first execute `npm install` in the root folder. Then, run 'npm install' in the backend folder to install all dependencies. To run the app, execute `npm run dev` in the backend folder to start the mongo server and database. Errors such as `failed to open minidump file` may be temporarily solved by deleting the db folder in CollegePool\backend\data and rerunning the mongod command. 
+
+## Web App
+Running `npm start` in the root folder will start a dev server on `http://localhost:4200/` that will serve as an entry point to the web version of Collegepool.
+
+## Mobile 
+
+To run the mobile app, first install all the necessary Nativescript components, which can be found on the Nativescript website. The required dependices for Android development involves downloading Java 8+, Nativescript 5.4.2, and the Android SDK. Instructions specific for Windows also need to set the path for the two enviroment variables: ANDROID_HOME to be: AppData\Local\Android\Sdk and JAVA_HOME to be: C:\Program Files\Java\jdk-10.0.2. These path can vary depending on how these files were installed, but should point to the same files. After installing all the required Nativescript files, running the mobile app involves following the steps in Setup before running executing `npm run android` in the root folder with a connected Android device or Android emulator running.
 
 ## Development server
 

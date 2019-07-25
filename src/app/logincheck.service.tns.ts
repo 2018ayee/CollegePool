@@ -34,7 +34,8 @@ export class LogincheckService {
   		gender: gender,
   		phone_number: phone_number,
   		rides_given: rides_given,
-  		rides_received: rides_received
+  		rides_received: rides_received,
+  		posts: []
   	});
   }
 
@@ -54,14 +55,11 @@ export class LogincheckService {
   	appSettings.clear();
   }
   
-  addUserToBraintree() {
-  	this.paymentService.addPaymentUser(this.user.id, this.user.username, this.user.name, this.user.email).subscribe((data: any) => {
-  		this.userService.updateUser(this.user._id, this.user.name, this.user.username, this.user.address, this.user.birthdate, this.user.email, this.user.gender, this.user.phone_number, this.user.rides_given, this.user.rides_received, data.customer.id)
-		  .subscribe(() => {
-		  		this.user.payment_id = data.customer.id;
-				this.myStorage.setItem('payment_id', this.user.payment_id);
-				console.log(this.user);
-			});
+  addUserToBraintree(username, name, email) {
+  	this.paymentService.addPaymentUser(this.uid, username, name, email).subscribe((data: any) => {
+  		firebase.firestore.collection('users').doc(this.uid).update({
+  			payment_id: data.customer.id
+  		})
   	})
   	// this.paymentService.getPaymentUserById('258703956').subscribe((data: any) => {
   	// 	console.log(data);

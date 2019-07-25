@@ -17,6 +17,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import * as firebase from 'nativescript-plugin-firebase';
 
 declare let paypal: any;
 
@@ -50,7 +51,13 @@ export class PaymentsComponent implements OnInit {
   	private vcRef: ViewContainerRef, private modal: ModalDialogService, private router: RouterExtensions) { }
 
   ngOnInit() {
-  	this.getUser();
+    firebase.getCurrentUser().then(user => {
+      firebase.firestore.collection('users').doc(user.uid).get().then(doc => {
+        this.user.payment_id = doc.data().payment_id;
+        this.getUser();
+      })
+    })
+  	
   }
 
   showModal() {

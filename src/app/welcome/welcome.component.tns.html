@@ -19,6 +19,9 @@
 		</StackLayout>
 
 		<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()" class="btn btn-primary m-t-20"></Button>
+		<StackLayout>
+			<FacebookLoginButton (tap)="fbLogin()" class="btn-fb"></FacebookLoginButton>
+		</StackLayout>
 		<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
 	</StackLayout>
 
@@ -29,3 +32,6 @@
 		</FormattedString>
 	</Label>
 </FlexboxLayout>
+
+<ActivityIndicator #activityIndicator busy="true" width="100" height="100" class="activity-indicator">
+</ActivityIndicator>
