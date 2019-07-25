@@ -1,9 +1,15 @@
 <!-- <app-navigation></app-navigation> -->
-<StackLayout>
-  <Label text="history works" textWrap="true"></Label>
-  <Label text="This is a migrated component" textWrap="true"></Label>
-  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label>
-</StackLayout>
+<PullToRefresh (refresh)="refreshList($event)" class="list">
+	<ListView [items]="postings" (itemTap)="onItemTap($event)" #listView id="listView">
+	    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+	        <StackLayout [class.odd]="odd" [class.even]="even" class="post">
+	              <Label textWrap="true" id="post-name" class="name-label" [text]="item.username"></Label>
+				  <Label textWrap="true" id="post-info" class="info-label" [text]="item.info"></Label>
+				  <Image src="~/img/cville-map.png" stretch="none" height="220" width="300" class="posting-map"></Image>
+	        </StackLayout>
+	    </ng-template>
+	</ListView>
+</PullToRefresh>
 
 <!--
 Original Web template:

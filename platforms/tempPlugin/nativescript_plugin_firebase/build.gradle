@@ -155,13 +155,13 @@ dependencies {
     // implementation "com.squareup.picasso:picasso:2.5.2"
 
     // Cloud Storage
-    // implementation "com.google.firebase:firebase-storage:17.0.0"
+     implementation "com.google.firebase:firebase-storage:17.0.0"
 
     // Cloud Functions
     // implementation "com.google.firebase:firebase-functions:17.0.0"
 
     // AdMob / Ads
-    // implementation "com.google.firebase:firebase-ads:17.2.1"
+     //implementation "com.google.firebase:firebase-ads:17.2.1"
 
     // ML Kit
     // implementation "com.google.firebase:firebase-ml-vision:20.0.0"

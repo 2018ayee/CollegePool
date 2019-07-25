@@ -261,6 +261,7 @@ com.google.android.gms.tasks.OnSuccessListener*vendor*100718*37**onSuccess***
 com.google.android.gms.tasks.OnFailureListener*vendor*100724*37**onFailure***
 com.google.android.gms.tasks.OnSuccessListener*vendor*100743*37**onSuccess***
 com.google.android.gms.tasks.OnFailureListener*vendor*100749*37**onFailure***
+com.google.firebase.storage.OnProgressListener*vendor*100905*38**onProgress***
 com.telerik.widget.dataform.engine.PropertyConverter*vendor*105795*36**convertTo,convertFrom***
 com.telerik.widget.dataform.visualization.editors.DataFormCustomEditor.DataFormCustomEditorProvider*vendor*106302*40**createView,applyValueToEditor,getValue***
 android.view.ViewTreeObserver.OnGlobalLayoutListener*vendor*120463*39**onGlobalLayout***

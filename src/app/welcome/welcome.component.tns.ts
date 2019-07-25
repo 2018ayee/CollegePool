@@ -19,12 +19,12 @@ export class WelcomeComponent implements OnInit {
   confirmPassword;
   firebaseConfig = {
     apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
-    authDomain: "collegepool-1552749118617.firebaseapp.com",
-    databaseURL: "https://collegepool-1552749118617.firebaseio.com",
-    projectId: "collegepool-1552749118617",
-    storageBucket: "collegepool-1552749118617.appspot.com",
-    messagingSenderId: "375263680183",
-    appId: "1:375263680183:web:f2af3f2835638d7c"
+  	authDomain: "collegepool-1552749118617.firebaseapp.com",
+  	databaseURL: "https://collegepool-1552749118617.firebaseio.com",
+  	projectId: "collegepool-1552749118617",
+  	storageBucket: "gs://collegepool-1552749118617.appspot.com",
+  	messagingSenderId: "375263680183",
+  	appId: "1:375263680183:web:f2af3f2835638d7c",
   };
 
   constructor(private page: Page, private router: RouterExtensions, private logincheckService: LogincheckService) { }
@@ -176,26 +176,24 @@ export class WelcomeComponent implements OnInit {
         scopes: ['public_profile', 'email', 'user_birthday', 'user_gender'] // note: this property was renamed from "scope" in 8.4.0
       }
     }).then(
-      (res) => {
-
-        firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
-          // console.log("doc", doc);
-          if(!doc.exists) {
-            // console.log("PROFILE",res.additionalUserInfo.profile);
-            this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0);
-            this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
-          }
-          else if (doc.data().payment_id == null) {
-            this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
-          }
-        })
-        this.logincheckService.loginUser(res.uid)
-        this.router.navigate(['navigation'], { clearHistory: true });
-      },
-      (errorMessage) => {
-        console.log(errorMessage);
-        this.wc.nativeElement.style.visibility = 'visible';
-      }
+        (res) => {
+          
+          firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
+            if(doc.exists == false) {
+              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0);
+              this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+            }
+            else if(doc.data().payment_id == null) {
+              this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+            }
+          })
+          this.logincheckService.loginUser(res.uid)
+          this.router.navigate(['navigation'], {clearHistory: true});
+        },
+        (errorMessage) => {
+          console.log(errorMessage);
+          this.wc.nativeElement.style.visibility = 'visible';
+        }
     );
 
   }

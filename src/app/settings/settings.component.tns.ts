@@ -5,6 +5,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { Person } from "../person";
 import { LogincheckService } from '../logincheck.service.tns';
 import * as firebase from 'nativescript-plugin-firebase';
+import { logout as fbLogout } from 'nativescript-facebook';
 
 
 @Component({
@@ -33,6 +34,9 @@ export class SettingsComponent implements OnInit {
 
 	logOut() {
 		firebase.logout();
+		fbLogout(() => {
+
+		});
 		this.logincheckService.clearInfo();
 		this.router.navigate(['welcome'], {clearHistory: true});
 	}

@@ -13,6 +13,7 @@ import { LocationComponent } from '../location/location.component';
 import { TransferService } from '../datatransfer.service';
 import { LogincheckService } from '../logincheck.service.tns';
 import * as firebase from 'nativescript-plugin-firebase';
+import { DatePipe } from '@angular/common';
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 
 @Component({
@@ -23,7 +24,8 @@ import * as firebase from 'nativescript-plugin-firebase';
 export class AddModalComponent implements OnInit {
 
   constructor(private params: ModalDialogParams, private postingService: PostingService, private page: Page, private placesService: PlacesAutocompleteService,
-    private modal: ModalDialogService, private vcRef: ViewContainerRef, private transferService: TransferService, private logincheckService: LogincheckService) { }
+    private modal: ModalDialogService, private vcRef: ViewContainerRef, private transferService: TransferService, private logincheckService: LogincheckService,
+    private datePipe: DatePipe) { }
 
   @ViewChild('drivingLabel') dl: ElementRef;
   @ViewChild('ridingLabel') rl: ElementRef;
@@ -36,6 +38,7 @@ export class AddModalComponent implements OnInit {
   endPlace;
   startAddress;
   endAddress;
+  formattedDate;
   date = "now";
   price = "$15";
   capacity = "-1";
@@ -56,7 +59,7 @@ export class AddModalComponent implements OnInit {
   ngOnInit() {
     firebase.getCurrentUser().then(user => {
       this.user.username = user.displayName;
-      if(user.displayName == "")
+      if(user.displayName == null)
         this.user.username = user.email;
       this.user.id = this.logincheckService.getUser();
     })
@@ -121,7 +124,8 @@ export class AddModalComponent implements OnInit {
          date: this.date,
          price: this.price,
          capacity: this.capacity,
-         comments: ""
+         comments: "",
+         formattedDate: this.formattedDate
        }).then(res => {
          // console.log(res);
 
@@ -155,6 +159,8 @@ export class AddModalComponent implements OnInit {
   onDateChanged(args) {
   	let datePicker = <DatePicker>args.object;
   	var selectedDate = datePicker.date;
+    this.formattedDate = this.datePipe.transform(selectedDate,"yyyy-MM-dd")
+
   	// console.log(selectedDate.toString().substring(0, 15));
   	this.date = selectedDate.toString().substring(0, 15);
   }
