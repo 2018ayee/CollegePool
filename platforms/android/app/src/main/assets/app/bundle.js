@@ -2491,7 +2491,7 @@ module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn 
 /***/ "./app/navigation/navigation.component.tns.html":
 /***/ (function(module, exports) {
 
-module.exports = "<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<!-- <ActionBar\r\n   [title]=\"selectedTabIndex === 0 ? homeTab.title : nearbyTab.title\">\r\n</ActionBar> -->\r\n<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -2653,6 +2653,10 @@ var NavigationComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('tabView'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], NavigationComponent.prototype, "tv", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('actionBar'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], NavigationComponent.prototype, "ab", void 0);
     NavigationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-navigation',
@@ -3598,14 +3602,14 @@ var SearchComponent = /** @class */ (function () {
 /***/ "./app/settings/settings.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n#Header {\r\n    color:black;\r\n    font-size: 24;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n}\r\n\r\n.Update {\r\n    display: block;\r\n    color: #ac00e6;\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.Update:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n.Payments {\r\n    /* background-color: white;\r\n    border-radius: 5;\r\n    color: #AC00E6;\r\n    font-family: Times;\r\n    font-size: 24;\r\n    vertical-align: middle;\r\n    width: 80%; */\r\n    display: block;\r\n    color: #ac00e6;\r\n    /*padding: 6px 24px;*/\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.Payments:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n#Header {\r\n    color:black;\r\n    font-size: 24;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n}\r\n\r\n.Update {\r\n    display: block;\r\n    color: #ac00e6;\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.Update:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n.Payments {\r\n    /* background-color: white;\r\n    border-radius: 5;\r\n    color: #AC00E6;\r\n    font-family: Times;\r\n    font-size: 24;\r\n    vertical-align: middle;\r\n    width: 80%; */\r\n    display: block;\r\n    color: #ac00e6;\r\n    /*padding: 6px 24px;*/\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.Payments:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n.profile-picture {\r\n\theight: 120;\r\n\twidth: 120;\r\n\tmargin-top: 20;\r\n\tmargin-bottom: 8;\r\n\t/*background-repeat: no-repeat;*/\r\n}\r\n\r\n.img-rounded {\r\n\tborder-radius: 100%;\r\n}\r\n\r\n.header-label {\r\n\tmargin-bottom: 20;\r\n\tfont-size: 20;\r\n\tcolor: #4285f4;\r\n}\r\n\r\n.bold {\r\n\tfont-weight: 500;\r\n}\r\n"
 
 /***/ }),
 
 /***/ "./app/settings/settings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n\r\n<StackLayout>\r\n  <Label id= \"Header\" text=\"Account Settings\" textWrap=\"true\"></Label>\r\n  <RadDataForm tkExampleTitle tkToggleNavButton [source]=\"person\"></RadDataForm>  \r\n  <Button class=\"Update\"  text=\"Update Settings\"></Button>\r\n  <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n    <Button (tap)=\"logOut()\" text=\"Log out\"></Button>\r\n</StackLayout>\r\n\r\n\r\n"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n\r\n<StackLayout>\r\n  <Label id= \"Header\" text=\"Account Settings\" textWrap=\"true\"></Label>\r\n      <Image src=\"{{ profile }}\" stretch=\"aspectFit\" class=\"img-rounded profile-picture\" (tap)=\"uploadPfp()\"></Image>\r\n    <Label text=\"Change Photo\" class=\"header-label bold\" (tap)=\"uploadPfp()\"></Label>\r\n  <!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]=\"person\"></RadDataForm>   -->\r\n  <Button class=\"Update\"  text=\"Update Settings\"></Button>\r\n  <Button class=\"Payments\" (tap)=\"toPayments()\" text=\"Payments Page\"></Button>\r\n    <Button (tap)=\"logOut()\" text=\"Log out\"></Button>\r\n</StackLayout>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -3626,6 +3630,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
 /* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-imagepicker/imagepicker.js");
+/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/tns-core-modules/file-system/file-system.js");
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-imagecropper/imagecropper.js");
+/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3643,15 +3655,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 var SettingsComponent = /** @class */ (function () {
     function SettingsComponent(router, page, logincheckService) {
         this.router = router;
         this.page = page;
         this.logincheckService = logincheckService;
+        this.profile = "~/img/sample_profile.png";
     }
     SettingsComponent.prototype.ngOnInit = function () {
-        this._person = new _person__WEBPACK_IMPORTED_MODULE_3__["Person"]("Phillim", "Das", "john@company.com", "12224443333", "232 Rodman Road");
-        console.log(this._person);
+        var _this = this;
+        this.imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__["ImageCropper"]();
+        this.userId = this.logincheckService.getUser();
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__["getCurrentUser"]().then(function (user) {
+            console.log(user);
+            if (user.photoURL != null) {
+                _this.profile = user.photoURL;
+                if (user.photoURL.substring(0, 27) == 'https://graph.facebook.com/')
+                    _this.profile += '?height=300';
+            }
+        });
+        this._person = new _person__WEBPACK_IMPORTED_MODULE_3__["Person"]("Phillim", "Das", "jon@company.com", "12224443333", "232 Rodman Road");
     };
     Object.defineProperty(SettingsComponent.prototype, "person", {
         get: function () {
@@ -3669,6 +3696,75 @@ var SettingsComponent = /** @class */ (function () {
         });
         this.logincheckService.clearInfo();
         this.router.navigate(['welcome'], { clearHistory: true });
+    };
+    SettingsComponent.prototype.uploadPfp = function () {
+        var _this = this;
+        var imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__["ImageCropper"]();
+        var context = nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__["create"]({
+            mode: "single" // use "multiple" for multiple selection
+        });
+        context
+            .authorize()
+            .then(function () {
+            return context.present();
+        })
+            .then(function (selection) {
+            selection.forEach(function (selected) {
+                var imgSource = new tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__["ImageSource"]();
+                imgSource.fromAsset(selected).then(function (source) {
+                    _this.imageCropper
+                        .show(source, { width: 300, height: 300 })
+                        .then(function (args) {
+                        // console.dir(args);
+                        if (args.image !== null) {
+                            // this.croppedImage.imageSource =
+                            //     args.image;
+                            var folder = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["knownFolders"].temp();
+                            var path = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["path"].join(folder.path, "profile_picture.png");
+                            var saved = args.image.saveToFile(path, 'png');
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__["storage"].uploadFile({
+                                // the full path of the file in your Firebase storage (folders will be created)
+                                remoteFullPath: _this.userId + '/uploads/profile_picture.jpg',
+                                // option 1: a file-system module File object
+                                localFile: tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["File"].fromPath(path),
+                                // option 2: a full file path (ignored if 'localFile' is set)
+                                localFullPath: path,
+                                // get notified of file upload progress
+                                onProgress: function (status) {
+                                    console.log("Uploaded fraction: " + status.fractionCompleted);
+                                    console.log("Percentage complete: " + status.percentageCompleted);
+                                }
+                            }).then(function (uploadedFile) {
+                                console.log("File uploaded: " + JSON.stringify(uploadedFile));
+                                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__["storage"].getDownloadUrl({
+                                    // the full path of an existing file in your Firebase storage
+                                    remoteFullPath: _this.userId + '/uploads/profile_picture.jpg'
+                                }).then(function (url) {
+                                    nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_5__["updateProfile"]({
+                                        photoURL: url
+                                    }).then(function () {
+                                        // called when update profile was successful
+                                        _this.profile = url;
+                                    }, function (errorMessage) {
+                                        console.log(errorMessage);
+                                    });
+                                }, function (error) {
+                                    console.log("Error: " + error);
+                                });
+                            }, function (error) {
+                                console.log("File upload error: " + error);
+                            }).catch(function (err) {
+                                // process error
+                                console.log(err);
+                            });
+                        }
+                    })
+                        .catch(function (e) {
+                        // console.dir(e);
+                    });
+                });
+            });
+        });
     };
     SettingsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3939,7 +4035,7 @@ module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\
 /***/ "./app/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<FlexboxLayout class=\"page\" #welcomeContainer>\r\n\t<StackLayout class=\"form\">\r\n\t\t<Image class=\"logo\" src=\"~/img/logo.png\"></Image>\r\n\t\t<!-- <Label class=\"header\" text=\"CollegePool\"></Label> -->\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Email\" keyboardType=\"email\" autocorrect=\"false\" autocapitalizationType=\"none\" [(ngModel)]=\"email\" returnKeyType=\"next\" (returnPress)=\"focusPassword()\" #em></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Password\" secure=\"true\" [(ngModel)]=\"password\" [returnKeyType]=\"isLoggingIn ? 'done' : 'next'\" (returnPress)=\"focusConfirmPassword()\" #pw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout *ngIf=\"!isLoggingIn\" class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Confirm password\" secure=\"true\" [(ngModel)]=\"confirmPassword\" returnKeyType=\"done\" #cpw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<Button [text]=\"isLoggingIn ? 'Log In' : 'Sign Up'\" (tap)=\"submit()\" class=\"btn btn-primary m-t-20\"></Button>\r\n\t\t<StackLayout>\r\n\t\t\t<FacebookLoginButton (tap)=\"fbLogin()\" class=\"btn-fb\"></FacebookLoginButton>\r\n\t\t</StackLayout>\r\n\t\t<Label *ngIf=\"isLoggingIn\" text=\"Forgot your password?\" class=\"login-label\" (tap)=\"forgotPassword()\"></Label>\r\n\t</StackLayout>\r\n\r\n\t<Label class=\"login-label sign-up-label\" (tap)=\"toggleForm()\">\r\n\t\t<FormattedString>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'\"></Span>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Sign up' : ''\" class=\"bold\"></Span>\r\n\t\t</FormattedString>\r\n\t</Label>\r\n</FlexboxLayout>\r\n\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"100\" height=\"100\" class=\"activity-indicator\">\r\n</ActivityIndicator>"
+module.exports = "<FlexboxLayout class=\"page\" #welcomeContainer>\r\n\t<StackLayout class=\"form\">\r\n\t\t<Image class=\"logo\" src=\"~/img/logo.png\"></Image>\r\n\t\t<!-- <Label class=\"header\" text=\"CollegePool\"></Label> -->\r\n\r\n\t\t<StackLayout *ngIf=\"!isLoggingIn\" class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"First name\" [(ngModel)]=\"firstName\" returnKeyType=\"next\" #fn></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout *ngIf=\"!isLoggingIn\" class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Last name\" [(ngModel)]=\"lastName\" returnKeyType=\"next\" #ln></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Email\" keyboardType=\"email\" autocorrect=\"false\" autocapitalizationType=\"none\" [(ngModel)]=\"email\" returnKeyType=\"next\" (returnPress)=\"focusPassword()\" #em></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Password\" secure=\"true\" [(ngModel)]=\"password\" [returnKeyType]=\"isLoggingIn ? 'done' : 'next'\" (returnPress)=\"focusConfirmPassword()\" #pw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<StackLayout *ngIf=\"!isLoggingIn\" class=\"input-field\">\r\n\t\t\t<TextField class=\"input\" hint=\"Confirm password\" secure=\"true\" [(ngModel)]=\"confirmPassword\" returnKeyType=\"done\" #cpw></TextField>\r\n\t\t\t<StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t</StackLayout>\r\n\r\n\t\t<Button [text]=\"isLoggingIn ? 'Log In' : 'Sign Up'\" (tap)=\"submit()\" class=\"btn btn-primary m-t-20\"></Button>\r\n\t\t<StackLayout>\r\n\t\t\t<FacebookLoginButton (tap)=\"fbLogin()\" class=\"btn-fb\"></FacebookLoginButton>\r\n\t\t</StackLayout>\r\n\t\t<Label *ngIf=\"isLoggingIn\" text=\"Forgot your password?\" class=\"login-label\" (tap)=\"forgotPassword()\"></Label>\r\n\t</StackLayout>\r\n\r\n\t<Label class=\"login-label sign-up-label\" (tap)=\"toggleForm()\">\r\n\t\t<FormattedString>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'\"></Span>\r\n\t\t\t<Span [text]=\"isLoggingIn ? 'Sign up' : ''\" class=\"bold\"></Span>\r\n\t\t</FormattedString>\r\n\t</Label>\r\n</FlexboxLayout>\r\n\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"100\" height=\"100\" class=\"activity-indicator\">\r\n</ActivityIndicator>"
 
 /***/ }),
 
@@ -4057,9 +4153,10 @@ var WelcomeComponent = /** @class */ (function () {
         }
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["createUser"]({
             email: this.email,
-            password: this.password
+            password: this.password,
         }).then(function (res) {
-            _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, null, null, null, null, 0, 0);
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["updateProfile"]({ displayName: _this.firstName + ' ' + _this.lastName }).then();
+            _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, _this.firstName, _this.lastName, null, null, 0, 0);
             _this.logincheckService.loginUser(res.uid);
             _this.logincheckService.addUserToBraintree('test', 'test user', res.email);
             _this.router.navigate(['navigation'], { clearHistory: true });
@@ -4089,6 +4186,12 @@ var WelcomeComponent = /** @class */ (function () {
                     _this.alert('No account could be found with your email');
                 });
         });
+    };
+    WelcomeComponent.prototype.focusEmail = function () {
+        this.em.nativeElement.focus();
+    };
+    WelcomeComponent.prototype.focusLastName = function () {
+        this.ln.nativeElement.focus();
     };
     WelcomeComponent.prototype.focusPassword = function () {
         this.pw.nativeElement.focus();
@@ -4146,6 +4249,14 @@ var WelcomeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("cpw"),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], WelcomeComponent.prototype, "cpw", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("fn"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], WelcomeComponent.prototype, "fn", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("ln"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], WelcomeComponent.prototype, "ln", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("welcomeContainer"),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])

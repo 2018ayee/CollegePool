@@ -3,6 +3,16 @@
 		<Image class="logo" src="~/img/logo.png"></Image>
 		<!-- <Label class="header" text="CollegePool"></Label> -->
 
+		<StackLayout *ngIf="!isLoggingIn" class="input-field">
+			<TextField class="input" hint="First name" [(ngModel)]="firstName" returnKeyType="next" #fn></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<StackLayout *ngIf="!isLoggingIn" class="input-field">
+			<TextField class="input" hint="Last name" [(ngModel)]="lastName" returnKeyType="next" #ln></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
 		<StackLayout class="input-field">
 			<TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="email" returnKeyType="next" (returnPress)="focusPassword()" #em></TextField>
 			<StackLayout class="hr-light"></StackLayout>

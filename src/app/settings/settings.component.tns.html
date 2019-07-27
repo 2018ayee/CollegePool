@@ -2,7 +2,9 @@
 
 <StackLayout>
   <Label id= "Header" text="Account Settings" textWrap="true"></Label>
-  <RadDataForm tkExampleTitle tkToggleNavButton [source]="person"></RadDataForm>  
+      <Image src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></Image>
+    <Label text="Change Photo" class="header-label bold" (tap)="uploadPfp()"></Label>
+  <!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]="person"></RadDataForm>   -->
   <Button class="Update"  text="Update Settings"></Button>
   <Button class="Payments" (tap)="toPayments()" text="Payments Page"></Button>
     <Button (tap)="logOut()" text="Log out"></Button>
