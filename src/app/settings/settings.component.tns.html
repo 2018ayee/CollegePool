@@ -1,6 +1,7 @@
 <!-- <app-navigation></app-navigation> -->
 <StackLayout>
-  <Label text="settings works" textWrap="true"></Label>
+    <Image src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></Image>
+    <Label text="Change Photo" class="header-label bold" (tap)="uploadPfp()"></Label>
     <Button class="Payments" (tap)="toPayments()" text="Payments Page"></Button>
     <Button (tap)="logOut()" text="Log out"></Button>
 </StackLayout>

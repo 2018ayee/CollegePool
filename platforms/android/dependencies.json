@@ -4,6 +4,10 @@
         "directory": "..\\..\\node_modules\\nativescript-angular"
     },
     {
+        "name": "nativescript-background-http",
+        "directory": "..\\..\\node_modules\\nativescript-background-http"
+    },
+    {
         "name": "nativescript-braintree",
         "directory": "..\\..\\node_modules\\nativescript-braintree"
     },
@@ -18,6 +22,14 @@
     {
         "name": "nativescript-floatingactionbutton",
         "directory": "..\\..\\node_modules\\nativescript-floatingactionbutton"
+    },
+    {
+        "name": "nativescript-imagecropper",
+        "directory": "..\\..\\node_modules\\nativescript-imagecropper"
+    },
+    {
+        "name": "nativescript-imagepicker",
+        "directory": "..\\..\\node_modules\\nativescript-imagepicker"
     },
     {
         "name": "nativescript-modal-datetimepicker",
@@ -50,6 +62,10 @@
     {
         "name": "nativescript-intl",
         "directory": "..\\..\\node_modules\\nativescript-intl"
+    },
+    {
+        "name": "nativescript-permissions",
+        "directory": "..\\..\\node_modules\\nativescript-permissions"
     },
     {
         "name": "nativescript-ui-core",

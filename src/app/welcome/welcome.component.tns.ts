@@ -17,6 +17,8 @@ export class WelcomeComponent implements OnInit {
   email;
   password;
   confirmPassword;
+  firstName;
+  lastName;
   firebaseConfig = {
     apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
   	authDomain: "collegepool-1552749118617.firebaseapp.com",
@@ -32,6 +34,8 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("em") em: ElementRef;
   @ViewChild("pw") pw: ElementRef;
   @ViewChild("cpw") cpw: ElementRef;
+  @ViewChild("fn") fn: ElementRef;
+  @ViewChild("ln") ln: ElementRef;
   @ViewChild("welcomeContainer") wc: ElementRef;
   @ViewChild("activityIndicator") ai: ElementRef;
   
@@ -109,9 +113,10 @@ export class WelcomeComponent implements OnInit {
   	}
   	firebase.createUser({
   		email: this.email,
-  		password: this.password
+  		password: this.password,
   	}).then((res) => {
-      	this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, null, null, null, null, 0, 0)
+        firebase.updateProfile({displayName: this.firstName + ' ' + this.lastName}).then();
+      	this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, this.firstName, this.lastName, null, null, 0, 0)
         this.logincheckService.loginUser(res.uid)
         this.logincheckService.addUserToBraintree('test', 'test user', res.email)
       	this.router.navigate(['navigation'], {clearHistory: true});
@@ -144,6 +149,14 @@ export class WelcomeComponent implements OnInit {
             }
         );
   	});
+  }
+
+  focusEmail() {
+    this.em.nativeElement.focus();
+  }
+
+  focusLastName() {
+    this.ln.nativeElement.focus();
   }
 
   focusPassword() {

@@ -3,3 +3,25 @@ Add your NativeScript specific styles here.
 To learn more about styling in NativeScript see:
 https://docs.nativescript.org/angular/ui/styling
 */
+
+.profile-picture {
+	height: 120;
+	width: 120;
+	margin-top: 20;
+	margin-bottom: 8;
+	/*background-repeat: no-repeat;*/
+}
+
+.img-rounded {
+	border-radius: 100%;
+}
+
+.header-label {
+	margin-bottom: 20;
+	font-size: 20;
+	color: #4285f4;
+}
+
+.bold {
+	font-weight: 500;
+}

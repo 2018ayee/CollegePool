@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransferService } from '../datatransfer.service';
 import { RouterExtensions } from 'nativescript-angular/router';
 import {Page} from 'tns-core-modules/ui/page';
+import { ActionBar } from 'tns-core-modules/ui/action-bar';
 import * as dom from 'nativescript-dom';
 import { Button } from 'tns-core-modules/ui/button';
 import { TabView } from "tns-core-modules/ui/tab-view";
@@ -21,6 +22,7 @@ export class NavigationComponent implements OnInit {
   constructor(private transferService: TransferService, private router: RouterExtensions, private page: Page) { }
 
   @ViewChild('tabView') tv: ElementRef;
+  @ViewChild('actionBar') ab: ElementRef;
   user;
   activebtn;
   tabSelectedIndex = 0;
