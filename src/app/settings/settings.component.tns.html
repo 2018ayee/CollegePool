@@ -1,11 +1,13 @@
 <!-- <app-navigation></app-navigation> -->
-<StackLayout>
+<StackLayout #settingsContainer>
     <Image src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></Image>
     <Label text="Change Photo" class="header-label bold" (tap)="uploadPfp()"></Label>
     <Button class="Payments" (tap)="toPayments()" text="Payments Page"></Button>
     <Button (tap)="logOut()" text="Log out"></Button>
 </StackLayout>
 
+<ActivityIndicator #activityIndicator busy="false" width="40" height="40" class="activity-indicator">
+</ActivityIndicator>
 <!--
 Original Web template:
 

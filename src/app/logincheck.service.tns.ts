@@ -23,7 +23,7 @@ export class LogincheckService {
 	uid;
   constructor(private userService: UserService, private paymentService: PaymentService, private router: RouterExtensions) { }
 
-  addUserToFirestore(uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received) {
+  addUserToFirestore(uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source) {
   	const usersCollection = firebase.firestore.collection('users');
   	usersCollection.doc(uid).set({
   		address: address,
@@ -35,6 +35,7 @@ export class LogincheckService {
   		phone_number: phone_number,
   		rides_given: rides_given,
   		rides_received: rides_received,
+      profile_source: profile_source,
   		posts: []
   	});
   }

@@ -116,7 +116,6 @@ export class WelcomeComponent implements OnInit {
   		password: this.password,
   	}).then((res) => {
         firebase.updateProfile({displayName: this.firstName + ' ' + this.lastName}).then();
-      	this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, this.firstName, this.lastName, null, null, 0, 0)
         this.logincheckService.loginUser(res.uid)
         this.logincheckService.addUserToBraintree('test', 'test user', res.email)
       	this.router.navigate(['navigation'], {clearHistory: true});
@@ -190,10 +189,9 @@ export class WelcomeComponent implements OnInit {
       }
     }).then(
         (res) => {
-          
           firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
             if(doc.exists == false) {
-              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0);
+              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL);
               this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
             }
             else if(doc.data().payment_id == null) {

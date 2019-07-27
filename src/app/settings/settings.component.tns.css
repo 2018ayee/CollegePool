@@ -25,3 +25,7 @@ https://docs.nativescript.org/angular/ui/styling
 .bold {
 	font-weight: 500;
 }
+
+.activity-indicator {
+  color: #ac00e6;
+}

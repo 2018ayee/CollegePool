@@ -42,7 +42,11 @@
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-background-http\\platforms\\android\\include.gradle": "e30c46feff05c6712e88ea7a1fc033009a3f87b2"
 	},
 	"nativescript-imagecropper": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\AndroidManifest.xml": "de9e14f14dae0473e1f887952a39df5e32951275",
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\include.gradle": "c977612b446442b5b34b89ac8c595290d6beda65",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\AndroidManifest.xml": "de9e14f14dae0473e1f887952a39df5e32951275"
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\nativescript_imagecropper.aar": "2f069119642bfbdcd991fa00e59ed54b79194af8"
+	},
+	"@nstudio/nativescript-loading-indicator": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\@nstudio\\nativescript-loading-indicator\\platforms\\android\\nativescript_loading_indicator.aar": "4e2a39f50d19fb7ef98ee50c586b6a2d68adbd4f"
 	}
 }
