@@ -40,7 +40,6 @@ export class SettingsComponent implements OnInit {
   		this.imageCropper = new ImageCropper();
   		this.userId = this.logincheckService.getUser();
   		firebase.getCurrentUser().then((user) => {
-  			console.log(user)
   			if(user.photoURL != null) {
   				this.profile = user.photoURL;
   				if(user.photoURL.substring(0, 27) == 'https://graph.facebook.com/')
