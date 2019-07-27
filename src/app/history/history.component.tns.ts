@@ -10,7 +10,7 @@ import * as firebase from 'nativescript-plugin-firebase';
 import { ListView } from 'tns-core-modules/ui/list-view';
 
 class PostItem {
-    constructor(public username: String, public info: string, public profileSource: string) { }
+    constructor(public username: String, public info: string, public profileSource: string, public mapSource: string) { }
 }
 
 @Component({
@@ -70,7 +70,7 @@ export class HistoryComponent implements OnInit {
         var url = doc.data().profile_source;
         if(url.substring(0, 27) === 'https://graph.facebook.com/')
           url += '?height=300';
-        this.postings.push(new PostItem(data.user, info_label, url));
+        this.postings.push(new PostItem(data.user, info_label, url, data.map_url));
       }
     })
   }

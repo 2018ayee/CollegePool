@@ -27,6 +27,7 @@ import { TransferService } from './datatransfer.service';
 import { DynamicAddService } from './dynamic-add.service';
 import { PaymentService } from './payment.service';
 import { PlacesAutocompleteService } from './places-autocomplete.service';
+import { GoogleMapsService } from './google-maps.service';
 
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 
@@ -120,7 +121,8 @@ application.on(application.launchEvent, function (args) {
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
-  providers: [PostingService, TransferService, DynamicAddService, UserService, PaymentService, ModalDialogService, PlacesAutocompleteService, DatePipe],
+  providers: [PostingService, TransferService, DynamicAddService, UserService, PaymentService, ModalDialogService, PlacesAutocompleteService, 
+  DatePipe, GoogleMapsService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
   PaymentInfoComponent, ConfirmationComponent],

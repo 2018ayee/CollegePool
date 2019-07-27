@@ -91,7 +91,7 @@ export class SettingsComponent implements OnInit {
 
 				            firebase.storage.uploadFile({
 							    // the full path of the file in your Firebase storage (folders will be created)
-							    remoteFullPath: this.userId + '/uploads/profile_picture.jpg',
+							    remoteFullPath: 'users/' + this.userId + '/uploads/profile_picture.jpg',
 							    // option 1: a file-system module File object
 							    localFile: fs.File.fromPath(path),
 							    // option 2: a full file path (ignored if 'localFile' is set)
@@ -106,7 +106,7 @@ export class SettingsComponent implements OnInit {
 							        console.log("File uploaded: " + JSON.stringify(uploadedFile));
 							          		firebase.storage.getDownloadUrl({
 											    // the full path of an existing file in your Firebase storage
-											    remoteFullPath: this.userId + '/uploads/profile_picture.jpg'
+											    remoteFullPath: 'users/' + this.userId + '/uploads/profile_picture.jpg'
 											  }).then(
 											      (url) => {
 											        firebase.updateProfile({
@@ -147,9 +147,7 @@ export class SettingsComponent implements OnInit {
                 }).catch((err) => {
                 	console.log(err);
                 })
-            }).catch((err) => {
-            	console.log(err)
-            });
+            })
 	    }).catch((err) => {
 	    	console.log(err)
 	    })

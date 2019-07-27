@@ -14,6 +14,15 @@ import { TransferService } from '../datatransfer.service';
 import { LogincheckService } from '../logincheck.service.tns';
 import * as firebase from 'nativescript-plugin-firebase';
 import { DatePipe } from '@angular/common';
+import { Cache } from 'tns-core-modules/ui/image-cache';
+import { GoogleMapsService } from '../google-maps.service';
+import {ImageSource, fromFile, fromResource, fromBase64} from "tns-core-modules/image-source";
+import {Folder, path, knownFolders} from "tns-core-modules/file-system";
+import * as fs from "tns-core-modules/file-system";
+import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
+import { ScrollView } from 'tns-core-modules/ui/scroll-view';
+import { FlexboxLayout } from 'tns-core-modules/ui/layouts/flexbox-layout';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 
 @Component({
@@ -25,10 +34,12 @@ export class AddModalComponent implements OnInit {
 
   constructor(private params: ModalDialogParams, private postingService: PostingService, private page: Page, private placesService: PlacesAutocompleteService,
     private modal: ModalDialogService, private vcRef: ViewContainerRef, private transferService: TransferService, private logincheckService: LogincheckService,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe, private mapService: GoogleMapsService) { }
 
   @ViewChild('drivingLabel') dl: ElementRef;
   @ViewChild('ridingLabel') rl: ElementRef;
+  @ViewChild('activityIndicator') ai: ElementRef;
+  @ViewChild('addContainer') ac: ElementRef;
   // @ViewChild('startLabel') sl: ElementRef;
   // @ViewChild('endLabel') el: ElementRef;
 
@@ -52,14 +63,17 @@ export class AddModalComponent implements OnInit {
   isDriving = false;
   startLocationPicked = false;
   endLocationPicked = false;
+  imageSource = new ImageSource();
 
 
   API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
   // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
   ngOnInit() {
+    let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+    activityIndicator.style.visibility = 'collapse'
     firebase.getCurrentUser().then(user => {
       this.user.username = user.displayName;
-      if(user.displayName == null)
+      if(user.displayName == null || user.displayName == '')
         this.user.username = user.email;
       this.user.id = this.logincheckService.getUser();
     })
@@ -79,7 +93,6 @@ export class AddModalComponent implements OnInit {
     };
     this.transferService.setData(type);
     this.modal.showModal(LocationComponent, options).then(res => {
-        // console.log(res);
         if(res != null)
           if(res.start != null) {
             this.startLocationPicked = true;
@@ -103,6 +116,7 @@ export class AddModalComponent implements OnInit {
           }
           else if(type == 'end') {
             this.startLocationPicked = true;
+
             this.startLabel = 'Pick end location';
           }
         }
@@ -114,6 +128,10 @@ export class AddModalComponent implements OnInit {
    }
 
    addPosting() {
+     let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+     let addContainer = <FlexboxLayout> this.ac.nativeElement;
+     activityIndicator.style.visibility = 'visible';
+     addContainer.style.visibility = 'collapse';
      if(this.startLocationPicked && this.endLocationPicked) {
        var postingsCollection = firebase.firestore.collection('postings');
        postingsCollection.add({
@@ -121,6 +139,8 @@ export class AddModalComponent implements OnInit {
          user: this.user.username,
          startAddress: this.startPlace,
          endAddress: this.endPlace,
+         startFormatted: this.startAddress,
+         endFormatted: this.endAddress,
          date: this.date,
          price: this.price,
          capacity: this.capacity,
@@ -135,13 +155,73 @@ export class AddModalComponent implements OnInit {
            firebase.firestore.collection('users').doc(this.user.id).update({
              posts: posts
            })
-         })
-       })
-       this.close('posted');
+           this.uploadMap(res.id, 'small_map.png');
+           this.uploadMap(res.id, 'large_map.png');
+         }).catch((err) => {})
+       }).catch((err) => {})
      }
       // this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
       //   this.close('posted');
       // });
+  }
+
+  uploadMap(id, uploadName) {
+    const cache = new Cache();
+    cache.enableDownload();
+    let cachedImageSource;
+    var url = this.mapService.getStaticMap(this.startPlace + " " + this.startAddress, this.endPlace + " " + this.endAddress);
+    if(uploadName == 'large_map.png')
+      url = this.mapService.getStaticMapLarge(this.startPlace + " " + this.startAddress, this.endPlace + " " + this.endAddress);
+    // Try to read the image from the cache
+    const myImage = cache.get(url);
+    cache.push({
+    key: url,
+    url: url,
+    completed: (image, key) => {
+            if (url === key) {
+                cachedImageSource = this.imageSource.setNativeSource(image);
+                const folderPath: string = knownFolders.documents().path;
+                const fileName = uploadName;
+                const filePath = path.join(folderPath, fileName);
+                const saved: boolean = this.imageSource.saveToFile(filePath, "png");
+                if (saved) {
+                    firebase.storage.uploadFile({
+                      // the full path of the file in your Firebase storage (folders will be created)
+                      remoteFullPath: 'postings/' + id + '/maps/' + uploadName,
+                      // option 1: a file-system module File object
+                      localFile: fs.File.fromPath(filePath),
+                      // option 2: a full file path (ignored if 'localFile' is set)
+                      localFullPath: filePath,
+                      // get notified of file upload progress
+                      onProgress: (status) => {
+                        console.log("Uploaded fraction: " + status.fractionCompleted);
+                        console.log("Percentage complete: " + status.percentageCompleted);
+                      }
+                    }).then((uploadedFile) => {
+                      if(uploadName == 'small_map.png')
+                        firebase.storage.getDownloadUrl({
+                          remoteFullPath: 'postings/' + id + '/maps/small_map.png'
+                        }).then((url) => {
+                          firebase.firestore.collection('postings').doc(id).update({
+                            map_url: url
+                          }).then(() => {
+                            let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+                            let addContainer = <FlexboxLayout> this.ac.nativeElement;
+                            activityIndicator.style.visibility = 'collapse';
+                            addContainer.style.visibility = 'visible';
+                            this.close('posted');
+                          })
+                          .catch((err) => {
+
+                          })
+                        })
+                    }).catch((err) => {
+
+                    })
+                }
+            }
+        }
+    })
   }
 
   onPickerLoaded(args) {

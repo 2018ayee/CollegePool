@@ -8,6 +8,7 @@ import { getFrameById } from "tns-core-modules/ui/frame";
 import { UserService } from '../user.service.tns';
 import { PostingService } from '../posting.service.tns';
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
+import { GoogleMapsService } from '../google-maps.service';
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { isAndroid } from "tns-core-modules/platform";
@@ -26,7 +27,7 @@ registerElement('Fab', () => require('nativescript-floatingactionbutton').Fab);
 registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 class PostItem {
-    constructor(public username: String, public info: string, public profileSource: string) { }
+    constructor(public username: String, public info: string, public profileSource: string, public mapSource: string) { }
 }
 
 @Component({
@@ -46,7 +47,8 @@ export class HomeComponent implements OnInit {
   
 
   constructor(private transferService: TransferService, private addService: DynamicAddService, private page: Page, 
-  	private userService: UserService, private postingService: PostingService, private modal: ModalDialogService, private vcRef: ViewContainerRef) { }
+  	private userService: UserService, private postingService: PostingService, private modal: ModalDialogService, private vcRef: ViewContainerRef,
+    private mapService: GoogleMapsService) { }
 
   ngOnInit() {
   	this.loadPostings();
@@ -106,7 +108,7 @@ export class HomeComponent implements OnInit {
       });
       this.p = posts;
       for(var i = 0; i < posts.length; i++) {
-        this.postings.push(new PostItem(posts[i].user, '', ''));
+        this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg'));
         this.createPosting(posts[i].data, i);
       }
       if(args != null)
@@ -137,7 +139,9 @@ export class HomeComponent implements OnInit {
         var url = doc.data().profile_source;
         if(url.substring(0, 27) === 'https://graph.facebook.com/')
           url += '?height=300';
-        this.postings.setItem(i, new PostItem(data.user, info_label, url));
+        // var mapUrl = this.mapService.getStaticMap(data.startAddress + " " + data.startFormatted, data.endAddress + " " + data.endFormatted);
+        // console.log(mapUrl)
+        this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url));
       }
     })
   }

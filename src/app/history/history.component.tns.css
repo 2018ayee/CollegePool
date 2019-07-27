@@ -44,7 +44,8 @@ Label {
 .posting-map {
 	margin-bottom: 16;
 	border-radius: 10;
-	/*align-content: center;*/
+	height: 220;
+	width: 340;
 }
 
 .profile-picture {

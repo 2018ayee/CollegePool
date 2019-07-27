@@ -327,14 +327,14 @@ var AddCardPaymentComponent = /** @class */ (function () {
 /***/ "./app/add-modal/add-modal.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\n  /*align-items: center;*/\r\n  flex-direction: column;\r\n}\r\n\r\n.form {\r\n  margin-left: 30;\r\n  margin-right: 30;\r\n  flex-grow: 2;\r\n  vertical-align: middle;\r\n}\r\n\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n.header-label {\r\n\tmargin-top: 60;\r\n\tmargin-bottom: 0;\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-2 {\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-3 {\r\n\tmargin-top: 14;\r\n\tmargin-left: 16;\r\n\tmargin-right: 16;\r\n\tfont-size: 18;\r\n}\r\n\r\n.header-label-4 {\r\n\tfont-size: 18;\r\n\tmargin-top: 14;\r\n}\r\n\r\n.riding-label {\r\n\tfont-weight: 700;\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.driving-label {\r\n\tcolor: #5c687c;\r\n}\r\n\r\n.switch-container {\r\n\ttext-align: center;\r\n}\r\n\r\n.switch {\r\n\tcolor: #ac00e6;\r\n\tbackground-color: #cd94e0;\r\n}\r\n\r\n.submit-btn {\r\n\tbackground-color: #ac00e6;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.bold {\r\n\tfont-weight: 700;\r\n}\r\n\r\n.start-field {\r\n\tmargin-top: 14;\r\n}"
+module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\n  /*align-items: center;*/\r\n  flex-direction: column;\r\n}\r\n\r\n.form {\r\n  margin-left: 30;\r\n  margin-right: 30;\r\n  flex-grow: 2;\r\n  vertical-align: middle;\r\n}\r\n\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n.header-label {\r\n\tmargin-top: 60;\r\n\tmargin-bottom: 0;\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-2 {\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-3 {\r\n\tmargin-top: 14;\r\n\tmargin-left: 16;\r\n\tmargin-right: 16;\r\n\tfont-size: 18;\r\n}\r\n\r\n.header-label-4 {\r\n\tfont-size: 18;\r\n\tmargin-top: 14;\r\n}\r\n\r\n.riding-label {\r\n\tfont-weight: 700;\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.driving-label {\r\n\tcolor: #5c687c;\r\n}\r\n\r\n.switch-container {\r\n\ttext-align: center;\r\n}\r\n\r\n.switch {\r\n\tcolor: #ac00e6;\r\n\tbackground-color: #cd94e0;\r\n}\r\n\r\n.submit-btn {\r\n\tbackground-color: #ac00e6;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.bold {\r\n\tfont-weight: 700;\r\n}\r\n\r\n.start-field {\r\n\tmargin-top: 14;\r\n}\r\n\r\n.activity-indicator {\r\n  color: #ac00e6;\r\n  vertical-align: center;\r\n  margin-top: 50%;\r\n}"
 
 /***/ }),
 
 /***/ "./app/add-modal/add-modal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ScrollView>\r\n\t<FlexboxLayout class=\"page\">\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n</ScrollView>\r\n"
+module.exports = "<StackLayout>\r\n\t<FlexboxLayout class=\"page\" #addContainer>\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>\r\n</StackLayout>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -359,6 +359,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("../node_modules/tns-core-modules/ui/image-cache/image-cache.js");
+/* harmony import */ var tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _google_maps_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/google-maps.service.ts");
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("../node_modules/tns-core-modules/file-system/file-system.js");
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_14__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -380,9 +387,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 var AddModalComponent = /** @class */ (function () {
-    function AddModalComponent(params, postingService, page, placesService, modal, vcRef, transferService, logincheckService, datePipe) {
+    function AddModalComponent(params, postingService, page, placesService, modal, vcRef, transferService, logincheckService, datePipe, mapService) {
         this.params = params;
         this.postingService = postingService;
         this.page = page;
@@ -392,6 +404,7 @@ var AddModalComponent = /** @class */ (function () {
         this.transferService = transferService;
         this.logincheckService = logincheckService;
         this.datePipe = datePipe;
+        this.mapService = mapService;
         this.date = "now";
         this.price = "$15";
         this.capacity = "-1";
@@ -404,14 +417,17 @@ var AddModalComponent = /** @class */ (function () {
         this.isDriving = false;
         this.startLocationPicked = false;
         this.endLocationPicked = false;
+        this.imageSource = new tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_13__["ImageSource"]();
         this.API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
     }
     // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
     AddModalComponent.prototype.ngOnInit = function () {
         var _this = this;
+        var activityIndicator = this.ai.nativeElement;
+        activityIndicator.style.visibility = 'collapse';
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["getCurrentUser"]().then(function (user) {
             _this.user.username = user.displayName;
-            if (user.displayName == null)
+            if (user.displayName == null || user.displayName == '')
                 _this.user.username = user.email;
             _this.user.id = _this.logincheckService.getUser();
         });
@@ -430,7 +446,6 @@ var AddModalComponent = /** @class */ (function () {
         };
         this.transferService.setData(type);
         this.modal.showModal(_location_location_component__WEBPACK_IMPORTED_MODULE_6__["LocationComponent"], options).then(function (res) {
-            // console.log(res);
             if (res != null)
                 if (res.start != null) {
                     _this.startLocationPicked = true;
@@ -463,6 +478,10 @@ var AddModalComponent = /** @class */ (function () {
     };
     AddModalComponent.prototype.addPosting = function () {
         var _this = this;
+        var activityIndicator = this.ai.nativeElement;
+        var addContainer = this.ac.nativeElement;
+        activityIndicator.style.visibility = 'visible';
+        addContainer.style.visibility = 'collapse';
         if (this.startLocationPicked && this.endLocationPicked) {
             var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('postings');
             postingsCollection.add({
@@ -470,6 +489,8 @@ var AddModalComponent = /** @class */ (function () {
                 user: this.user.username,
                 startAddress: this.startPlace,
                 endAddress: this.endPlace,
+                startFormatted: this.startAddress,
+                endFormatted: this.endAddress,
                 date: this.date,
                 price: this.price,
                 capacity: this.capacity,
@@ -483,13 +504,71 @@ var AddModalComponent = /** @class */ (function () {
                     nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users').doc(_this.user.id).update({
                         posts: posts
                     });
-                });
-            });
-            this.close('posted');
+                    _this.uploadMap(res.id, 'small_map.png');
+                    _this.uploadMap(res.id, 'large_map.png');
+                }).catch(function (err) { });
+            }).catch(function (err) { });
         }
         // this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
         //   this.close('posted');
         // });
+    };
+    AddModalComponent.prototype.uploadMap = function (id, uploadName) {
+        var _this = this;
+        var cache = new tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"]();
+        cache.enableDownload();
+        var cachedImageSource;
+        var url = this.mapService.getStaticMap(this.startPlace + " " + this.startAddress, this.endPlace + " " + this.endAddress);
+        if (uploadName == 'large_map.png')
+            url = this.mapService.getStaticMapLarge(this.startPlace + " " + this.startAddress, this.endPlace + " " + this.endAddress);
+        // Try to read the image from the cache
+        var myImage = cache.get(url);
+        cache.push({
+            key: url,
+            url: url,
+            completed: function (image, key) {
+                if (url === key) {
+                    cachedImageSource = _this.imageSource.setNativeSource(image);
+                    var folderPath = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_14__["knownFolders"].documents().path;
+                    var fileName = uploadName;
+                    var filePath = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_14__["path"].join(folderPath, fileName);
+                    var saved = _this.imageSource.saveToFile(filePath, "png");
+                    if (saved) {
+                        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["storage"].uploadFile({
+                            // the full path of the file in your Firebase storage (folders will be created)
+                            remoteFullPath: 'postings/' + id + '/maps/' + uploadName,
+                            // option 1: a file-system module File object
+                            localFile: tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_14__["File"].fromPath(filePath),
+                            // option 2: a full file path (ignored if 'localFile' is set)
+                            localFullPath: filePath,
+                            // get notified of file upload progress
+                            onProgress: function (status) {
+                                console.log("Uploaded fraction: " + status.fractionCompleted);
+                                console.log("Percentage complete: " + status.percentageCompleted);
+                            }
+                        }).then(function (uploadedFile) {
+                            if (uploadName == 'small_map.png')
+                                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["storage"].getDownloadUrl({
+                                    remoteFullPath: 'postings/' + id + '/maps/small_map.png'
+                                }).then(function (url) {
+                                    nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('postings').doc(id).update({
+                                        map_url: url
+                                    }).then(function () {
+                                        var activityIndicator = _this.ai.nativeElement;
+                                        var addContainer = _this.ac.nativeElement;
+                                        activityIndicator.style.visibility = 'collapse';
+                                        addContainer.style.visibility = 'visible';
+                                        _this.close('posted');
+                                    })
+                                        .catch(function (err) {
+                                    });
+                                });
+                        }).catch(function (err) {
+                        });
+                    }
+                }
+            }
+        });
     };
     AddModalComponent.prototype.onPickerLoaded = function (args) {
         var datePicker = args.object;
@@ -535,6 +614,14 @@ var AddModalComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('ridingLabel'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], AddModalComponent.prototype, "rl", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('activityIndicator'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddModalComponent.prototype, "ai", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('addContainer'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AddModalComponent.prototype, "ac", void 0);
     AddModalComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-add-modal',
@@ -543,7 +630,7 @@ var AddModalComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogParams"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_2__["PostingService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_3__["Page"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_5__["PlacesAutocompleteService"],
             nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_1__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_7__["TransferService"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_8__["LogincheckService"],
-            _angular_common__WEBPACK_IMPORTED_MODULE_10__["DatePipe"]])
+            _angular_common__WEBPACK_IMPORTED_MODULE_10__["DatePipe"], _google_maps_service__WEBPACK_IMPORTED_MODULE_12__["GoogleMapsService"]])
     ], AddModalComponent);
     return AddModalComponent;
 }());
@@ -792,40 +879,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__("./app/dynamic-add.service.ts");
 /* harmony import */ var _payment_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__("./app/payment.service.ts");
 /* harmony import */ var _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__("./app/places-autocomplete.service.ts");
-/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("../node_modules/nativescript-angular/modal-dialog.js");
-/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/@agm/core/index.js");
-/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("./app/chat/chat.module.ts");
-/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_33___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_33__);
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_34___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_34__);
-/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__("./app/location/location.component.ts");
-/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
-/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
-/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
-/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
-/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
-/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/welcome/welcome.component.ts");
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_44___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_44__);
-/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__("../node_modules/nativescript-facebook/angular/index.js");
-/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_45___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_45__);
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_46___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_46__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _google_maps_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__("./app/google-maps.service.ts");
+/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__("../node_modules/nativescript-angular/modal-dialog.js");
+/* harmony import */ var nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_27___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_27__);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/@agm/core/index.js");
+/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("./app/chat/chat.module.ts");
+/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34__);
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35__);
+/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__("./app/location/location.component.ts");
+/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
+/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
+/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
+/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
+/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
+/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__("./app/welcome/welcome.component.ts");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__);
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__("../node_modules/nativescript-facebook/angular/index.js");
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46__);
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -883,8 +972,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { environment } from '../environments/environment';
-tns_core_modules_application__WEBPACK_IMPORTED_MODULE_44__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_44__["launchEvent"], function (args) {
-    nativescript_facebook__WEBPACK_IMPORTED_MODULE_46__["init"]("2272129649677747");
+tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__["launchEvent"], function (args) {
+    nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__["init"]("2272129649677747");
 });
 var AppModule = /** @class */ (function () {
     /*
@@ -912,36 +1001,37 @@ var AppModule = /** @class */ (function () {
                 _payments_payments_component__WEBPACK_IMPORTED_MODULE_5__["PaymentsComponent"],
                 _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"],
                 _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"],
-                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_35__["FloatBtnComponent"],
-                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_36__["AddModalComponent"],
-                _location_location_component__WEBPACK_IMPORTED_MODULE_37__["LocationComponent"],
-                _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_38__["AddPaymentComponent"],
-                _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddCardPaymentComponent"],
-                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_40__["PaymentInfoComponent"],
-                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__["ConfirmationComponent"],
-                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_42__["MessageModalComponent"],
-                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_43__["WelcomeComponent"]
+                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_36__["FloatBtnComponent"],
+                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_37__["AddModalComponent"],
+                _location_location_component__WEBPACK_IMPORTED_MODULE_38__["LocationComponent"],
+                _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddPaymentComponent"],
+                _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_41__["PaymentInfoComponent"],
+                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__["ConfirmationComponent"],
+                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_43__["MessageModalComponent"],
+                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_44__["WelcomeComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
                 _app_routing_module_tns__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_34__["NativeScriptHttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_27__["ReactiveFormsModule"],
-                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_33__["NativeScriptFormsModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_28__["MatInputModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_29__["AgmCoreModule"].forRoot({
+                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_35__["NativeScriptHttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_28__["ReactiveFormsModule"],
+                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_34__["NativeScriptFormsModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_29__["MatInputModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_30__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
                 }),
-                _chat_chat_module__WEBPACK_IMPORTED_MODULE_30__["ChatModule"],
-                ngx_paypal__WEBPACK_IMPORTED_MODULE_31__["NgxPayPalModule"],
+                _chat_chat_module__WEBPACK_IMPORTED_MODULE_31__["ChatModule"],
+                ngx_paypal__WEBPACK_IMPORTED_MODULE_32__["NgxPayPalModule"],
                 // NgxBraintreeModule,
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_32__["HttpClientModule"],
-                nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_45__["NativeScriptFacebookModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_33__["HttpClientModule"],
+                nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_46__["NativeScriptFacebookModule"],
             ],
-            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_24__["PaymentService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_26__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__["PlacesAutocompleteService"], _angular_common__WEBPACK_IMPORTED_MODULE_47__["DatePipe"]],
+            providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_24__["PaymentService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_27__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__["PlacesAutocompleteService"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_48__["DatePipe"], _google_maps_service__WEBPACK_IMPORTED_MODULE_26__["GoogleMapsService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_36__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_37__["LocationComponent"], _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_38__["AddPaymentComponent"], _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddCardPaymentComponent"],
-                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_40__["PaymentInfoComponent"], _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_41__["ConfirmationComponent"]],
+            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_37__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_38__["LocationComponent"], _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_39__["AddPaymentComponent"], _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_41__["PaymentInfoComponent"], _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__["ConfirmationComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NO_ERRORS_SCHEMA"]]
         })
         /*
@@ -1469,17 +1559,65 @@ var FloatBtnComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/google-maps.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GoogleMapsService", function() { return GoogleMapsService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var GoogleMapsService = /** @class */ (function () {
+    function GoogleMapsService(httpClient) {
+        this.httpClient = httpClient;
+        this.static_maps_uri = 'https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg&size=340x220&scale=2&maptype=roadmap\&markers=size:mid%7Ccolor:red%7C';
+        this.static_maps_uri_large = 'https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg&size=512x512&scale=2&maptype=roadmap\&markers=size:mid%7Ccolor:red%7C';
+    }
+    GoogleMapsService.prototype.getStaticMap = function (startadr, endadr) {
+        var formatted_startadr = startadr.split(' ').join('+');
+        var formatted_endadr = endadr.split(' ').join('+');
+        return this.static_maps_uri + formatted_startadr + "%7C" + formatted_endadr;
+    };
+    GoogleMapsService.prototype.getStaticMapLarge = function (startadr, endadr) {
+        var formatted_startadr = startadr.split(' ').join('+');
+        var formatted_endadr = endadr.split(' ').join('+');
+        return this.static_maps_uri_large + formatted_startadr + "%7C" + formatted_endadr;
+    };
+    GoogleMapsService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], GoogleMapsService);
+    return GoogleMapsService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/history/history.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 18;\n}\n\n.info-label {\n\tmargin-top: 12;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\t/*align-content: center;*/\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}"
+module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 18;\n}\n\n.info-label {\n\tmargin-top: 12;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\theight: 220;\n\twidth: 340;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}"
 
 /***/ }),
 
 /***/ "./app/history/history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t            </StackLayout>\r\n\t              </StackLayout>\r\n\t\t\t\t  <Image src=\"~/img/cville-map.png\" stretch=\"none\" height=\"220\" width=\"300\" class=\"posting-map\"></Image>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\r\n-->"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t            </StackLayout>\r\n\t              </StackLayout>\r\n\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\r\n-->"
 
 /***/ }),
 
@@ -1517,10 +1655,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var PostItem = /** @class */ (function () {
-    function PostItem(username, info, profileSource) {
+    function PostItem(username, info, profileSource, mapSource) {
         this.username = username;
         this.info = info;
         this.profileSource = profileSource;
+        this.mapSource = mapSource;
     }
     return PostItem;
 }());
@@ -1580,7 +1719,7 @@ var HistoryComponent = /** @class */ (function () {
                 var url = doc.data().profile_source;
                 if (url.substring(0, 27) === 'https://graph.facebook.com/')
                     url += '?height=300';
-                _this.postings.push(new PostItem(data.user, info_label, url));
+                _this.postings.push(new PostItem(data.user, info_label, url, data.map_url));
             }
         });
     };
@@ -1645,14 +1784,14 @@ var HomeDirective = /** @class */ (function () {
 /***/ "./app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 18;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 12;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\tborder-bottom-width: 1;\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\t/*align-content: center;*/\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 18;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 12;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\tborder-bottom-width: 1;\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\theight: 220;\r\n\twidth: 340;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}"
 
 /***/ }),
 
 /***/ "./app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n    <StackLayout class=\"add-btn-container\">\r\n\t\t<FAB (tap)=\"showModal()\" icon=\"res://ic_add_white_3x\" rippleColor=\"#f1f1f1\" class=\"fab-button\"></FAB>\r\n\t</StackLayout>\r\n\r\n\t<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t\t        \t  \t<StackLayout>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t\t            </StackLayout>\r\n\t\t              </StackLayout>\r\n\t\t\t\t\t  <Image src=\"~/img/cville-map.png\" stretch=\"none\" height=\"220\" width=\"300\" class=\"posting-map\"></Image>\r\n\t\t        </StackLayout>\r\n\t\t    </ng-template>\r\n\t\t</ListView>\r\n\t</PullToRefresh>\r\n\r\n\t<!-- <StackLayout id=\"feed\"> -->\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t<!-- </StackLayout> -->\r\n\r\n\t\r\n\r\n\r\n\r\n\r\n<!-- <app-navigation></app-navigation> -->\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n    <StackLayout class=\"add-btn-container\">\r\n\t\t<FAB (tap)=\"showModal()\" icon=\"res://ic_add_white_3x\" rippleColor=\"#f1f1f1\" class=\"fab-button\"></FAB>\r\n\t</StackLayout>\r\n\r\n\t<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t\t        \t  \t<StackLayout>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t\t            </StackLayout>\r\n\t\t              </StackLayout>\r\n\t\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t\t        </StackLayout>\r\n\t\t    </ng-template>\r\n\t\t</ListView>\r\n\t</PullToRefresh>\r\n\r\n\t<!-- <StackLayout id=\"feed\"> -->\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t<!-- </StackLayout> -->\r\n\r\n\t\r\n\r\n\r\n\r\n\r\n<!-- <app-navigation></app-navigation> -->\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -1673,13 +1812,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _posting_service_tns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/posting.service.tns.ts");
 /* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
 /* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
-/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _google_maps_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("./app/google-maps.service.ts");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1701,18 +1841,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_11__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
 var PostItem = /** @class */ (function () {
-    function PostItem(username, info, profileSource) {
+    function PostItem(username, info, profileSource, mapSource) {
         this.username = username;
         this.info = info;
         this.profileSource = profileSource;
+        this.mapSource = mapSource;
     }
     return PostItem;
 }());
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(transferService, addService, page, userService, postingService, modal, vcRef) {
+    function HomeComponent(transferService, addService, page, userService, postingService, modal, vcRef, mapService) {
         this.transferService = transferService;
         this.addService = addService;
         this.page = page;
@@ -1720,6 +1862,7 @@ var HomeComponent = /** @class */ (function () {
         this.postingService = postingService;
         this.modal = modal;
         this.vcRef = vcRef;
+        this.mapService = mapService;
         this.blocks = 1;
         this.postings = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__["ObservableArray"]();
     }
@@ -1727,7 +1870,7 @@ var HomeComponent = /** @class */ (function () {
         this.loadPostings();
     };
     HomeComponent.prototype.onBackButtonTap = function () {
-        tns_core_modules_application__WEBPACK_IMPORTED_MODULE_8__["android"].foregroundActivity.finish();
+        tns_core_modules_application__WEBPACK_IMPORTED_MODULE_9__["android"].foregroundActivity.finish();
     };
     HomeComponent.prototype.showModal = function () {
         var _this = this;
@@ -1738,7 +1881,7 @@ var HomeComponent = /** @class */ (function () {
             // animated: true,
             // transition: { name: "slideTop" }
         };
-        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_10__["AddModalComponent"], options).then(function (res) {
+        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_11__["AddModalComponent"], options).then(function (res) {
             // console.log(res);
             if (res == 'posted')
                 _this.loadPostings();
@@ -1770,7 +1913,7 @@ var HomeComponent = /** @class */ (function () {
         //     }
         // });
         var posts = [];
-        var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('postings');
+        var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__["firestore"].collection('postings');
         postingsCollection.orderBy('formattedDate', 'asc').get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 posts.push({
@@ -1780,7 +1923,7 @@ var HomeComponent = /** @class */ (function () {
             });
             _this.p = posts;
             for (var i = 0; i < posts.length; i++) {
-                _this.postings.push(new PostItem(posts[i].user, '', ''));
+                _this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg'));
                 _this.createPosting(posts[i].data, i);
             }
             if (args != null) {
@@ -1802,13 +1945,15 @@ var HomeComponent = /** @class */ (function () {
             info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
         else
             info_label = "Requesting ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress;
-        var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users');
+        var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__["firestore"].collection('users');
         usersCollection.doc(data.uid).get().then(function (doc) {
             if (doc.exists) {
                 var url = doc.data().profile_source;
                 if (url.substring(0, 27) === 'https://graph.facebook.com/')
                     url += '?height=300';
-                _this.postings.setItem(i, new PostItem(data.user, info_label, url));
+                // var mapUrl = this.mapService.getStaticMap(data.startAddress + " " + data.startFormatted, data.endAddress + " " + data.endFormatted);
+                // console.log(mapUrl)
+                _this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url));
             }
         });
     };
@@ -1830,7 +1975,8 @@ var HomeComponent = /** @class */ (function () {
             styles: [__webpack_require__("./app/home/home.component.css")]
         }),
         __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_2__["TransferService"], _dynamic_add_service_tns__WEBPACK_IMPORTED_MODULE_3__["DynamicAddService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__["Page"],
-            _user_service_tns__WEBPACK_IMPORTED_MODULE_5__["UserService"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_6__["PostingService"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]])
+            _user_service_tns__WEBPACK_IMPORTED_MODULE_5__["UserService"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_6__["PostingService"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"],
+            _google_maps_service__WEBPACK_IMPORTED_MODULE_8__["GoogleMapsService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -3720,7 +3866,7 @@ var SettingsComponent = /** @class */ (function () {
                             settingsContainer.style.visibility = 'collapse';
                             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["storage"].uploadFile({
                                 // the full path of the file in your Firebase storage (folders will be created)
-                                remoteFullPath: _this.userId + '/uploads/profile_picture.jpg',
+                                remoteFullPath: 'users/' + _this.userId + '/uploads/profile_picture.jpg',
                                 // option 1: a file-system module File object
                                 localFile: tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__["File"].fromPath(path),
                                 // option 2: a full file path (ignored if 'localFile' is set)
@@ -3734,7 +3880,7 @@ var SettingsComponent = /** @class */ (function () {
                                 console.log("File uploaded: " + JSON.stringify(uploadedFile));
                                 nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["storage"].getDownloadUrl({
                                     // the full path of an existing file in your Firebase storage
-                                    remoteFullPath: _this.userId + '/uploads/profile_picture.jpg'
+                                    remoteFullPath: 'users/' + _this.userId + '/uploads/profile_picture.jpg'
                                 }).then(function (url) {
                                     nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["updateProfile"]({
                                         photoURL: url
@@ -3767,8 +3913,6 @@ var SettingsComponent = /** @class */ (function () {
                 }).catch(function (err) {
                     console.log(err);
                 });
-            }).catch(function (err) {
-                console.log(err);
             });
         }).catch(function (err) {
             console.log(err);

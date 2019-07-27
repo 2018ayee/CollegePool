@@ -75,3 +75,9 @@
 .start-field {
 	margin-top: 14;
 }
+
+.activity-indicator {
+  color: #ac00e6;
+  vertical-align: center;
+  margin-top: 50%;
+}

@@ -1,5 +1,5 @@
-<ScrollView>
-	<FlexboxLayout class="page">
+<StackLayout>
+	<FlexboxLayout class="page" #addContainer>
 		<StackLayout class="close-button-container" orientation="horizontal">
 			<Label text="&times;" class="close" (tap)="close('cancel')"></Label>
 		</StackLayout>
@@ -43,4 +43,7 @@
 		  <Button text="Add" class="btn btn-primary submit-btn" (tap)="addPosting()"></Button>
 		</StackLayout>
 	</FlexboxLayout>
-</ScrollView>
+	<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator"></ActivityIndicator>
+</StackLayout>
+
+
