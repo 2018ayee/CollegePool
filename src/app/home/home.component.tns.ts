@@ -26,7 +26,7 @@ registerElement('Fab', () => require('nativescript-floatingactionbutton').Fab);
 registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 class PostItem {
-    constructor(public username: String, public info: string) { }
+    constructor(public username: String, public info: string, public profileSource: string) { }
 }
 
 @Component({
@@ -106,7 +106,8 @@ export class HomeComponent implements OnInit {
       });
       this.p = posts;
       for(var i = 0; i < posts.length; i++) {
-        this.createPosting(posts[i].data);
+        this.postings.push(new PostItem(posts[i].user, '', ''));
+        this.createPosting(posts[i].data, i);
       }
       if(args != null)
       {
@@ -123,14 +124,22 @@ export class HomeComponent implements OnInit {
 	//   this.blocks++;
 	// }
 
-  createPosting(data) {
+  createPosting(data, i: number) {
     let info_label = "";
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
     if(data.capacity != "-1")
       info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
     else
       info_label = "Requesting ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress;
-    this.postings.push(new PostItem(data.user, info_label));
+    const usersCollection = firebase.firestore.collection('users');
+    usersCollection.doc(data.uid).get().then((doc) => {
+      if(doc.exists) {
+        var url = doc.data().profile_source;
+        if(url.substring(0, 27) === 'https://graph.facebook.com/')
+          url += '?height=300';
+        this.postings.setItem(i, new PostItem(data.user, info_label, url));
+      }
+    })
   }
 
   refreshList(args) {

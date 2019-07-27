@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 // import { Router } from '@angular/router';
 import { Page } from "tns-core-modules/ui/page";
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -12,6 +12,8 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 import * as bghttp from 'nativescript-background-http';
 import { ImageCropper } from 'nativescript-imagecropper';
 import * as imageSource from "tns-core-modules/image-source";
+import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 
 @Component({
 	moduleId: module.id,
@@ -27,28 +29,31 @@ export class SettingsComponent implements OnInit {
 
   constructor(private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService) { }
 
-
+  @ViewChild("activityIndicator") ai: ElementRef;
+  @ViewChild("settingsContainer") sc: ElementRef;
   ngOnInit() {
 	this.imageCropper = new ImageCropper();
 	this.userId = this.logincheckService.getUser();
 	firebase.getCurrentUser().then((user) => {
 		console.log(user)
+		console.log("useremail", user.email)
 		if(user.photoURL != null) {
 			this.profile = user.photoURL;
 			if(user.photoURL.substring(0, 27) == 'https://graph.facebook.com/')
 				this.profile += '?height=300';
 		}
 	})
-	this._person = new Person("Phillim", "Das", "jon@company.com", "12224443333", "232 Rodman Road");
+	// this._person = new Person("Phillim", "Das", "jon@company.com", "12224443333", "232 Rodman Road");
 }
 
-	  get person(): Person {
-        return this._person;
-    }
+	//   get person(): Person {
+    //     return this._person;
+    // }
   	profile = "~/img/sample_profile.png";
   	userId;
   	imageCropper: ImageCropper;
   	imageSource: imageSource.ImageSource;
+
 
 	toPayments(){
 		this.router.navigate(['payments']);
@@ -87,6 +92,11 @@ export class SettingsComponent implements OnInit {
 				            var path = fs.path.join(folder.path, "profile_picture.png");
 				            var saved = args.image.saveToFile(path,'png');
 
+				            var activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+      						activityIndicator.busy = true;
+      						var settingsContainer = <StackLayout> this.sc.nativeElement;
+      						settingsContainer.style.visibility = 'collapse';
+
 				            firebase.storage.uploadFile({
 							    // the full path of the file in your Firebase storage (folders will be created)
 							    remoteFullPath: this.userId + '/uploads/profile_picture.jpg',
@@ -112,12 +122,18 @@ export class SettingsComponent implements OnInit {
 													  }).then(
 													      () => {
 													        // called when update profile was successful
+													        activityIndicator.busy = false;
+													        settingsContainer.style.visibility = 'visible';
 													        this.profile = url;
 													      },
 													      (errorMessage) => {
 													        console.log(errorMessage);
 													      }
 													  );
+													  const userDocument = firebase.firestore.collection('users').doc(this.userId);
+													  userDocument.update({
+													  	profile_source: url
+													  })
 											      },
 											      function (error) {
 											        console.log("Error: " + error);
@@ -133,11 +149,17 @@ export class SettingsComponent implements OnInit {
 							    });
 	                        }
 	                    })
-                    .catch(function(e) {
-                        // console.dir(e);
+                    .catch((e) => {
+                        console.dir(e);
                     });
+                }).catch((err) => {
+                	console.log(err);
                 })
+            }).catch((err) => {
+            	console.log(err)
             });
-	    });
+	    }).catch((err) => {
+	    	console.log(err)
+	    })
 	}
 }

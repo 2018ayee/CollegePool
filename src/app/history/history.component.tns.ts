@@ -10,7 +10,7 @@ import * as firebase from 'nativescript-plugin-firebase';
 import { ListView } from 'tns-core-modules/ui/list-view';
 
 class PostItem {
-    constructor(public username: String, public info: string) { }
+    constructor(public username: String, public info: string, public profileSource: string) { }
 }
 
 @Component({
@@ -23,7 +23,7 @@ export class HistoryComponent implements OnInit {
   @ViewChild('listView') lv: ElementRef;
   // username = "2022ayee";
   //user = this.logincheckService.getUser();
-  user = null;
+  user = '';
   name = "Adam Yee";
   // rides : Posting[];
   // p : Posting[];
@@ -33,7 +33,7 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit() {
   	this.logincheckService.loginCheck();
-  	this.user = this.logincheckService.getUser();
+  	this.user = this.logincheckService.getUser()
   	this.loadPostings();
   }
 
@@ -46,7 +46,7 @@ export class HistoryComponent implements OnInit {
     	postIds = doc.data().posts;
     	for(var i = 0; i < postIds.length; i++) {
     		postingsCollection.doc(postIds[i]).get().then(doc => {
-    			this.createPosting(doc.data());
+          this.createPosting(doc.data());
     		})
     	}
     	if(args != null) {
@@ -64,7 +64,15 @@ export class HistoryComponent implements OnInit {
       info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
     else
       info_label = "Requesting ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress;
-    this.postings.push(new PostItem(data.user, info_label));
+    const usersCollection = firebase.firestore.collection('users');
+    usersCollection.doc(data.uid).get().then((doc) => {
+      if(doc.exists) {
+        var url = doc.data().profile_source;
+        if(url.substring(0, 27) === 'https://graph.facebook.com/')
+          url += '?height=300';
+        this.postings.push(new PostItem(data.user, info_label, url));
+      }
+    })
   }
 
   refreshList(args) {
@@ -72,7 +80,7 @@ export class HistoryComponent implements OnInit {
   }
 
   onItemTap(args) {
-    console.log(args);
+    // console.log(args);
   }
 
 }
