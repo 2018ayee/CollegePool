@@ -1,7 +1,7 @@
 //const request = require('request');
 
-//let cheerio = require('cheerio');
-//let jsonframe = require('jsonframe-cheerio');
+let cheerio = require('cheerio');
+let jsonframe = require('jsonframe-cheerio');
 
 function get_gas_price()
 {

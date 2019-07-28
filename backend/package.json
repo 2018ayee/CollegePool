@@ -26,9 +26,23 @@
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "braintree": "^2.16.0",
+    "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "jsonframe-cheerio": "^3.0.1",
     "mongoose": "^5.4.18",
     "socket.io": "^2.2.0"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "crypto": false,
+    "stream": false,
+    "http": false,
+    "tls": false,
+    "zlib": false,
+    "https": false,
+    "net": false
   }
 }
