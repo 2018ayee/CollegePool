@@ -1,0 +1,34 @@
+/* Add mobile styles for the component here.  */
+#Header{
+    margin-top: 50;
+	margin-left: 28;
+	color: black;
+    font-weight: 500;
+    font-size: 30;
+    text-align: left;
+}
+#btn{
+    background-color:#ac00e6;
+    width: 75%;
+    height: 170px;
+    font-family: "Segoe UI",Arial,sans-serif;
+    color: white;
+    margin-top: 20;
+}
+.text-field{
+    width: 85%;
+    margin-top: 20;
+    color:#696969
+}
+
+.close-button-container {
+	position: absolute;
+	left: 0;
+}
+.close {
+	margin: 10;
+	font-size: 40;
+	width: 48;
+    height: 48;
+    color: black
+}

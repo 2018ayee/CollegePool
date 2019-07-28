@@ -55,9 +55,9 @@ https://docs.nativescript.org/angular/ui/styling
     background-color: #f9e6ff;
 }
 .profile-picture {
-	height: 120;
-	width: 120;
-	margin-top: 20;
+	height: 100;
+	width: 100;
+	margin-top: 10;
 	margin-bottom: 8;
 	/*background-repeat: no-repeat;*/
 }
@@ -67,8 +67,8 @@ https://docs.nativescript.org/angular/ui/styling
 }
 
 .header-label {
-	margin-bottom: 20;
-	font-size: 20;
+	margin-bottom: 5;
+	font-size: 15;
 	color: #4285f4;
 }
 
@@ -78,4 +78,31 @@ https://docs.nativescript.org/angular/ui/styling
 
 .activity-indicator {
   color: #ac00e6;
+  margin: 25%;
+}
+
+.value-label {
+	margin-left: 18;
+	margin-bottom: 10;
+    color: black;
+    font-weight: 400;
+    font-size: 18;
+    text-align: left;
+}
+.title-label {
+	margin-top: 16;
+	margin-left: 18;
+	color: #696969;
+
+    text-align: left;
+}
+
+.stack-layout{
+    height:100%
+}
+.activity-indicator{
+    height: 50%;
+}
+ListView {
+    separator-color: transparent;
 }

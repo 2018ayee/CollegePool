@@ -33,6 +33,7 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
 import { SearchComponent } from './search/search.component';
 import { PaymentInfoComponent } from './payment-info/payment-info.component'
 import { WelcomeComponent } from './welcome/welcome.component';
+import {SettingsformComponent} from './settingsform/settingsform.component';
 
 
 export const routes: Routes = [
@@ -49,6 +50,7 @@ export const routes: Routes = [
   { path: 'navigation', component: NavigationComponent },
   { path: 'paymentinfo', component: PaymentInfoComponent },
   { path: 'welcome', component: WelcomeComponent },
+  { path: 'settingsform', component: SettingsformComponent },
 ];
 
 @NgModule({

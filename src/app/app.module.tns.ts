@@ -58,6 +58,7 @@ import * as application from 'tns-core-modules/application';
 import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
 import * as nsFacebook from 'nativescript-facebook';
 import { DatePipe } from '@angular/common';
+import { SettingsformComponent } from './settingsform/settingsform.component';
 
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
@@ -99,7 +100,8 @@ application.on(application.launchEvent, function (args) {
     PaymentInfoComponent,
     ConfirmationComponent,
     MessageModalComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    SettingsformComponent
   ],
   imports: [
     NativeScriptModule,
