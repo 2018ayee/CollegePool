@@ -17,6 +17,9 @@ export class PostingService {
   }
 
   addPosting(user, startadr, endadr, date, cost, capacity, comments) {
+    cost = require("../../backend/data/pricing")({start: startadr, end: endadr});
+    console.log("reached!");
+    console.log(cost);
   	const posting = {
   		user : user,
   		startadr : startadr,
