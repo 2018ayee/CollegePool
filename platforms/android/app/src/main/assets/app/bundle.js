@@ -327,14 +327,14 @@ var AddCardPaymentComponent = /** @class */ (function () {
 /***/ "./app/add-modal/add-modal.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\n  /*align-items: center;*/\r\n  flex-direction: column;\r\n}\r\n\r\n.form {\r\n  margin-left: 30;\r\n  margin-right: 30;\r\n  flex-grow: 2;\r\n  vertical-align: middle;\r\n}\r\n\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n.header-label {\r\n\tmargin-top: 60;\r\n\tmargin-bottom: 0;\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-2 {\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-3 {\r\n\tmargin-top: 14;\r\n\tmargin-left: 16;\r\n\tmargin-right: 16;\r\n\tfont-size: 18;\r\n}\r\n\r\n.header-label-4 {\r\n\tfont-size: 18;\r\n\tmargin-top: 14;\r\n}\r\n\r\n.riding-label {\r\n\tfont-weight: 700;\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.driving-label {\r\n\tcolor: #5c687c;\r\n}\r\n\r\n.switch-container {\r\n\ttext-align: center;\r\n}\r\n\r\n.switch {\r\n\tcolor: #ac00e6;\r\n\tbackground-color: #cd94e0;\r\n}\r\n\r\n.submit-btn {\r\n\tbackground-color: #ac00e6;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.bold {\r\n\tfont-weight: 700;\r\n}\r\n\r\n.start-field {\r\n\tmargin-top: 14;\r\n}\r\n\r\n.activity-indicator {\r\n  color: #ac00e6;\r\n  vertical-align: center;\r\n  margin-top: 50%;\r\n}"
+module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\n  /*align-items: center;*/\r\n  flex-direction: column;\r\n}\r\n\r\n.form {\r\n  margin-left: 30;\r\n  margin-right: 30;\r\n  flex-grow: 2;\r\n  vertical-align: middle;\r\n}\r\n\r\n.close {\r\n\tmargin: 10;\r\n\tfont-size: 28;\r\n\twidth: 48;\r\n\theight: 48;\r\n}\r\n\r\n.close-button-container {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n}\r\n\r\n.header-label {\r\n\tmargin-top: 60;\r\n\tmargin-bottom: 0;\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-2 {\r\n\tfont-size: 20;\r\n}\r\n\r\n.header-label-3 {\r\n\tmargin-top: 14;\r\n\tmargin-left: 16;\r\n\tmargin-right: 16;\r\n\tfont-size: 18;\r\n}\r\n\r\n.header-label-4 {\r\n\tfont-size: 18;\r\n\tmargin-top: 14;\r\n}\r\n\r\n.riding-label {\r\n\tfont-weight: 700;\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.driving-label {\r\n\tcolor: #5c687c;\r\n}\r\n\r\n.switch-container {\r\n\ttext-align: center;\r\n}\r\n\r\n.switch {\r\n\tcolor: #ac00e6;\r\n\tbackground-color: #cd94e0;\r\n}\r\n\r\n.submit-btn {\r\n\tbackground-color: #ac00e6;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.bold {\r\n\tfont-weight: 700;\r\n}\r\n\r\n.start-field {\r\n\tmargin-top: 14;\r\n}\r\n\r\n.activity-indicator {\r\n  color: #ac00e6;\r\n  vertical-align: center;\r\n  margin-top: 47%;\r\n}"
 
 /***/ }),
 
 /***/ "./app/add-modal/add-modal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\r\n\t<FlexboxLayout class=\"page\" #addContainer>\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>\r\n</StackLayout>\r\n\r\n\r\n"
+module.exports = "<StackLayout>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>\r\n\t<ScrollView>\r\n\t<FlexboxLayout class=\"page\" #addContainer>\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <Label text=\"Where?\" class=\"header-label bold\"></Label>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n\t</ScrollView>\r\n</StackLayout>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -423,6 +423,9 @@ var AddModalComponent = /** @class */ (function () {
     // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
     AddModalComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // let addContainer = <FlexboxLayout> this.ac.nativeElement;
+        //  // activityIndicator.style.visibility = 'visible';
+        // addContainer.style.visibility = 'collapse';
         var activityIndicator = this.ai.nativeElement;
         activityIndicator.style.visibility = 'collapse';
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["getCurrentUser"]().then(function (user) {
@@ -478,37 +481,49 @@ var AddModalComponent = /** @class */ (function () {
     };
     AddModalComponent.prototype.addPosting = function () {
         var _this = this;
-        var activityIndicator = this.ai.nativeElement;
         var addContainer = this.ac.nativeElement;
-        activityIndicator.style.visibility = 'visible';
         addContainer.style.visibility = 'collapse';
-        if (this.startLocationPicked && this.endLocationPicked) {
-            var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('postings');
-            postingsCollection.add({
-                uid: this.user.id,
-                user: this.user.username,
-                startAddress: this.startPlace,
-                endAddress: this.endPlace,
-                startFormatted: this.startAddress,
-                endFormatted: this.endAddress,
-                date: this.date,
-                price: this.price,
-                capacity: this.capacity,
-                comments: "",
-                formattedDate: this.formattedDate
-            }).then(function (res) {
-                // console.log(res);
-                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users').doc(_this.user.id).get().then(function (doc) {
-                    var posts = doc.data().posts;
-                    posts.push(res.id);
-                    nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users').doc(_this.user.id).update({
-                        posts: posts
-                    });
-                    _this.uploadMap(res.id, 'small_map.png');
-                    _this.uploadMap(res.id, 'large_map.png');
-                }).catch(function (err) { });
-            }).catch(function (err) { });
-        }
+        var activityIndicator = this.ai.nativeElement;
+        activityIndicator.style.visibility = 'visible';
+        this.mapService.getGeocodeResults(this.startPlace + ' ' + this.startAddress).subscribe(function (res) {
+            _this.startLat = res.results[0].geometry.location.lat;
+            _this.startLng = res.results[0].geometry.location.lng;
+            _this.mapService.getGeocodeResults(_this.endPlace + ' ' + _this.endAddress).subscribe(function (res) {
+                _this.endLat = res.results[0].geometry.location.lat;
+                _this.endLng = res.results[0].geometry.location.lng;
+                if (_this.startLocationPicked && _this.endLocationPicked) {
+                    var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('postings');
+                    postingsCollection.add({
+                        uid: _this.user.id,
+                        user: _this.user.username,
+                        startAddress: _this.startPlace,
+                        endAddress: _this.endPlace,
+                        startFormatted: _this.startAddress,
+                        endFormatted: _this.endAddress,
+                        date: _this.date,
+                        price: _this.price,
+                        capacity: _this.capacity,
+                        comments: "",
+                        formattedDate: _this.formattedDate,
+                        startLat: _this.startLat,
+                        endLat: _this.endLat,
+                        startLng: _this.startLng,
+                        endLng: _this.endLng
+                    }).then(function (res) {
+                        // console.log(res);
+                        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users').doc(_this.user.id).get().then(function (doc) {
+                            var posts = doc.data().posts;
+                            posts.push(res.id);
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_9__["firestore"].collection('users').doc(_this.user.id).update({
+                                posts: posts
+                            });
+                            _this.uploadMap(res.id, 'small_map.png');
+                            _this.uploadMap(res.id, 'large_map.png');
+                        }).catch(function (err) { });
+                    }).catch(function (err) { });
+                }
+            });
+        });
         // this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
         //   this.close('posted');
         // });
@@ -757,6 +772,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("./app/search/search.component.ts");
 /* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
 /* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("./app/welcome/welcome.component.ts");
+/* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -778,6 +794,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
     { path: '', redirectTo: '/welcome', pathMatch: 'full' },
@@ -792,6 +809,7 @@ var routes = [
     { path: 'navigation', component: _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_9__["NavigationComponent"] },
     { path: 'paymentinfo', component: _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_12__["PaymentInfoComponent"] },
     { path: 'welcome', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__["WelcomeComponent"] },
+    { path: 'posting-info', component: _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_14__["PostingInfoComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -908,6 +926,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
 /* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_50___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_50__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -965,6 +986,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 // import { AngularFireModule } from '@angular/fire';
@@ -972,6 +995,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { environment } from '../environments/environment';
+if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_50__["isIOS"]) {
+    GMSServices.provideAPIKey("AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg");
+}
 tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_45__["launchEvent"], function (args) {
     nativescript_facebook__WEBPACK_IMPORTED_MODULE_47__["init"]("2272129649677747");
 });
@@ -1009,7 +1035,8 @@ var AppModule = /** @class */ (function () {
                 _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_41__["PaymentInfoComponent"],
                 _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_42__["ConfirmationComponent"],
                 _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_43__["MessageModalComponent"],
-                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_44__["WelcomeComponent"]
+                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_44__["WelcomeComponent"],
+                _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_49__["PostingInfoComponent"]
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
@@ -1581,18 +1608,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var GoogleMapsService = /** @class */ (function () {
     function GoogleMapsService(httpClient) {
         this.httpClient = httpClient;
-        this.static_maps_uri = 'https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg&size=340x220&scale=2&maptype=roadmap\&markers=size:mid%7Ccolor:red%7C';
-        this.static_maps_uri_large = 'https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg&size=512x512&scale=2&maptype=roadmap\&markers=size:mid%7Ccolor:red%7C';
+        this.API_KEY = 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg';
+        this.static_maps_uri = 'https://maps.googleapis.com/maps/api/staticmap?key=' + this.API_KEY + '&size=340x220&scale=2&maptype=roadmap\&markers=size:small%7Ccolor:red%7C';
+        this.static_maps_uri_large = 'https://maps.googleapis.com/maps/api/staticmap?key=' + this.API_KEY + '&size=512x512&scale=2&maptype=roadmap\&markers=size:small%7Ccolor:red%7C';
+        this.geocode_uri = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + this.API_KEY + '&address=';
     }
     GoogleMapsService.prototype.getStaticMap = function (startadr, endadr) {
         var formatted_startadr = startadr.split(' ').join('+');
         var formatted_endadr = endadr.split(' ').join('+');
-        return this.static_maps_uri + formatted_startadr + "%7C" + formatted_endadr;
+        return this.static_maps_uri + formatted_startadr + "&markers=size:med%7C" + formatted_endadr;
     };
     GoogleMapsService.prototype.getStaticMapLarge = function (startadr, endadr) {
         var formatted_startadr = startadr.split(' ').join('+');
         var formatted_endadr = endadr.split(' ').join('+');
-        return this.static_maps_uri_large + formatted_startadr + "%7C" + formatted_endadr;
+        return this.static_maps_uri_large + formatted_startadr + "&markers=size:med%7C" + formatted_endadr;
+    };
+    GoogleMapsService.prototype.getGeocodeResults = function (address) {
+        var formatted_address = address.split(' ').join('+');
+        return this.httpClient.get("" + this.geocode_uri + formatted_address);
     };
     GoogleMapsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -1610,7 +1643,7 @@ var GoogleMapsService = /** @class */ (function () {
 /***/ "./app/history/history.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 18;\n}\n\n.info-label {\n\tmargin-top: 12;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\theight: 220;\n\twidth: 340;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}"
+module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\theight: 220;\n\twidth: 340;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}"
 
 /***/ }),
 
@@ -1784,7 +1817,7 @@ var HomeDirective = /** @class */ (function () {
 /***/ "./app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 18;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 12;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\tborder-bottom-width: 1;\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\theight: 220;\r\n\twidth: 340;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 17;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 4;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\t/*border-bottom-width: 1;*/\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\theight: 220;\r\n\twidth: 340;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}"
 
 /***/ }),
 
@@ -1817,9 +1850,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1842,8 +1877,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_12__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
 var PostItem = /** @class */ (function () {
     function PostItem(username, info, profileSource, mapSource) {
         this.username = username;
@@ -1854,7 +1890,7 @@ var PostItem = /** @class */ (function () {
     return PostItem;
 }());
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(transferService, addService, page, userService, postingService, modal, vcRef, mapService) {
+    function HomeComponent(transferService, addService, page, userService, postingService, modal, vcRef, mapService, router) {
         this.transferService = transferService;
         this.addService = addService;
         this.page = page;
@@ -1863,6 +1899,7 @@ var HomeComponent = /** @class */ (function () {
         this.modal = modal;
         this.vcRef = vcRef;
         this.mapService = mapService;
+        this.router = router;
         this.blocks = 1;
         this.postings = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__["ObservableArray"]();
     }
@@ -1881,7 +1918,7 @@ var HomeComponent = /** @class */ (function () {
             // animated: true,
             // transition: { name: "slideTop" }
         };
-        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_11__["AddModalComponent"], options).then(function (res) {
+        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_12__["AddModalComponent"], options).then(function (res) {
             // console.log(res);
             if (res == 'posted')
                 _this.loadPostings();
@@ -1961,7 +1998,12 @@ var HomeComponent = /** @class */ (function () {
         this.loadPostings(args);
     };
     HomeComponent.prototype.onItemTap = function (args) {
-        console.log(args);
+        // console.log(args);
+        this.transferService.setData({
+            postInfo: this.p[args.index],
+            postItem: this.postings.getItem(args.index)
+        });
+        this.router.navigate(['posting-info']);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('listView'),
@@ -1976,7 +2018,7 @@ var HomeComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_2__["TransferService"], _dynamic_add_service_tns__WEBPACK_IMPORTED_MODULE_3__["DynamicAddService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__["Page"],
             _user_service_tns__WEBPACK_IMPORTED_MODULE_5__["UserService"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_6__["PostingService"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"],
-            _google_maps_service__WEBPACK_IMPORTED_MODULE_8__["GoogleMapsService"]])
+            _google_maps_service__WEBPACK_IMPORTED_MODULE_8__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterExtensions"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -2667,7 +2709,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/navigation/navigation.component.tns.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ActionBar\r\n   [title]=\"selectedTabIndex === 0 ? homeTab.title : nearbyTab.title\">\r\n</ActionBar> -->\r\n<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ actionBarTitle }}\">\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -2705,6 +2747,7 @@ var NavigationComponent = /** @class */ (function () {
         this.router = router;
         this.page = page;
         this.tabSelectedIndex = 0;
+        this.actionBarTitle = 'Home';
         this.homeTab = { iconSource: 'res://home_highlighted' };
         this.searchTab = { iconSource: 'res://search' };
         this.historyTab = { iconSource: 'res://history' };
@@ -2769,15 +2812,19 @@ var NavigationComponent = /** @class */ (function () {
         if (args.oldIndex !== -1) {
             var newIndex = args.newIndex;
             if (newIndex === 0) {
+                this.actionBarTitle = 'Home';
                 this.toHome();
             }
             else if (newIndex === 1) {
+                this.actionBarTitle = 'Search';
                 this.toSearch();
             }
             else if (newIndex === 2) {
+                this.actionBarTitle = 'Your posts';
                 this.toHistory();
             }
             else if (newIndex === 3) {
+                this.actionBarTitle = 'Settings';
                 this.toSettings();
             }
         }
@@ -3400,6 +3447,122 @@ var PlacesAutocompleteService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], PlacesAutocompleteService);
     return PlacesAutocompleteService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/posting-info/posting-info.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\n"
+
+/***/ }),
+
+/***/ "./app/posting-info/posting-info.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Post\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n<GridLayout>\r\n\t<MapView (mapReady)=\"onMapReady($event)\" [latitude]=\"latitude\" [longitude]=\"longitude\" #mapView></MapView>\r\n</GridLayout>"
+
+/***/ }),
+
+/***/ "./app/posting-info/posting-info.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostingInfoComponent", function() { return PostingInfoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _google_maps_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/google-maps.service.ts");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-google-maps-sdk/map-view.js");
+/* harmony import */ var nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5__["registerElement"])("MapView", function () { return __webpack_require__("../node_modules/nativescript-google-maps-sdk/map-view.js").MapView; });
+var PostingInfoComponent = /** @class */ (function () {
+    function PostingInfoComponent(mapService, router, transferService, page) {
+        this.mapService = mapService;
+        this.router = router;
+        this.transferService = transferService;
+        this.page = page;
+        this.latitude = 37;
+        this.longitude = -122;
+    }
+    PostingInfoComponent.prototype.ngOnInit = function () {
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isIOS"]) {
+            this.bounds = GMSCoordinateBounds.alloc().init();
+        }
+        this.mapData = this.transferService.getData();
+        this.startLat = this.mapData.postInfo.data.startLat;
+        this.endLat = this.mapData.postInfo.data.endLat;
+        this.startLng = this.mapData.postInfo.data.startLng;
+        this.endLng = this.mapData.postInfo.data.endLng;
+    };
+    PostingInfoComponent.prototype.onMapReady = function (event) {
+        this.mapView = event.object;
+        // this.latitude = (this.startLat + this.endLat) / 2.0;
+        // this.longitude = (this.startLng + this.endLng) / 2.0;
+        this.addMarker(this.startLat, this.startLng, this.mapData.postInfo.data.startAddress, this.mapData.postInfo.data.startFormatted, 0);
+        this.addMarker(this.endLat, this.endLng, this.mapData.postInfo.data.endAddress, this.mapData.postInfo.data.endFormatted, 1);
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isAndroid"]) {
+            var builder = new com.google.android.gms.maps.model.LatLngBounds.Builder();
+            this.mapView.findMarker(function (marker) { builder.include(marker.android.getPosition()); return false; });
+            var bounds = builder.build();
+            var cu = com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds(bounds, 150);
+            this.mapView.gMap.animateCamera(cu);
+        }
+        else if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isIOS"]) {
+            var update = GMSCameraUpdate.fitBoundsWithPadding(bounds, 150);
+            this.mapView.gMap.moveCamera(update);
+        }
+    };
+    PostingInfoComponent.prototype.addMarker = function (lat, lng, title, snippet, index) {
+        var marker = new nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__["Marker"]();
+        marker.position = nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__["Position"].positionFromLatLng(lat, lng);
+        marker.title = title;
+        marker.snippet = snippet;
+        marker.userData = { index: index };
+        this.mapView.addMarker(marker);
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isIOS"])
+            this.bounds = this.bounds.includingCoordinate(marker.position);
+    };
+    PostingInfoComponent.prototype.onNavBtnTap = function () {
+        this.router.backToPreviousPage();
+    };
+    PostingInfoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-posting-info',
+            template: __webpack_require__("./app/posting-info/posting-info.component.html"),
+            styles: [__webpack_require__("./app/posting-info/posting-info.component.css")]
+        }),
+        __metadata("design:paramtypes", [_google_maps_service__WEBPACK_IMPORTED_MODULE_1__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__["TransferService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__["Page"]])
+    ], PostingInfoComponent);
+    return PostingInfoComponent;
 }());
 
 

@@ -26,6 +26,7 @@ export class NavigationComponent implements OnInit {
   user;
   activebtn;
   tabSelectedIndex = 0;
+  actionBarTitle = 'Home';
   homeTab = {iconSource: 'res://home_highlighted'};
   searchTab = {iconSource: 'res://search'};
   historyTab = {iconSource: 'res://history'};
@@ -96,12 +97,16 @@ export class NavigationComponent implements OnInit {
         if (args.oldIndex !== -1) {
             const newIndex = args.newIndex;
             if (newIndex === 0) {
+                this.actionBarTitle = 'Home';
                 this.toHome();
             } else if (newIndex === 1) {
+                this.actionBarTitle = 'Search';
                 this.toSearch();
             } else if (newIndex === 2) {
+                this.actionBarTitle = 'Your posts';
                 this.toHistory();
             } else if (newIndex === 3) {
+                this.actionBarTitle = 'Settings';
                 this.toSettings();
             }
         }

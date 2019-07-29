@@ -24,6 +24,10 @@
         "directory": "..\\..\\node_modules\\nativescript-floatingactionbutton"
     },
     {
+        "name": "nativescript-google-maps-sdk",
+        "directory": "..\\..\\node_modules\\nativescript-google-maps-sdk"
+    },
+    {
         "name": "nativescript-imagecropper",
         "directory": "..\\..\\node_modules\\nativescript-imagecropper"
     },

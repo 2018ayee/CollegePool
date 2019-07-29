@@ -1,6 +1,8 @@
-<!-- <ActionBar
-   [title]="selectedTabIndex === 0 ? homeTab.title : nearbyTab.title">
-</ActionBar> -->
+<Page.actionBar>
+    <ActionBar title="{{ actionBarTitle }}">
+    </ActionBar>
+</Page.actionBar>
+
 <TabView [(ngModel)]="tabSelectedIndex" (tabItemTap)="home()" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom" selectedTabTextColor="#ac00e6" #tabView>
     <Page *tabItem="homeTab">
     	<app-home></app-home>

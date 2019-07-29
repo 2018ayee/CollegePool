@@ -1,4 +1,6 @@
 <StackLayout>
+	<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator"></ActivityIndicator>
+	<ScrollView>
 	<FlexboxLayout class="page" #addContainer>
 		<StackLayout class="close-button-container" orientation="horizontal">
 			<Label text="&times;" class="close" (tap)="close('cancel')"></Label>
@@ -13,6 +15,8 @@
 		  	<Switch checked="true" (checkedChange)="onCheckedChange($event)" class="m-15 switch"></Switch>
 		  	<Label text="Riding" class="header-label-3 riding-label" #ridingLabel></Label>
 		  </StackLayout>
+
+		  <Label text="Where?" class="header-label bold"></Label>
 		  <StackLayout class="input-field start-field">
 <!-- 		    <TextField class="input" autocorrect="false" hint="Where from?" [(ngModel)]="startAddress" (textChange)="startAutocomplete()" (tap)="showModal('start')" required></TextField> -->
 			<Label text="{{ startLabel }}" class="header-label-3" (tap)="showModal('start')"></Label>
@@ -43,7 +47,7 @@
 		  <Button text="Add" class="btn btn-primary submit-btn" (tap)="addPosting()"></Button>
 		</StackLayout>
 	</FlexboxLayout>
-	<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator"></ActivityIndicator>
+	</ScrollView>
 </StackLayout>
 
 

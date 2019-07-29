@@ -49,6 +49,7 @@
     "nativescript-dom": "^2.0.2",
     "nativescript-facebook": "^4.1.0",
     "nativescript-floatingactionbutton": "^5.1.0",
+    "nativescript-google-maps-sdk": "^2.7.0",
     "nativescript-imagecropper": "^1.0.6",
     "nativescript-imagepicker": "^6.2.0",
     "nativescript-modal-datetimepicker": "^1.2.0",

@@ -13,6 +13,7 @@ import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { isAndroid } from "tns-core-modules/platform";
 import * as firebase from 'nativescript-plugin-firebase';
+import { RouterExtensions } from 'nativescript-angular/router';
 
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 import { ListView } from "tns-core-modules/ui/list-view";
@@ -48,7 +49,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private transferService: TransferService, private addService: DynamicAddService, private page: Page, 
   	private userService: UserService, private postingService: PostingService, private modal: ModalDialogService, private vcRef: ViewContainerRef,
-    private mapService: GoogleMapsService) { }
+    private mapService: GoogleMapsService, private router: RouterExtensions) { }
 
   ngOnInit() {
   	this.loadPostings();
@@ -151,6 +152,11 @@ export class HomeComponent implements OnInit {
   }
 
   onItemTap(args) {
-    console.log(args);
+    // console.log(args);
+    this.transferService.setData({
+      postInfo: this.p[args.index],
+      postItem: this.postings.getItem(args.index)
+    })
+    this.router.navigate(['posting-info'])
   }
 }

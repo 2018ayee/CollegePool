@@ -58,6 +58,9 @@ import * as application from 'tns-core-modules/application';
 import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
 import * as nsFacebook from 'nativescript-facebook';
 import { DatePipe } from '@angular/common';
+import { PostingInfoComponent } from './posting-info/posting-info.component';
+import { isIOS } from 'tns-core-modules/platform';
+declare var GMSServices: any;
 
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
@@ -67,6 +70,9 @@ import { DatePipe } from '@angular/common';
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { environment } from '../environments/environment';
+if (isIOS) { 
+  GMSServices.provideAPIKey("AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg");
+}
 
 application.on(application.launchEvent, function (args) {
     nsFacebook.init("2272129649677747");
@@ -99,7 +105,8 @@ application.on(application.launchEvent, function (args) {
     PaymentInfoComponent,
     ConfirmationComponent,
     MessageModalComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PostingInfoComponent
   ],
   imports: [
     NativeScriptModule,

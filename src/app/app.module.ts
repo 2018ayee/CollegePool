@@ -45,6 +45,7 @@ import { PaymentInfoComponent } from './payment-info/payment-info.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { PostingInfoComponent } from './posting-info/posting-info.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -86,7 +87,8 @@ const appRoutes: Routes = [
     PaymentInfoComponent,
     ConfirmationComponent,
     MessageModalComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PostingInfoComponent
   ],
   imports: [
     BrowserModule,

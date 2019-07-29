@@ -59,6 +59,10 @@ export class AddModalComponent implements OnInit {
   };
   startLabel = "Pick start location";
   endLabel = "Pick end location";
+  startLat;
+  startLng;
+  endLat;
+  endLng;
 
   isDriving = false;
   startLocationPicked = false;
@@ -69,6 +73,9 @@ export class AddModalComponent implements OnInit {
   API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
   // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
   ngOnInit() {
+    // let addContainer = <FlexboxLayout> this.ac.nativeElement;
+    //  // activityIndicator.style.visibility = 'visible';
+    // addContainer.style.visibility = 'collapse';
     let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
     activityIndicator.style.visibility = 'collapse'
     firebase.getCurrentUser().then(user => {
@@ -128,38 +135,52 @@ export class AddModalComponent implements OnInit {
    }
 
    addPosting() {
-     let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
      let addContainer = <FlexboxLayout> this.ac.nativeElement;
-     activityIndicator.style.visibility = 'visible';
      addContainer.style.visibility = 'collapse';
-     if(this.startLocationPicked && this.endLocationPicked) {
-       var postingsCollection = firebase.firestore.collection('postings');
-       postingsCollection.add({
-         uid: this.user.id,
-         user: this.user.username,
-         startAddress: this.startPlace,
-         endAddress: this.endPlace,
-         startFormatted: this.startAddress,
-         endFormatted: this.endAddress,
-         date: this.date,
-         price: this.price,
-         capacity: this.capacity,
-         comments: "",
-         formattedDate: this.formattedDate
-       }).then(res => {
-         // console.log(res);
+     let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+     activityIndicator.style.visibility = 'visible';
+     this.mapService.getGeocodeResults(this.startPlace + ' ' + this.startAddress).subscribe((res: any) => {
+      this.startLat = res.results[0].geometry.location.lat;
+      this.startLng = res.results[0].geometry.location.lng;
+      this.mapService.getGeocodeResults(this.endPlace + ' ' + this.endAddress).subscribe((res: any) => {
+        this.endLat = res.results[0].geometry.location.lat;
+        this.endLng = res.results[0].geometry.location.lng;
 
-         firebase.firestore.collection('users').doc(this.user.id).get().then(doc => {
-           var posts: String[] = doc.data().posts;
-           posts.push(res.id);
-           firebase.firestore.collection('users').doc(this.user.id).update({
-             posts: posts
-           })
-           this.uploadMap(res.id, 'small_map.png');
-           this.uploadMap(res.id, 'large_map.png');
+        if(this.startLocationPicked && this.endLocationPicked) {
+         var postingsCollection = firebase.firestore.collection('postings');
+         postingsCollection.add({
+           uid: this.user.id,
+           user: this.user.username,
+           startAddress: this.startPlace,
+           endAddress: this.endPlace,
+           startFormatted: this.startAddress,
+           endFormatted: this.endAddress,
+           date: this.date,
+           price: this.price,
+           capacity: this.capacity,
+           comments: "",
+           formattedDate: this.formattedDate,
+           startLat: this.startLat,
+           endLat: this.endLat,
+           startLng: this.startLng,
+           endLng: this.endLng
+         }).then(res => {
+           // console.log(res);
+
+           firebase.firestore.collection('users').doc(this.user.id).get().then(doc => {
+             var posts: String[] = doc.data().posts;
+             posts.push(res.id);
+             firebase.firestore.collection('users').doc(this.user.id).update({
+               posts: posts
+             })
+             this.uploadMap(res.id, 'small_map.png');
+             this.uploadMap(res.id, 'large_map.png');
+           }).catch((err) => {})
          }).catch((err) => {})
-       }).catch((err) => {})
-     }
+       }
+
+      });
+    });
       // this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
       //   this.close('posted');
       // });
