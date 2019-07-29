@@ -6,7 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PaymentService {
   // uri = 'http://localhost:4000';
-  uri = 'http://192.168.1.7:4000';
+  //Adam's Testing Server
+  // uri = 'http://192.168.1.7:4000';
+  //Phillip's Testing Server
+	uri = 'http://192.168.1.3:4000';
+
   constructor(private http: HttpClient) { }
 
   addPaymentUser(id, username, name, email) {

@@ -13,43 +13,81 @@ import { ImageCropper } from 'nativescript-imagecropper';
 import * as imageSource from "tns-core-modules/image-source";
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import { ObservableArray } from 'tns-core-modules/data/observable-array';
+import { TransferService } from '../datatransfer.service';
+import { post } from 'selenium-webdriver/http';
+
+
+class Label {
+    constructor(public label: String, public value: string) { }
+}
 
 @Component({
-  selector: 'app-settings',
+	moduleId: module.id,
+    selector: "app-settings",
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
 
-
-
 export class SettingsComponent implements OnInit {
 
+  constructor(private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService, private transferService: TransferService) { }
 
-  constructor(private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService) { }
+  @ViewChild("activityIndicator") ai: ElementRef;
+  @ViewChild("settingsContainer") sc: ElementRef;
+  ngOnInit() {
+	this.imageCropper = new ImageCropper();
+	this.loadPosts();
+
+	let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+    activityIndicator.style.visibility = 'collapse'
+}
 
   	profile = "~/img/sample_profile.png";
-  	userId;
+	userId;
+	fields;
   	imageCropper: ImageCropper;
   	imageSource: imageSource.ImageSource;
 
-  	@ViewChild("activityIndicator") ai: ElementRef;
-  	@ViewChild("settingsContainer") sc: ElementRef;
+	loadPosts(){
+		this.userId = this.logincheckService.getUser();
+		const userDocument = firebase.firestore.collection('users').doc(this.userId);
+		this.fields = new ObservableArray<Label>();
+		this.updateListView();
+		firebase.getCurrentUser().then((user) => {
+			if(user.photoURL != null) {
+				this.profile = user.photoURL;
+				if(user.photoURL.substring(0, 27) == 'https://graph.facebook.com/')
+					this.profile += '?height=300';
+			}
+		})
+	}
 
-
-  	ngOnInit() {
-  		this.imageCropper = new ImageCropper();
-  		this.userId = this.logincheckService.getUser();
-  		firebase.getCurrentUser().then((user) => {
-  			if(user.photoURL != null) {
-  				this.profile = user.photoURL;
-  				if(user.photoURL.substring(0, 27) == 'https://graph.facebook.com/')
-  					this.profile += '?height=300';
-  			}
-  		})
-	  }
+	updateListView(){
+		this.fields.splice(0);
+		const userDocument = firebase.firestore.collection('users').doc(this.userId);
+		userDocument.get().then(doc => {
+			let vals = doc.data()
+			// console.log("fields", vals)
+			this.fields.push(new Label("Name", vals.first_name+" " + vals.last_name));
+			this.fields.push(new Label("Email", vals.email));
+			if(vals.phone_number==""){
+				this.fields.push(new Label("Phone Number", "None"));
+			}
+			else{
+				this.fields.push(new Label("Phone Number", vals.phone_number));
+			}
+		})
+	}
 	toPayments(){
 		this.router.navigate(['payments']);
 	}
+
+	onItemTap(args) {
+		let label = this.fields._array[args.index]
+		this.router.navigate(['settingsform']);
+		this.transferService.setData(label);
+	  }
 
 	logOut() {
 		firebase.logout();
@@ -85,7 +123,8 @@ export class SettingsComponent implements OnInit {
 				            var saved = args.image.saveToFile(path,'png');
 
 				            var activityIndicator = <ActivityIndicator> this.ai.nativeElement;
-      						activityIndicator.busy = true;
+							activityIndicator.busy = true;
+							activityIndicator.style.visibility = 'visible';
       						var settingsContainer = <StackLayout> this.sc.nativeElement;
       						settingsContainer.style.visibility = 'collapse';
 
@@ -115,7 +154,8 @@ export class SettingsComponent implements OnInit {
 													      () => {
 													        // called when update profile was successful
 													        activityIndicator.busy = false;
-													        settingsContainer.style.visibility = 'visible';
+															settingsContainer.style.visibility = 'visible';
+															activityIndicator.style.visibility = 'collapse';
 													        this.profile = url;
 													      },
 													      (errorMessage) => {

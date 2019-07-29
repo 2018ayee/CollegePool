@@ -2,24 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 // import { CognitoAuth } from 'amazon-cognito-auth-js/dist/amazon-cognito-auth';
 import { Page } from "tns-core-modules/ui/page";
-// import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
-import Auth from '@aws-amplify/auth';
+// import Auth from '@aws-amplify/auth';
 // const firebase = require("nativescript-plugin-firebase");
 import * as firebase from 'nativescript-plugin-firebase';
 // import { AngularFireAuth } from '@angular/fire/auth';
 // import { auth } from 'firebase/app';
 
-// Amplify.configure({
-//   Auth: {
-//     // REQUIRED - Amazon Cognito Identity Pool ID,
-//     // identityPoolId: "us-east-2:f0bb0da8-544c-41aa-9cae-289f5aec7336",
-//     // REQUIRED - Amazon Cognito Region
-//     region: "us-east-2",
-//     // OPTIONAL - Amazon Cognito User Pool ID
-//     userPoolId: "us-east-2_1PnaMFKRK",
-//     //userPoolWebClientId: "2o6dsp7lolkgu660olfeq5igt3"
-//   }
-// });
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

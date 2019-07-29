@@ -4,10 +4,60 @@ To learn more about styling in NativeScript see:
 https://docs.nativescript.org/angular/ui/styling
 */
 
+#Header {
+    color:black;
+    font-size: 24;
+    font-family: "Segoe UI",Arial,sans-serif;
+}
+
+.Update {
+    display: block;
+    color: #ac00e6;
+    border-width: 1;
+    border-color: #ac00e6;
+    border-radius: 5;
+    text-align: center;
+    float: center;
+    margin: auto; 
+    font-weight: 700;
+    font-family: "Segoe UI",Arial,sans-serif;
+    margin-bottom: 15;
+    width: 200;
+    height: 40;
+}
+.Update:highlighted {
+    background-color: #f9e6ff;
+}
+.Payments {
+    /* background-color: white;
+    border-radius: 5;
+    color: #AC00E6;
+    font-family: Times;
+    font-size: 24;
+    vertical-align: middle;
+    width: 80%; */
+    display: block;
+    color: #ac00e6;
+    /*padding: 6px 24px;*/
+    border-width: 1;
+    border-color: #ac00e6;
+    border-radius: 5;
+    text-align: center;
+    float: center;
+    margin: auto; 
+    font-weight: 700;
+    font-family: "Segoe UI",Arial,sans-serif;
+    margin-bottom: 15;
+    width: 200;
+    height: 40;
+}
+.Payments:highlighted {
+    background-color: #f9e6ff;
+}
 .profile-picture {
-	height: 120;
-	width: 120;
-	margin-top: 20;
+	height: 100;
+	width: 100;
+	margin-top: 10;
 	margin-bottom: 8;
 	/*background-repeat: no-repeat;*/
 }
@@ -17,8 +67,8 @@ https://docs.nativescript.org/angular/ui/styling
 }
 
 .header-label {
-	margin-bottom: 20;
-	font-size: 20;
+	margin-bottom: 5;
+	font-size: 15;
 	color: #4285f4;
 }
 
@@ -28,4 +78,31 @@ https://docs.nativescript.org/angular/ui/styling
 
 .activity-indicator {
   color: #ac00e6;
+  margin: 25%;
+}
+
+.value-label {
+	margin-left: 18;
+	margin-bottom: 10;
+    color: black;
+    font-weight: 400;
+    font-size: 18;
+    text-align: left;
+}
+.title-label {
+	margin-top: 16;
+	margin-left: 18;
+	color: #696969;
+
+    text-align: left;
+}
+
+.stack-layout{
+    height:100%
+}
+.activity-indicator{
+    height: 50%;
+}
+ListView {
+    separator-color: transparent;
 }

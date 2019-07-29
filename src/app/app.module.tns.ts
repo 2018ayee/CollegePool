@@ -36,6 +36,7 @@ import {MatInputModule} from '@angular/material/input';
 import { AgmCoreModule } from '@agm/core';
 import { ChatModule } from './chat/chat.module';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 import { NgxBraintreeModule } from 'ngx-braintree';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -61,6 +62,7 @@ import { DatePipe } from '@angular/common';
 import { PostingInfoComponent } from './posting-info/posting-info.component';
 import { isIOS } from 'tns-core-modules/platform';
 declare var GMSServices: any;
+import { SettingsformComponent } from './settingsform/settingsform.component';
 
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
@@ -106,7 +108,8 @@ application.on(application.launchEvent, function (args) {
     ConfirmationComponent,
     MessageModalComponent,
     WelcomeComponent,
-    PostingInfoComponent
+    PostingInfoComponent,
+    SettingsformComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -120,6 +123,7 @@ application.on(application.launchEvent, function (args) {
     }),
     ChatModule,
     NgxPayPalModule,
+    NativeScriptUIDataFormModule,
     // NgxBraintreeModule,
     HttpClientModule,
     NativeScriptFacebookModule,
@@ -132,7 +136,7 @@ application.on(application.launchEvent, function (args) {
   DatePipe, GoogleMapsService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
-  PaymentInfoComponent, ConfirmationComponent],
+  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*

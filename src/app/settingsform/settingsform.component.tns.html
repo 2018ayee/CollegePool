@@ -1,0 +1,13 @@
+<Stacklayout>
+    <StackLayout class="close-button-container" orientation="horizontal">
+        <Label text="&times;" class="close" (tap)="close('cancel')"></Label>
+    </StackLayout>
+    <Label id="Header" [text]="label" textWrap="true"></Label>
+    <StackLayout class="input-field">
+        <TextField #val [text]="value" [keyboardType] = "keyboard" autocorrect="false" returnKeyType="done"
+         [maxLength]= "maxlength" (returnPress)="submit(secondTx.text)"   class="text-field"></TextField>
+    </StackLayout>
+
+    <Button text="Save" (tap)="submitData(val.text)" id="btn"></Button>
+
+</Stacklayout>

@@ -1,76 +1,24 @@
 <!-- <app-navigation></app-navigation> -->
-<StackLayout #settingsContainer>
-    <Image src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></Image>
-    <Label text="Change Photo" class="header-label bold" (tap)="uploadPfp()"></Label>
-    <Button class="Payments" (tap)="toPayments()" text="Payments Page"></Button>
-    <Button (tap)="logOut()" text="Log out"></Button>
-</StackLayout>
+<Stacklayout>
+    <StackLayout #settingsContainer>
+      <!-- <Label id= "Header" text="Account Settings" textWrap="true"></Label> -->
+      <Image src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></Image>
+      <Label text="Change Photo" class="header-label bold" (tap)="uploadPfp()"></Label>
 
-<ActivityIndicator #activityIndicator busy="false" width="40" height="40" class="activity-indicator">
-</ActivityIndicator>
-<!--
-Original Web template:
+      <ListView [items]="fields" #listView id="listView" (itemTap)="onItemTap($event)">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+          <StackLayout class="stack-layout">
+            <Label textWrap="true" class="title-label" [text]="item.label"></Label>
+            <Label textWrap="true" class="value-label" [text]="item.value"></Label>
+          </StackLayout>
+        </ng-template>
+      </ListView>
+      <!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]="person"></RadDataForm>   -->
+      <!-- <Button class="Update"  text="Update Settings"></Button> -->
+      <Button class="Payments" (tap)="toPayments()" text="Payments"></Button>
+      <Button (tap)="logOut()" text="Log out"></Button>
+    </StackLayout>
 
-<app-navigation></app-navigation>
-<div id="body">
-<div layout-align="center center" id="form">
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="user-settings" layout="column">
-  
-<div formGroupName="user">
-	<h3>User Settings</h3>
-  <div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="First Name" formControlName = "firstName" class="input-field">
-  </mat-form-field>
-</div>
-
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Last Name" formControlName = "lastName" class="input-field">
-  </mat-form-field>
-</div>
-
-<!--
-	Email validator
-->
-
-<div class ="example-container" >
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Email" formControlName = "email"
-           [errorStateMatcher]="matcher" >
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Please enter a <strong>valid</strong> email address
-    </mat-error>
-  </mat-form-field>
-</div>
-
-
-
-
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Phone Number " formControlName = "phone" class="input-field">
-  </mat-form-field>
-</div>
-</div>
-
-
-<div formGroupName="address" layout="column">
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder = "Address" formControlName="street" class="input-field">
-  </mat-form-field>
-</div>
-</div>
-
-  <button type="submit" [disabled]="!profileForm.valid" class="submit">Save changes</button>
-
-</form>
-<app-dialog id="update-dialog"></app-dialog>
-</div>
-
-</div>
--->
+<ActivityIndicator #activityIndicator busy="true" width="40"  class="activity-indicator">
+  </ActivityIndicator>
+</Stacklayout>

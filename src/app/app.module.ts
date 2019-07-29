@@ -46,6 +46,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostingInfoComponent } from './posting-info/posting-info.component';
+import { SettingsformComponent } from './settingsform/settingsform.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -88,7 +89,8 @@ const appRoutes: Routes = [
     ConfirmationComponent,
     MessageModalComponent,
     WelcomeComponent,
-    PostingInfoComponent
+    PostingInfoComponent,
+    SettingsformComponent
   ],
   imports: [
     BrowserModule,

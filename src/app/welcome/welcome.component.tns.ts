@@ -38,7 +38,7 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("ln") ln: ElementRef;
   @ViewChild("welcomeContainer") wc: ElementRef;
   @ViewChild("activityIndicator") ai: ElementRef;
-  
+
   ngOnInit() {
     this.createViews();
   }
@@ -47,10 +47,10 @@ export class WelcomeComponent implements OnInit {
     // setTimeout(() => {this.em.nativeElement.focus();}, 500);
     // console.log(this.logincheckService.getUserFromLocalStorage)
     // this.logincheckService.getUserFromLocalStorage();
-    if(this.logincheckService.getUserFromLocalStorage() != null)
-      this.router.navigate(['navigation'], {clearHistory: true});
+    if (this.logincheckService.getUserFromLocalStorage() != null)
+      this.router.navigate(['navigation'], { clearHistory: true });
     else {
-      var activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+      var activityIndicator = <ActivityIndicator>this.ai.nativeElement;
       activityIndicator.busy = false;
       this.wc.nativeElement.style.visibility = 'visible';
     }
@@ -67,24 +67,24 @@ export class WelcomeComponent implements OnInit {
   }
 
   toggleForm() {
-	  this.isLoggingIn = !this.isLoggingIn;
+    this.isLoggingIn = !this.isLoggingIn;
   }
 
   submit() {
-  	if (!this.email || !this.password) {
-  	    this.alert("Please provide both an email address and password");
-  	    return;
-  	}
+    if (!this.email || !this.password) {
+      this.alert("Please provide both an email address and password");
+      return;
+    }
 
-  	if (this.isLoggingIn) {
-  	    this.login();
-  	} else {
-  	    this.register();
-  	}
+    if (this.isLoggingIn) {
+      this.login();
+    } else {
+      this.register();
+    }
   }
 
   login() {
-	  var credentials : firebase.LoginOptions = {
+    var credentials: firebase.LoginOptions = {
       passwordOptions: {
         email: this.email,
         password: this.password,
@@ -92,13 +92,13 @@ export class WelcomeComponent implements OnInit {
       type: firebase.LoginType.PASSWORD
     }
     firebase.login(credentials).then((res) => {
-    	console.log(res);
+      console.log(res);
       this.logincheckService.loginUser(res.uid)
       firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
-        if(doc.data().payment_id == null)
+        if (doc.data().payment_id == null)
           this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
       })
-    	this.router.navigate(['navigation'], {clearHistory: true});
+      this.router.navigate(['navigation'], { clearHistory: true });
     }).catch((err) => {
       console.log(err);
       this.alert("We could not find an account matching your email or password");
@@ -130,24 +130,24 @@ export class WelcomeComponent implements OnInit {
   }
 
   forgotPassword() {
-  	prompt({
-  	    title: "Forgot Password",
-  	    message: "Enter the email address you used to register for CollegePool to reset your password",
-  	    inputType: "email",
-  	    defaultText: "",
-  	    okButtonText: "Ok",
-  	    cancelButtonText: "Cancel"
-  	}).then((data) => {
-      if(data.result)
+    prompt({
+      title: "Forgot Password",
+      message: "Enter the email address you used to register for CollegePool to reset your password",
+      inputType: "email",
+      defaultText: "",
+      okButtonText: "Ok",
+      cancelButtonText: "Cancel"
+    }).then((data) => {
+      if (data.result)
         firebase.sendPasswordResetEmail(data.text).then(
-            () => {
-              this.alert('An email has been sent to ' + data.text + ' with details of how to recover your account')
-            },
-            (errorMessage) => {
-              this.alert('No account could be found with your email')
-            }
+          () => {
+            this.alert('An email has been sent to ' + data.text + ' with details of how to recover your account')
+          },
+          (errorMessage) => {
+            this.alert('No account could be found with your email')
+          }
         );
-  	});
+    });
   }
 
   focusEmail() {
@@ -159,26 +159,26 @@ export class WelcomeComponent implements OnInit {
   }
 
   focusPassword() {
-	  this.pw.nativeElement.focus();
-	}
+    this.pw.nativeElement.focus();
+  }
 
-	focusConfirmPassword() {
-  	if (!this.isLoggingIn) {
-  	    this.cpw.nativeElement.focus();
-  	}
+  focusConfirmPassword() {
+    if (!this.isLoggingIn) {
+      this.cpw.nativeElement.focus();
+    }
   }
 
   alert(message: string) {
-  	return alert({
-  	    title: "CollegePool",
-  	    okButtonText: "Close",
-  	    message: message
-  	});
+    return alert({
+      title: "CollegePool",
+      okButtonText: "Close",
+      message: message
+    });
   }
 
   fbLogin() {
     this.wc.nativeElement.style.visibility = 'collapse';
-    var activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+    var activityIndicator = <ActivityIndicator>this.ai.nativeElement;
     activityIndicator.busy = true;
     firebase.login({
       type: firebase.LoginType.FACEBOOK,

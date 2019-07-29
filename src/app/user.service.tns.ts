@@ -11,10 +11,10 @@ export class UserService {
 	* posting.service.tns.ts.
 	*/
 	// Adam's testing server
-	uri = 'http://192.168.1.7:4000';
+	// uri = 'http://192.168.1.7:4000';
 	// uri = 'http://10.5.11.25:4000';
 	// Phillip's Testing server
-	// uri = 'http://192.168.1.3:4000';
+	uri = 'http://192.168.1.3:4000';
   constructor(private http: HttpClient) { }
 
   getUsers() {
