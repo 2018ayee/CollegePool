@@ -24,12 +24,20 @@
         "directory": "..\\..\\node_modules\\nativescript-floatingactionbutton"
     },
     {
+        "name": "nativescript-google-maps-sdk",
+        "directory": "..\\..\\node_modules\\nativescript-google-maps-sdk"
+    },
+    {
         "name": "nativescript-imagecropper",
         "directory": "..\\..\\node_modules\\nativescript-imagecropper"
     },
     {
         "name": "nativescript-imagepicker",
         "directory": "..\\..\\node_modules\\nativescript-imagepicker"
+    },
+    {
+        "name": "nativescript-masked-text-field",
+        "directory": "..\\..\\node_modules\\nativescript-masked-text-field"
     },
     {
         "name": "nativescript-modal-datetimepicker",
@@ -52,6 +60,10 @@
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
     },
     {
+        "name": "nativescript-ui-dataform",
+        "directory": "..\\..\\node_modules\\nativescript-ui-dataform"
+    },
+    {
         "name": "nativescript-ui-sidedrawer",
         "directory": "..\\..\\node_modules\\nativescript-ui-sidedrawer"
     },
@@ -66,6 +78,10 @@
     {
         "name": "nativescript-permissions",
         "directory": "..\\..\\node_modules\\nativescript-permissions"
+    },
+    {
+        "name": "nativescript-ui-autocomplete",
+        "directory": "..\\..\\node_modules\\nativescript-ui-autocomplete"
     },
     {
         "name": "nativescript-ui-core",

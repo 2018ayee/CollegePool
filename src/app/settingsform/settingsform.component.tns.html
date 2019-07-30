@@ -1,0 +1,17 @@
+<Stacklayout>
+    <StackLayout class="close-button-container" orientation="horizontal">
+        <Label text="&times;" class="close" (tap)="close('cancel')"></Label>
+    </StackLayout>
+    <Label class="header" [text]="label" textWrap="true"></Label>
+    <StackLayout class="input-field">
+    	<!-- <MaskedTextField class="input input-border" mask="(000) 000-0000" [(ngModel)]="value" keyboardType="phone"></MaskedTextField> -->
+        <TextField #val [(ngModel)]="value" [keyboardType] = "keyboard" autocorrect="false" returnKeyType="{{returnKey}}"
+         [maxLength]= "maxlength" class="text-field" secure="{{isSecure}}" hint="{{ hint }}"></TextField>
+        <TextField #secondVal [(ngModel)]="secondValue" [keyboardType] = "keyboard" autocorrect="false" returnKeyType="done"
+         [maxLength]= "maxlength" class="text-field second-val" secure="{{isSecure}}" hint="{{ secondHint }}"></TextField>
+    </StackLayout>
+    <Label #errorMessage text="{{ errorText }}" textWrap="true" class="error-message"></Label>
+
+    <Button text="Save" (tap)="submitData(val.text)" class="submit-btn"></Button>
+
+</Stacklayout>

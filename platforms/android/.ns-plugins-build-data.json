@@ -1,18 +1,58 @@
 {
+	"nativescript-background-http": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-background-http\\platforms\\android\\include.gradle": "e30c46feff05c6712e88ea7a1fc033009a3f87b2",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-background-http\\platforms\\android\\nativescript_background_http.aar": "1ea7abe48eb17af3b8e761fdfbf4a4bcd1b69d89"
+	},
 	"nativescript-braintree": {
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\include.gradle": "4e85aba00f5de781cc76166bf79eb46192db652b",
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-braintree\\platforms\\android\\nativescript_braintree.aar": "85addd52f589f33bf535b8bf0e4e49349da0768d"
 	},
+	"nativescript-facebook": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\include.gradle": "c8e2566b235b01d9a48f7bcf3f4924e73eda6400",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\nativescript_facebook.aar": "9b8b730009555df1d7b394f5193a1164e51b1b3a"
+	},
 	"nativescript-floatingactionbutton": {
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-floatingactionbutton\\platforms\\android\\include.gradle": "8c1fe5211f608e2cdeb32d726de040ca97d7e0f1"
+	},
+	"nativescript-google-maps-sdk": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-google-maps-sdk\\platforms\\android\\AndroidManifest.xml": "130cc0f7d61291e1fe1fe5162746b1b3def24330",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-google-maps-sdk\\platforms\\android\\include.gradle": "faf6fc754a47c6266f96b0406272ff1f1028a054",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-google-maps-sdk\\platforms\\android\\res\\values\\nativescript_google_maps_api.xml": "4de04d8f3a99221f188e5ad10b9480c00124002b",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-google-maps-sdk\\platforms\\android\\nativescript_google_maps_sdk.aar": "623914ab676012689c405617b1b70a8559b5129a"
+	},
+	"nativescript-imagecropper": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\include.gradle": "c977612b446442b5b34b89ac8c595290d6beda65",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\AndroidManifest.xml": "de9e14f14dae0473e1f887952a39df5e32951275",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\nativescript_imagecropper.aar": "2f069119642bfbdcd991fa00e59ed54b79194af8"
+	},
+	"nativescript-imagepicker": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagepicker\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagepicker\\platforms\\android\\nativescript_imagepicker.aar": "9dd7f8031025c5a178b724a2d43e60c87d44a29d"
+	},
+	"nativescript-plugin-firebase": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\.DS_Store": "08b9fd18287f85a1099bda47d40aa99d1aa5c40b",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript-firebase-mlkit-helper.jar-disabled": "5f4785cb9dd189914b2f75b00a10b9ebe47e335f",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\firebase-release.aar": "e1a0244835b078d3faab4fcd4e1cc50828d2a161",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\include.gradle": "de41f09e6112d33b68fa81414e75b73662120b4b",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\res\\raw\\beep.ogg": "1a522c83c9af8babf4b1aa83755ed93742a815c6",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript_plugin_firebase.aar": "1d76e8a745bedc991cec0cb1ac78697706cda0e9"
 	},
 	"nativescript-ripple": {
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ripple\\platforms\\android\\include.gradle": "836c8bb8daac6779214a7f80b47d9837d29b2917"
 	},
+	"nativescript-ui-dataform": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-dataform\\platforms\\android\\typings\\dataform.d.ts": "4e9ec450d20ae85cedd03a2122f492b136e4e22f",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-dataform\\platforms\\android\\TNSDataForm-release.aar": "b36d0300842c0dcb318b0f3702c80d9149ad5643"
+	},
 	"nativescript-ui-sidedrawer": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\TNSSideDrawer-release.aar": "331c897ac7cc256daac53036a1bd48ba8f2380f5",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\typings\\sidedrawer.d.ts": "91ef64e6d1864556d27ded671283ee4a05b7c4eb"
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\typings\\sidedrawer.d.ts": "91ef64e6d1864556d27ded671283ee4a05b7c4eb",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\TNSSideDrawer-release.aar": "331c897ac7cc256daac53036a1bd48ba8f2380f5"
+	},
+	"nativescript-ui-autocomplete": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-autocomplete\\platforms\\android\\include.gradle": "5c54433fdec1e36014b77bbcf28e5c78db503f7d",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-autocomplete\\platforms\\android\\typings\\autocomplete.d.ts": "d1a17b079d745045d00d767ff5820d7a141e9401",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-autocomplete\\platforms\\android\\TNSAutoComplete-release.aar": "2f498a8c66d48706a56008896cee271f3aa12b69"
 	},
 	"nativescript-ui-core": {
 		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-ui-core\\platforms\\android\\typings\\core.d.ts": "5c032652edfa1719ef8c8190fc0f66d3b1c313c2",
@@ -20,33 +60,5 @@
 	},
 	"tns-core-modules-widgets": {
 		"D:\\Kyvern\\CollegePool\\node_modules\\tns-core-modules-widgets\\platforms\\android\\widgets-release.aar": "3ccd997e57128144d7d598fee13ec8f2c95f3834"
-	},
-	"nativescript-plugin-firebase": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\include.gradle": "de41f09e6112d33b68fa81414e75b73662120b4b",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\.DS_Store": "08b9fd18287f85a1099bda47d40aa99d1aa5c40b",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\firebase-release.aar": "e1a0244835b078d3faab4fcd4e1cc50828d2a161",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript_plugin_firebase.aar": "1d76e8a745bedc991cec0cb1ac78697706cda0e9",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\res\\raw\\beep.ogg": "1a522c83c9af8babf4b1aa83755ed93742a815c6",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\nativescript-firebase-mlkit-helper.jar-disabled": "5f4785cb9dd189914b2f75b00a10b9ebe47e335f"
-	},
-	"nativescript-facebook": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\include.gradle": "c8e2566b235b01d9a48f7bcf3f4924e73eda6400",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-facebook\\platforms\\android\\nativescript_facebook.aar": "9b8b730009555df1d7b394f5193a1164e51b1b3a"
-	},
-	"nativescript-imagepicker": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagepicker\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagepicker\\platforms\\android\\nativescript_imagepicker.aar": "9dd7f8031025c5a178b724a2d43e60c87d44a29d"
-	},
-	"nativescript-background-http": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-background-http\\platforms\\android\\nativescript_background_http.aar": "1ea7abe48eb17af3b8e761fdfbf4a4bcd1b69d89",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-background-http\\platforms\\android\\include.gradle": "e30c46feff05c6712e88ea7a1fc033009a3f87b2"
-	},
-	"nativescript-imagecropper": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\AndroidManifest.xml": "de9e14f14dae0473e1f887952a39df5e32951275",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\include.gradle": "c977612b446442b5b34b89ac8c595290d6beda65",
-		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-imagecropper\\platforms\\android\\nativescript_imagecropper.aar": "2f069119642bfbdcd991fa00e59ed54b79194af8"
-	},
-	"@nstudio/nativescript-loading-indicator": {
-		"D:\\Kyvern\\CollegePool\\node_modules\\@nstudio\\nativescript-loading-indicator\\platforms\\android\\nativescript_loading_indicator.aar": "4e2a39f50d19fb7ef98ee50c586b6a2d68adbd4f"
 	}
 }

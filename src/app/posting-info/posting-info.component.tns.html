@@ -1,0 +1,8 @@
+<Page.actionBar>
+    <ActionBar title="Post">
+    	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+    </ActionBar>
+</Page.actionBar>
+<GridLayout>
+	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" #mapView></MapView>
+</GridLayout>
