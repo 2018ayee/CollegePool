@@ -10,6 +10,23 @@ Running `npm start` in the root folder will start a dev server on `http://localh
 
 To run the mobile app, first install all the necessary Nativescript components, which can be found on the Nativescript website. The required dependices for Android development involves downloading Java 8+, Nativescript 5.4.2, and the Android SDK. Instructions specific for Windows also need to set the path for the two enviroment variables: ANDROID_HOME to be: AppData\Local\Android\Sdk and JAVA_HOME to be: C:\Program Files\Java\jdk-10.0.2. These path can vary depending on how these files were installed, but should point to the same files. After installing all the required Nativescript files, running the mobile app involves following the steps in Setup before running executing `npm run android` in the root folder with a connected Android device or Android emulator running.
 
+## Current Issues/ToDos
+* Update font on forgetPassword field
+* Autoupdate History
+* Add in Login verification
+* Add bad word filter
+* Increase settings page efficiency
+* Increase make a post page efficiency
+* Delete Post button
+* Edit Post button
+* Post Layout Redesign
+* Filter posts
+* Search Posts
+* IOS testing
+* Testing on different devices
+* Add posting API
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
