@@ -104,7 +104,6 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
     }),
     ChatModule,
-    NgxPayPalModule
   ],
   // providers: [PostingService, TransferService, DynamicAddService, AmplifyService, UserService],
   providers: [PostingService, TransferService, DynamicAddService, UserService],
