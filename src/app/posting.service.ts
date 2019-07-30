@@ -1,6 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { config } from “./app.config”;
+import { Task } from “./app.model”;
+import { Injectable } from “@angular/core”;
+import {
+  AngularFirestoreDocument,
+  AngularFirestore,
+  AngularFirestoreCollection
+} from “angularfire2/firestore”;
+
+distance: AngularFirestoreCollection<Distance>;
+private distDoc: AngularFirestoreDocument<Distance>;
+
+constructor(private db: AngularFirestore) {
+   //Get the tasks collection
+   this.distance = db.collection<Distance>(config.collection_endpoint);
+}
+
 @Injectable({
   providedIn: 'root'
 })
