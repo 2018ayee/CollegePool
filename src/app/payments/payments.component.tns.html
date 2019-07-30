@@ -7,7 +7,7 @@
 
 
 
-	<StackLayout>
+	<StackLayout #paymentsContainer>
 		<ListView [items]="payments" separatorColor="transparent" (itemTap)="onSelect($event)">
 			<ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
 				<StackLayout [class.odd]="odd" [class.even]="even" class="post" orientation="horizontal">

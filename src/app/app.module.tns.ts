@@ -39,7 +39,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 import { NgxBraintreeModule } from 'ngx-braintree';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MaskedTextFieldModule } from "nativescript-masked-text-field/angular";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -63,6 +63,8 @@ import { PostingInfoComponent } from './posting-info/posting-info.component';
 import { isIOS } from 'tns-core-modules/platform';
 declare var GMSServices: any;
 import { SettingsformComponent } from './settingsform/settingsform.component';
+import { ReauthComponent } from './reauth/reauth.component';
+
 
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
@@ -110,6 +112,7 @@ application.on(application.launchEvent, function (args) {
     WelcomeComponent,
     PostingInfoComponent,
     SettingsformComponent,
+    ReauthComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -127,6 +130,7 @@ application.on(application.launchEvent, function (args) {
     // NgxBraintreeModule,
     HttpClientModule,
     NativeScriptFacebookModule,
+    MaskedTextFieldModule
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
@@ -136,7 +140,7 @@ application.on(application.launchEvent, function (args) {
   DatePipe, GoogleMapsService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
-  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent],
+  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent, ReauthComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*

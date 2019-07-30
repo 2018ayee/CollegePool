@@ -29,6 +29,8 @@ export class HistoryComponent implements OnInit {
   // p : Posting[];
   blocks = 0;
   postings = new ObservableArray<PostItem>();
+  p = [];
+  
   constructor(private logincheckService: LogincheckService, private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
 
   ngOnInit() {
@@ -71,6 +73,7 @@ export class HistoryComponent implements OnInit {
         if(url.substring(0, 27) === 'https://graph.facebook.com/')
           url += '?height=300';
         this.postings.push(new PostItem(data.user, info_label, url, data.map_url));
+        this.p.push(data)
       }
     })
   }
@@ -80,7 +83,11 @@ export class HistoryComponent implements OnInit {
   }
 
   onItemTap(args) {
-    // console.log(args);
+    this.transferService.setData({
+      postInfo: {data: this.p[args.index]},
+      postItem: this.postings.getItem(args.index)
+    })
+    this.router.navigate(['posting-info'])
   }
 
 }

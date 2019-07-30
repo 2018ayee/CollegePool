@@ -1,0 +1,13 @@
+<Stacklayout>
+    <StackLayout class="close-button-container" orientation="horizontal">
+        <Label text="&times;" class="close" (tap)="close('cancel')"></Label>
+    </StackLayout>
+    <Label class="header" text="Please re-enter your password" textWrap="true"></Label>
+    <StackLayout class="input-field">
+        <TextField #val [(ngModel)]="password" secure="true" autocorrect="false" returnKeyType="done" class="text-field"></TextField>
+    </StackLayout>
+    <Label text="The password you entered was incorrect" textWrap="true" class="error-message" #errorMessage></Label>
+
+    <Button text="Submit" (tap)="submit(password)" class="submit-btn"></Button>
+
+</Stacklayout>

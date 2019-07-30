@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef } from '@angular/core';
 // import { Router } from '@angular/router';
 import { Page } from "tns-core-modules/ui/page";
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -16,10 +16,15 @@ import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { TransferService } from '../datatransfer.service';
 import { post } from 'selenium-webdriver/http';
+import { ModalDialogParams } from "nativescript-angular/directives/dialogs";
+import { ModalDialogService } from "nativescript-angular/directives/dialogs";
+import { SettingsformComponent } from '../settingsform/settingsform.component';
+import { ReauthComponent } from '../reauth/reauth.component';
+import { SetupItemViewArgs } from "nativescript-angular/directives";
 
 
 class Label {
-    constructor(public label: String, public value: string) { }
+    constructor(public label: String, public value: string, public firstName: string, public lastName: string) { }
 }
 
 @Component({
@@ -31,30 +36,45 @@ class Label {
 
 export class SettingsComponent implements OnInit {
 
-  constructor(private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService, private transferService: TransferService) { }
+  constructor(private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService, private transferService: TransferService,
+  	private vcRef: ViewContainerRef, private modal: ModalDialogService) { }
 
   @ViewChild("activityIndicator") ai: ElementRef;
   @ViewChild("settingsContainer") sc: ElementRef;
+
+  profile = "~/img/sample_profile.png";
+  userId;
+  fields;
+  imageCropper: ImageCropper;
+  imageSource: imageSource.ImageSource;
+  buttons;
+  paymentList;
+  logoutList;
+  user;
+
   ngOnInit() {
 	this.imageCropper = new ImageCropper();
-	this.loadPosts();
+	this.loadViews();
 
-	let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
-    activityIndicator.style.visibility = 'collapse'
-}
+		let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+	    activityIndicator.style.visibility = 'collapse'
+	}
 
-  	profile = "~/img/sample_profile.png";
-	userId;
-	fields;
-  	imageCropper: ImageCropper;
-  	imageSource: imageSource.ImageSource;
+	loadViews(){
+		this.paymentList = new ObservableArray<String>();
+		this.paymentList.push('Payment methods');
+		this.logoutList = new ObservableArray<String>();
+		this.logoutList.push('Log out');
+		this.buttons = new ObservableArray<String>();
+		this.buttons.push('Payment methods');
+		this.buttons.push('Log out');
 
-	loadPosts(){
 		this.userId = this.logincheckService.getUser();
 		const userDocument = firebase.firestore.collection('users').doc(this.userId);
 		this.fields = new ObservableArray<Label>();
 		this.updateListView();
 		firebase.getCurrentUser().then((user) => {
+			this.user = user;
 			if(user.photoURL != null) {
 				this.profile = user.photoURL;
 				if(user.photoURL.substring(0, 27) == 'https://graph.facebook.com/')
@@ -63,24 +83,69 @@ export class SettingsComponent implements OnInit {
 		})
 	}
 
+	setupItemView(args: SetupItemViewArgs) {
+		args.view.context.payments = (args.index == 0);
+		args.view.context.logout = (args.index == 1);
+		args.view.context.even = (args.index % 2 === 0);
+		args.view.context.odd = (args.index % 2 === 1);
+	}
+
 	updateListView(){
 		this.fields.splice(0);
 		const userDocument = firebase.firestore.collection('users').doc(this.userId);
 		userDocument.get().then(doc => {
 			let vals = doc.data()
 			// console.log("fields", vals)
-			this.fields.push(new Label("Name", vals.first_name+" " + vals.last_name));
-			this.fields.push(new Label("Email", vals.email));
-			if(vals.phone_number==""){
-				this.fields.push(new Label("Phone Number", "None"));
+			this.fields.push(new Label("Name", vals.first_name + " " + vals.last_name, vals.first_name, vals.last_name));
+			this.fields.push(new Label("Email", vals.email, vals.first_name, vals.last_name));
+			if(vals.phone_number == "" || vals.phone_number == null){
+				this.fields.push(new Label("Phone Number", "None", vals.first_name, vals.last_name));
 			}
 			else{
-				this.fields.push(new Label("Phone Number", vals.phone_number));
+				this.fields.push(new Label("Phone Number", vals.phone_number, vals.first_name, vals.last_name));
+			}
+			if(this.user.providers[1].id == 'password') {
+				this.fields.push(new Label("Password", "********", vals.first_name, vals.last_name))
 			}
 		})
 	}
 	toPayments(){
 		this.router.navigate(['payments']);
+	}
+
+	showModal(args) {
+		let label = this.fields._array[args.index]
+		this.transferService.setData(label);
+		let options = {
+	        context: {},
+	        fullscreen: true,
+	        viewContainerRef: this.vcRef
+	        // animated: true,
+	        // transition: { name: "slideTop" }
+	    };
+	    if(args.index == 3) {
+	    	this.modal.showModal(ReauthComponent, options).then(res => {
+		    	if(res == 'update') {
+		    		this.updateListView();
+		    	}
+		    });
+	    }
+	    else {
+		    this.modal.showModal(SettingsformComponent, options).then(res => {
+		    	if(res == 'update') {
+		    		this.updateListView();
+		    	}
+		    });
+		}
+	}
+
+	route(args) {
+		if(args.index == 0) {
+			this.toPayments();
+		}
+		else if(args.index == 1) {
+			this.logOut();
+		}
 	}
 
 	onItemTap(args) {

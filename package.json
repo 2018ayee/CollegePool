@@ -52,6 +52,7 @@
     "nativescript-google-maps-sdk": "^2.7.0",
     "nativescript-imagecropper": "^1.0.6",
     "nativescript-imagepicker": "^6.2.0",
+    "nativescript-masked-text-field": "^4.0.2",
     "nativescript-modal-datetimepicker": "^1.2.0",
     "nativescript-plugin-firebase": "^9.0.4",
     "nativescript-pulltorefresh": "^2.3.0",

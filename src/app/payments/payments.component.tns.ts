@@ -34,6 +34,7 @@ export class PaymentsComponent implements OnInit {
 
   @ViewChild('activityIndicator') aI: ElementRef;
   @ViewChild('addContainer') aC: ElementRef;
+  @ViewChild('paymentsContainer') pC: ElementRef;
   user = {
   	payment_id: '507305706'
   }
@@ -69,14 +70,15 @@ export class PaymentsComponent implements OnInit {
     braintree.on("success", (res) => {
         let output = res.object.get("output");
         // console.dir(output);
-        
+
+        var addContainer = <StackLayout> this.aC.nativeElement;
+        var paymentsContainer = <StackLayout> this.pC.nativeElement;
+        var activityIndicator = <ActivityIndicator> this.aI.nativeElement;
+        paymentsContainer.style.visibility = 'collapse';
+        addContainer.style.visibility = 'collapse';
+        activityIndicator.busy = true;
 
         this.paymentService.addPaymentMethodToUser(this.user.payment_id, output.nonce).subscribe((res: any) => {
-          var addContainer = <StackLayout> this.aC.nativeElement;
-          
-          var activityIndicator = <ActivityIndicator> this.aI.nativeElement;
-          
-          console.log(res.message);
           if(res.message == 'Success') {
             dialogs.alert({
                 title: "Added method",
@@ -84,12 +86,12 @@ export class PaymentsComponent implements OnInit {
                 okButtonText: "Close"
             }).then(() => {
             });
-            addContainer.style.visibility = 'collapse';
-            activityIndicator.busy = true;
+
             this.getUser();
           }
           else if(res.message == 'Already exists') {
             addContainer.style.visibility = 'visible';
+            paymentsContainer.style.visibility = 'visible';
             activityIndicator.busy = false;
             dialogs.alert({
                 title: "Could not add method",
@@ -131,7 +133,9 @@ export class PaymentsComponent implements OnInit {
     this.payments.splice(0);
 
     var addContainer = <StackLayout> this.aC.nativeElement;
+    var paymentsContainer = <StackLayout> this.pC.nativeElement;
     addContainer.style.visibility = 'collapse';
+    paymentsContainer.style.visibility = 'collapse';
 
   	this.paymentService.getPaymentUserById(this.user.payment_id).subscribe((data) => {
       this.setupViews();
@@ -160,6 +164,9 @@ export class PaymentsComponent implements OnInit {
 
     var addContainer = <StackLayout> this.aC.nativeElement;
     addContainer.style.visibility = 'visible';
+
+    var paymentsContainer = <StackLayout> this.pC.nativeElement;
+    paymentsContainer.style.visibility = 'visible';
   }
 
   selectPayment() {

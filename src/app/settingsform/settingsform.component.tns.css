@@ -1,18 +1,18 @@
 /* Add mobile styles for the component here.  */
-#Header{
+.header{
     margin-top: 50;
-	margin-left: 28;
+	margin-left: 32;
 	color: black;
     font-weight: 500;
     font-size: 30;
     text-align: left;
 }
-#btn{
+.submit-btn{
     background-color:#ac00e6;
     width: 75%;
     height: 170px;
-    font-family: "Segoe UI",Arial,sans-serif;
-    color: white;
+/*    font-family: "Segoe UI",Arial,sans-serif;
+*/    color: white;
     margin-top: 20;
 }
 .text-field{
@@ -31,4 +31,14 @@
 	width: 48;
     height: 48;
     color: black
+}
+
+.error-message {
+    color: red;
+    font-size: 16;
+    visibility: collapse;
+}
+
+.second-val {
+    visibility: collapse;
 }

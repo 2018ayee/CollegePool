@@ -36,6 +36,10 @@
         "directory": "..\\..\\node_modules\\nativescript-imagepicker"
     },
     {
+        "name": "nativescript-masked-text-field",
+        "directory": "..\\..\\node_modules\\nativescript-masked-text-field"
+    },
+    {
         "name": "nativescript-modal-datetimepicker",
         "directory": "..\\..\\node_modules\\nativescript-modal-datetimepicker"
     },

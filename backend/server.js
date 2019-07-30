@@ -99,6 +99,7 @@ router.route('/customers/payment').post((req, res) => {
 					if(cards != null)
 						for(var i = 0; i < cards.length; i++)
 						{
+							// console.log(result.creditCard)
 							if(result.creditCard != null && cards[i].uniqueNumberIdentifier == result.creditCard.uniqueNumberIdentifier)
 							{
 								gateway.paymentMethod.delete(result.creditCard.token, function (err) {});
