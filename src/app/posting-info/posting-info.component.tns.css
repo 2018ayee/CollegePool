@@ -1,1 +1,36 @@
 /* Add mobile styles for the component here.  */
+.map-view {
+	height: 100%;
+	width: 100%;
+	vertical-align: bottom;
+}
+
+.profile-picture {
+	height: 50;
+	width: 50;
+	border-radius: 100%;
+	vertical-align: top;
+	margin-left: 16;
+	margin-top: 20;
+}
+
+.name-label {
+	margin-top: 16;
+	margin-left: 18;
+	color: black;
+	font-weight: 700;
+	font-size: 17;
+	text-align: left;
+}
+
+.info-label {
+	margin-top: 4;
+	margin-left: 18;
+	margin-bottom: 16;
+	color: black;
+	text-align: left;
+}
+
+.label-container {
+	vertical-align: middle;
+}

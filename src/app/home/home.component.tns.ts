@@ -10,10 +10,12 @@ import { PostingService } from '../posting.service.tns';
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { GoogleMapsService } from '../google-maps.service';
 import * as application from "tns-core-modules/application";
+import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { isAndroid } from "tns-core-modules/platform";
 import * as firebase from 'nativescript-plugin-firebase';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { DatePipe } from '@angular/common';
 
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 import { ListView } from "tns-core-modules/ui/list-view";
@@ -22,6 +24,9 @@ import { Posting } from '../posting.model';
 import { User } from '../user.model';
 
 import { AddModalComponent } from '../add-modal/add-modal.component';
+import { Cache } from "tns-core-modules/ui/image-cache";
+import { ImageSource, fromFile, fromResource, fromBase64, fromNativeSource } from "tns-core-modules/image-source";
+import { Folder, path, knownFolders } from "tns-core-modules/file-system";
 
 import { registerElement } from 'nativescript-angular/element-registry';
 registerElement('Fab', () => require('nativescript-floatingactionbutton').Fab);
@@ -43,13 +48,16 @@ export class HomeComponent implements OnInit {
   blocks = 1;
   p : Posting[];
   postings = new ObservableArray<PostItem>();
+  cache = new Cache();
+  
 
   @ViewChild('listView') lv: ElementRef;
+  @ViewChild('activityIndicator') ai: ElementRef;
   
 
   constructor(private transferService: TransferService, private addService: DynamicAddService, private page: Page, 
   	private userService: UserService, private postingService: PostingService, private modal: ModalDialogService, private vcRef: ViewContainerRef,
-    private mapService: GoogleMapsService, private router: RouterExtensions) { }
+    private mapService: GoogleMapsService, private router: RouterExtensions, private datePipe: DatePipe) { }
 
   ngOnInit() {
   	this.loadPostings();
@@ -84,23 +92,19 @@ export class HomeComponent implements OnInit {
   loadPostings(args=null) {
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
+    this.cache.placeholder = fromFile("~/img/gray_background.jpg");
+    this.cache.maxRequests = 5;
+
     this.postings.splice(0);
-  // 	this.postingService.getPostings()
-		// .subscribe((data: Posting[]) => {
-		// 	this.p = data;
-		// 	this.blocks = 0;
-		// 	for(var i = this.p.length - 1; i >= 0; i--) {
-  //         this.createPosting(this.p[i]);
-  //     }
-  //     if(args != null)
-  //     {
-  //       var pullRefresh = args.object;
-  //       pullRefresh.refreshing = false;
-  //     }
-		// });
+    let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+    activityIndicator.busy = true;
+
+    const currentDate = new Date();
+
     var posts = [];
     var postingsCollection = firebase.firestore.collection('postings');
-    postingsCollection.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
+    const query = postingsCollection.where('formattedDate', '>=', this.datePipe.transform(currentDate, 'yyyy-MM-dd'))
+    query.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         posts.push({
           id: doc.id,
@@ -112,6 +116,7 @@ export class HomeComponent implements OnInit {
         this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg'));
         this.createPosting(posts[i].data, i);
       }
+      activityIndicator.busy = false;
       if(args != null)
       {
         var pullRefresh = args.object;
@@ -142,7 +147,47 @@ export class HomeComponent implements OnInit {
           url += '?height=300';
         // var mapUrl = this.mapService.getStaticMap(data.startAddress + " " + data.startFormatted, data.endAddress + " " + data.endFormatted);
         // console.log(mapUrl)
+        // this.addCache(url, 'pfp', data.user, info_label, url, data.map_url, i).then((res) => {
+        //   console.log(res)
+        //   this.addCache(data.map_url, 'map', data.user, info_label, url, data.map_url, i).then((res) =>{
+        //     console.log(res)
+        //   })
+        // });
         this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url));
+      }
+    })
+  }
+
+  addCache(url, img_type, user, info, pfp_url, map_url, i) {
+    return new Promise<any>((resolve, reject) => {
+      let cachedImageSource;
+      const myImage = this.cache.get(url);
+      if (myImage) {
+        // If present -- use it.
+        cachedImageSource = fromNativeSource(myImage);
+        console.log(myImage)
+        if(img_type === 'pfp')
+          this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+        else if (img_type === 'map')
+          this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
+        resolve({message: 'Retrieved from cache', cacheURL: cachedImageSource});
+      } 
+      else {
+        // If not present -- request its download + put it in the cache.
+        this.cache.push({
+            key: url,
+            url: url,
+            completed: (image, key) => {
+                if (url === key) {
+                    cachedImageSource = fromNativeSource(image);
+                    if(img_type === 'pfp')
+                      this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+                    else if (img_type === 'map')
+                      this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
+                }
+                resolve({message: 'Added to cache', cacheURL: cachedImageSource});
+            }
+        });
       }
     })
   }
@@ -152,7 +197,7 @@ export class HomeComponent implements OnInit {
   }
 
   onItemTap(args) {
-    // console.log(args);
+    console.log(this.postings.getItem(args.index));
     this.transferService.setData({
       postInfo: this.p[args.index],
       postItem: this.postings.getItem(args.index)

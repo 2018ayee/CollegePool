@@ -1,8 +1,21 @@
 <Page.actionBar>
     <ActionBar title="Post">
     	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+	    <ActionItem (tap)="promptDelete()"
+	      ios.systemIcon="16" ios.position="right"
+	      text="Delete" android.position="popup" #deleteItem></ActionItem>
+	    <ActionItem (tap)="onReport()"
+	      ios.systemIcon="9" ios.position="right"
+	      text="Report" android.position="popup"></ActionItem>
     </ActionBar>
 </Page.actionBar>
-<GridLayout>
-	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" #mapView></MapView>
+<GridLayout rows="2*,11*">
+	<StackLayout orientation="horizontal" row="0" class="label-container">
+		<Image src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></Image>
+	  	<StackLayout>
+	      	<Label textWrap="true" id="post-name" class="name-label" text="{{ username }}"></Label>
+	      	<Label textWrap="true" id="post-info" class="info-label" text="{{ info }}"></Label>
+	    </StackLayout>
+	</StackLayout>
+	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" row="1" #mapView></MapView>
 </GridLayout>

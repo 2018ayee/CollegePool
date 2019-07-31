@@ -8,6 +8,10 @@ import { LogincheckService } from '../logincheck.service';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import * as firebase from 'nativescript-plugin-firebase';
 import { ListView } from 'tns-core-modules/ui/list-view';
+import { ImageSource, fromFile, fromResource, fromBase64, fromNativeSource } from "tns-core-modules/image-source";
+import { Folder, path, knownFolders } from "tns-core-modules/file-system";
+import { Cache } from "tns-core-modules/ui/image-cache";
+
 
 class PostItem {
     constructor(public username: String, public info: string, public profileSource: string, public mapSource: string) { }
@@ -21,16 +25,15 @@ class PostItem {
 export class HistoryComponent implements OnInit {
 
   @ViewChild('listView') lv: ElementRef;
-  // username = "2022ayee";
   //user = this.logincheckService.getUser();
   user = '';
   name = "Adam Yee";
-  // rides : Posting[];
-  // p : Posting[];
   blocks = 0;
   postings = new ObservableArray<PostItem>();
   p = [];
-  
+  ids = [];
+  cache = new Cache();
+
   constructor(private logincheckService: LogincheckService, private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
 
   ngOnInit() {
@@ -48,7 +51,7 @@ export class HistoryComponent implements OnInit {
     	postIds = doc.data().posts;
     	for(var i = 0; i < postIds.length; i++) {
     		postingsCollection.doc(postIds[i]).get().then(doc => {
-          this.createPosting(doc.data());
+          this.createPosting(doc.data(), doc.id);
     		})
     	}
     	if(args != null) {
@@ -60,7 +63,9 @@ export class HistoryComponent implements OnInit {
     })
   }
 
-  createPosting(data) {
+  createPosting(data, id) {
+    this.cache.placeholder = fromFile("~/img/gray_background.jpg");
+    this.cache.maxRequests = 5;
     let info_label = "";
     if(data.capacity != "-1")
       info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
@@ -74,6 +79,7 @@ export class HistoryComponent implements OnInit {
           url += '?height=300';
         this.postings.push(new PostItem(data.user, info_label, url, data.map_url));
         this.p.push(data)
+        this.ids.push(id)
       }
     })
   }
@@ -82,9 +88,31 @@ export class HistoryComponent implements OnInit {
     this.loadPostings(args);
   }
 
+  addCache(url) {
+    let cachedImageSource;
+    const myImage = this.cache.get(url);
+    if (myImage) {
+        // If present -- use it.
+        cachedImageSource = fromNativeSource(myImage);
+        return cachedImageSource;
+    } else {
+        // If not present -- request its download + put it in the cache.
+        this.cache.push({
+            key: url,
+            url: url,
+            completed: (image, key) => {
+                if (url === key) {
+                    cachedImageSource = fromNativeSource(image);
+                    return cachedImageSource;
+                }
+            }
+        });
+    }
+  }
+
   onItemTap(args) {
     this.transferService.setData({
-      postInfo: {data: this.p[args.index]},
+      postInfo: {id: this.ids[args.index], data: this.p[args.index]},
       postItem: this.postings.getItem(args.index)
     })
     this.router.navigate(['posting-info'])
