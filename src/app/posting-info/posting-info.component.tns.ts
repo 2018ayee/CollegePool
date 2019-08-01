@@ -50,6 +50,7 @@ export class PostingInfoComponent implements OnInit {
   currentUserName;
 
   chatUsers = [];
+  currentUser;
 
   constructor(private mapService: GoogleMapsService, private router: RouterExtensions, private transferService: TransferService, private page: Page,
     private logincheckService: LogincheckService) { }
@@ -69,6 +70,7 @@ export class PostingInfoComponent implements OnInit {
     this.userId = this.logincheckService.getUser();
     this.mapData = this.transferService.getData();
     firebase.firestore.collection('users').doc(this.userId).get().then((doc) => {
+      this.currentUser = doc.data();
       if(doc.data().chats.includes(this.mapData.postInfo.id)) {
         this.buttonText = 'View chat';
         activityIndicator.busy = false;
@@ -281,10 +283,14 @@ export class PostingInfoComponent implements OnInit {
       chatDocument.get().then((doc) => {
         if(doc.exists) {
           //chat exists, so add user to the chat room and navigate there
+          let tokens: [string] = doc.data().tokens;
           var users: [{uid: string, displayName: string}] = doc.data().users;
+          var userTokens: [string] = this.currentUser.tokens;
+          var newTokens = tokens.concat(userTokens);
           users.push({uid: this.userId, displayName: this.currentUserName})
           chatDocument.update({
-            users: users
+            users: users,
+            tokens: Array.from(new Set(newTokens))
           }).then((res) => {
             userDocument.get().then((doc) => {
               var userChats = doc.data().chats;
@@ -310,6 +316,12 @@ export class PostingInfoComponent implements OnInit {
             expired: false,
           }).then((res) => {
             firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc) => {
+              const userTokens = this.currentUser.tokens;
+              const otherUserTokens = doc.data().tokens;
+              const newTokens = userTokens.concat(otherUserTokens);
+              firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).update({
+                tokens: Array.from(new Set(newTokens))
+              })
               var userChats = doc.data().chats;
               userChats.push(this.mapData.postInfo.id);
               firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).update({

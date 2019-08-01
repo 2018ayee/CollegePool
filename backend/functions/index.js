@@ -1,4 +1,6 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -6,6 +8,100 @@ const functions = require('firebase-functions');
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
+
+exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}')
+    .onUpdate(async (change, context) => {
+      const chatId = context.params.chatId;
+      let users;
+      let lastMessage;
+
+      //Check if changes were due to a delete
+      if (change.before.exists === true && change.after.exists === false) {
+	    return console.log('Chat id ' + chatId + ' deleted');
+	  }
+
+	  const previousValue = change.before.data();
+	  const newValue = change.after.data();
+
+	  if(previousValue.chats.length >= newValue.chats.length) {
+	  	return console.log('Chat message from ' + chatId + ' was deleted or other field was modified, no message necessary');
+	  }
+
+      // Get users in chat.
+      const chatDocument = await admin.firestore().collection('chats').doc(chatId).get().then((doc) => {
+      	users = doc.data().users;
+      	if(doc.data().chats.length === 0)
+      		return console.log('Chat has no messages');
+      	lastMessage = doc.data().chats[doc.data().chats.length - 1];
+      	return lastMessage;
+      }).catch((err) => {
+      	return console.log(err);
+      })
+      
+      // Get the list of device notification tokens.
+      let tokens;
+	  const getDeviceTokensPromise = await admin.firestore().collection('chats').doc(chatId).get().then((doc) => {
+	  	tokens = doc.data().tokens;
+	  	return tokens;
+	  }).catch((err) => {
+	  	return console.log(err);
+	  })
+
+      // Get the sender profile.
+      const getFollowerProfilePromise = admin.auth().getUser(lastMessage.userId);
+
+      // The snapshot to the user's tokens.
+      let tokensSnapshot;
+
+      // The array containing all the user's tokens.
+      // let tokens;
+
+      const results = await Promise.all([getDeviceTokensPromise, getFollowerProfilePromise]);
+      console.log('Device tokens found: ' + tokens);
+      tokensSnapshot = results[0];
+      const sender = results[1];
+
+      // Check if there are any device tokens.
+      // if (!tokensSnapshot.hasChildren()) {
+      //   return console.log('There are no notification tokens to send to.');
+      // }
+      if(tokens.length === 0) {
+      	return console.log('There are no notification tokens to send to.');
+      }
+
+      console.log('There are', tokens.length, 'tokens to send notifications to.');
+      console.log('Fetched sender profile', sender);
+
+      // Notification details.
+      const payload = {
+        notification: {
+          title: sender.displayName,
+          body: `${sender.displayName}: ${lastMessage.message}`,
+          icon: 'gs://collegepool-1552749118617.appspot.com/FCMImages/favicon.png'
+        }
+      };
+
+      // Listing all tokens as an array.
+      // tokens = Object.keys(tokensSnapshot.val());
+
+      // Send notifications to all tokens.
+      const response = await admin.messaging().sendToDevice(tokens, payload);
+      // For each message check if there was an error.
+      const tokensToRemove = [];
+      response.results.forEach((result, index) => {
+        const error = result.error;
+        if (error) {
+          console.error('Failure sending notification to', tokens[index], error);
+          // Cleanup the tokens who are not registered anymore.
+          if (error.code === 'messaging/invalid-registration-token' ||
+              error.code === 'messaging/registration-token-not-registered') {
+            tokensToRemove.push((tokens[index]).remove());
+          }
+        }
+      });
+      return Promise.all(tokensToRemove);
+    });
+
 var braintree = require("braintree");
 
 var gateway = braintree.connect({

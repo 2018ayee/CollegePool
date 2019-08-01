@@ -1914,14 +1914,14 @@ var GoogleMapsService = /** @class */ (function () {
 /***/ "./app/history/history.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\theight: 220;\n\twidth: 340;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}"
+module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\theight: 220;\n\twidth: 340;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}\n\n.refresh {\n\tcolor: #ac00e6;\n}"
 
 /***/ }),
 
 /***/ "./app/history/history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t            </StackLayout>\r\n\t              </StackLayout>\r\n\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\r\n-->"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"refresh\">\r\n\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t            </StackLayout>\r\n\t              </StackLayout>\r\n\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\r\n-->"
 
 /***/ }),
 
@@ -2742,7 +2742,7 @@ var LogincheckService = /** @class */ (function () {
         //user info from cognito
         this.userInfo = null;
     }
-    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source) {
+    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source, token) {
         var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users');
         usersCollection.doc(uid).set({
             address: address,
@@ -2756,7 +2756,8 @@ var LogincheckService = /** @class */ (function () {
             rides_received: rides_received,
             profile_source: profile_source,
             posts: [],
-            chats: []
+            chats: [],
+            tokens: [token]
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -2851,7 +2852,7 @@ var LogincheckService = /** @class */ (function () {
         //user info from cognito
         this.userInfo = null;
     }
-    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source) {
+    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source, token) {
         var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users');
         usersCollection.doc(uid).set({
             address: address,
@@ -2865,7 +2866,8 @@ var LogincheckService = /** @class */ (function () {
             rides_received: rides_received,
             profile_source: profile_source,
             posts: [],
-            chats: []
+            chats: [],
+            tokens: [token]
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -3928,6 +3930,7 @@ var PostingInfoComponent = /** @class */ (function () {
         this.userId = this.logincheckService.getUser();
         this.mapData = this.transferService.getData();
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.userId).get().then(function (doc) {
+            _this.currentUser = doc.data();
             if (doc.data().chats.includes(_this.mapData.postInfo.id)) {
                 _this.buttonText = 'View chat';
                 activityIndicator.busy = false;
@@ -4118,10 +4121,14 @@ var PostingInfoComponent = /** @class */ (function () {
             chatDocument_1.get().then(function (doc) {
                 if (doc.exists) {
                     //chat exists, so add user to the chat room and navigate there
+                    var tokens = doc.data().tokens;
                     var users = doc.data().users;
+                    var userTokens = _this.currentUser.tokens;
+                    var newTokens = tokens.concat(userTokens);
                     users.push({ uid: _this.userId, displayName: _this.currentUserName });
                     chatDocument_1.update({
-                        users: users
+                        users: users,
+                        tokens: Array.from(new Set(newTokens))
                     }).then(function (res) {
                         userDocument_1.get().then(function (doc) {
                             var userChats = doc.data().chats;
@@ -4147,6 +4154,12 @@ var PostingInfoComponent = /** @class */ (function () {
                         expired: false,
                     }).then(function (res) {
                         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.mapData.postInfo.data.uid).get().then(function (doc) {
+                            var userTokens = _this.currentUser.tokens;
+                            var otherUserTokens = doc.data().tokens;
+                            var newTokens = userTokens.concat(otherUserTokens);
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(_this.mapData.postInfo.id).update({
+                                tokens: Array.from(new Set(newTokens))
+                            });
                             var userChats = doc.data().chats;
                             userChats.push(_this.mapData.postInfo.id);
                             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.mapData.postInfo.data.uid).update({
@@ -5439,7 +5452,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/messaging/index.js");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/logincheck.service.tns.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5449,6 +5464,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -5472,6 +5488,7 @@ var WelcomeComponent = /** @class */ (function () {
         };
     }
     WelcomeComponent.prototype.ngOnInit = function () {
+        this.registerNotifications();
         this.createViews();
     };
     WelcomeComponent.prototype.createViews = function () {
@@ -5523,6 +5540,7 @@ var WelcomeComponent = /** @class */ (function () {
                 if (doc.data().payment_id == null)
                     _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
             });
+            _this.updateTokens(res.uid);
             _this.router.navigate(['navigation'], { clearHistory: true });
         }).catch(function (err) {
             console.log(err);
@@ -5540,6 +5558,7 @@ var WelcomeComponent = /** @class */ (function () {
             email: this.email,
             password: this.password,
         }).then(function (res) {
+            _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, _this.firstName, _this.lastName, null, null, 0, 0, '~/img/sample_profile.png', _this.deviceToken);
             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["updateProfile"]({ displayName: _this.firstName + ' ' + _this.lastName }).then();
             _this.logincheckService.loginUser(res.uid);
             _this.logincheckService.addUserToBraintree('test', 'test user', res.email);
@@ -5570,6 +5589,45 @@ var WelcomeComponent = /** @class */ (function () {
                     _this.alert('No account could be found with your email');
                 });
         });
+    };
+    WelcomeComponent.prototype.registerNotifications = function () {
+        var _this = this;
+        nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__["messaging"].registerForPushNotifications({
+            onPushTokenReceivedCallback: function (token) {
+                // console.log("Firebase plugin received a push token: " + token);
+                _this.deviceToken = token;
+            },
+            onMessageReceivedCallback: function (message) {
+                console.log("Push message received: " + message.title);
+            },
+            // Whether you want this plugin to automatically display the notifications or just notify the callback. Currently used on iOS only. Default true.
+            showNotifications: true,
+            // Whether you want this plugin to always handle the notifications when the app is in foreground. Currently used on iOS only. Default false.
+            showNotificationsWhenInForeground: false
+        }).then(function () { return console.log("Registered for push"); });
+    };
+    WelcomeComponent.prototype.updateTokens = function (uid) {
+        var _this = this;
+        var userDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(uid);
+        userDocument.get().then(function (doc) {
+            var tokens = doc.data().tokens;
+            if (tokens) {
+                tokens.push(_this.deviceToken);
+                var updatedTokens = Array.from(new Set(tokens));
+                userDocument.update({
+                    tokens: updatedTokens
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
+            else {
+                userDocument.update({
+                    tokens: [_this.deviceToken]
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        }).catch(function (err) { console.log(err); });
     };
     WelcomeComponent.prototype.focusEmail = function () {
         this.em.nativeElement.focus();
@@ -5607,11 +5665,14 @@ var WelcomeComponent = /** @class */ (function () {
         }).then(function (res) {
             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(res.uid).get().then(function (doc) {
                 if (doc.exists == false) {
-                    _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL);
+                    _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL, _this.deviceToken);
                     _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
                 }
                 else if (doc.data().payment_id == null) {
                     _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
+                }
+                else {
+                    _this.updateTokens(res.uid);
                 }
             });
             _this.logincheckService.loginUser(res.uid);
@@ -5655,7 +5716,7 @@ var WelcomeComponent = /** @class */ (function () {
             template: __webpack_require__("./app/welcome/welcome.component.html"),
             styles: [__webpack_require__("./app/welcome/welcome.component.css")]
         }),
-        __metadata("design:paramtypes", [tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_5__["LogincheckService"]])
+        __metadata("design:paramtypes", [tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_6__["LogincheckService"]])
     ], WelcomeComponent);
     return WelcomeComponent;
 }());

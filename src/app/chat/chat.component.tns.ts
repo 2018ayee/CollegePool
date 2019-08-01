@@ -35,6 +35,7 @@ export class ChatComponent implements OnInit {
   pfpSource: string;
   list: ListView;
   lastIndex;
+  currentUser: any;
 
   ngOnInit() {
   	if(isAndroid) {

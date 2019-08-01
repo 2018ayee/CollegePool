@@ -3,6 +3,7 @@ import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
 import * as firebase from 'nativescript-plugin-firebase';
+import { messaging, Message } from "nativescript-plugin-firebase/messaging";
 import { LogincheckService } from '../logincheck.service.tns';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 
@@ -19,6 +20,7 @@ export class WelcomeComponent implements OnInit {
   confirmPassword;
   firstName;
   lastName;
+  deviceToken;
   firebaseConfig = {
     apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
   	authDomain: "collegepool-1552749118617.firebaseapp.com",
@@ -40,6 +42,7 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("activityIndicator") ai: ElementRef;
 
   ngOnInit() {
+    this.registerNotifications();
     this.createViews();
   }
 
@@ -98,6 +101,7 @@ export class WelcomeComponent implements OnInit {
         if (doc.data().payment_id == null)
           this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
       })
+      this.updateTokens(res.uid);
       this.router.navigate(['navigation'], { clearHistory: true });
     }).catch((err) => {
       console.log(err);
@@ -115,6 +119,7 @@ export class WelcomeComponent implements OnInit {
   		email: this.email,
   		password: this.password,
   	}).then((res) => {
+        this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, this.firstName, this.lastName, null, null, 0, 0, '~/img/sample_profile.png', this.deviceToken)
         firebase.updateProfile({displayName: this.firstName + ' ' + this.lastName}).then();
         this.logincheckService.loginUser(res.uid)
         this.logincheckService.addUserToBraintree('test', 'test user', res.email)
@@ -148,6 +153,48 @@ export class WelcomeComponent implements OnInit {
           }
         );
     });
+  }
+
+  registerNotifications() {
+    messaging.registerForPushNotifications({
+      onPushTokenReceivedCallback: (token: string): void => {
+        // console.log("Firebase plugin received a push token: " + token);
+        this.deviceToken = token;
+      },
+
+      onMessageReceivedCallback: (message: Message) => {
+        console.log("Push message received: " + message.title);
+      },
+
+      // Whether you want this plugin to automatically display the notifications or just notify the callback. Currently used on iOS only. Default true.
+      showNotifications: true,
+
+      // Whether you want this plugin to always handle the notifications when the app is in foreground. Currently used on iOS only. Default false.
+      showNotificationsWhenInForeground: false
+    }).then(() => console.log("Registered for push"));
+  }
+
+  updateTokens(uid) {
+    const userDocument = firebase.firestore.collection('users').doc(uid);
+    userDocument.get().then((doc) => {
+      let tokens = doc.data().tokens;
+      if(tokens) {
+        tokens.push(this.deviceToken);
+        let updatedTokens = Array.from(new Set(tokens));
+        userDocument.update({
+          tokens: updatedTokens
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+      else {
+        userDocument.update({
+          tokens: [this.deviceToken]
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+    }).catch((err) => { console.log(err) })
   }
 
   focusEmail() {
@@ -191,11 +238,14 @@ export class WelcomeComponent implements OnInit {
         (res) => {
           firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
             if(doc.exists == false) {
-              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL);
+              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL, this.deviceToken);
               this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
             }
             else if(doc.data().payment_id == null) {
               this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+            }
+            else {
+              this.updateTokens(res.uid);
             }
           })
           this.logincheckService.loginUser(res.uid)
