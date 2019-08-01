@@ -49,6 +49,8 @@ export class PostingInfoComponent implements OnInit {
   buttonText;
   currentUserName;
 
+  chatUsers = [];
+
   constructor(private mapService: GoogleMapsService, private router: RouterExtensions, private transferService: TransferService, private page: Page,
     private logincheckService: LogincheckService) { }
 
@@ -185,6 +187,7 @@ export class PostingInfoComponent implements OnInit {
   onDelete() {
     var postingDocument = firebase.firestore.collection('postings').doc(this.mapData.postInfo.id);
     var userDocument = firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid);
+    var chatDocument = firebase.firestore.collection('chats').doc(this.mapData.postInfo.id);
     postingDocument.delete().then((res) => {
       userDocument.get().then((doc) => {
         let userPosts = doc.data().posts;
@@ -196,6 +199,33 @@ export class PostingInfoComponent implements OnInit {
         userDocument.update({
           posts: userPosts
         }).then((res) => {
+          // chatDocument.get().then((doc) => {
+          //   let data = doc.data();
+          //   if(data) {
+          //     for(var i = 0; i < data.users.length; i++) {
+          //       // this.chatUsers.push(data.users[i].uid);
+          //       firebase.firestore.collection('users').doc(data.users[i].uid).get().then((doc) => {
+          //         const id = data.users[i].uid;
+          //         let uidChats = doc.data().chats;
+          //         let index = uidChats.indexOf(this.mapData.postInfo.id);
+          //         if(index > -1) {
+          //           uidChats.splice(index, 1);
+          //         }
+          //         firebase.firestore.collection('users').doc(id).update({
+          //           chats: uidChats
+          //         })
+          //       })
+          //     }
+          //     chatDocument.delete().then((res) => {
+          //       this.deleteFiles();
+          //       this.onNavBtnTap();
+          //     })
+          //   }
+          //   else {
+          //     this.deleteFiles();
+          //     this.onNavBtnTap();
+          //   }
+          // })
           this.deleteFiles();
           this.onNavBtnTap();
         }).catch((err) => {
@@ -206,6 +236,25 @@ export class PostingInfoComponent implements OnInit {
       })
     }).catch((err) => {
       console.log(err);
+    })
+  }
+
+  removeChat(index) {
+    console.log(index);
+    firebase.firestore.collection('users').doc(this.chatUsers[index]).get().then((doc) => {
+      let userChats = doc.data().chats;
+      const index = userChats.indexOf(this.mapData.postInfo.id);
+      if (index > -1) {
+         userChats.splice(index, 1);
+      }
+      firebase.firestore.collection('users').doc(this.chatUsers[index]).update({
+        chats: userChats
+      }).then((res) => {
+        if(index === this.chatUsers[index].length - 1) {
+          this.deleteFiles();
+          this.onNavBtnTap();
+        }
+      })
     })
   }
 

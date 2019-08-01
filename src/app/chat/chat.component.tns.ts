@@ -6,6 +6,9 @@ import { LogincheckService } from '../logincheck.service.tns';
 import { ChatMessage } from '../models/chat-message.model';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { ListView } from 'tns-core-modules/ui/list-view';
+import { isAndroid } from 'tns-core-modules/platform';
+import * as app from "tns-core-modules/application";
+declare var android: any;
 
 
 class ChatItem {
@@ -34,6 +37,10 @@ export class ChatComponent implements OnInit {
   lastIndex;
 
   ngOnInit() {
+  	if(isAndroid) {
+  		var window = app.android.startActivity.getWindow();
+        window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+  	}
   	this.list = this.lv.nativeElement;
 
   	this.chatId = this.transferService.getData();

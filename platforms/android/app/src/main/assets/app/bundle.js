@@ -1235,7 +1235,10 @@ var ChatListComponent = /** @class */ (function () {
                         var lastMsg_1 = data.chats[data.chats.length - 1];
                         if (lastMsg_1.userId !== _this.userId) {
                             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(lastMsg_1.userId).get().then(function (doc) {
-                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, lastMsg_1.pfpSource, lastMsg_1.displayName, 'You: ' + lastMsg_1.message));
+                                var profileSource = lastMsg_1.pfpSource;
+                                if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+                                    profileSource += '?height=300';
+                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, lastMsg_1.displayName, doc.data().first_name + ': ' + lastMsg_1.message));
                             });
                         }
                         else {
@@ -1244,7 +1247,10 @@ var ChatListComponent = /** @class */ (function () {
                                 if (data.users[i].uid !== _this.userId)
                                     nonUserIndex = i;
                             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(data.users[nonUserIndex].uid).get().then(function (doc) {
-                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, doc.data().profile_source, doc.data().first_name + ' ' + doc.data().last_name, doc.data().first_name + ': ' + lastMsg_1.message));
+                                var profileSource = doc.data().profile_source;
+                                if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+                                    profileSource += '?height=300';
+                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg_1.message));
                             });
                         }
                     }
@@ -1320,6 +1326,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.tns.ts");
 /* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
 /* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1329,6 +1339,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -1352,6 +1364,10 @@ var ChatComponent = /** @class */ (function () {
     }
     ChatComponent.prototype.ngOnInit = function () {
         var _this = this;
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isAndroid"]) {
+            var window = tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7__["android"].startActivity.getWindow();
+            window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        }
         this.list = this.lv.nativeElement;
         this.chatId = this.transferService.getData();
         this.userId = this.logincheckService.getUser();
@@ -3896,6 +3912,7 @@ var PostingInfoComponent = /** @class */ (function () {
         this.logincheckService = logincheckService;
         this.latitude = 37;
         this.longitude = -122;
+        this.chatUsers = [];
     }
     PostingInfoComponent.prototype.ngOnInit = function () {
         this.loadViews();
@@ -4012,6 +4029,7 @@ var PostingInfoComponent = /** @class */ (function () {
         var _this = this;
         var postingDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('postings').doc(this.mapData.postInfo.id);
         var userDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.mapData.postInfo.data.uid);
+        var chatDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(this.mapData.postInfo.id);
         postingDocument.delete().then(function (res) {
             userDocument.get().then(function (doc) {
                 var userPosts = doc.data().posts;
@@ -4022,6 +4040,33 @@ var PostingInfoComponent = /** @class */ (function () {
                 userDocument.update({
                     posts: userPosts
                 }).then(function (res) {
+                    // chatDocument.get().then((doc) => {
+                    //   let data = doc.data();
+                    //   if(data) {
+                    //     for(var i = 0; i < data.users.length; i++) {
+                    //       // this.chatUsers.push(data.users[i].uid);
+                    //       firebase.firestore.collection('users').doc(data.users[i].uid).get().then((doc) => {
+                    //         const id = data.users[i].uid;
+                    //         let uidChats = doc.data().chats;
+                    //         let index = uidChats.indexOf(this.mapData.postInfo.id);
+                    //         if(index > -1) {
+                    //           uidChats.splice(index, 1);
+                    //         }
+                    //         firebase.firestore.collection('users').doc(id).update({
+                    //           chats: uidChats
+                    //         })
+                    //       })
+                    //     }
+                    //     chatDocument.delete().then((res) => {
+                    //       this.deleteFiles();
+                    //       this.onNavBtnTap();
+                    //     })
+                    //   }
+                    //   else {
+                    //     this.deleteFiles();
+                    //     this.onNavBtnTap();
+                    //   }
+                    // })
                     _this.deleteFiles();
                     _this.onNavBtnTap();
                 }).catch(function (err) {
@@ -4032,6 +4077,25 @@ var PostingInfoComponent = /** @class */ (function () {
             });
         }).catch(function (err) {
             console.log(err);
+        });
+    };
+    PostingInfoComponent.prototype.removeChat = function (index) {
+        var _this = this;
+        console.log(index);
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.chatUsers[index]).get().then(function (doc) {
+            var userChats = doc.data().chats;
+            var index = userChats.indexOf(_this.mapData.postInfo.id);
+            if (index > -1) {
+                userChats.splice(index, 1);
+            }
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.chatUsers[index]).update({
+                chats: userChats
+            }).then(function (res) {
+                if (index === _this.chatUsers[index].length - 1) {
+                    _this.deleteFiles();
+                    _this.onNavBtnTap();
+                }
+            });
         });
     };
     PostingInfoComponent.prototype.onReport = function () {

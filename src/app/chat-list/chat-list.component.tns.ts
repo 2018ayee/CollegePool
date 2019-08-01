@@ -44,7 +44,10 @@ export class ChatListComponent implements OnInit {
             let lastMsg = data.chats[data.chats.length - 1];
             if(lastMsg.userId !== this.userId) {
               firebase.firestore.collection('users').doc(lastMsg.userId).get().then((doc) => {
-                this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, lastMsg.pfpSource, lastMsg.displayName, 'You: ' + lastMsg.message));
+                let profileSource = lastMsg.pfpSource;
+                if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+                  profileSource += '?height=300';
+                this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, lastMsg.displayName, doc.data().first_name + ': ' + lastMsg.message));
               })
             }
             else {
@@ -53,8 +56,11 @@ export class ChatListComponent implements OnInit {
                 if(data.users[i].uid !==this.userId)
                   nonUserIndex = i;
               firebase.firestore.collection('users').doc(data.users[nonUserIndex].uid).get().then((doc) => {
-                this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, doc.data().profile_source, 
-                  doc.data().first_name + ' ' + doc.data().last_name, doc.data().first_name + ': ' + lastMsg.message));
+                let profileSource = doc.data().profile_source;
+                if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+                  profileSource += '?height=300';
+                this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
+                  doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg.message));
               })
             }
           }
