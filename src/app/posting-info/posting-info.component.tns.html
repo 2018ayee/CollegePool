@@ -9,13 +9,17 @@
 	      text="Report" android.position="popup"></ActionItem>
     </ActionBar>
 </Page.actionBar>
-<GridLayout rows="2*,11*">
-	<StackLayout orientation="horizontal" row="0" class="label-container">
+<GridLayout rows="2*,auto,10*" #layout>
+	<StackLayout orientation="horizontal" row="0" class="label-container" #infoContainer>
 		<Image src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></Image>
 	  	<StackLayout>
 	      	<Label textWrap="true" id="post-name" class="name-label" text="{{ username }}"></Label>
 	      	<Label textWrap="true" id="post-info" class="info-label" text="{{ info }}"></Label>
 	    </StackLayout>
 	</StackLayout>
-	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" row="1" #mapView></MapView>
+	<StackLayout class="btn-container" #buttonContainer row="1">
+		<Button class="connect-btn" (tap)="onConnectTap()" text="{{ buttonText }}"></Button>
+	</StackLayout>
+	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" row="2" #mapView></MapView>
 </GridLayout>
+<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator"></ActivityIndicator>

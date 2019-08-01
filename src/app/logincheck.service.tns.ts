@@ -36,7 +36,8 @@ export class LogincheckService {
   		rides_given: rides_given,
   		rides_received: rides_received,
       profile_source: profile_source,
-  		posts: []
+  		posts: [],
+      chats: []
   	});
   }
 

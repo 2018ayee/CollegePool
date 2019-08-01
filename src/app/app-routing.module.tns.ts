@@ -35,6 +35,8 @@ import { PaymentInfoComponent } from './payment-info/payment-info.component'
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PostingInfoComponent } from './posting-info/posting-info.component';
 import {SettingsformComponent} from './settingsform/settingsform.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatListComponent } from './chat-list/chat-list.component';
 
 
 export const routes: Routes = [
@@ -53,6 +55,8 @@ export const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'posting-info', component: PostingInfoComponent },
   { path: 'settingsform', component: SettingsformComponent },
+  { path: 'chat', component: ChatComponent },
+  { path: 'chat-list', component: ChatListComponent },
 ];
 
 @NgModule({

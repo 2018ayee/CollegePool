@@ -1,0 +1,19 @@
+<Page.actionBar>
+    <ActionBar title="Messages">
+    	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+    </ActionBar>
+</Page.actionBar>
+
+<PullToRefresh (refresh)="refreshList($event)" class="refresh">
+	<ListView [items]="messages" (itemTap)="onItemTap($event)" #listView id="listView">
+	    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+	        <StackLayout [class.odd]="odd" [class.even]="even" class="message" orientation="horizontal">
+	        	  	<Image [src]="item.pfpSource" class="profile-picture" stretch="aspectFit"></Image>
+	        	  	<StackLayout>
+		              	<Label textWrap="true" id="post-name" class="name-label" [text]="item.displayName"></Label>
+		              	<Label textWrap="true" id="post-info" class="info-label" [text]="item.message"></Label>
+		            </StackLayout>
+	        </StackLayout>
+	    </ng-template>
+	</ListView>
+</PullToRefresh>

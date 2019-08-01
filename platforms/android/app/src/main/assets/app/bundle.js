@@ -334,7 +334,7 @@ module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\
 /***/ "./app/add-modal/add-modal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>\r\n\t<ScrollView>\r\n\t<FlexboxLayout class=\"page\" #addContainer>\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <Label text=\"Where?\" class=\"header-label bold\"></Label>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n\t</ScrollView>\r\n</StackLayout>\r\n\r\n\r\n"
+module.exports = "<StackLayout>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>\r\n\t<ScrollView height=\"100%\">\r\n\t<FlexboxLayout class=\"page\" #addContainer>\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <Label text=\"Where?\" class=\"header-label bold\"></Label>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n\t</ScrollView>\r\n</StackLayout>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -774,6 +774,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("./app/welcome/welcome.component.ts");
 /* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
 /* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("./app/chat/chat.component.ts");
+/* harmony import */ var _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("./app/chat-list/chat-list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -789,6 +791,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+
+
 
 
 
@@ -813,6 +817,8 @@ var routes = [
     { path: 'welcome', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__["WelcomeComponent"] },
     { path: 'posting-info', component: _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_14__["PostingInfoComponent"] },
     { path: 'settingsform', component: _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_15__["SettingsformComponent"] },
+    { path: 'chat', component: _chat_chat_component__WEBPACK_IMPORTED_MODULE_16__["ChatComponent"] },
+    { path: 'chat-list', component: _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_17__["ChatListComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -906,45 +912,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
 /* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/@agm/core/index.js");
-/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("./app/chat/chat.module.ts");
-/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
-/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/nativescript-ui-dataform/angular/dataform-directives.js");
-/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33___default = /*#__PURE__*/__webpack_require__.n(nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33__);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("../node_modules/nativescript-masked-text-field/angular/index.js");
-/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35__);
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36__);
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37__);
-/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/location/location.component.ts");
-/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
-/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
-/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
-/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
-/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
-/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__("./app/welcome/welcome.component.ts");
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__);
-/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__("../node_modules/nativescript-facebook/angular/index.js");
-/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48__);
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_49___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_49__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
-/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
-/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52__);
-/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
-/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__("./app/reauth/reauth.component.ts");
+/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/nativescript-ui-dataform/angular/dataform-directives.js");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("../node_modules/nativescript-masked-text-field/angular/index.js");
+/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34___default = /*#__PURE__*/__webpack_require__.n(nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34__);
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35__);
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36__);
+/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/location/location.component.ts");
+/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
+/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
+/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
+/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
+/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
+/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__("./app/welcome/welcome.component.ts");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__);
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/nativescript-facebook/angular/index.js");
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47__);
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_48___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_48__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51__);
+/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
+/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__("./app/reauth/reauth.component.ts");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__("./app/chat/chat.component.ts");
+/* harmony import */ var _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__("./app/chat-list/chat-list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -1001,6 +1007,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 // import { AngularFireModule } from '@angular/fire';
@@ -1008,11 +1016,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { environment } from '../environments/environment';
-if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52__["isIOS"]) {
+if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51__["isIOS"]) {
     GMSServices.provideAPIKey("AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg");
 }
-tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__["launchEvent"], function (args) {
-    nativescript_facebook__WEBPACK_IMPORTED_MODULE_49__["init"]("2272129649677747");
+tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__["launchEvent"], function (args) {
+    nativescript_facebook__WEBPACK_IMPORTED_MODULE_48__["init"]("2272129649677747");
 });
 var AppModule = /** @class */ (function () {
     /*
@@ -1040,46 +1048,47 @@ var AppModule = /** @class */ (function () {
                 _payments_payments_component__WEBPACK_IMPORTED_MODULE_5__["PaymentsComponent"],
                 _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"],
                 _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"],
-                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_38__["FloatBtnComponent"],
-                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_39__["AddModalComponent"],
-                _location_location_component__WEBPACK_IMPORTED_MODULE_40__["LocationComponent"],
-                _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddPaymentComponent"],
-                _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_42__["AddCardPaymentComponent"],
-                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_43__["PaymentInfoComponent"],
-                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_44__["ConfirmationComponent"],
-                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_45__["MessageModalComponent"],
-                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_46__["WelcomeComponent"],
-                _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_51__["PostingInfoComponent"],
-                _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_53__["SettingsformComponent"],
-                _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_54__["ReauthComponent"],
+                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_37__["FloatBtnComponent"],
+                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_38__["AddModalComponent"],
+                _location_location_component__WEBPACK_IMPORTED_MODULE_39__["LocationComponent"],
+                _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddPaymentComponent"],
+                _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_42__["PaymentInfoComponent"],
+                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_43__["ConfirmationComponent"],
+                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_44__["MessageModalComponent"],
+                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_45__["WelcomeComponent"],
+                _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_50__["PostingInfoComponent"],
+                _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_52__["SettingsformComponent"],
+                _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_53__["ReauthComponent"],
+                _chat_chat_component__WEBPACK_IMPORTED_MODULE_54__["ChatComponent"],
+                _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_55__["ChatListComponent"],
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
                 _app_routing_module_tns__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37__["NativeScriptHttpClientModule"],
+                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36__["NativeScriptHttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_28__["ReactiveFormsModule"],
-                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36__["NativeScriptFormsModule"],
+                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35__["NativeScriptFormsModule"],
                 _angular_material_input__WEBPACK_IMPORTED_MODULE_29__["MatInputModule"],
                 _agm_core__WEBPACK_IMPORTED_MODULE_30__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
                 }),
-                _chat_chat_module__WEBPACK_IMPORTED_MODULE_31__["ChatModule"],
-                ngx_paypal__WEBPACK_IMPORTED_MODULE_32__["NgxPayPalModule"],
-                nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33__["NativeScriptUIDataFormModule"],
+                ngx_paypal__WEBPACK_IMPORTED_MODULE_31__["NgxPayPalModule"],
+                nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__["NativeScriptUIDataFormModule"],
                 // NgxBraintreeModule,
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_34__["HttpClientModule"],
-                nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48__["NativeScriptFacebookModule"],
-                nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35__["MaskedTextFieldModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_33__["HttpClientModule"],
+                nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47__["NativeScriptFacebookModule"],
+                nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34__["MaskedTextFieldModule"]
                 // AngularFireModule.initializeApp(environment.firebase),
                 // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
                 // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
                 // AngularFireStorageModule // imports firebase/storage only needed for storage features
             ],
             providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_24__["PaymentService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_27__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__["PlacesAutocompleteService"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_50__["DatePipe"], _google_maps_service__WEBPACK_IMPORTED_MODULE_26__["GoogleMapsService"]],
+                _angular_common__WEBPACK_IMPORTED_MODULE_49__["DatePipe"], _google_maps_service__WEBPACK_IMPORTED_MODULE_26__["GoogleMapsService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_39__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_40__["LocationComponent"], _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddPaymentComponent"], _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_42__["AddCardPaymentComponent"],
-                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_43__["PaymentInfoComponent"], _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_44__["ConfirmationComponent"], _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_53__["SettingsformComponent"], _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_54__["ReauthComponent"]],
+            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_38__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_39__["LocationComponent"], _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddPaymentComponent"], _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_42__["PaymentInfoComponent"], _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_43__["ConfirmationComponent"], _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_52__["SettingsformComponent"], _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_53__["ReauthComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NO_ERRORS_SCHEMA"]]
         })
         /*
@@ -1144,27 +1153,35 @@ var AutoGeneratedComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./app/chat/chat.component.css":
+/***/ "./app/chat-list/chat-list.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/* Add mobile styles for the component here.  */\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: #696969;\n}\n\n.profile-picture {\n\theight: 60;\n\twidth: 60;\n\tborder-radius: 100%;\n\tvertical-align: center;\n\tmargin-left: 16;\n\tmargin-top: 14;\n\tmargin-bottom: 14;\n}\n\n.message {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 50;\n\tmargin-bottom: 50;\n}\n\n.refresh {\n\tcolor: #ac00e6;\n}"
 
 /***/ }),
 
-/***/ "./app/chat/chat.component.html":
+/***/ "./app/chat-list/chat-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  chat works!\r\n</p>\r\n"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Messages\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"refresh\">\r\n\t<ListView [items]=\"messages\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"message\" orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.pfpSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.displayName\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.message\"></Label>\r\n\t\t            </StackLayout>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>"
 
 /***/ }),
 
-/***/ "./app/chat/chat.component.ts":
+/***/ "./app/chat-list/chat-list.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatListComponent", function() { return ChatListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1175,56 +1192,268 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ChatComponent = /** @class */ (function () {
-    function ChatComponent() {
+
+
+
+
+
+var MessageItem = /** @class */ (function () {
+    function MessageItem(chatMessage, lastChat, chatId, pfpSource, displayName, message) {
+        this.chatMessage = chatMessage;
+        this.lastChat = lastChat;
+        this.chatId = chatId;
+        this.pfpSource = pfpSource;
+        this.displayName = displayName;
+        this.message = message;
     }
-    ChatComponent.prototype.ngOnInit = function () {
+    return MessageItem;
+}());
+var ChatListComponent = /** @class */ (function () {
+    function ChatListComponent(transferService, router, logincheckService, vcRef) {
+        this.transferService = transferService;
+        this.router = router;
+        this.logincheckService = logincheckService;
+        this.vcRef = vcRef;
+        this.messages = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__["ObservableArray"]();
+    }
+    ChatListComponent.prototype.ngOnInit = function () {
+        this.userId = this.logincheckService.getUser();
+        this.loadMessages();
     };
-    ChatComponent = __decorate([
+    ChatListComponent.prototype.loadMessages = function (args) {
+        var _this = this;
+        if (args === void 0) { args = null; }
+        this.messages.splice(0);
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(this.userId).get().then(function (doc) {
+            _this.chatIds = doc.data().chats;
+        }).then(function (res) {
+            for (var i = 0; i < _this.chatIds.length; i++) {
+                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(_this.chatIds[i]).get().then(function (doc) {
+                    var data = doc.data();
+                    var docId = doc.id;
+                    if (data.chats[0]) {
+                        var lastMsg_1 = data.chats[data.chats.length - 1];
+                        if (lastMsg_1.userId !== _this.userId) {
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(lastMsg_1.userId).get().then(function (doc) {
+                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, lastMsg_1.pfpSource, lastMsg_1.displayName, 'You: ' + lastMsg_1.message));
+                            });
+                        }
+                        else {
+                            var nonUserIndex = 0;
+                            for (var i = 0; i < data.users.length; i++)
+                                if (data.users[i].uid !== _this.userId)
+                                    nonUserIndex = i;
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(data.users[nonUserIndex].uid).get().then(function (doc) {
+                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, doc.data().profile_source, doc.data().first_name + ' ' + doc.data().last_name, doc.data().first_name + ': ' + lastMsg_1.message));
+                            });
+                        }
+                    }
+                }).then(function (res) {
+                    _this.messages.sort(function (a, b) {
+                        if (a.lastChat < b.lastChat)
+                            return -1;
+                        else if (b.lastChat > a.lastChat)
+                            return 1;
+                        return 0;
+                    });
+                });
+            }
+            if (args != null) {
+                var pullRefresh = args.object;
+                pullRefresh.refreshing = false;
+            }
+        });
+    };
+    ChatListComponent.prototype.refreshList = function (args) {
+        this.loadMessages(args);
+    };
+    ChatListComponent.prototype.onItemTap = function (args) {
+        var chatId = this.messages.getItem(args.index).chatId;
+        this.transferService.setData(chatId);
+        this.router.navigate(['chat']);
+    };
+    ChatListComponent.prototype.onNavBtnTap = function () {
+        this.router.back();
+    };
+    ChatListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-chat',
-            template: __webpack_require__("./app/chat/chat.component.html"),
-            styles: [__webpack_require__("./app/chat/chat.component.css")]
+            selector: 'app-chat-list',
+            template: __webpack_require__("./app/chat-list/chat-list.component.html"),
+            styles: [__webpack_require__("./app/chat-list/chat-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
-    ], ChatComponent);
-    return ChatComponent;
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__["LogincheckService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]])
+    ], ChatListComponent);
+    return ChatListComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ "./app/chat/chat.module.ts":
+/***/ "./app/chat/chat.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\nButton {\n    padding: 5;\n    margin: 5;\n    background-color: dodgerblue;\n    color: white;\n    height: 40;\n    border-radius: 5;\n}\n\n.chat-text-field {\n    padding: 5; \n    /*background-color: white; */\n    /*border-radius: 4;*/\n    /*bottom-border-color: #696969;*/\n}\n\n.author-img {\n    margin: 0 5 5 5;\n    width: 40;\n    height: 40;\n    border-radius: 20;\n}\n\n.mine {\n    background-color: #30A9FF;\n    color: white;\n    padding: 8;\n    padding-left: 12;\n    padding-right: 12;\n    margin-right: 10;\n    border-radius: 15;\n    border-bottom-right-radius: 5;\n    font-size: 16;\n}\n\n.theirs {\n    background-color: #e0e0e0;\n    color: #333;\n    padding: 7;\n    padding-left: 12;\n    padding-right: 12;\n    border-radius: 15;\n    border-bottom-left-radius: 5;\n    margin-right: 40;\n    font-size: 16;\n}\n\n.message-grid {\n    font-size: 14;\n    padding: 5;\n}\n\n.chat-box-layout {\n\tborder-color: #f1f1f1;\n\tborder-top-width: 1;\n}"
+
+/***/ }),
+
+/***/ "./app/chat/chat.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ chatName }}\" android:horizontalAlignment=\"center\" ios:horizontalAlignment=\"center\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"onLeave()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Leave chat\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<StackLayout>\r\n    <ListView height=\"90%\" margin-bottom=\"50\" padding=\"5\" #messageList [items]=\"messages\" separatorColor=\"transparent\" (setupItemView)=\"setupItemView($event)\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-mine=\"mine\" let-theirs=\"theirs\">\r\n            <GridLayout columns=\"*\" rows=\"auto\" class=\"message-grid\">\r\n                <StackLayout orientation=\"horizontal\" [horizontalAlignment]=\"align(item)\">\r\n                    <Image [visibility]=\"item.visibility\" class=\"author-img\" stretch=\"aspectFill\" height=\"40\" width=\"40\" verticalAlignment=\"top\" [src]=\"item.chatMessage.pfpSource\" col=\"1\"></Image>\r\n                    <Label [text]='item.chatMessage.message' [class.mine]=\"mine\" [class.theirs]=\"theirs\" textWrap=\"true\" verticalAlignment=\"top\"></Label>\r\n                </StackLayout>\r\n            </GridLayout>\r\n        </ng-template>\r\n    </ListView>\r\n\r\n    <StackLayout #chatbox height=\"10%\" class=\"chat-box-layout\">\r\n    \t<ScrollView height=\"100%\">\r\n\t        <GridLayout columns=\"*,auto\" style=\"padding: 10\">\r\n\t            <TextView #textfield height=\"auto\" hint=\"Start a message\" class=\"chat-text-field\" row=\"0\" col=\"0\" [(ngModel)]=\"message\"></TextView>\r\n\t            <Button #btn class=\"chat-button\" row=\"0\" col=\"1\" text=\"send\" (tap)=sendMessage()></Button>\r\n\t        </GridLayout>\r\n\t    </ScrollView>\r\n    </StackLayout>\r\n\r\n</StackLayout>"
+
+/***/ }),
+
+/***/ "./app/chat/chat.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatModule", function() { return ChatModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _chat_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/chat/chat.component.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
-var ChatModule = /** @class */ (function () {
-    function ChatModule() {
+
+
+
+var ChatItem = /** @class */ (function () {
+    function ChatItem(chatMessage, visibility) {
+        this.chatMessage = chatMessage;
+        this.visibility = visibility;
     }
-    ChatModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
-            ],
-            declarations: [_chat_component__WEBPACK_IMPORTED_MODULE_2__["ChatComponent"]]
-        })
-    ], ChatModule);
-    return ChatModule;
+    return ChatItem;
+}());
+var ChatComponent = /** @class */ (function () {
+    function ChatComponent(transferService, router, logincheckService, vcRef) {
+        this.transferService = transferService;
+        this.router = router;
+        this.logincheckService = logincheckService;
+        this.vcRef = vcRef;
+        this.messages = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__["ObservableArray"]();
+    }
+    ChatComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.list = this.lv.nativeElement;
+        this.chatId = this.transferService.getData();
+        this.userId = this.logincheckService.getUser();
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["getCurrentUser"]().then(function (user) {
+            _this.displayName = user.displayName;
+            _this.pfpSource = user.photoURL;
+        });
+        this.retrieveChats();
+        this.chatName = "John Doe";
+        // console.log(this.chatId);
+    };
+    ChatComponent.prototype.sendMessage = function () {
+        var today = new Date();
+        var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+        var time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
+        var chat = {
+            userId: this.userId,
+            displayName: this.displayName,
+            message: this.message,
+            pfpSource: this.pfpSource,
+            imgSource: "",
+            time: time,
+            date: date
+        };
+        var messageDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatId);
+        messageDocument.get().then(function (doc) {
+            var updatedChats = doc.data().chats;
+            updatedChats.push(chat);
+            messageDocument.update({
+                chats: updatedChats,
+                lastChat: date + ' ' + time
+            });
+        });
+        this.message = '';
+    };
+    ChatComponent.prototype.retrieveChats = function () {
+        var _this = this;
+        this.messages.splice(0);
+        var messageDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatId);
+        messageDocument.get().then(function (doc) {
+            var data = doc.data();
+            _this.lastIndex = data.chats.length;
+            for (var i = 0; i < data.chats.length; i++) {
+                if (data.chats[i].userId === _this.userId)
+                    _this.messages.push(new ChatItem(data.chats[i], "collapse"));
+                else
+                    _this.messages.push(new ChatItem(data.chats[i], "visible"));
+            }
+            _this.list.scrollToIndex(data.chats.length - 1);
+            if (data.users.length === 2) {
+                if (data.users[0].uid === _this.userId)
+                    _this.chatName = data.users[1].displayName;
+                else
+                    _this.chatName = data.users[0].displayName;
+            }
+            else {
+                _this.chatName = "Group chat";
+            }
+        });
+        var unsubscribe = messageDocument.onSnapshot(function (doc) {
+            var data = doc.data();
+            for (var i = _this.lastIndex; i < data.chats.length; i++) {
+                if (data.chats[i].userId === _this.userId)
+                    _this.messages.push(new ChatItem(data.chats[i], "collapse"));
+                else
+                    _this.messages.push(new ChatItem(data.chats[i], "visible"));
+            }
+            _this.lastIndex = data.chats.length;
+        });
+    };
+    ChatComponent.prototype.align = function (item) {
+        if (item.chatMessage.userId === this.userId)
+            return "right";
+        else
+            return "left";
+    };
+    ChatComponent.prototype.setupItemView = function (args) {
+        args.view.context.mine = (this.messages.getItem(args.index).chatMessage.userId === this.userId);
+        args.view.context.theirs = (this.messages.getItem(args.index).chatMessage.userId !== this.userId);
+        args.view.context.even = (args.index % 2 === 0);
+        args.view.context.odd = (args.index % 2 === 1);
+    };
+    ChatComponent.prototype.onNavBtnTap = function () {
+        if (this.router.canGoBack())
+            this.router.back();
+        else
+            this.router.navigate(['home']);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("messageList"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], ChatComponent.prototype, "lv", void 0);
+    ChatComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-chat',
+            template: __webpack_require__("./app/chat/chat.component.html"),
+            styles: [__webpack_require__("./app/chat/chat.component.css")]
+        }),
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__["LogincheckService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]])
+    ], ChatComponent);
+    return ChatComponent;
 }());
 
 
@@ -1879,14 +2108,14 @@ var HomeDirective = /** @class */ (function () {
 /***/ "./app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 17;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 4;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\t/*border-bottom-width: 1;*/\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\theight: 220;\r\n\twidth: 340;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.activity-indicator {\r\n\tcolor: #ac00e6;\r\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n.refresh {\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 17;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 4;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\t/*border-bottom-width: 1;*/\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\theight: 220;\r\n\twidth: 340;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.activity-indicator {\r\n\tcolor: #ac00e6;\r\n}"
 
 /***/ }),
 
 /***/ "./app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n    <StackLayout class=\"add-btn-container\">\r\n\t\t<FAB (tap)=\"showModal()\" icon=\"res://ic_add_white_3x\" rippleColor=\"#f1f1f1\" class=\"fab-button\"></FAB>\r\n\t</StackLayout>\r\n\r\n\t<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t\t        \t  \t<StackLayout>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t\t            </StackLayout>\r\n\t\t              </StackLayout>\r\n\t\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t\t        </StackLayout>\r\n\t\t    </ng-template>\r\n\t\t</ListView>\r\n\t</PullToRefresh>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\">\r\n  </ActivityIndicator>"
+module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n    <StackLayout class=\"add-btn-container\">\r\n\t\t<FAB (tap)=\"showModal()\" icon=\"res://ic_add_white_3x\" rippleColor=\"#f1f1f1\" class=\"fab-button\"></FAB>\r\n\t</StackLayout>\r\n\r\n\t<PullToRefresh (refresh)=\"refreshList($event)\" class=\"refresh\">\r\n\t\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t\t        \t  \t<StackLayout>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t\t            </StackLayout>\r\n\t\t              </StackLayout>\r\n\t\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t\t        </StackLayout>\r\n\t\t    </ng-template>\r\n\t\t</ListView>\r\n\t</PullToRefresh>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\">\r\n  </ActivityIndicator>"
 
 /***/ }),
 
@@ -2510,7 +2739,8 @@ var LogincheckService = /** @class */ (function () {
             rides_given: rides_given,
             rides_received: rides_received,
             profile_source: profile_source,
-            posts: []
+            posts: [],
+            chats: []
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -2618,7 +2848,8 @@ var LogincheckService = /** @class */ (function () {
             rides_given: rides_given,
             rides_received: rides_received,
             profile_source: profile_source,
-            posts: []
+            posts: [],
+            chats: []
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -2809,7 +3040,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/navigation/navigation.component.tns.html":
 /***/ (function(module, exports) {
 
-module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ actionBarTitle }}\">\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ actionBarTitle }}\">\r\n    \t<ActionItem (tap)=\"toMessages()\" icon=\"~/img/send_message_icon.png\" ios.position=\"right\" width=\"20\" height=\"20\" #actionItem></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -2856,12 +3087,14 @@ var NavigationComponent = /** @class */ (function () {
     // @ViewChild('listView') lv: ElementRef;
     // listView = <ListView> this.lv.nativeElement;
     NavigationComponent.prototype.ngOnInit = function () {
+        this.actionItem = this.ai.nativeElement;
         this.activebtn = this.transferService.getData();
         if (this.activebtn == "homenav") {
             this.homeTab = { iconSource: 'res://home_highlighted' };
             this.searchTab = { iconSource: 'res://search' };
             this.historyTab = { iconSource: 'res://history' };
             this.settingsTab = { iconSource: 'res://settings' };
+            this.actionItem.visibility = 'visible';
             this.tabSelectedIndex = 0;
         }
         else if (this.activebtn == "searchnav") {
@@ -2869,6 +3102,7 @@ var NavigationComponent = /** @class */ (function () {
             this.searchTab = { iconSource: 'res://search_highlighted' };
             this.historyTab = { iconSource: 'res://history' };
             this.settingsTab = { iconSource: 'res://settings' };
+            this.actionItem.visibility = 'collapse';
             this.tabSelectedIndex = 1;
         }
         else if (this.activebtn == "historynav") {
@@ -2876,6 +3110,7 @@ var NavigationComponent = /** @class */ (function () {
             this.searchTab = { iconSource: 'res://search' };
             this.historyTab = { iconSource: 'res://history_highlighted' };
             this.settingsTab = { iconSource: 'res://settings' };
+            this.actionItem.visibility = 'collapse';
             this.tabSelectedIndex = 2;
         }
         else if (this.activebtn == "settingsnav") {
@@ -2883,6 +3118,7 @@ var NavigationComponent = /** @class */ (function () {
             this.searchTab = { iconSource: 'res://search' };
             this.historyTab = { iconSource: 'res://history' };
             this.settingsTab = { iconSource: 'res://settings_highlighted' };
+            this.actionItem.visibility = 'collapse';
             this.tabSelectedIndex = 3;
         }
         // console.log(this.tabSelectedIndex)
@@ -2930,11 +3166,11 @@ var NavigationComponent = /** @class */ (function () {
         }
     };
     NavigationComponent.prototype.home = function () {
-        console.log(this.tabSelectedIndex);
         if (this.tabSelectedIndex == 0) {
             var listView = this.page.getViewById('listView');
             listView.scrollToIndex(0);
         }
+        this.actionItem.visibility = 'collapse';
     };
     NavigationComponent.prototype.toHome = function () {
         // this.transferService.setData('homenav');
@@ -2943,6 +3179,7 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search' };
         this.historyTab = { iconSource: 'res://history' };
         this.settingsTab = { iconSource: 'res://settings' };
+        this.actionItem.visibility = 'visible';
         this.tabSelectedIndex = 0;
     };
     NavigationComponent.prototype.toSearch = function () {
@@ -2952,6 +3189,7 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search_highlighted' };
         this.historyTab = { iconSource: 'res://history' };
         this.settingsTab = { iconSource: 'res://settings' };
+        this.actionItem.visibility = 'collapse';
         this.tabSelectedIndex = 1;
     };
     NavigationComponent.prototype.toHistory = function () {
@@ -2961,6 +3199,7 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search' };
         this.historyTab = { iconSource: 'res://history_highlighted' };
         this.settingsTab = { iconSource: 'res://settings' };
+        this.actionItem.visibility = 'collapse';
         this.tabSelectedIndex = 2;
     };
     NavigationComponent.prototype.toSettings = function () {
@@ -2970,7 +3209,11 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search' };
         this.historyTab = { iconSource: 'res://history' };
         this.settingsTab = { iconSource: 'res://settings_highlighted' };
+        this.actionItem.visibility = 'collapse';
         this.tabSelectedIndex = 3;
+    };
+    NavigationComponent.prototype.toMessages = function () {
+        this.router.navigate(['chat-list']);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('tabView'),
@@ -2980,6 +3223,10 @@ var NavigationComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('actionBar'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], NavigationComponent.prototype, "ab", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('actionItem'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], NavigationComponent.prototype, "ai", void 0);
     NavigationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-navigation',
@@ -3584,14 +3831,14 @@ var PlacesAutocompleteService = /** @class */ (function () {
 /***/ "./app/posting-info/posting-info.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\n.map-view {\n\theight: 100%;\n\twidth: 100%;\n\tvertical-align: bottom;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n\ttext-align: left;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n\ttext-align: left;\n}\n\n.label-container {\n\tvertical-align: middle;\n}"
+module.exports = "/* Add mobile styles for the component here.  */\r\n.map-view {\r\n\theight: 100%;\r\n\twidth: 100%;\r\n\tvertical-align: bottom;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 17;\r\n\ttext-align: left;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 4;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n\ttext-align: left;\r\n}\r\n\r\n.label-container {\r\n\tvertical-align: middle;\r\n}\r\n\r\n.activity-indicator {\r\n\tcolor: #ac00e6;\r\n}"
 
 /***/ }),
 
 /***/ "./app/posting-info/posting-info.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Post\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"promptDelete()\"\r\n\t      ios.systemIcon=\"16\" ios.position=\"right\"\r\n\t      text=\"Delete\" android.position=\"popup\" #deleteItem></ActionItem>\r\n\t    <ActionItem (tap)=\"onReport()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Report\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n<GridLayout rows=\"2*,12*\">\r\n\t<StackLayout orientation=\"horizontal\" row=\"0\" class=\"label-container\">\r\n\t\t<Image src=\"{{ profileSource }}\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t  \t<StackLayout>\r\n\t      \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" text=\"{{ username }}\"></Label>\r\n\t      \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" text=\"{{ info }}\"></Label>\r\n\t    </StackLayout>\r\n\t</StackLayout>\r\n\t<MapView (mapReady)=\"onMapReady($event)\" [latitude]=\"latitude\" [longitude]=\"longitude\" class=\"map-view\" row=\"1\" #mapView></MapView>\r\n</GridLayout>"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Post\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"promptDelete()\"\r\n\t      ios.systemIcon=\"16\" ios.position=\"right\"\r\n\t      text=\"Delete\" android.position=\"popup\" #deleteItem></ActionItem>\r\n\t    <ActionItem (tap)=\"onReport()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Report\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n<GridLayout rows=\"2*,auto,10*\" #layout>\r\n\t<StackLayout orientation=\"horizontal\" row=\"0\" class=\"label-container\" #infoContainer>\r\n\t\t<Image src=\"{{ profileSource }}\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t  \t<StackLayout>\r\n\t      \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" text=\"{{ username }}\"></Label>\r\n\t      \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" text=\"{{ info }}\"></Label>\r\n\t    </StackLayout>\r\n\t</StackLayout>\r\n\t<StackLayout class=\"btn-container\" #buttonContainer row=\"1\">\r\n\t\t<Button class=\"connect-btn\" (tap)=\"onConnectTap()\" text=\"{{ buttonText }}\"></Button>\r\n\t</StackLayout>\r\n\t<MapView (mapReady)=\"onMapReady($event)\" [latitude]=\"latitude\" [longitude]=\"longitude\" class=\"map-view\" row=\"2\" #mapView></MapView>\r\n</GridLayout>\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>"
 
 /***/ }),
 
@@ -3618,6 +3865,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/ui/dialogs/dialogs.js");
 /* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("./app/logincheck.service.tns.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3637,22 +3885,53 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_6__["registerElement"])("MapView", function () { return __webpack_require__("../node_modules/nativescript-google-maps-sdk/map-view.js").MapView; });
 var PostingInfoComponent = /** @class */ (function () {
-    function PostingInfoComponent(mapService, router, transferService, page) {
+    function PostingInfoComponent(mapService, router, transferService, page, logincheckService) {
         this.mapService = mapService;
         this.router = router;
         this.transferService = transferService;
         this.page = page;
+        this.logincheckService = logincheckService;
         this.latitude = 37;
         this.longitude = -122;
     }
     PostingInfoComponent.prototype.ngOnInit = function () {
+        this.loadViews();
+    };
+    PostingInfoComponent.prototype.loadViews = function () {
         var _this = this;
+        var activityIndicator = this.ai.nativeElement;
+        var infoContainer = this.infoContainer.nativeElement;
+        var deleteButton = this.deleteItem.nativeElement;
+        var chatButton = this.buttonContainer.nativeElement;
+        infoContainer.visibility = 'collapse';
+        chatButton.visibility = 'collapse';
+        this.userId = this.logincheckService.getUser();
+        this.mapData = this.transferService.getData();
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.userId).get().then(function (doc) {
+            if (doc.data().chats.includes(_this.mapData.postInfo.id)) {
+                _this.buttonText = 'View chat';
+                activityIndicator.busy = false;
+                infoContainer.visibility = 'visible';
+                chatButton.visibility = 'visible';
+            }
+            else {
+                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(_this.mapData.postInfo.data.uid).get().then(function (doc) {
+                    if (!doc.exists && _this.userId === _this.mapData.postInfo.data.uid)
+                        chatButton.visibility = 'collapse';
+                    else
+                        chatButton.visibility = 'visible';
+                    activityIndicator.busy = false;
+                    infoContainer.visibility = 'visible';
+                });
+                _this.buttonText = 'Join chat';
+            }
+        });
         if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7__["isIOS"]) {
             this.bounds = GMSCoordinateBounds.alloc().init();
         }
-        this.mapData = this.transferService.getData();
         this.startLat = this.mapData.postInfo.data.startLat;
         this.endLat = this.mapData.postInfo.data.endLat;
         this.startLng = this.mapData.postInfo.data.startLng;
@@ -3660,14 +3939,11 @@ var PostingInfoComponent = /** @class */ (function () {
         this.info = this.mapData.postItem.info;
         this.profileSource = this.mapData.postItem.profileSource;
         this.username = this.mapData.postItem.username;
-        var deleteButton = this.deleteItem.nativeElement;
+        if (this.userId !== this.mapData.postInfo.data.uid) {
+            deleteButton.visibility = 'collapse';
+        }
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["getCurrentUser"]().then(function (user) {
-            _this.userId = user.uid;
-            if (_this.userId !== _this.mapData.postInfo.data.uid) {
-                console.log(_this.userId);
-                console.log(_this.mapData.postInfo.data.uid);
-                deleteButton.visibility = 'collapse';
-            }
+            _this.currentUserName = user.displayName;
         });
     };
     PostingInfoComponent.prototype.onMapReady = function (event) {
@@ -3760,17 +4036,107 @@ var PostingInfoComponent = /** @class */ (function () {
     };
     PostingInfoComponent.prototype.onReport = function () {
     };
+    PostingInfoComponent.prototype.onConnectTap = function () {
+        var _this = this;
+        var gridContainer = this.layout.nativeElement;
+        var activityIndicator = this.ai.nativeElement;
+        gridContainer.visibility = 'collapse';
+        activityIndicator.busy = true;
+        if (this.buttonText === 'View chat') {
+            this.transferService.setData(this.mapData.postInfo.id);
+            gridContainer.visibility = 'visible';
+            activityIndicator.busy = false;
+            this.router.navigate(['chat']);
+        }
+        else if (this.buttonText === 'Join chat') {
+            var chatDocument_1 = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(this.mapData.postInfo.id);
+            var userDocument_1 = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.userId);
+            chatDocument_1.get().then(function (doc) {
+                if (doc.exists) {
+                    //chat exists, so add user to the chat room and navigate there
+                    var users = doc.data().users;
+                    users.push({ uid: _this.userId, displayName: _this.currentUserName });
+                    chatDocument_1.update({
+                        users: users
+                    }).then(function (res) {
+                        userDocument_1.get().then(function (doc) {
+                            var userChats = doc.data().chats;
+                            userChats.push(_this.mapData.postInfo.id);
+                            userDocument_1.update({
+                                chats: userChats
+                            }).then(function (res) {
+                                //finally after everything else has updated, send user to chat component
+                                _this.transferService.setData(_this.mapData.postInfo.id);
+                                _this.buttonText = 'View chat';
+                                gridContainer.visibility = 'visible';
+                                activityIndicator.busy = false;
+                                _this.router.navigate(['chat']);
+                            });
+                        });
+                    });
+                }
+                else {
+                    //chat does not exist, so create and add both post user and current user
+                    nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(_this.mapData.postInfo.id).set({
+                        users: [{ uid: _this.mapData.postInfo.data.uid, displayName: _this.mapData.postItem.username }, { uid: _this.userId, displayName: _this.currentUserName }],
+                        chats: [],
+                        expired: false,
+                    }).then(function (res) {
+                        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.mapData.postInfo.data.uid).get().then(function (doc) {
+                            var userChats = doc.data().chats;
+                            userChats.push(_this.mapData.postInfo.id);
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.mapData.postInfo.data.uid).update({
+                                chats: userChats
+                            }).then(function (res) {
+                                userDocument_1.get().then(function (doc) {
+                                    var userChats = doc.data().chats;
+                                    userChats.push(_this.mapData.postInfo.id);
+                                    userDocument_1.update({
+                                        chats: userChats
+                                    }).then(function (res) {
+                                        //finally after everything else has updated, send user to chat component
+                                        _this.transferService.setData(_this.mapData.postInfo.id);
+                                        _this.buttonText = 'View chat';
+                                        gridContainer.visibility = 'visible';
+                                        activityIndicator.busy = false;
+                                        _this.router.navigate(['chat']);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                }
+            });
+        }
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("deleteItem"),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], PostingInfoComponent.prototype, "deleteItem", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("buttonContainer"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "buttonContainer", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("infoContainer"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "infoContainer", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("activityIndicator"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "ai", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("layout"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "layout", void 0);
     PostingInfoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-posting-info',
             template: __webpack_require__("./app/posting-info/posting-info.component.html"),
             styles: [__webpack_require__("./app/posting-info/posting-info.component.css")]
         }),
-        __metadata("design:paramtypes", [_google_maps_service__WEBPACK_IMPORTED_MODULE_2__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_4__["TransferService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_5__["Page"]])
+        __metadata("design:paramtypes", [_google_maps_service__WEBPACK_IMPORTED_MODULE_2__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_4__["TransferService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_5__["Page"],
+            _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_10__["LogincheckService"]])
     ], PostingInfoComponent);
     return PostingInfoComponent;
 }());

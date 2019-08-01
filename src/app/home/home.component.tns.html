@@ -7,7 +7,7 @@
 		<FAB (tap)="showModal()" icon="res://ic_add_white_3x" rippleColor="#f1f1f1" class="fab-button"></FAB>
 	</StackLayout>
 
-	<PullToRefresh (refresh)="refreshList($event)" class="list">
+	<PullToRefresh (refresh)="refreshList($event)" class="refresh">
 		<ListView [items]="postings" (itemTap)="onItemTap($event)" #listView id="listView">
 		    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
 		        <StackLayout [class.odd]="odd" [class.even]="even" class="post">
