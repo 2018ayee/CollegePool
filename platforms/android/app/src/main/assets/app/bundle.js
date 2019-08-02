@@ -1231,6 +1231,16 @@ var ChatListComponent = /** @class */ (function () {
                 nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(_this.chatIds[i]).get().then(function (doc) {
                     var data = doc.data();
                     var docId = doc.id;
+                    var chatName = 'You, ';
+                    for (var i = 0; i < data.users.length; i++) {
+                        if (data.users[i].uid !== _this.userId) {
+                            nonUserIndex = i;
+                            if (i === data.users.length - 1)
+                                chatName += 'and ' + data.users[i].displayName;
+                            else
+                                chatName += data.users[i].displayName + ', ';
+                        }
+                    }
                     if (data.chats[0]) {
                         var lastMsg_1 = data.chats[data.chats.length - 1];
                         if (lastMsg_1.userId !== _this.userId) {
@@ -1238,19 +1248,24 @@ var ChatListComponent = /** @class */ (function () {
                                 var profileSource = lastMsg_1.pfpSource;
                                 if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
                                     profileSource += '?height=300';
-                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, lastMsg_1.displayName, doc.data().first_name + ': ' + lastMsg_1.message));
+                                if (data.users.length === 2)
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, lastMsg_1.displayName, doc.data().first_name + ': ' + lastMsg_1.message));
+                                else {
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, chatName, doc.data().first_name + ': ' + lastMsg_1.message));
+                                }
                             });
                         }
                         else {
                             var nonUserIndex = 0;
-                            for (var i = 0; i < data.users.length; i++)
-                                if (data.users[i].uid !== _this.userId)
-                                    nonUserIndex = i;
                             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(data.users[nonUserIndex].uid).get().then(function (doc) {
                                 var profileSource = doc.data().profile_source;
                                 if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
                                     profileSource += '?height=300';
-                                _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg_1.message));
+                                if (data.users.length === 2)
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg_1.message));
+                                else {
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, chatName, 'You: ' + lastMsg_1.message));
+                                }
                             });
                         }
                     }
@@ -1300,14 +1315,14 @@ var ChatListComponent = /** @class */ (function () {
 /***/ "./app/chat/chat.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\nButton {\n    padding: 5;\n    margin: 5;\n    background-color: dodgerblue;\n    color: white;\n    height: 40;\n    border-radius: 5;\n}\n\n.chat-text-field {\n    padding: 5; \n    /*background-color: white; */\n    /*border-radius: 4;*/\n    /*bottom-border-color: #696969;*/\n}\n\n.author-img {\n    margin: 0 5 5 5;\n    width: 40;\n    height: 40;\n    border-radius: 20;\n}\n\n.mine {\n    background-color: #30A9FF;\n    color: white;\n    padding: 8;\n    padding-left: 12;\n    padding-right: 12;\n    margin-right: 10;\n    border-radius: 15;\n    border-bottom-right-radius: 5;\n    font-size: 16;\n}\n\n.theirs {\n    background-color: #e0e0e0;\n    color: #333;\n    padding: 7;\n    padding-left: 12;\n    padding-right: 12;\n    border-radius: 15;\n    border-bottom-left-radius: 5;\n    margin-right: 40;\n    font-size: 16;\n}\n\n.message-grid {\n    font-size: 14;\n    padding: 5;\n}\n\n.chat-box-layout {\n\tborder-color: #f1f1f1;\n\tborder-top-width: 1;\n}"
+module.exports = "/* Add mobile styles for the component here.  */\nButton {\n    padding: 5;\n    margin: 5;\n    background-color: dodgerblue;\n    color: white;\n    height: 40;\n    border-radius: 5;\n}\n\n.chat-text-field {\n    padding: 5; \n    /*background-color: white; */\n    /*border-radius: 4;*/\n    /*bottom-border-color: #696969;*/\n}\n\n.author-img {\n    margin: 0 5 5 5;\n    width: 40;\n    height: 40;\n    border-radius: 20;\n}\n\n.mine {\n    background-color: #30A9FF;\n    color: white;\n    padding: 8;\n    padding-left: 12;\n    padding-right: 12;\n    margin-right: 10;\n    border-radius: 15;\n    border-bottom-right-radius: 5;\n    border-bottom-left-radius: 15;\n    font-size: 16;\n    max-width: 60%;\n}\n\n.theirs {\n    background-color: #e0e0e0;\n    color: #333;\n    padding: 7;\n    padding-left: 12;\n    padding-right: 12;\n    border-radius: 15;\n    border-bottom-left-radius: 5;\n    margin-right: 40;\n    font-size: 16;\n    max-width: 60%;\n}\n\n.message-grid {\n    font-size: 14;\n    padding: 5;\n}\n\n.chat-box-layout {\n\tborder-color: #f1f1f1;\n\tborder-top-width: 1;\n}"
 
 /***/ }),
 
 /***/ "./app/chat/chat.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ chatName }}\" android:horizontalAlignment=\"center\" ios:horizontalAlignment=\"center\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"onLeave()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Leave chat\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<StackLayout>\r\n    <ListView height=\"90%\" margin-bottom=\"50\" padding=\"5\" #messageList [items]=\"messages\" separatorColor=\"transparent\" (setupItemView)=\"setupItemView($event)\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-mine=\"mine\" let-theirs=\"theirs\">\r\n            <GridLayout columns=\"*\" rows=\"auto\" class=\"message-grid\">\r\n                <StackLayout orientation=\"horizontal\" [horizontalAlignment]=\"align(item)\">\r\n                    <Image [visibility]=\"item.visibility\" class=\"author-img\" stretch=\"aspectFill\" height=\"40\" width=\"40\" verticalAlignment=\"top\" [src]=\"item.chatMessage.pfpSource\" col=\"1\"></Image>\r\n                    <Label [text]='item.chatMessage.message' [class.mine]=\"mine\" [class.theirs]=\"theirs\" textWrap=\"true\" verticalAlignment=\"top\"></Label>\r\n                </StackLayout>\r\n            </GridLayout>\r\n        </ng-template>\r\n    </ListView>\r\n\r\n    <StackLayout #chatbox height=\"10%\" class=\"chat-box-layout\">\r\n    \t<ScrollView height=\"100%\">\r\n\t        <GridLayout columns=\"*,auto\" style=\"padding: 10\">\r\n\t            <TextView #textfield height=\"auto\" hint=\"Start a message\" class=\"chat-text-field\" row=\"0\" col=\"0\" [(ngModel)]=\"message\"></TextView>\r\n\t            <Button #btn class=\"chat-button\" row=\"0\" col=\"1\" text=\"send\" (tap)=sendMessage()></Button>\r\n\t        </GridLayout>\r\n\t    </ScrollView>\r\n    </StackLayout>\r\n\r\n</StackLayout>"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ chatName }}\" android:horizontalAlignment=\"center\" ios:horizontalAlignment=\"center\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"onLeave()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Leave chat\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<StackLayout>\r\n    <ListView height=\"90%\" margin-bottom=\"50\" padding=\"5\" #messageList [items]=\"messages\" separatorColor=\"transparent\" (setupItemView)=\"setupItemView($event)\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-mine=\"mine\" let-theirs=\"theirs\">\r\n            <GridLayout columns=\"*\" rows=\"auto\" class=\"message-grid\">\r\n                <StackLayout orientation=\"horizontal\" [horizontalAlignment]=\"align(item)\">\r\n                    <Image [visibility]=\"item.visibility\" class=\"author-img\" stretch=\"aspectFill\" height=\"40\" width=\"40\" verticalAlignment=\"top\" [src]=\"item.chatMessage.pfpSource\" col=\"1\"></Image>\r\n                    <!-- <Label text='' width=\"40%\" [visibility]=\"item.visibility\"></Label> -->\r\n                    <Label [text]='item.chatMessage.message' [class.mine]=\"mine\" [class.theirs]=\"theirs\" textWrap=\"true\" verticalAlignment=\"top\"></Label>\r\n                    <!-- <Label text='' width=\"40%\" [visibility]=\"item.visibility\"></Label> -->\r\n                </StackLayout>\r\n            </GridLayout>\r\n        </ng-template>\r\n    </ListView>\r\n\r\n    <StackLayout #chatbox height=\"10%\" class=\"chat-box-layout\">\r\n    \t<ScrollView height=\"100%\">\r\n\t        <GridLayout columns=\"*,auto\" style=\"padding: 10\">\r\n\t            <TextView #textfield height=\"auto\" hint=\"Start a message\" class=\"chat-text-field\" row=\"0\" col=\"0\" [(ngModel)]=\"message\"></TextView>\r\n\t            <Button #btn class=\"chat-button\" row=\"0\" col=\"1\" text=\"send\" (tap)=sendMessage()></Button>\r\n\t        </GridLayout>\r\n\t    </ScrollView>\r\n    </StackLayout>\r\n\r\n</StackLayout>"
 
 /***/ }),
 
@@ -1361,6 +1376,7 @@ var ChatComponent = /** @class */ (function () {
         this.logincheckService = logincheckService;
         this.vcRef = vcRef;
         this.messages = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__["ObservableArray"]();
+        this.message = '';
     }
     ChatComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1380,6 +1396,10 @@ var ChatComponent = /** @class */ (function () {
         // console.log(this.chatId);
     };
     ChatComponent.prototype.sendMessage = function () {
+        var _this = this;
+        if (this.message.replace(/\s+/g, '').length === 0) {
+            return false;
+        }
         var today = new Date();
         var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
         var time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
@@ -1402,6 +1422,9 @@ var ChatComponent = /** @class */ (function () {
             });
         });
         this.message = '';
+        setTimeout(function () {
+            _this.list.scrollToIndex(_this.messages.length - 1);
+        }, 100);
     };
     ChatComponent.prototype.retrieveChats = function () {
         var _this = this;
@@ -1420,11 +1443,21 @@ var ChatComponent = /** @class */ (function () {
             if (data.users.length === 2) {
                 if (data.users[0].uid === _this.userId)
                     _this.chatName = data.users[1].displayName;
-                else
+                else {
                     _this.chatName = data.users[0].displayName;
+                }
             }
             else {
-                _this.chatName = "Group chat";
+                var chatName = 'You, ';
+                for (var i = 0; i < data.users.length; i++) {
+                    if (data.users[i].id != _this.userId) {
+                        if (i === data.users.length - 1)
+                            chatName += 'and ' + data.users[i].displayName;
+                        else
+                            chatName += data.users[i].displayName + ', ';
+                    }
+                }
+                _this.chatName = 'Group chat';
             }
         });
         var unsubscribe = messageDocument.onSnapshot(function (doc) {
@@ -1443,6 +1476,12 @@ var ChatComponent = /** @class */ (function () {
             return "right";
         else
             return "left";
+    };
+    ChatComponent.prototype.alignReverse = function (item) {
+        if (item.chatMessage.userId === this.userId)
+            return "left";
+        else
+            return "right";
     };
     ChatComponent.prototype.setupItemView = function (args) {
         args.view.context.mine = (this.messages.getItem(args.index).chatMessage.userId === this.userId);
@@ -4710,23 +4749,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/logincheck.service.tns.ts");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-imagepicker/imagepicker.js");
-/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/tns-core-modules/file-system/file-system.js");
-/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/nativescript-imagecropper/imagecropper.js");
-/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
-/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
-/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("./app/datatransfer.service.ts");
-/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
-/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
-/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/reauth/reauth.component.ts");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/messaging/index.js");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-imagepicker/imagepicker.js");
+/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/tns-core-modules/file-system/file-system.js");
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-imagecropper/imagecropper.js");
+/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
+/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("./app/reauth/reauth.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4736,8 +4777,44 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 // import { Router } from '@angular/router';
+
 
 
 
@@ -4772,23 +4849,23 @@ var SettingsComponent = /** @class */ (function () {
         this.profile = "~/img/sample_profile.png";
     }
     SettingsComponent.prototype.ngOnInit = function () {
-        this.imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__["ImageCropper"]();
+        this.imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__["ImageCropper"]();
         this.loadViews();
         var activityIndicator = this.ai.nativeElement;
         activityIndicator.style.visibility = 'collapse';
     };
     SettingsComponent.prototype.loadViews = function () {
         var _this = this;
-        this.paymentList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.paymentList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.paymentList.push('Payment methods');
-        this.logoutList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.logoutList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.logoutList.push('Log out');
-        this.buttons = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.buttons = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.buttons.push('Payment methods');
         this.buttons.push('Log out');
         this.userId = this.logincheckService.getUser();
         var userDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(this.userId);
-        this.fields = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.fields = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.updateListView();
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["getCurrentUser"]().then(function (user) {
             _this.user = user;
@@ -4840,14 +4917,14 @@ var SettingsComponent = /** @class */ (function () {
             // transition: { name: "slideTop" }
         };
         if (args.index == 3) {
-            this.modal.showModal(_reauth_reauth_component__WEBPACK_IMPORTED_MODULE_14__["ReauthComponent"], options).then(function (res) {
+            this.modal.showModal(_reauth_reauth_component__WEBPACK_IMPORTED_MODULE_15__["ReauthComponent"], options).then(function (res) {
                 if (res == 'update') {
                     _this.updateListView();
                 }
             });
         }
         else {
-            this.modal.showModal(_settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_13__["SettingsformComponent"], options).then(function (res) {
+            this.modal.showModal(_settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_14__["SettingsformComponent"], options).then(function (res) {
                 if (res == 'update') {
                     _this.updateListView();
                 }
@@ -4868,16 +4945,100 @@ var SettingsComponent = /** @class */ (function () {
         this.transferService.setData(label);
     };
     SettingsComponent.prototype.logOut = function () {
-        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["logout"]();
-        Object(nativescript_facebook__WEBPACK_IMPORTED_MODULE_5__["logout"])(function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var activityIndicator, settingsContainer, tokenPromise, userDoc;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        activityIndicator = this.ai.nativeElement;
+                        activityIndicator.busy = true;
+                        activityIndicator.style.visibility = 'visible';
+                        settingsContainer = this.sc.nativeElement;
+                        settingsContainer.style.visibility = 'collapse';
+                        return [4 /*yield*/, nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__["messaging"].getCurrentPushToken().then(function (token) {
+                                _this.token = token;
+                                return token;
+                            })];
+                    case 1:
+                        tokenPromise = _a.sent();
+                        userDoc = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(this.userId);
+                        userDoc.get().then(function (doc) { return __awaiter(_this, void 0, void 0, function () {
+                            var index, newTokens, chatPromise;
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        index = doc.data().tokens.indexOf(this.token);
+                                        if (index > -1) {
+                                            newTokens = doc.data().tokens;
+                                            newTokens.splice(index, 1);
+                                            console.log(newTokens);
+                                            userDoc.update({ tokens: newTokens });
+                                        }
+                                        return [4 /*yield*/, this.updateChatTokens(doc.data().chats)];
+                                    case 1:
+                                        chatPromise = _a.sent();
+                                        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["logout"]();
+                                        Object(nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__["logout"])(function () {
+                                        });
+                                        this.logincheckService.clearInfo();
+                                        activityIndicator.busy = false;
+                                        activityIndicator.style.visibility = 'collapse';
+                                        settingsContainer.style.visibility = 'visible';
+                                        this.router.navigate(['welcome'], { clearHistory: true });
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                }
+            });
         });
-        this.logincheckService.clearInfo();
-        this.router.navigate(['welcome'], { clearHistory: true });
+    };
+    SettingsComponent.prototype.updateChatTokens = function (chats) {
+        return __awaiter(this, void 0, void 0, function () {
+            var chatCollection, i, chatPromise;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        chatCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('chats');
+                        i = 0;
+                        _a.label = 1;
+                    case 1:
+                        if (!(i < chats.length)) return [3 /*break*/, 4];
+                        return [4 /*yield*/, chatCollection.doc(chats[i]).get().then(function (doc) { return __awaiter(_this, void 0, void 0, function () {
+                                var index, newTokens, updatePromise;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0:
+                                            index = doc.data().tokens.indexOf(this.token);
+                                            if (!(index > -1)) return [3 /*break*/, 2];
+                                            newTokens = doc.data().tokens;
+                                            newTokens.splice(index, 1);
+                                            return [4 /*yield*/, chatCollection.doc(chats[i]).update({ tokens: newTokens })];
+                                        case 1:
+                                            updatePromise = _a.sent();
+                                            _a.label = 2;
+                                        case 2: return [2 /*return*/];
+                                    }
+                                });
+                            }); })];
+                    case 2:
+                        chatPromise = _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        i++;
+                        return [3 /*break*/, 1];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
     };
     SettingsComponent.prototype.uploadPfp = function () {
         var _this = this;
-        var imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__["ImageCropper"]();
-        var context = nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6__["create"]({
+        var imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__["ImageCropper"]();
+        var context = nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__["create"]({
             mode: "single" // use "multiple" for multiple selection
         });
         context
@@ -4887,7 +5048,7 @@ var SettingsComponent = /** @class */ (function () {
         })
             .then(function (selection) {
             selection.forEach(function (selected) {
-                var imgSource = new tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9__["ImageSource"]();
+                var imgSource = new tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__["ImageSource"]();
                 imgSource.fromAsset(selected).then(function (source) {
                     _this.imageCropper
                         .show(source, { width: 300, height: 300 })
@@ -4896,8 +5057,8 @@ var SettingsComponent = /** @class */ (function () {
                         if (args.image !== null) {
                             // this.croppedImage.imageSource =
                             //     args.image;
-                            var folder = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__["knownFolders"].temp();
-                            var path = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__["path"].join(folder.path, "profile_picture.png");
+                            var folder = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["knownFolders"].temp();
+                            var path = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["path"].join(folder.path, "profile_picture.png");
                             var saved = args.image.saveToFile(path, 'png');
                             var activityIndicator = _this.ai.nativeElement;
                             activityIndicator.busy = true;
@@ -4908,7 +5069,7 @@ var SettingsComponent = /** @class */ (function () {
                                 // the full path of the file in your Firebase storage (folders will be created)
                                 remoteFullPath: 'users/' + _this.userId + '/uploads/profile_picture.jpg',
                                 // option 1: a file-system module File object
-                                localFile: tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__["File"].fromPath(path),
+                                localFile: tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["File"].fromPath(path),
                                 // option 2: a full file path (ignored if 'localFile' is set)
                                 localFullPath: path,
                                 // get notified of file upload progress
@@ -4974,8 +5135,8 @@ var SettingsComponent = /** @class */ (function () {
             template: __webpack_require__("./app/settings/settings.component.html"),
             styles: [__webpack_require__("./app/settings/settings.component.css")]
         }),
-        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__["Page"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_11__["TransferService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12__["ModalDialogService"]])
+        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__["Page"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_12__["TransferService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13__["ModalDialogService"]])
     ], SettingsComponent);
     return SettingsComponent;
 }());

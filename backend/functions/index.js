@@ -47,6 +47,21 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
 	  	return console.log(err);
 	  })
 
+	  const removeSenderTokenPromise = await admin.firestore().collection('users').doc(lastMessage.userId).get().then((doc) => {
+	  	let newTokens = [];
+	  	for(var i = 0; i < doc.data().tokens.length; i++) {
+	  		for(var j = 0; j < tokens.length; j++) {
+	  			if(doc.data().tokens.indexOf(tokens[j]) < 0) {
+	  				newTokens.push(tokens[j]);
+	  			}
+	  		}
+	  	}
+	  	tokens = newTokens;
+	  	return tokens;
+	  }).catch((err) => {
+	  	return console.log(err);
+	  })
+
       // Get the sender profile.
       const getFollowerProfilePromise = admin.auth().getUser(lastMessage.userId);
 
@@ -56,7 +71,7 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
       // The array containing all the user's tokens.
       // let tokens;
 
-      const results = await Promise.all([getDeviceTokensPromise, getFollowerProfilePromise]);
+      const results = await Promise.all([getDeviceTokensPromise, getFollowerProfilePromise, removeSenderTokenPromise]);
       console.log('Device tokens found: ' + tokens);
       tokensSnapshot = results[0];
       const sender = results[1];

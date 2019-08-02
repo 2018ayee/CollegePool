@@ -40,6 +40,16 @@ export class ChatListComponent implements OnInit {
         firebase.firestore.collection('chats').doc(this.chatIds[i]).get().then((doc) => {
           let data = doc.data();
           let docId = doc.id;
+          var chatName = 'You, ';
+          for(var i = 0; i < data.users.length; i++) {
+            if(data.users[i].uid !==this.userId) {
+              nonUserIndex = i;
+              if(i === data.users.length - 1)
+                chatName += 'and ' + data.users[i].displayName;
+              else
+                chatName += data.users[i].displayName + ', ';
+            }
+          }
           if(data.chats[0]) {
             let lastMsg = data.chats[data.chats.length - 1];
             if(lastMsg.userId !== this.userId) {
@@ -47,20 +57,26 @@ export class ChatListComponent implements OnInit {
                 let profileSource = lastMsg.pfpSource;
                 if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
                   profileSource += '?height=300';
-                this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, lastMsg.displayName, doc.data().first_name + ': ' + lastMsg.message));
+                if(data.users.length === 2)
+                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, lastMsg.displayName, doc.data().first_name + ': ' + lastMsg.message));
+                else {
+                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, chatName, doc.data().first_name + ': ' + lastMsg.message));
+                }
               })
             }
             else {
               var nonUserIndex = 0;
-              for(var i = 0; i < data.users.length; i++)
-                if(data.users[i].uid !==this.userId)
-                  nonUserIndex = i;
               firebase.firestore.collection('users').doc(data.users[nonUserIndex].uid).get().then((doc) => {
                 let profileSource = doc.data().profile_source;
                 if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
                   profileSource += '?height=300';
-                this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
-                  doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg.message));
+                if(data.users.length === 2)
+                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
+                    doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg.message));
+                else {
+                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
+                    chatName, 'You: ' + lastMsg.message));
+                }
               })
             }
           }

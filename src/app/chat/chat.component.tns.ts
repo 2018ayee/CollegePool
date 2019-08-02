@@ -28,7 +28,7 @@ export class ChatComponent implements OnInit {
   @ViewChild("messageList") lv: ElementRef;
   chatId: string;
   messages = new ObservableArray<ChatItem>();
-  message: string;
+  message: string = '';
   userId: string;
   chatName: string;
   displayName: string;
@@ -56,6 +56,9 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
+    if(this.message.replace(/\s+/g, '').length === 0) {
+      return false;
+    }
   	var today = new Date();
   	var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
   	var time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
@@ -78,6 +81,9 @@ export class ChatComponent implements OnInit {
   		})
   	})
   	this.message = '';
+    setTimeout(() => {
+      this.list.scrollToIndex(this.messages.length - 1);
+    }, 100);
   }
 
   retrieveChats() {
@@ -96,11 +102,21 @@ export class ChatComponent implements OnInit {
   		if(data.users.length === 2) {
   			if(data.users[0].uid === this.userId)
   				this.chatName = data.users[1].displayName;
-  			else
-  				this.chatName = data.users[0].displayName;
+  			else {
+          this.chatName = data.users[0].displayName;
+        }
   		}
   		else {
-  			this.chatName = "Group chat";
+        var chatName = 'You, ';
+        for(var i = 0; i < data.users.length; i++) {
+          if(data.users[i].id != this.userId) {
+            if(i === data.users.length - 1)
+              chatName += 'and ' + data.users[i].displayName;
+            else
+              chatName += data.users[i].displayName + ', ';
+          }
+        }
+  			this.chatName = 'Group chat';
   		}
   	})
 
@@ -123,11 +139,18 @@ export class ChatComponent implements OnInit {
   		return "left";
   }
 
+  alignReverse(item) {
+    if(item.chatMessage.userId === this.userId)
+      return "left";
+    else
+      return "right";
+  }
+
   setupItemView(args) {
   	args.view.context.mine = (this.messages.getItem(args.index).chatMessage.userId === this.userId);
-	args.view.context.theirs = (this.messages.getItem(args.index).chatMessage.userId !== this.userId);
-	args.view.context.even = (args.index % 2 === 0);
-	args.view.context.odd = (args.index % 2 === 1);
+  	args.view.context.theirs = (this.messages.getItem(args.index).chatMessage.userId !== this.userId);
+  	args.view.context.even = (args.index % 2 === 0);
+  	args.view.context.odd = (args.index % 2 === 1);
   }
 
   onNavBtnTap() {
