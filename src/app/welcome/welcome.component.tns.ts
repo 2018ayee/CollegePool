@@ -176,7 +176,7 @@ export class WelcomeComponent implements OnInit {
 
   updateTokens(uid) {
     const userDocument = firebase.firestore.collection('users').doc(uid);
-    userDocument.get().then((doc) => {
+    userDocument.get().then(async (doc) => {
       let tokens = doc.data().tokens;
       if(tokens) {
         tokens.push(this.deviceToken);
@@ -194,7 +194,20 @@ export class WelcomeComponent implements OnInit {
           console.log(err)
         })
       }
+      const chatPromise = await this.updateChatTokens(doc.data().chats);
     }).catch((err) => { console.log(err) })
+  }
+
+  async updateChatTokens(chats) {
+    let chatCollection = firebase.firestore.collection('chats');
+    for(var i = 0; i < chats.length; i++) {
+      const chatPromise = await chatCollection.doc(chats[i]).get().then(async (doc) => {
+        const tokens = doc.data().tokens;
+        tokens.push(this.deviceToken);
+        const newTokens = Array.from(new Set(tokens));
+        const updatePromise = await chatCollection.doc(chats[i]).update({tokens: newTokens});
+      })
+    }
   }
 
   focusEmail() {
