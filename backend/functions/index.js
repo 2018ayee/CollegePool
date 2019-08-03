@@ -87,12 +87,22 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
       console.log('There are', tokens.length, 'tokens to send notifications to.');
       console.log('Fetched sender profile', sender);
 
+      var photoURL = sender.photoURL;
+      if(photoURL.substring(0,27) === 'https://graph.facebook.com/') {
+      	photoURL += '?height=300';
+      }
+
       // Notification details.
       const payload = {
         notification: {
           title: sender.displayName,
           body: `${sender.displayName}: ${lastMessage.message}`,
-          icon: 'gs://collegepool-1552749118617.appspot.com/FCMImages/favicon.png'
+          icon: photoURL,
+          sound: 'default'
+        },
+        data: {
+        	type: 'New Message',
+        	chatId: chatId
         }
       };
 
@@ -103,6 +113,8 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
       const response = await admin.messaging().sendToDevice(tokens, payload);
       // For each message check if there was an error.
       const tokensToRemove = [];
+      var delIndex = [];
+      var remTokens = [];
       response.results.forEach((result, index) => {
         const error = result.error;
         if (error) {
@@ -110,10 +122,16 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
           // Cleanup the tokens who are not registered anymore.
           if (error.code === 'messaging/invalid-registration-token' ||
               error.code === 'messaging/registration-token-not-registered') {
-            tokensToRemove.push((tokens[index]).remove());
+          	delIndex.push(index);
           }
         }
       });
+      for(var l = 0; l < tokens.length; l++) {
+      	if(delIndex.indexOf(l) < 0) {
+      		remTokens.push(tokens[l]);
+      	}
+      }
+      tokensToRemove.push(admin.firestore().collection('chats').doc(chatId).update({tokens: remTokens}));
       return Promise.all(tokensToRemove);
     });
 

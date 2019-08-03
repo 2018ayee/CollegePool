@@ -131,3 +131,4 @@ D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\fbfce976
 D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\fdc874b0202a53897d0e4ebab54d20fb\classes.jar
 D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\fe3392090f3c129551f5fddaeeb68ecf\classes.jar
 D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\ffa5c9c7a8647ee62976ba21fe95f338\classes.jar
+D:\Kyvern\CollegePool\platforms\android\app\build\intermediates\javac\debug

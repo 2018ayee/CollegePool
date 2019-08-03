@@ -12,7 +12,7 @@ declare var android: any;
 
 
 class ChatItem {
-	constructor(public chatMessage: ChatMessage, public visibility: string) {}
+	constructor(public chatMessage: ChatMessage, public visibility: string, public mineContinuation: boolean, public theirsContinuation: boolean) {}
 }
 
 @Component({
@@ -55,7 +55,7 @@ export class ChatComponent implements OnInit {
   	// console.log(this.chatId);
   }
 
-  sendMessage() {
+  async sendMessage() {
     if(this.message.replace(/\s+/g, '').length === 0) {
       return false;
     }
@@ -72,7 +72,7 @@ export class ChatComponent implements OnInit {
   		date: date
   	}
   	const messageDocument = firebase.firestore.collection('chats').doc(this.chatId);
-  	messageDocument.get().then((doc) => {
+  	const messagePromise = await messageDocument.get().then((doc) => {
   		var updatedChats : [ChatMessage] = doc.data().chats;
   		updatedChats.push(chat);
   		messageDocument.update({
@@ -81,22 +81,21 @@ export class ChatComponent implements OnInit {
   		})
   	})
   	this.message = '';
-    setTimeout(() => {
-      this.list.scrollToIndex(this.messages.length - 1);
-    }, 100);
   }
 
   retrieveChats() {
-  	this.messages.splice(0);
   	const messageDocument = firebase.firestore.collection('chats').doc(this.chatId);
   	messageDocument.get().then((doc) => {
   		let data = doc.data();
   		this.lastIndex = data.chats.length;
+      this.messages.splice(0);
   		for(var i = 0; i < data.chats.length; i++) {
-  			if(data.chats[i].userId === this.userId)
-  				this.messages.push(new ChatItem(data.chats[i], "collapse"));
-  			else
-  				this.messages.push(new ChatItem(data.chats[i], "visible"));
+  			if(data.chats[i].userId === this.userId) {
+          this.updateContinuations(data, i, true, "collapse");
+        }
+  			else {
+          this.updateContinuations(data, i, false, "visible");
+        }
   		}
   		this.list.scrollToIndex(data.chats.length - 1);
   		if(data.users.length === 2) {
@@ -123,13 +122,51 @@ export class ChatComponent implements OnInit {
   	const unsubscribe = messageDocument.onSnapshot(doc => {
   		let data = doc.data();
   		for(var i = this.lastIndex; i < data.chats.length; i++) {
-  			if(data.chats[i].userId === this.userId)
-  				this.messages.push(new ChatItem(data.chats[i], "collapse"));
-  			else
-  				this.messages.push(new ChatItem(data.chats[i], "visible"));
+  			if(data.chats[i].userId === this.userId) {
+          this.updateContinuations(data, i, true, "collapse");
+          this.list.scrollToIndex(this.messages.length - 1);
+        }
+  			else {
+          this.updateContinuations(data, i, false, "visible");
+        }
   		}
   		this.lastIndex = data.chats.length;
   	})
+  }
+
+  updateContinuations(data, index, isMine, visibility) {
+    //Update time to a readable format for the user
+    var chatTime = data.chats[index].time;
+    var dateSplit = data.chats[index].date.split('/');
+    var timeSplit = chatTime.split(':');
+    if(timeSplit[1].length === 1) {
+      timeSplit[1] = '0' + timeSplit[1];
+    }
+    var hours = parseInt(timeSplit[0]);
+    if(hours > 12) {
+      data.chats[index].time = dateSplit[1] + '/' + dateSplit[2] + ', ' + (hours - 12) + ':' + timeSplit[1] + ' PM';
+    }
+    else {
+      data.chats[index].time = dateSplit[1] + '/' + dateSplit[2] + ', ' + timeSplit[0] + ':' + timeSplit[2] + ' AM';
+    }
+
+    //Push the message item
+    this.messages.push(new ChatItem(data.chats[index], visibility, false, false));
+
+    //Check for continuation messages and update items accordingly
+    var i = index - 1;
+    while(i >= 0 && data.chats[i].userId === data.chats[index].userId) {
+      var msg = this.messages.getItem(i);
+      msg.visibility = 'collapse';
+      if(isMine) {
+        msg.mineContinuation = true;
+      }
+      else {
+        msg.theirsContinuation = true;
+      }
+      this.messages.setItem(i, msg);
+      i = i - 1;
+    }
   }
 
   align(item) {
@@ -149,7 +186,17 @@ export class ChatComponent implements OnInit {
   setupItemView(args) {
   	args.view.context.mine = (this.messages.getItem(args.index).chatMessage.userId === this.userId);
   	args.view.context.theirs = (this.messages.getItem(args.index).chatMessage.userId !== this.userId);
-  	args.view.context.even = (args.index % 2 === 0);
+    args.view.context.mineContinuation = (this.messages.getItem(args.index).mineContinuation);
+    args.view.context.theirsContinuation = (this.messages.getItem(args.index).theirsContinuation);
+    args.view.context.mineContinuationGrid = (this.messages.getItem(args.index).mineContinuation);
+    args.view.context.theirsContinuationGrid = (this.messages.getItem(args.index).theirsContinuation);
+
+    args.view.context.grid = (!this.messages.getItem(args.index).theirsContinuation && !this.messages.getItem(args.index).mineContinuation);
+    args.view.context.mineTime = (!this.messages.getItem(args.index).mineContinuation && this.messages.getItem(args.index).chatMessage.userId === this.userId);
+    args.view.context.theirsTime = (!this.messages.getItem(args.index).theirsContinuation && this.messages.getItem(args.index).chatMessage.userId !== this.userId);
+    
+    args.view.context.time = (!args.view.context.mineTime && !args.view.context.theirsTime)    
+    args.view.context.even = (args.index % 2 === 0);
   	args.view.context.odd = (args.index % 2 === 1);
   }
 
@@ -158,6 +205,10 @@ export class ChatComponent implements OnInit {
   		this.router.back();
   	else
   		this.router.navigate(['home']);
+  }
+
+  onTextTap() {
+    this.list.scrollToIndex(this.messages.length - 1);
   }
 
 }

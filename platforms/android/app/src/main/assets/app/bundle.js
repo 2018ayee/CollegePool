@@ -1191,6 +1191,41 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 
 
@@ -1215,6 +1250,7 @@ var ChatListComponent = /** @class */ (function () {
         this.logincheckService = logincheckService;
         this.vcRef = vcRef;
         this.messages = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__["ObservableArray"]();
+        this.refreshMessages = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__["ObservableArray"]();
     }
     ChatListComponent.prototype.ngOnInit = function () {
         this.userId = this.logincheckService.getUser();
@@ -1223,66 +1259,112 @@ var ChatListComponent = /** @class */ (function () {
     ChatListComponent.prototype.loadMessages = function (args) {
         var _this = this;
         if (args === void 0) { args = null; }
-        this.messages.splice(0);
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(this.userId).get().then(function (doc) {
             _this.chatIds = doc.data().chats;
-        }).then(function (res) {
-            for (var i = 0; i < _this.chatIds.length; i++) {
-                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(_this.chatIds[i]).get().then(function (doc) {
-                    var data = doc.data();
-                    var docId = doc.id;
-                    var chatName = 'You, ';
-                    for (var i = 0; i < data.users.length; i++) {
-                        if (data.users[i].uid !== _this.userId) {
-                            nonUserIndex = i;
-                            if (i === data.users.length - 1)
-                                chatName += 'and ' + data.users[i].displayName;
-                            else
-                                chatName += data.users[i].displayName + ', ';
+        }).then(function (res) { return __awaiter(_this, void 0, void 0, function () {
+            var i, chatPromise, pullRefresh, i;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        i = 0;
+                        _a.label = 1;
+                    case 1:
+                        if (!(i < this.chatIds.length)) return [3 /*break*/, 4];
+                        return [4 /*yield*/, nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatIds[i]).get().then(function (doc) { return __awaiter(_this, void 0, void 0, function () {
+                                var data, docId, chatName, nonUserIndex, i, lastMsg, addPromise;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0:
+                                            data = doc.data();
+                                            docId = doc.id;
+                                            chatName = 'You, ';
+                                            nonUserIndex = 0;
+                                            for (i = 0; i < data.users.length; i++) {
+                                                if (data.users[i].uid !== this.userId) {
+                                                    nonUserIndex = i;
+                                                    if (i === data.users.length - 1)
+                                                        chatName += 'and ' + data.users[i].displayName;
+                                                    else
+                                                        chatName += data.users[i].displayName + ', ';
+                                                }
+                                            }
+                                            if (!data.chats[0]) return [3 /*break*/, 2];
+                                            lastMsg = data.chats[data.chats.length - 1];
+                                            return [4 /*yield*/, this.addMessage(lastMsg, data, docId, chatName, nonUserIndex)];
+                                        case 1:
+                                            addPromise = _a.sent();
+                                            _a.label = 2;
+                                        case 2: return [2 /*return*/];
+                                    }
+                                });
+                            }); })];
+                    case 2:
+                        chatPromise = _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        i++;
+                        return [3 /*break*/, 1];
+                    case 4:
+                        if (args != null) {
+                            pullRefresh = args.object;
+                            pullRefresh.refreshing = false;
                         }
-                    }
-                    if (data.chats[0]) {
-                        var lastMsg_1 = data.chats[data.chats.length - 1];
-                        if (lastMsg_1.userId !== _this.userId) {
-                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(lastMsg_1.userId).get().then(function (doc) {
-                                var profileSource = lastMsg_1.pfpSource;
+                        this.refreshMessages.sort(function (a, b) {
+                            if (a.lastChat > b.lastChat)
+                                return -1;
+                            else if (b.lastChat < a.lastChat)
+                                return 1;
+                            return 0;
+                        });
+                        this.messages.splice(0);
+                        for (i = 0; i < this.refreshMessages.length; i++) {
+                            this.messages.push(this.refreshMessages.getItem(i));
+                        }
+                        this.refreshMessages.splice(0);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    ChatListComponent.prototype.addMessage = function (lastMsg, data, docId, chatName, nonUserIndex) {
+        return __awaiter(this, void 0, void 0, function () {
+            var userPromise, userPromise;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(lastMsg.userId !== this.userId)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(lastMsg.userId).get().then(function (doc) {
+                                var profileSource = lastMsg.pfpSource;
                                 if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
                                     profileSource += '?height=300';
                                 if (data.users.length === 2)
-                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, lastMsg_1.displayName, doc.data().first_name + ': ' + lastMsg_1.message));
+                                    _this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, lastMsg.displayName, doc.data().first_name + ': ' + lastMsg.message));
                                 else {
-                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, chatName, doc.data().first_name + ': ' + lastMsg_1.message));
+                                    _this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, chatName, doc.data().first_name + ': ' + lastMsg.message));
                                 }
-                            });
-                        }
-                        else {
-                            var nonUserIndex = 0;
-                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(data.users[nonUserIndex].uid).get().then(function (doc) {
-                                var profileSource = doc.data().profile_source;
-                                if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
-                                    profileSource += '?height=300';
-                                if (data.users.length === 2)
-                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg_1.message));
-                                else {
-                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, chatName, 'You: ' + lastMsg_1.message));
-                                }
-                            });
-                        }
-                    }
-                }).then(function (res) {
-                    _this.messages.sort(function (a, b) {
-                        if (a.lastChat < b.lastChat)
-                            return -1;
-                        else if (b.lastChat > a.lastChat)
-                            return 1;
-                        return 0;
-                    });
-                });
-            }
-            if (args != null) {
-                var pullRefresh = args.object;
-                pullRefresh.refreshing = false;
-            }
+                                return true;
+                            })];
+                    case 1:
+                        userPromise = _a.sent();
+                        return [2 /*return*/, this.refreshMessages];
+                    case 2: return [4 /*yield*/, nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(data.users[nonUserIndex].uid).get().then(function (doc) {
+                            var profileSource = doc.data().profile_source;
+                            if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+                                profileSource += '?height=300';
+                            if (data.users.length === 2)
+                                _this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg.message));
+                            else {
+                                _this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, chatName, 'You: ' + lastMsg.message));
+                            }
+                            return true;
+                        })];
+                    case 3:
+                        userPromise = _a.sent();
+                        return [2 /*return*/, this.refreshMessages];
+                }
+            });
         });
     };
     ChatListComponent.prototype.refreshList = function (args) {
@@ -1315,14 +1397,14 @@ var ChatListComponent = /** @class */ (function () {
 /***/ "./app/chat/chat.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\nButton {\n    padding: 5;\n    margin: 5;\n    background-color: dodgerblue;\n    color: white;\n    height: 40;\n    border-radius: 5;\n}\n\n.chat-text-field {\n    padding: 5; \n    /*background-color: white; */\n    /*border-radius: 4;*/\n    /*bottom-border-color: #696969;*/\n}\n\n.author-img {\n    margin: 0 5 5 5;\n    width: 40;\n    height: 40;\n    border-radius: 20;\n}\n\n.mine {\n    background-color: #30A9FF;\n    color: white;\n    padding: 8;\n    padding-left: 12;\n    padding-right: 12;\n    margin-right: 10;\n    border-radius: 15;\n    border-bottom-right-radius: 5;\n    border-bottom-left-radius: 15;\n    font-size: 16;\n    max-width: 60%;\n}\n\n.theirs {\n    background-color: #e0e0e0;\n    color: #333;\n    padding: 7;\n    padding-left: 12;\n    padding-right: 12;\n    border-radius: 15;\n    border-bottom-left-radius: 5;\n    margin-right: 40;\n    font-size: 16;\n    max-width: 60%;\n}\n\n.message-grid {\n    font-size: 14;\n    padding: 5;\n}\n\n.chat-box-layout {\n\tborder-color: #f1f1f1;\n\tborder-top-width: 1;\n}"
+module.exports = "/* Add mobile styles for the component here.  */\nButton {\n    padding: 5;\n    margin: 5;\n    background-color: dodgerblue;\n    color: white;\n    height: 40;\n    border-radius: 5;\n}\n\n.chat-button {\n\tpadding-left: 5;\n\tpadding-right: 5;\n\tmargin: 5;\n\theight: 30;\n\twidth: 30;\n}\n\n.chat-text-field {\n    padding: 5; \n    /*background-color: white; */\n    /*border-radius: 4;*/\n    /*bottom-border-color: #696969;*/\n}\n\n.author-img {\n    margin: 0 5 5 5;\n    margin-bottom: 0;\n    width: 40;\n    height: 40;\n    border-radius: 20;\n}\n\n.mine {\n    background-color: #ac00e6;\n    color: white;\n    padding: 8;\n    padding-left: 12;\n    padding-right: 12;\n    margin-right: 10;\n    border-radius: 15;\n    border-bottom-right-radius: 5;\n    border-bottom-left-radius: 15;\n    font-size: 16;\n    max-width: 60%;\n    text-align: right;\n    /*margin-bottom: 12;*/\n}\n\n.mineContinuation {\n\tmargin-bottom: 0;\n\tborder-bottom-right-radius: 15;\n}\n\n.mineContinuationGrid {\n\tfont-size: 14;\n    padding: 5;\n\tpadding-top: 0;\n\tpadding-bottom: 1;\n}\n\n.mineTime {\n\tmargin-right: 10;\n\tmargin-bottom: 5;\n}\n\n.theirsTime {\n\tmargin-left: 52;\n\tmargin-bottom: 5;\n}\n\n.time {\n\tvisibility: collapse;\n\tdisplay: none;\n}\n\n.theirs {\n    background-color: #e0e0e0;\n    color: #333;\n    padding: 7;\n    padding-left: 12;\n    padding-right: 12;\n    border-radius: 15;\n    border-bottom-left-radius: 5;\n    border-bottom-right-radius: 15;\n    margin-right: 40;\n    font-size: 16;\n    max-width: 60%;\n    text-align: left;\n    /*margin-bottom: 12;*/\n}\n\n.theirsContinuation {\n\tmargin-left: 52;\n\tmargin-bottom: 0;\n\tborder-bottom-left-radius: 15;\n}\n\n.theirsContinuationGrid {\n\tfont-size: 14;\n    padding: 5;\n\tpadding-top: 0;\n\tpadding-bottom: 1;\n}\n\n.grid {\n    font-size: 14;\n    padding: 5;\n    padding-top: 0;\n    padding-bottom: 8;\n}\n\n.chat-box-layout {\n\tborder-color: #f1f1f1;\n\tborder-top-width: 1;\n}"
 
 /***/ }),
 
 /***/ "./app/chat/chat.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ chatName }}\" android:horizontalAlignment=\"center\" ios:horizontalAlignment=\"center\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"onLeave()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Leave chat\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<StackLayout>\r\n    <ListView height=\"90%\" margin-bottom=\"50\" padding=\"5\" #messageList [items]=\"messages\" separatorColor=\"transparent\" (setupItemView)=\"setupItemView($event)\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-mine=\"mine\" let-theirs=\"theirs\">\r\n            <GridLayout columns=\"*\" rows=\"auto\" class=\"message-grid\">\r\n                <StackLayout orientation=\"horizontal\" [horizontalAlignment]=\"align(item)\">\r\n                    <Image [visibility]=\"item.visibility\" class=\"author-img\" stretch=\"aspectFill\" height=\"40\" width=\"40\" verticalAlignment=\"top\" [src]=\"item.chatMessage.pfpSource\" col=\"1\"></Image>\r\n                    <!-- <Label text='' width=\"40%\" [visibility]=\"item.visibility\"></Label> -->\r\n                    <Label [text]='item.chatMessage.message' [class.mine]=\"mine\" [class.theirs]=\"theirs\" textWrap=\"true\" verticalAlignment=\"top\"></Label>\r\n                    <!-- <Label text='' width=\"40%\" [visibility]=\"item.visibility\"></Label> -->\r\n                </StackLayout>\r\n            </GridLayout>\r\n        </ng-template>\r\n    </ListView>\r\n\r\n    <StackLayout #chatbox height=\"10%\" class=\"chat-box-layout\">\r\n    \t<ScrollView height=\"100%\">\r\n\t        <GridLayout columns=\"*,auto\" style=\"padding: 10\">\r\n\t            <TextView #textfield height=\"auto\" hint=\"Start a message\" class=\"chat-text-field\" row=\"0\" col=\"0\" [(ngModel)]=\"message\"></TextView>\r\n\t            <Button #btn class=\"chat-button\" row=\"0\" col=\"1\" text=\"send\" (tap)=sendMessage()></Button>\r\n\t        </GridLayout>\r\n\t    </ScrollView>\r\n    </StackLayout>\r\n\r\n</StackLayout>"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ chatName }}\" android:horizontalAlignment=\"center\" ios:horizontalAlignment=\"center\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"onLeave()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Leave chat\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<GridLayout rows=\"*, auto\">\r\n    <ListView margin-bottom=\"50\" padding=\"5\" #messageList [items]=\"messages\" separatorColor=\"transparent\" (setupItemView)=\"setupItemView($event)\" row=\"0\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-mine=\"mine\" let-theirs=\"theirs\" let-mineContinuation=\"mineContinuation\" let-theirsContinuation=\"theirsContinuation\" let-mineContinuationGrid=\"mineContinuationGrid\" let-theirsContinuationGrid=\"theirsContinuationGrid\" let-grid=\"grid\" let-mineTime=\"mineTime\" let-theirsTime=\"theirsTime\" let-time=\"time\">\r\n            <StackLayout width=\"80%\" [class.mineContinuationGrid]=\"mineContinuationGrid\" [class.theirsContinuationGrid]=\"theirsContinuationGrid\" [class.grid]=\"grid\">\r\n                <StackLayout orientation=\"horizontal\" [horizontalAlignment]=\"align(item)\">\r\n                    <Image [visibility]=\"item.visibility\" class=\"author-img\" stretch=\"aspectFill\" height=\"40\" width=\"40\" verticalAlignment=\"bottom\" [src]=\"item.chatMessage.pfpSource\" col=\"1\"></Image>\r\n                    <Label [text]='item.chatMessage.message' [class.mine]=\"mine\" [class.theirs]=\"theirs\" [class.mineContinuation]=\"mineContinuation\" [class.theirsContinuation]=\"theirsContinuation\" textWrap=\"true\" verticalAlignment=\"top\"></Label>\r\n                </StackLayout>\r\n                <Label [text]='item.chatMessage.time' [horizontalAlignment]=\"align(item)\" [class.mineTime]=\"mineTime\" [class.theirsTime]=\"theirsTime\" [class.time]=\"time\"></Label>\r\n            </StackLayout>\r\n        </ng-template>\r\n    </ListView>\r\n\r\n    <StackLayout #chatbox row=\"1\" class=\"chat-box-layout\">\r\n\t        <GridLayout columns=\"*,auto\" style=\"padding: 10\">\r\n\t            <TextView #textfield height=\"auto\" maxHeight=\"100\" hint=\"Start a message\" class=\"chat-text-field\" row=\"0\" col=\"0\" autocorrect=\"true\" [(ngModel)]=\"message\" (tap)=\"onTextTap()\"></TextView>\r\n\t            <Image #btn class=\"chat-button\" row=\"0\" col=\"1\" src=\"~/img/send_message_icon_2.png\" (tap)=sendMessage()></Image>\r\n\t        </GridLayout>\r\n\r\n    </StackLayout>\r\n\r\n</GridLayout>"
 
 /***/ }),
 
@@ -1354,6 +1436,41 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 
 
@@ -1363,9 +1480,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ChatItem = /** @class */ (function () {
-    function ChatItem(chatMessage, visibility) {
+    function ChatItem(chatMessage, visibility, mineContinuation, theirsContinuation) {
         this.chatMessage = chatMessage;
         this.visibility = visibility;
+        this.mineContinuation = mineContinuation;
+        this.theirsContinuation = theirsContinuation;
     }
     return ChatItem;
 }());
@@ -1396,48 +1515,57 @@ var ChatComponent = /** @class */ (function () {
         // console.log(this.chatId);
     };
     ChatComponent.prototype.sendMessage = function () {
-        var _this = this;
-        if (this.message.replace(/\s+/g, '').length === 0) {
-            return false;
-        }
-        var today = new Date();
-        var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
-        var time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
-        var chat = {
-            userId: this.userId,
-            displayName: this.displayName,
-            message: this.message,
-            pfpSource: this.pfpSource,
-            imgSource: "",
-            time: time,
-            date: date
-        };
-        var messageDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatId);
-        messageDocument.get().then(function (doc) {
-            var updatedChats = doc.data().chats;
-            updatedChats.push(chat);
-            messageDocument.update({
-                chats: updatedChats,
-                lastChat: date + ' ' + time
+        return __awaiter(this, void 0, void 0, function () {
+            var today, date, time, chat, messageDocument, messagePromise;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (this.message.replace(/\s+/g, '').length === 0) {
+                            return [2 /*return*/, false];
+                        }
+                        today = new Date();
+                        date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+                        time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
+                        chat = {
+                            userId: this.userId,
+                            displayName: this.displayName,
+                            message: this.message,
+                            pfpSource: this.pfpSource,
+                            imgSource: "",
+                            time: time,
+                            date: date
+                        };
+                        messageDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatId);
+                        return [4 /*yield*/, messageDocument.get().then(function (doc) {
+                                var updatedChats = doc.data().chats;
+                                updatedChats.push(chat);
+                                messageDocument.update({
+                                    chats: updatedChats,
+                                    lastChat: date + ' ' + time
+                                });
+                            })];
+                    case 1:
+                        messagePromise = _a.sent();
+                        this.message = '';
+                        return [2 /*return*/];
+                }
             });
         });
-        this.message = '';
-        setTimeout(function () {
-            _this.list.scrollToIndex(_this.messages.length - 1);
-        }, 100);
     };
     ChatComponent.prototype.retrieveChats = function () {
         var _this = this;
-        this.messages.splice(0);
         var messageDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatId);
         messageDocument.get().then(function (doc) {
             var data = doc.data();
             _this.lastIndex = data.chats.length;
+            _this.messages.splice(0);
             for (var i = 0; i < data.chats.length; i++) {
-                if (data.chats[i].userId === _this.userId)
-                    _this.messages.push(new ChatItem(data.chats[i], "collapse"));
-                else
-                    _this.messages.push(new ChatItem(data.chats[i], "visible"));
+                if (data.chats[i].userId === _this.userId) {
+                    _this.updateContinuations(data, i, true, "collapse");
+                }
+                else {
+                    _this.updateContinuations(data, i, false, "visible");
+                }
             }
             _this.list.scrollToIndex(data.chats.length - 1);
             if (data.users.length === 2) {
@@ -1463,13 +1591,48 @@ var ChatComponent = /** @class */ (function () {
         var unsubscribe = messageDocument.onSnapshot(function (doc) {
             var data = doc.data();
             for (var i = _this.lastIndex; i < data.chats.length; i++) {
-                if (data.chats[i].userId === _this.userId)
-                    _this.messages.push(new ChatItem(data.chats[i], "collapse"));
-                else
-                    _this.messages.push(new ChatItem(data.chats[i], "visible"));
+                if (data.chats[i].userId === _this.userId) {
+                    _this.updateContinuations(data, i, true, "collapse");
+                    _this.list.scrollToIndex(_this.messages.length - 1);
+                }
+                else {
+                    _this.updateContinuations(data, i, false, "visible");
+                }
             }
             _this.lastIndex = data.chats.length;
         });
+    };
+    ChatComponent.prototype.updateContinuations = function (data, index, isMine, visibility) {
+        //Update time to a readable format for the user
+        var chatTime = data.chats[index].time;
+        var dateSplit = data.chats[index].date.split('/');
+        var timeSplit = chatTime.split(':');
+        if (timeSplit[1].length === 1) {
+            timeSplit[1] = '0' + timeSplit[1];
+        }
+        var hours = parseInt(timeSplit[0]);
+        if (hours > 12) {
+            data.chats[index].time = dateSplit[1] + '/' + dateSplit[2] + ', ' + (hours - 12) + ':' + timeSplit[1] + ' PM';
+        }
+        else {
+            data.chats[index].time = dateSplit[1] + '/' + dateSplit[2] + ', ' + timeSplit[0] + ':' + timeSplit[2] + ' AM';
+        }
+        //Push the message item
+        this.messages.push(new ChatItem(data.chats[index], visibility, false, false));
+        //Check for continuation messages and update items accordingly
+        var i = index - 1;
+        while (i >= 0 && data.chats[i].userId === data.chats[index].userId) {
+            var msg = this.messages.getItem(i);
+            msg.visibility = 'collapse';
+            if (isMine) {
+                msg.mineContinuation = true;
+            }
+            else {
+                msg.theirsContinuation = true;
+            }
+            this.messages.setItem(i, msg);
+            i = i - 1;
+        }
     };
     ChatComponent.prototype.align = function (item) {
         if (item.chatMessage.userId === this.userId)
@@ -1486,6 +1649,14 @@ var ChatComponent = /** @class */ (function () {
     ChatComponent.prototype.setupItemView = function (args) {
         args.view.context.mine = (this.messages.getItem(args.index).chatMessage.userId === this.userId);
         args.view.context.theirs = (this.messages.getItem(args.index).chatMessage.userId !== this.userId);
+        args.view.context.mineContinuation = (this.messages.getItem(args.index).mineContinuation);
+        args.view.context.theirsContinuation = (this.messages.getItem(args.index).theirsContinuation);
+        args.view.context.mineContinuationGrid = (this.messages.getItem(args.index).mineContinuation);
+        args.view.context.theirsContinuationGrid = (this.messages.getItem(args.index).theirsContinuation);
+        args.view.context.grid = (!this.messages.getItem(args.index).theirsContinuation && !this.messages.getItem(args.index).mineContinuation);
+        args.view.context.mineTime = (!this.messages.getItem(args.index).mineContinuation && this.messages.getItem(args.index).chatMessage.userId === this.userId);
+        args.view.context.theirsTime = (!this.messages.getItem(args.index).theirsContinuation && this.messages.getItem(args.index).chatMessage.userId !== this.userId);
+        args.view.context.time = (!args.view.context.mineTime && !args.view.context.theirsTime);
         args.view.context.even = (args.index % 2 === 0);
         args.view.context.odd = (args.index % 2 === 1);
     };
@@ -1494,6 +1665,9 @@ var ChatComponent = /** @class */ (function () {
             this.router.back();
         else
             this.router.navigate(['home']);
+    };
+    ChatComponent.prototype.onTextTap = function () {
+        this.list.scrollToIndex(this.messages.length - 1);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("messageList"),
@@ -5616,6 +5790,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/messaging/index.js");
 /* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./app/datatransfer.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5667,11 +5842,13 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
 var WelcomeComponent = /** @class */ (function () {
-    function WelcomeComponent(page, router, logincheckService) {
+    function WelcomeComponent(page, router, logincheckService, transferService) {
         this.page = page;
         this.router = router;
         this.logincheckService = logincheckService;
+        this.transferService = transferService;
         this.isLoggingIn = true;
         this.firebaseConfig = {
             apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
@@ -5788,6 +5965,13 @@ var WelcomeComponent = /** @class */ (function () {
     };
     WelcomeComponent.prototype.registerNotifications = function () {
         var _this = this;
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["addOnMessageReceivedCallback"](function (message) {
+            console.log(message);
+            if (message.data.type === 'New message') {
+                _this.transferService.setData(message.data.chatId);
+                _this.router.navigate(['chat']);
+            }
+        });
         nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__["messaging"].registerForPushNotifications({
             onPushTokenReceivedCallback: function (token) {
                 // console.log("Firebase plugin received a push token: " + token);
@@ -5960,7 +6144,7 @@ var WelcomeComponent = /** @class */ (function () {
             template: __webpack_require__("./app/welcome/welcome.component.html"),
             styles: [__webpack_require__("./app/welcome/welcome.component.css")]
         }),
-        __metadata("design:paramtypes", [tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_6__["LogincheckService"]])
+        __metadata("design:paramtypes", [tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_6__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_7__["TransferService"]])
     ], WelcomeComponent);
     return WelcomeComponent;
 }());

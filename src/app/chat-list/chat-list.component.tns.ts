@@ -23,6 +23,7 @@ export class ChatListComponent implements OnInit {
   	private vcRef: ViewContainerRef) { }
 
   messages = new ObservableArray<MessageItem>();
+  refreshMessages = new ObservableArray<MessageItem>();
   userId: string;
   chatIds: [string];
 
@@ -32,15 +33,15 @@ export class ChatListComponent implements OnInit {
   }
 
   loadMessages(args=null) {
-  	this.messages.splice(0);
   	firebase.firestore.collection('users').doc(this.userId).get().then((doc) => {
   		this.chatIds = doc.data().chats;
-    }).then((res) => {
+    }).then(async (res) => {
       for(var i = 0; i < this.chatIds.length; i++) {
-        firebase.firestore.collection('chats').doc(this.chatIds[i]).get().then((doc) => {
+        const chatPromise = await firebase.firestore.collection('chats').doc(this.chatIds[i]).get().then(async (doc) => {
           let data = doc.data();
           let docId = doc.id;
           var chatName = 'You, ';
+          var nonUserIndex = 0;
           for(var i = 0; i < data.users.length; i++) {
             if(data.users[i].uid !==this.userId) {
               nonUserIndex = i;
@@ -52,42 +53,8 @@ export class ChatListComponent implements OnInit {
           }
           if(data.chats[0]) {
             let lastMsg = data.chats[data.chats.length - 1];
-            if(lastMsg.userId !== this.userId) {
-              firebase.firestore.collection('users').doc(lastMsg.userId).get().then((doc) => {
-                let profileSource = lastMsg.pfpSource;
-                if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
-                  profileSource += '?height=300';
-                if(data.users.length === 2)
-                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, lastMsg.displayName, doc.data().first_name + ': ' + lastMsg.message));
-                else {
-                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, chatName, doc.data().first_name + ': ' + lastMsg.message));
-                }
-              })
-            }
-            else {
-              var nonUserIndex = 0;
-              firebase.firestore.collection('users').doc(data.users[nonUserIndex].uid).get().then((doc) => {
-                let profileSource = doc.data().profile_source;
-                if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
-                  profileSource += '?height=300';
-                if(data.users.length === 2)
-                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
-                    doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg.message));
-                else {
-                  this.messages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
-                    chatName, 'You: ' + lastMsg.message));
-                }
-              })
-            }
+            const addPromise = await this.addMessage(lastMsg, data, docId, chatName, nonUserIndex); 
           }
-        }).then((res) => {
-          this.messages.sort(function (a, b) {
-            if(a.lastChat < b.lastChat)
-              return -1;
-            else if(b.lastChat > a.lastChat)
-              return 1;
-            return 0;
-          })
         })
       }
       if(args != null)
@@ -95,7 +62,52 @@ export class ChatListComponent implements OnInit {
         var pullRefresh = args.object;
         pullRefresh.refreshing = false;
       }
+      this.refreshMessages.sort(function (a, b) {
+        if(a.lastChat > b.lastChat)
+          return -1;
+        else if(b.lastChat < a.lastChat)
+          return 1;
+        return 0;
+      })
+      this.messages.splice(0);
+      for(var i = 0; i < this.refreshMessages.length; i++) {
+        this.messages.push(this.refreshMessages.getItem(i));
+      }
+      this.refreshMessages.splice(0);
     })
+  }
+
+  async addMessage(lastMsg, data, docId, chatName, nonUserIndex) {
+    if(lastMsg.userId !== this.userId) {
+      const userPromise = await firebase.firestore.collection('users').doc(lastMsg.userId).get().then((doc) => {
+        let profileSource = lastMsg.pfpSource;
+        if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+          profileSource += '?height=300';
+        if(data.users.length === 2)
+          this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, lastMsg.displayName, doc.data().first_name + ': ' + lastMsg.message));
+        else {
+          this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, chatName, doc.data().first_name + ': ' + lastMsg.message));
+        }
+        return true;
+      })
+      return this.refreshMessages;
+    }
+    else {
+      const userPromise = await firebase.firestore.collection('users').doc(data.users[nonUserIndex].uid).get().then((doc) => {
+        let profileSource = doc.data().profile_source;
+        if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+          profileSource += '?height=300';
+        if(data.users.length === 2)
+          this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
+            doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg.message));
+        else {
+          this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
+            chatName, 'You: ' + lastMsg.message));
+        }
+        return true;
+      })
+      return this.refreshMessages;
+    }
   }
 
   refreshList(args) {

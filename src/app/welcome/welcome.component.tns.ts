@@ -6,6 +6,8 @@ import * as firebase from 'nativescript-plugin-firebase';
 import { messaging, Message } from "nativescript-plugin-firebase/messaging";
 import { LogincheckService } from '../logincheck.service.tns';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
+import { TransferService } from '../datatransfer.service';
+
 
 @Component({
   selector: 'app-welcome',
@@ -31,7 +33,7 @@ export class WelcomeComponent implements OnInit {
   	appId: "1:375263680183:web:f2af3f2835638d7c",
   };
 
-  constructor(private page: Page, private router: RouterExtensions, private logincheckService: LogincheckService) { }
+  constructor(private page: Page, private router: RouterExtensions, private logincheckService: LogincheckService, private transferService: TransferService) { }
 
   @ViewChild("em") em: ElementRef;
   @ViewChild("pw") pw: ElementRef;
@@ -156,6 +158,15 @@ export class WelcomeComponent implements OnInit {
   }
 
   registerNotifications() {
+    firebase.addOnMessageReceivedCallback(
+      (message) => {
+        console.log(message);
+        if(message.data.type === 'New message') {
+          this.transferService.setData(message.data.chatId);
+          this.router.navigate(['chat'])
+        }
+      }
+    );
     messaging.registerForPushNotifications({
       onPushTokenReceivedCallback: (token: string): void => {
         // console.log("Firebase plugin received a push token: " + token);

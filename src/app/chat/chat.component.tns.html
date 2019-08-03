@@ -7,27 +7,25 @@
     </ActionBar>
 </Page.actionBar>
 
-<StackLayout>
-    <ListView height="90%" margin-bottom="50" padding="5" #messageList [items]="messages" separatorColor="transparent" (setupItemView)="setupItemView($event)">
-        <ng-template let-item="item" let-i="index" let-mine="mine" let-theirs="theirs">
-            <GridLayout columns="*" rows="auto" class="message-grid">
+<GridLayout rows="*, auto">
+    <ListView margin-bottom="50" padding="5" #messageList [items]="messages" separatorColor="transparent" (setupItemView)="setupItemView($event)" row="0">
+        <ng-template let-item="item" let-i="index" let-mine="mine" let-theirs="theirs" let-mineContinuation="mineContinuation" let-theirsContinuation="theirsContinuation" let-mineContinuationGrid="mineContinuationGrid" let-theirsContinuationGrid="theirsContinuationGrid" let-grid="grid" let-mineTime="mineTime" let-theirsTime="theirsTime" let-time="time">
+            <StackLayout width="80%" [class.mineContinuationGrid]="mineContinuationGrid" [class.theirsContinuationGrid]="theirsContinuationGrid" [class.grid]="grid">
                 <StackLayout orientation="horizontal" [horizontalAlignment]="align(item)">
-                    <Image [visibility]="item.visibility" class="author-img" stretch="aspectFill" height="40" width="40" verticalAlignment="top" [src]="item.chatMessage.pfpSource" col="1"></Image>
-                    <!-- <Label text='' width="40%" [visibility]="item.visibility"></Label> -->
-                    <Label [text]='item.chatMessage.message' [class.mine]="mine" [class.theirs]="theirs" textWrap="true" verticalAlignment="top"></Label>
-                    <!-- <Label text='' width="40%" [visibility]="item.visibility"></Label> -->
+                    <Image [visibility]="item.visibility" class="author-img" stretch="aspectFill" height="40" width="40" verticalAlignment="bottom" [src]="item.chatMessage.pfpSource" col="1"></Image>
+                    <Label [text]='item.chatMessage.message' [class.mine]="mine" [class.theirs]="theirs" [class.mineContinuation]="mineContinuation" [class.theirsContinuation]="theirsContinuation" textWrap="true" verticalAlignment="top"></Label>
                 </StackLayout>
-            </GridLayout>
+                <Label [text]='item.chatMessage.time' [horizontalAlignment]="align(item)" [class.mineTime]="mineTime" [class.theirsTime]="theirsTime" [class.time]="time"></Label>
+            </StackLayout>
         </ng-template>
     </ListView>
 
-    <StackLayout #chatbox height="10%" class="chat-box-layout">
-    	<ScrollView height="100%">
+    <StackLayout #chatbox row="1" class="chat-box-layout">
 	        <GridLayout columns="*,auto" style="padding: 10">
-	            <TextView #textfield height="auto" hint="Start a message" class="chat-text-field" row="0" col="0" [(ngModel)]="message"></TextView>
-	            <Button #btn class="chat-button" row="0" col="1" text="send" (tap)=sendMessage()></Button>
+	            <TextView #textfield height="auto" maxHeight="100" hint="Start a message" class="chat-text-field" row="0" col="0" autocorrect="true" [(ngModel)]="message" (tap)="onTextTap()"></TextView>
+	            <Image #btn class="chat-button" row="0" col="1" src="~/img/send_message_icon_2.png" (tap)=sendMessage()></Image>
 	        </GridLayout>
-	    </ScrollView>
+
     </StackLayout>
 
-</StackLayout>
+</GridLayout>
