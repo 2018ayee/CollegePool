@@ -3,6 +3,9 @@ Add your NativeScript specific styles here.
 To learn more about styling in NativeScript see:
 https://docs.nativescript.org/angular/ui/styling
 */
+.refresh {
+	color: #ac00e6;
+}
 
 .actionbar {
 	font-size: 22;
@@ -72,4 +75,8 @@ Label {
 	vertical-align: top;
 	margin-left: 16;
 	margin-top: 20;
+}
+
+.activity-indicator {
+	color: #ac00e6;
 }

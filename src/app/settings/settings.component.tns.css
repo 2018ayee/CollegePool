@@ -52,6 +52,11 @@ https://docs.nativescript.org/angular/ui/styling
 
 .btn-list-view {
 	margin-top: 36;
+	height: 100;
+}
+
+.item-list-view {
+	height: 300;
 }
 
 .profile-picture {

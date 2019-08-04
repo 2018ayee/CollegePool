@@ -4,6 +4,7 @@ import { Page } from "tns-core-modules/ui/page";
 import { RouterExtensions } from 'nativescript-angular/router';
 import { LogincheckService } from '../logincheck.service.tns';
 import * as firebase from 'nativescript-plugin-firebase';
+import { messaging } from "nativescript-plugin-firebase/messaging";
 import { logout as fbLogout } from 'nativescript-facebook';
 import * as imagepicker from "nativescript-imagepicker";
 import * as fs from "tns-core-modules/file-system";
@@ -51,6 +52,7 @@ export class SettingsComponent implements OnInit {
   paymentList;
   logoutList;
   user;
+  token;
 
   ngOnInit() {
 	this.imageCropper = new ImageCropper();
@@ -154,14 +156,55 @@ export class SettingsComponent implements OnInit {
 		this.transferService.setData(label);
 	  }
 
-	logOut() {
-		firebase.logout();
-		fbLogout(() => {
+	async logOut() {
+		var activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+		activityIndicator.busy = true;
+		activityIndicator.style.visibility = 'visible';
+		var settingsContainer = <StackLayout> this.sc.nativeElement;
+		settingsContainer.style.visibility = 'collapse';
 
+		const tokenPromise = await messaging.getCurrentPushToken().then(token => {
+			this.token = token
+			return token;
 		});
-		this.logincheckService.clearInfo();
-		this.router.navigate(['welcome'], {clearHistory: true});
+		let userDoc = firebase.firestore.collection('users').doc(this.userId);
+		
+		userDoc.get().then(async (doc) => {
+			let index = doc.data().tokens.indexOf(this.token);
+			if(index > -1) {
+				const newTokens = doc.data().tokens;
+				newTokens.splice(index, 1);
+				console.log(newTokens)
+				userDoc.update({tokens: newTokens});
+			}
+			const chatPromise = await this.updateChatTokens(doc.data().chats);
+			firebase.logout();
+			fbLogout(() => {
+
+			});
+			this.logincheckService.clearInfo();
+			activityIndicator.busy = false;
+			activityIndicator.style.visibility = 'collapse';
+			settingsContainer.style.visibility = 'visible';
+			this.router.navigate(['welcome'], {clearHistory: true});
+		})
+
 	}
+
+	async updateChatTokens(chats) {
+		let chatCollection = firebase.firestore.collection('chats');
+		for(var i = 0; i < chats.length; i++) {
+			const chatPromise = await chatCollection.doc(chats[i]).get().then(async (doc) => {
+				let index = doc.data().tokens.indexOf(this.token);
+				if(index > -1) {
+					const newTokens = doc.data().tokens;
+					newTokens.splice(index, 1);
+					const updatePromise = await chatCollection.doc(chats[i]).update({tokens: newTokens});
+				}
+			})
+		}
+	}
+
 	uploadPfp() {
 		var imageCropper = new ImageCropper();
 		let context = imagepicker.create({

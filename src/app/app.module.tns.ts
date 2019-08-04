@@ -34,7 +34,6 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { AgmCoreModule } from '@agm/core';
-import { ChatModule } from './chat/chat.module';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 import { NgxBraintreeModule } from 'ngx-braintree';
@@ -64,6 +63,8 @@ import { isIOS } from 'tns-core-modules/platform';
 declare var GMSServices: any;
 import { SettingsformComponent } from './settingsform/settingsform.component';
 import { ReauthComponent } from './reauth/reauth.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatListComponent } from './chat-list/chat-list.component';
 
 
 // require('nativescript-nodeify')
@@ -113,6 +114,8 @@ application.on(application.launchEvent, function (args) {
     PostingInfoComponent,
     SettingsformComponent,
     ReauthComponent,
+    ChatComponent,
+    ChatListComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -124,7 +127,6 @@ application.on(application.launchEvent, function (args) {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
     }),
-    ChatModule,
     NgxPayPalModule,
     NativeScriptUIDataFormModule,
     // NgxBraintreeModule,

@@ -5,7 +5,7 @@
       <Image src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></Image>
       <Label text="Change Photo" class="header-label bold" (tap)="uploadPfp()"></Label>
 
-      <ListView [items]="fields" #listView id="listView" (itemTap)="showModal($event)">
+      <ListView [items]="fields" #listView id="listView" (itemTap)="showModal($event)" class="item-list-view">
         <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
           <StackLayout class="stack-layout">
             <Label textWrap="true" class="title-label" [text]="item.label"></Label>

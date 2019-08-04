@@ -334,7 +334,7 @@ module.exports = "/* Add mobile styles for the component here.  */\r\n.page {\r\
 /***/ "./app/add-modal/add-modal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<StackLayout>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>\r\n\t<ScrollView>\r\n\t<FlexboxLayout class=\"page\" #addContainer>\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <Label text=\"Where?\" class=\"header-label bold\"></Label>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n\t</ScrollView>\r\n</StackLayout>\r\n\r\n\r\n"
+module.exports = "<StackLayout>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>\r\n\t<ScrollView height=\"100%\">\r\n\t<FlexboxLayout class=\"page\" #addContainer>\r\n\t\t<StackLayout class=\"close-button-container\" orientation=\"horizontal\">\r\n\t\t\t<Label text=\"&times;\" class=\"close\" (tap)=\"close('cancel')\"></Label>\r\n\t\t</StackLayout>\r\n\r\n\r\n\t\t<StackLayout class=\"form\">\r\n\t\t\t<Label text=\"I am...\" class=\"header-label-2 bold\"></Label>\r\n\r\n\t\t  <StackLayout class=\"input-field switch-container\" orientation=\"horizontal\" horizontalAlignment=\"center\">\r\n\t\t  \t<Label text=\"Driving\" class=\"header-label-3 driving-label\" #drivingLabel></Label>\r\n\t\t  \t<Switch checked=\"true\" (checkedChange)=\"onCheckedChange($event)\" class=\"m-15 switch\"></Switch>\r\n\t\t  \t<Label text=\"Riding\" class=\"header-label-3 riding-label\" #ridingLabel></Label>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <Label text=\"Where?\" class=\"header-label bold\"></Label>\r\n\t\t  <StackLayout class=\"input-field start-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where from?\" [(ngModel)]=\"startAddress\" (textChange)=\"startAutocomplete()\" (tap)=\"showModal('start')\" required></TextField> -->\r\n\t\t\t<Label text=\"{{ startLabel }}\" class=\"header-label-3\" (tap)=\"showModal('start')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t\t  <StackLayout class=\"input-field\">\r\n<!-- \t\t    <TextField class=\"input\" autocorrect=\"false\" hint=\"Where to?\" [(ngModel)]=\"endAddress\" (textChange)=\"endAutocomplete()\" (tap)=\"showModal('end')\" required></TextField> -->\r\n\t\t\t\t<Label text=\"{{ endLabel }}\" class=\"header-label-3\" (tap)=\"showModal('end')\"></Label>\r\n\t\t    <StackLayout class=\"hr-light\"></StackLayout>\r\n\t\t  </StackLayout>\r\n\r\n\t<!-- \t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" \r\n\t(dayChange)=\"onDayChanged($event)\" (monthChange)=\"onMonthChanged($event)\" (yearChange)=\"onYearChanged($event)\" verticalAlignment=\"center\"></DatePicker> -->\r\n\t\t\t<Label text=\"When?\" class=\"header-label bold\"></Label>\r\n\r\n\t\t  <DatePicker (loaded)=\"onPickerLoaded($event)\" (dateChange)=\"onDateChanged($event)\" verticalAlignment=\"center\"></DatePicker>\r\n\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"How many?\" class=\"header-label\"></Label>\r\n\t\t  <GridLayout *ngIf=\"isDriving\" class=\"m-15\" rows=\"auto\" columns=\"50 * 50\">\r\n\t\t\t    <Label class=\"h3\" text=\"1\" textWrap=\"true\" row=\"10\" col=\"0\"></Label>\r\n\t\t\t    <Slider minValue=\"1\" maxValue=\"8\" [(ngModel)]=\"capacity\" row=\"0\"\r\n\t\t\t     col=\"1\"></Slider>\r\n\t\t\t    <Label class=\"h3\" text=\"8\" textWrap=\"true\" row=\"0\" col=\"2\"></Label>\r\n\t\t\t</GridLayout>\r\n\t\t  <Label *ngIf=\"isDriving\" text=\"{{ capacity }}\" class=\"header-label-2\"></Label>\r\n\r\n\t\t  <Button text=\"Add\" class=\"btn btn-primary submit-btn\" (tap)=\"addPosting()\"></Button>\r\n\t\t</StackLayout>\r\n\t</FlexboxLayout>\r\n\t</ScrollView>\r\n</StackLayout>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -774,6 +774,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("./app/welcome/welcome.component.ts");
 /* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
 /* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("./app/chat/chat.component.ts");
+/* harmony import */ var _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("./app/chat-list/chat-list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -789,6 +791,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+
+
 
 
 
@@ -813,6 +817,8 @@ var routes = [
     { path: 'welcome', component: _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_13__["WelcomeComponent"] },
     { path: 'posting-info', component: _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_14__["PostingInfoComponent"] },
     { path: 'settingsform', component: _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_15__["SettingsformComponent"] },
+    { path: 'chat', component: _chat_chat_component__WEBPACK_IMPORTED_MODULE_16__["ChatComponent"] },
+    { path: 'chat-list', component: _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_17__["ChatListComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -906,45 +912,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__("../node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__("../node_modules/@angular/material/esm5/input.es5.js");
 /* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__("../node_modules/@agm/core/index.js");
-/* harmony import */ var _chat_chat_module__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("./app/chat/chat.module.ts");
-/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
-/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/nativescript-ui-dataform/angular/dataform-directives.js");
-/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33___default = /*#__PURE__*/__webpack_require__.n(nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33__);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("../node_modules/nativescript-masked-text-field/angular/index.js");
-/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35__);
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
-/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36__);
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
-/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37__);
-/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/location/location.component.ts");
-/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
-/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
-/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
-/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
-/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
-/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__("./app/welcome/welcome.component.ts");
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
-/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__);
-/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__("../node_modules/nativescript-facebook/angular/index.js");
-/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48__);
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_49___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_49__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
-/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
-/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52__);
-/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
-/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__("./app/reauth/reauth.component.ts");
+/* harmony import */ var ngx_paypal__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__("../node_modules/ngx-paypal/fesm5/ngx-paypal.js");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__("../node_modules/nativescript-ui-dataform/angular/dataform-directives.js");
+/* harmony import */ var nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32___default = /*#__PURE__*/__webpack_require__.n(nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__("../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__("../node_modules/nativescript-masked-text-field/angular/index.js");
+/* harmony import */ var nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34___default = /*#__PURE__*/__webpack_require__.n(nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34__);
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__("../node_modules/nativescript-angular/forms/index.js");
+/* harmony import */ var nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35__);
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__("../node_modules/nativescript-angular/http-client/index.js");
+/* harmony import */ var nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36__);
+/* harmony import */ var _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__("./app/float-btn/float-btn.component.ts");
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var _location_location_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__("./app/location/location.component.ts");
+/* harmony import */ var _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__("./app/add-payment/add-payment.component.ts");
+/* harmony import */ var _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__("./app/add-card-payment/add-card-payment.component.ts");
+/* harmony import */ var _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__("./app/payment-info/payment-info.component.ts");
+/* harmony import */ var _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__("./app/confirmation/confirmation.component.ts");
+/* harmony import */ var _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__("./app/message-modal/message-modal.component.ts");
+/* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__("./app/welcome/welcome.component.ts");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__);
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__("../node_modules/nativescript-facebook/angular/index.js");
+/* harmony import */ var nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47__);
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_48___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_48__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__("./app/posting-info/posting-info.component.ts");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51__);
+/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
+/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__("./app/reauth/reauth.component.ts");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__("./app/chat/chat.component.ts");
+/* harmony import */ var _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__("./app/chat-list/chat-list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -1001,6 +1007,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 // require('nativescript-nodeify')
 // import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 // import { AngularFireModule } from '@angular/fire';
@@ -1008,11 +1016,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { environment } from '../environments/environment';
-if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_52__["isIOS"]) {
+if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_51__["isIOS"]) {
     GMSServices.provideAPIKey("AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg");
 }
-tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_47__["launchEvent"], function (args) {
-    nativescript_facebook__WEBPACK_IMPORTED_MODULE_49__["init"]("2272129649677747");
+tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__["on"](tns_core_modules_application__WEBPACK_IMPORTED_MODULE_46__["launchEvent"], function (args) {
+    nativescript_facebook__WEBPACK_IMPORTED_MODULE_48__["init"]("2272129649677747");
 });
 var AppModule = /** @class */ (function () {
     /*
@@ -1040,46 +1048,47 @@ var AppModule = /** @class */ (function () {
                 _payments_payments_component__WEBPACK_IMPORTED_MODULE_5__["PaymentsComponent"],
                 _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"],
                 _search_search_component__WEBPACK_IMPORTED_MODULE_17__["SearchComponent"],
-                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_38__["FloatBtnComponent"],
-                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_39__["AddModalComponent"],
-                _location_location_component__WEBPACK_IMPORTED_MODULE_40__["LocationComponent"],
-                _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddPaymentComponent"],
-                _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_42__["AddCardPaymentComponent"],
-                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_43__["PaymentInfoComponent"],
-                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_44__["ConfirmationComponent"],
-                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_45__["MessageModalComponent"],
-                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_46__["WelcomeComponent"],
-                _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_51__["PostingInfoComponent"],
-                _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_53__["SettingsformComponent"],
-                _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_54__["ReauthComponent"],
+                _float_btn_float_btn_component__WEBPACK_IMPORTED_MODULE_37__["FloatBtnComponent"],
+                _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_38__["AddModalComponent"],
+                _location_location_component__WEBPACK_IMPORTED_MODULE_39__["LocationComponent"],
+                _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddPaymentComponent"],
+                _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_42__["PaymentInfoComponent"],
+                _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_43__["ConfirmationComponent"],
+                _message_modal_message_modal_component__WEBPACK_IMPORTED_MODULE_44__["MessageModalComponent"],
+                _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_45__["WelcomeComponent"],
+                _posting_info_posting_info_component__WEBPACK_IMPORTED_MODULE_50__["PostingInfoComponent"],
+                _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_52__["SettingsformComponent"],
+                _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_53__["ReauthComponent"],
+                _chat_chat_component__WEBPACK_IMPORTED_MODULE_54__["ChatComponent"],
+                _chat_list_chat_list_component__WEBPACK_IMPORTED_MODULE_55__["ChatListComponent"],
             ],
             imports: [
                 nativescript_angular_nativescript_module__WEBPACK_IMPORTED_MODULE_1__["NativeScriptModule"],
                 _app_routing_module_tns__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
-                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_37__["NativeScriptHttpClientModule"],
+                nativescript_angular_http_client__WEBPACK_IMPORTED_MODULE_36__["NativeScriptHttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_28__["ReactiveFormsModule"],
-                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_36__["NativeScriptFormsModule"],
+                nativescript_angular_forms__WEBPACK_IMPORTED_MODULE_35__["NativeScriptFormsModule"],
                 _angular_material_input__WEBPACK_IMPORTED_MODULE_29__["MatInputModule"],
                 _agm_core__WEBPACK_IMPORTED_MODULE_30__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg'
                 }),
-                _chat_chat_module__WEBPACK_IMPORTED_MODULE_31__["ChatModule"],
-                ngx_paypal__WEBPACK_IMPORTED_MODULE_32__["NgxPayPalModule"],
-                nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_33__["NativeScriptUIDataFormModule"],
+                ngx_paypal__WEBPACK_IMPORTED_MODULE_31__["NgxPayPalModule"],
+                nativescript_ui_dataform_angular__WEBPACK_IMPORTED_MODULE_32__["NativeScriptUIDataFormModule"],
                 // NgxBraintreeModule,
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_34__["HttpClientModule"],
-                nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_48__["NativeScriptFacebookModule"],
-                nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_35__["MaskedTextFieldModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_33__["HttpClientModule"],
+                nativescript_facebook_angular__WEBPACK_IMPORTED_MODULE_47__["NativeScriptFacebookModule"],
+                nativescript_masked_text_field_angular__WEBPACK_IMPORTED_MODULE_34__["MaskedTextFieldModule"]
                 // AngularFireModule.initializeApp(environment.firebase),
                 // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
                 // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
                 // AngularFireStorageModule // imports firebase/storage only needed for storage features
             ],
             providers: [_posting_service__WEBPACK_IMPORTED_MODULE_20__["PostingService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_22__["TransferService"], _dynamic_add_service__WEBPACK_IMPORTED_MODULE_23__["DynamicAddService"], _user_service__WEBPACK_IMPORTED_MODULE_21__["UserService"], _payment_service__WEBPACK_IMPORTED_MODULE_24__["PaymentService"], nativescript_angular_modal_dialog__WEBPACK_IMPORTED_MODULE_27__["ModalDialogService"], _places_autocomplete_service__WEBPACK_IMPORTED_MODULE_25__["PlacesAutocompleteService"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_50__["DatePipe"], _google_maps_service__WEBPACK_IMPORTED_MODULE_26__["GoogleMapsService"]],
+                _angular_common__WEBPACK_IMPORTED_MODULE_49__["DatePipe"], _google_maps_service__WEBPACK_IMPORTED_MODULE_26__["GoogleMapsService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]],
-            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_39__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_40__["LocationComponent"], _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddPaymentComponent"], _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_42__["AddCardPaymentComponent"],
-                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_43__["PaymentInfoComponent"], _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_44__["ConfirmationComponent"], _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_53__["SettingsformComponent"], _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_54__["ReauthComponent"]],
+            entryComponents: [_posting_posting_component__WEBPACK_IMPORTED_MODULE_13__["PostingComponent"], _payment_method_payment_method_component__WEBPACK_IMPORTED_MODULE_6__["PaymentMethodComponent"], _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_38__["AddModalComponent"], _location_location_component__WEBPACK_IMPORTED_MODULE_39__["LocationComponent"], _add_payment_add_payment_component__WEBPACK_IMPORTED_MODULE_40__["AddPaymentComponent"], _add_card_payment_add_card_payment_component__WEBPACK_IMPORTED_MODULE_41__["AddCardPaymentComponent"],
+                _payment_info_payment_info_component__WEBPACK_IMPORTED_MODULE_42__["PaymentInfoComponent"], _confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_43__["ConfirmationComponent"], _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_52__["SettingsformComponent"], _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_53__["ReauthComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["NO_ERRORS_SCHEMA"]]
         })
         /*
@@ -1144,27 +1153,35 @@ var AutoGeneratedComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./app/chat/chat.component.css":
+/***/ "./app/chat-list/chat-list.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/* Add mobile styles for the component here.  */\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: #696969;\n}\n\n.profile-picture {\n\theight: 60;\n\twidth: 60;\n\tborder-radius: 100%;\n\tvertical-align: center;\n\tmargin-left: 16;\n\tmargin-top: 14;\n\tmargin-bottom: 14;\n}\n\n.message {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 50;\n\tmargin-bottom: 50;\n}\n\n.refresh {\n\tcolor: #ac00e6;\n}"
 
 /***/ }),
 
-/***/ "./app/chat/chat.component.html":
+/***/ "./app/chat-list/chat-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  chat works!\r\n</p>\r\n"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Messages\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"refresh\">\r\n\t<ListView [items]=\"messages\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"message\" orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.pfpSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.displayName\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.message\"></Label>\r\n\t\t            </StackLayout>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>"
 
 /***/ }),
 
-/***/ "./app/chat/chat.component.ts":
+/***/ "./app/chat-list/chat-list.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatListComponent", function() { return ChatListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1175,56 +1192,323 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ChatComponent = /** @class */ (function () {
-    function ChatComponent() {
+
+
+
+
+
+var MessageItem = /** @class */ (function () {
+    function MessageItem(chatMessage, lastChat, chatId, pfpSource, displayName, message) {
+        this.chatMessage = chatMessage;
+        this.lastChat = lastChat;
+        this.chatId = chatId;
+        this.pfpSource = pfpSource;
+        this.displayName = displayName;
+        this.message = message;
     }
-    ChatComponent.prototype.ngOnInit = function () {
+    return MessageItem;
+}());
+var ChatListComponent = /** @class */ (function () {
+    function ChatListComponent(transferService, router, logincheckService, vcRef) {
+        this.transferService = transferService;
+        this.router = router;
+        this.logincheckService = logincheckService;
+        this.vcRef = vcRef;
+        this.messages = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__["ObservableArray"]();
+    }
+    ChatListComponent.prototype.ngOnInit = function () {
+        this.userId = this.logincheckService.getUser();
+        this.loadMessages();
     };
-    ChatComponent = __decorate([
+    ChatListComponent.prototype.loadMessages = function (args) {
+        var _this = this;
+        if (args === void 0) { args = null; }
+        this.messages.splice(0);
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(this.userId).get().then(function (doc) {
+            _this.chatIds = doc.data().chats;
+        }).then(function (res) {
+            for (var i = 0; i < _this.chatIds.length; i++) {
+                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(_this.chatIds[i]).get().then(function (doc) {
+                    var data = doc.data();
+                    var docId = doc.id;
+                    var chatName = 'You, ';
+                    for (var i = 0; i < data.users.length; i++) {
+                        if (data.users[i].uid !== _this.userId) {
+                            nonUserIndex = i;
+                            if (i === data.users.length - 1)
+                                chatName += 'and ' + data.users[i].displayName;
+                            else
+                                chatName += data.users[i].displayName + ', ';
+                        }
+                    }
+                    if (data.chats[0]) {
+                        var lastMsg_1 = data.chats[data.chats.length - 1];
+                        if (lastMsg_1.userId !== _this.userId) {
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(lastMsg_1.userId).get().then(function (doc) {
+                                var profileSource = lastMsg_1.pfpSource;
+                                if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+                                    profileSource += '?height=300';
+                                if (data.users.length === 2)
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, lastMsg_1.displayName, doc.data().first_name + ': ' + lastMsg_1.message));
+                                else {
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, chatName, doc.data().first_name + ': ' + lastMsg_1.message));
+                                }
+                            });
+                        }
+                        else {
+                            var nonUserIndex = 0;
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('users').doc(data.users[nonUserIndex].uid).get().then(function (doc) {
+                                var profileSource = doc.data().profile_source;
+                                if (profileSource.substring(0, 27) == 'https://graph.facebook.com/')
+                                    profileSource += '?height=300';
+                                if (data.users.length === 2)
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg_1.message));
+                                else {
+                                    _this.messages.push(new MessageItem(lastMsg_1, data.lastChat, docId, profileSource, chatName, 'You: ' + lastMsg_1.message));
+                                }
+                            });
+                        }
+                    }
+                }).then(function (res) {
+                    _this.messages.sort(function (a, b) {
+                        if (a.lastChat < b.lastChat)
+                            return -1;
+                        else if (b.lastChat > a.lastChat)
+                            return 1;
+                        return 0;
+                    });
+                });
+            }
+            if (args != null) {
+                var pullRefresh = args.object;
+                pullRefresh.refreshing = false;
+            }
+        });
+    };
+    ChatListComponent.prototype.refreshList = function (args) {
+        this.loadMessages(args);
+    };
+    ChatListComponent.prototype.onItemTap = function (args) {
+        var chatId = this.messages.getItem(args.index).chatId;
+        this.transferService.setData(chatId);
+        this.router.navigate(['chat']);
+    };
+    ChatListComponent.prototype.onNavBtnTap = function () {
+        this.router.back();
+    };
+    ChatListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-chat',
-            template: __webpack_require__("./app/chat/chat.component.html"),
-            styles: [__webpack_require__("./app/chat/chat.component.css")]
+            selector: 'app-chat-list',
+            template: __webpack_require__("./app/chat-list/chat-list.component.html"),
+            styles: [__webpack_require__("./app/chat-list/chat-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
-    ], ChatComponent);
-    return ChatComponent;
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__["LogincheckService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]])
+    ], ChatListComponent);
+    return ChatListComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ "./app/chat/chat.module.ts":
+/***/ "./app/chat/chat.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* Add mobile styles for the component here.  */\nButton {\n    padding: 5;\n    margin: 5;\n    background-color: dodgerblue;\n    color: white;\n    height: 40;\n    border-radius: 5;\n}\n\n.chat-text-field {\n    padding: 5; \n    /*background-color: white; */\n    /*border-radius: 4;*/\n    /*bottom-border-color: #696969;*/\n}\n\n.author-img {\n    margin: 0 5 5 5;\n    width: 40;\n    height: 40;\n    border-radius: 20;\n}\n\n.mine {\n    background-color: #30A9FF;\n    color: white;\n    padding: 8;\n    padding-left: 12;\n    padding-right: 12;\n    margin-right: 10;\n    border-radius: 15;\n    border-bottom-right-radius: 5;\n    border-bottom-left-radius: 15;\n    font-size: 16;\n    max-width: 60%;\n}\n\n.theirs {\n    background-color: #e0e0e0;\n    color: #333;\n    padding: 7;\n    padding-left: 12;\n    padding-right: 12;\n    border-radius: 15;\n    border-bottom-left-radius: 5;\n    margin-right: 40;\n    font-size: 16;\n    max-width: 60%;\n}\n\n.message-grid {\n    font-size: 14;\n    padding: 5;\n}\n\n.chat-box-layout {\n\tborder-color: #f1f1f1;\n\tborder-top-width: 1;\n}"
+
+/***/ }),
+
+/***/ "./app/chat/chat.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ chatName }}\" android:horizontalAlignment=\"center\" ios:horizontalAlignment=\"center\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"onLeave()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Leave chat\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<StackLayout>\r\n    <ListView height=\"90%\" margin-bottom=\"50\" padding=\"5\" #messageList [items]=\"messages\" separatorColor=\"transparent\" (setupItemView)=\"setupItemView($event)\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-mine=\"mine\" let-theirs=\"theirs\">\r\n            <GridLayout columns=\"*\" rows=\"auto\" class=\"message-grid\">\r\n                <StackLayout orientation=\"horizontal\" [horizontalAlignment]=\"align(item)\">\r\n                    <Image [visibility]=\"item.visibility\" class=\"author-img\" stretch=\"aspectFill\" height=\"40\" width=\"40\" verticalAlignment=\"top\" [src]=\"item.chatMessage.pfpSource\" col=\"1\"></Image>\r\n                    <!-- <Label text='' width=\"40%\" [visibility]=\"item.visibility\"></Label> -->\r\n                    <Label [text]='item.chatMessage.message' [class.mine]=\"mine\" [class.theirs]=\"theirs\" textWrap=\"true\" verticalAlignment=\"top\"></Label>\r\n                    <!-- <Label text='' width=\"40%\" [visibility]=\"item.visibility\"></Label> -->\r\n                </StackLayout>\r\n            </GridLayout>\r\n        </ng-template>\r\n    </ListView>\r\n\r\n    <StackLayout #chatbox height=\"10%\" class=\"chat-box-layout\">\r\n    \t<ScrollView height=\"100%\">\r\n\t        <GridLayout columns=\"*,auto\" style=\"padding: 10\">\r\n\t            <TextView #textfield height=\"auto\" hint=\"Start a message\" class=\"chat-text-field\" row=\"0\" col=\"0\" [(ngModel)]=\"message\"></TextView>\r\n\t            <Button #btn class=\"chat-button\" row=\"0\" col=\"1\" text=\"send\" (tap)=sendMessage()></Button>\r\n\t        </GridLayout>\r\n\t    </ScrollView>\r\n    </StackLayout>\r\n\r\n</StackLayout>"
+
+/***/ }),
+
+/***/ "./app/chat/chat.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatModule", function() { return ChatModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _chat_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/chat/chat.component.ts");
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/tns-core-modules/application/application.js");
+/* harmony import */ var tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
-var ChatModule = /** @class */ (function () {
-    function ChatModule() {
+
+
+
+
+
+var ChatItem = /** @class */ (function () {
+    function ChatItem(chatMessage, visibility) {
+        this.chatMessage = chatMessage;
+        this.visibility = visibility;
     }
-    ChatModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
-            ],
-            declarations: [_chat_component__WEBPACK_IMPORTED_MODULE_2__["ChatComponent"]]
-        })
-    ], ChatModule);
-    return ChatModule;
+    return ChatItem;
+}());
+var ChatComponent = /** @class */ (function () {
+    function ChatComponent(transferService, router, logincheckService, vcRef) {
+        this.transferService = transferService;
+        this.router = router;
+        this.logincheckService = logincheckService;
+        this.vcRef = vcRef;
+        this.messages = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_5__["ObservableArray"]();
+        this.message = '';
+    }
+    ChatComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isAndroid"]) {
+            var window = tns_core_modules_application__WEBPACK_IMPORTED_MODULE_7__["android"].startActivity.getWindow();
+            window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        }
+        this.list = this.lv.nativeElement;
+        this.chatId = this.transferService.getData();
+        this.userId = this.logincheckService.getUser();
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["getCurrentUser"]().then(function (user) {
+            _this.displayName = user.displayName;
+            _this.pfpSource = user.photoURL;
+        });
+        this.retrieveChats();
+        this.chatName = "John Doe";
+        // console.log(this.chatId);
+    };
+    ChatComponent.prototype.sendMessage = function () {
+        var _this = this;
+        if (this.message.replace(/\s+/g, '').length === 0) {
+            return false;
+        }
+        var today = new Date();
+        var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+        var time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
+        var chat = {
+            userId: this.userId,
+            displayName: this.displayName,
+            message: this.message,
+            pfpSource: this.pfpSource,
+            imgSource: "",
+            time: time,
+            date: date
+        };
+        var messageDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatId);
+        messageDocument.get().then(function (doc) {
+            var updatedChats = doc.data().chats;
+            updatedChats.push(chat);
+            messageDocument.update({
+                chats: updatedChats,
+                lastChat: date + ' ' + time
+            });
+        });
+        this.message = '';
+        setTimeout(function () {
+            _this.list.scrollToIndex(_this.messages.length - 1);
+        }, 100);
+    };
+    ChatComponent.prototype.retrieveChats = function () {
+        var _this = this;
+        this.messages.splice(0);
+        var messageDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["firestore"].collection('chats').doc(this.chatId);
+        messageDocument.get().then(function (doc) {
+            var data = doc.data();
+            _this.lastIndex = data.chats.length;
+            for (var i = 0; i < data.chats.length; i++) {
+                if (data.chats[i].userId === _this.userId)
+                    _this.messages.push(new ChatItem(data.chats[i], "collapse"));
+                else
+                    _this.messages.push(new ChatItem(data.chats[i], "visible"));
+            }
+            _this.list.scrollToIndex(data.chats.length - 1);
+            if (data.users.length === 2) {
+                if (data.users[0].uid === _this.userId)
+                    _this.chatName = data.users[1].displayName;
+                else {
+                    _this.chatName = data.users[0].displayName;
+                }
+            }
+            else {
+                var chatName = 'You, ';
+                for (var i = 0; i < data.users.length; i++) {
+                    if (data.users[i].id != _this.userId) {
+                        if (i === data.users.length - 1)
+                            chatName += 'and ' + data.users[i].displayName;
+                        else
+                            chatName += data.users[i].displayName + ', ';
+                    }
+                }
+                _this.chatName = 'Group chat';
+            }
+        });
+        var unsubscribe = messageDocument.onSnapshot(function (doc) {
+            var data = doc.data();
+            for (var i = _this.lastIndex; i < data.chats.length; i++) {
+                if (data.chats[i].userId === _this.userId)
+                    _this.messages.push(new ChatItem(data.chats[i], "collapse"));
+                else
+                    _this.messages.push(new ChatItem(data.chats[i], "visible"));
+            }
+            _this.lastIndex = data.chats.length;
+        });
+    };
+    ChatComponent.prototype.align = function (item) {
+        if (item.chatMessage.userId === this.userId)
+            return "right";
+        else
+            return "left";
+    };
+    ChatComponent.prototype.alignReverse = function (item) {
+        if (item.chatMessage.userId === this.userId)
+            return "left";
+        else
+            return "right";
+    };
+    ChatComponent.prototype.setupItemView = function (args) {
+        args.view.context.mine = (this.messages.getItem(args.index).chatMessage.userId === this.userId);
+        args.view.context.theirs = (this.messages.getItem(args.index).chatMessage.userId !== this.userId);
+        args.view.context.even = (args.index % 2 === 0);
+        args.view.context.odd = (args.index % 2 === 1);
+    };
+    ChatComponent.prototype.onNavBtnTap = function () {
+        if (this.router.canGoBack())
+            this.router.back();
+        else
+            this.router.navigate(['home']);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("messageList"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], ChatComponent.prototype, "lv", void 0);
+    ChatComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-chat',
+            template: __webpack_require__("./app/chat/chat.component.html"),
+            styles: [__webpack_require__("./app/chat/chat.component.css")]
+        }),
+        __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_1__["TransferService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_4__["LogincheckService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]])
+    ], ChatComponent);
+    return ChatComponent;
 }());
 
 
@@ -1636,16 +1920,21 @@ var GoogleMapsService = /** @class */ (function () {
     }
     GoogleMapsService.prototype.getStaticMap = function (startadr, endadr) {
         var formatted_startadr = startadr.split(' ').join('+');
+        var formatted_startadr = startadr.split('&').join('and');
         var formatted_endadr = endadr.split(' ').join('+');
+        var formatted_endadr = endadr.split('&').join('and');
         return this.static_maps_uri + formatted_startadr + "&markers=size:med%7C" + formatted_endadr;
     };
     GoogleMapsService.prototype.getStaticMapLarge = function (startadr, endadr) {
         var formatted_startadr = startadr.split(' ').join('+');
+        var formatted_startadr = startadr.split('&').join('and');
         var formatted_endadr = endadr.split(' ').join('+');
+        var formatted_endadr = endadr.split('&').join('and');
         return this.static_maps_uri_large + formatted_startadr + "&markers=size:med%7C" + formatted_endadr;
     };
     GoogleMapsService.prototype.getGeocodeResults = function (address) {
         var formatted_address = address.split(' ').join('+');
+        var formatted_address = address.split('&').join('and');
         return this.httpClient.get("" + this.geocode_uri + formatted_address);
     };
     GoogleMapsService = __decorate([
@@ -1664,14 +1953,14 @@ var GoogleMapsService = /** @class */ (function () {
 /***/ "./app/history/history.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\theight: 220;\n\twidth: 340;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}"
+module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more about styling in NativeScript see:\nhttps://docs.nativescript.org/angular/ui/styling\n*/\n\n.actionbar {\n\tfont-size: 22;\n\tfont-weight: 700;\n\ttext-align: left;\n\tcolor: black;\n}\n\nLabel {\n\ttext-align: left;\n}\n\n.name-label {\n\tmargin-top: 16;\n\tmargin-left: 18;\n\tcolor: black;\n\tfont-weight: 700;\n\tfont-size: 17;\n}\n\n.info-label {\n\tmargin-top: 4;\n\tmargin-left: 18;\n\tmargin-bottom: 16;\n\tcolor: black;\n}\n\n.post {\n\tborder-bottom-width: 1;\n\tborder-color: #f1f1f1;\n\tmargin-top: 150;\n\tmargin-bottom: 15;\n}\n\n.post:highlighted {\n\t/*background-color: #f1f1f1;*/\n}\n\n.posting-map {\n\tmargin-bottom: 16;\n\tborder-radius: 10;\n\theight: 220;\n\twidth: 340;\n}\n\n.profile-picture {\n\theight: 50;\n\twidth: 50;\n\tborder-radius: 100%;\n\tvertical-align: top;\n\tmargin-left: 16;\n\tmargin-top: 20;\n}\n\n.refresh {\n\tcolor: #ac00e6;\n}"
 
 /***/ }),
 
 /***/ "./app/history/history.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t            </StackLayout>\r\n\t              </StackLayout>\r\n\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\r\n-->"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<PullToRefresh (refresh)=\"refreshList($event)\" class=\"refresh\">\r\n\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t        \t  \t<StackLayout>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t            </StackLayout>\r\n\t              </StackLayout>\r\n\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t        </StackLayout>\r\n\t    </ng-template>\r\n\t</ListView>\r\n</PullToRefresh>\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n\r\n<div class=\"right-background\">\r\n\t<div class=\"user-card-right info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\">{{user.name}}</h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div id=\"history\" class=\"tabcontent\">\r\n\t<h3 align=\"center\">Your Rides</h3>\r\n\t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\"></div>\r\n</div>\r\n-->"
 
 /***/ }),
 
@@ -1691,6 +1980,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/ui/image-cache/image-cache.js");
+/* harmony import */ var tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_9__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1700,6 +1993,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -1724,15 +2019,14 @@ var HistoryComponent = /** @class */ (function () {
         this.router = router;
         this.postingService = postingService;
         this.addService = addService;
-        // username = "2022ayee";
         //user = this.logincheckService.getUser();
         this.user = '';
         this.name = "Adam Yee";
-        // rides : Posting[];
-        // p : Posting[];
         this.blocks = 0;
         this.postings = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_6__["ObservableArray"]();
         this.p = [];
+        this.ids = [];
+        this.cache = new tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_9__["Cache"]();
     }
     HistoryComponent.prototype.ngOnInit = function () {
         this.logincheckService.loginCheck();
@@ -1750,7 +2044,7 @@ var HistoryComponent = /** @class */ (function () {
             postIds = doc.data().posts;
             for (var i = 0; i < postIds.length; i++) {
                 postingsCollection.doc(postIds[i]).get().then(function (doc) {
-                    _this.createPosting(doc.data());
+                    _this.createPosting(doc.data(), doc.id);
                 });
             }
             if (args != null) {
@@ -1761,8 +2055,10 @@ var HistoryComponent = /** @class */ (function () {
             listView.scrollToIndex(postIds.length - 1);
         });
     };
-    HistoryComponent.prototype.createPosting = function (data) {
+    HistoryComponent.prototype.createPosting = function (data, id) {
         var _this = this;
+        this.cache.placeholder = Object(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_8__["fromFile"])("~/img/gray_background.jpg");
+        this.cache.maxRequests = 5;
         var info_label = "";
         if (data.capacity != "-1")
             info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
@@ -1776,15 +2072,38 @@ var HistoryComponent = /** @class */ (function () {
                     url += '?height=300';
                 _this.postings.push(new PostItem(data.user, info_label, url, data.map_url));
                 _this.p.push(data);
+                _this.ids.push(id);
             }
         });
     };
     HistoryComponent.prototype.refreshList = function (args) {
         this.loadPostings(args);
     };
+    HistoryComponent.prototype.addCache = function (url) {
+        var cachedImageSource;
+        var myImage = this.cache.get(url);
+        if (myImage) {
+            // If present -- use it.
+            cachedImageSource = Object(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_8__["fromNativeSource"])(myImage);
+            return cachedImageSource;
+        }
+        else {
+            // If not present -- request its download + put it in the cache.
+            this.cache.push({
+                key: url,
+                url: url,
+                completed: function (image, key) {
+                    if (url === key) {
+                        cachedImageSource = Object(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_8__["fromNativeSource"])(image);
+                        return cachedImageSource;
+                    }
+                }
+            });
+        }
+    };
     HistoryComponent.prototype.onItemTap = function (args) {
         this.transferService.setData({
-            postInfo: { data: this.p[args.index] },
+            postInfo: { id: this.ids[args.index], data: this.p[args.index] },
             postItem: this.postings.getItem(args.index)
         });
         this.router.navigate(['posting-info']);
@@ -1844,14 +2163,14 @@ var HomeDirective = /** @class */ (function () {
 /***/ "./app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 17;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 4;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\t/*border-bottom-width: 1;*/\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\theight: 220;\r\n\twidth: 340;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n.refresh {\r\n\tcolor: #ac00e6;\r\n}\r\n\r\n.actionbar {\r\n\tfont-size: 22;\r\n\tfont-weight: 700;\r\n\ttext-align: left;\r\n\tcolor: black;\r\n}\r\n\r\n.add-btn-container {\r\n\t/*position: absolute;*/\r\n\t/*bottom: 0;*/\r\n\t/*right: 0;*/\r\n\tvertical-align: bottom;\r\n\tz-index: 1;\r\n}\r\n\r\n.fab-button {\r\n  height: 56;\r\n  width: 56;\r\n  margin: 15;\r\n  /*margin-bottom: 64;*/\r\n  background-color: #ac00e6;\r\n  /*float: right;*/\r\n  horizontal-align: right;\r\n  vertical-align: bottom;\r\n}\r\n\r\nLabel {\r\n\ttext-align: left;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 17;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 4;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n}\r\n\r\n.post {\r\n\t/*border-bottom-width: 1;*/\r\n\tborder-color: #f1f1f1;\r\n}\r\n\r\n.post:highlighted {\r\n\t/*background-color: #f1f1f1;*/\r\n}\r\n\r\n.posting-map {\r\n\tmargin-bottom: 16;\r\n\tborder-radius: 10;\r\n\theight: 220;\r\n\twidth: 340;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.activity-indicator {\r\n\tcolor: #ac00e6;\r\n}"
 
 /***/ }),
 
 /***/ "./app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n    <StackLayout class=\"add-btn-container\">\r\n\t\t<FAB (tap)=\"showModal()\" icon=\"res://ic_add_white_3x\" rippleColor=\"#f1f1f1\" class=\"fab-button\"></FAB>\r\n\t</StackLayout>\r\n\r\n\t<PullToRefresh (refresh)=\"refreshList($event)\" class=\"list\">\r\n\t\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t\t        \t  \t<StackLayout>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t\t            </StackLayout>\r\n\t\t              </StackLayout>\r\n\t\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t\t        </StackLayout>\r\n\t\t    </ng-template>\r\n\t\t</ListView>\r\n\t</PullToRefresh>\r\n\r\n\t<!-- <StackLayout id=\"feed\"> -->\r\n<!-- \t  <Label text=\"home works\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"This is a migrated component\" textWrap=\"true\"></Label>\r\n\t  <Label text=\"Update it to provide the UI elements required in your mobile app\" textWrap=\"true\"></Label> -->\r\n\t<!-- </StackLayout> -->\r\n\r\n\t\r\n\r\n\r\n\r\n\r\n<!-- <app-navigation></app-navigation> -->\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<app-navigation></app-navigation>\r\n<div id=\"myModal\" class = \"modal\">\r\n  <!-- Modal content ->\r\n  <div class=\"modal-content\">\r\n    <span class=\"close\">&times;</span>\r\n    <div class=\"modaltab\">\r\n      <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Request')\" id=\"defaultModalTab\">Ride</button>\r\n\t  <button class=\"modaltablinks\" (click)=\"changeModalTab($event, 'Offer')\">Drive</button>\r\n\t</div>\r\n\t<div id=\"Offer\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t\t\tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureOffer\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupOffer\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationOffer\" required><br><br>\r\n\t\t\tCapacity:\r\n\t\t\t<input type=\"text\" name=\"capacity\" id=\"capacityOffer\" required>\r\n\t\t\tPrice:\r\n\t\t\t<input type=\"text\" name=\"price\" id=\"priceOffer\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsOffer\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('offer')\">Post</button>\r\n\t</div>\r\n\t<div id=\"Request\" class=\"modaltabcontent\">\r\n\t    <form class=\"form\">\r\n\t    \tDeparture date:<br>\r\n\t\t\t<input type=\"datetime-local\" name=\"departure\" id=\"departureRequest\" required><br><br>\r\n\t\t\tPick up address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"pickup\" id=\"pickupRequest\" required><br><br>\r\n\t\t\tDestination address:<br>\r\n\t\t\t<input type=\"text\" class=\"address_text\" name=\"destination\" id=\"destinationRequest\" required><br><br>\r\n\t\t\tAdditional Comments:<br><br>\r\n\t\t\t<textarea id=\"commentsRequest\"></textarea>\r\n\t\t</form>\r\n\t\t<button class=\"submitbutton\" (click)=\"submit('request')\">Post</button>\r\n\t</div>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"right-background\">\r\n\t<div class=\"info\">\r\n\t\t<img src=\"src/img/sample_profile.jpg\" alt=\"Profile Photo\" id=\"profile_pic\">\r\n\t\t<div id=\"name_info\">\r\n\t\t\t<h3 id=\"username\"></h3>\r\n\t\t\t<h3 id=\"user_university\">University of Virginia</h3>\r\n\t\t</div>\r\n\t\t<div class=\"userStats\">\r\n\t\t\t<span id=\"user_rides_given\" class=\"userData\">Rides Given: </span>\r\n\t\t\t<span id=\"num_rides_given\"></span>\r\n\t\t\t<span id=\"user_rides_received\" class=\"userData\">Rides Received: </span>\r\n\t\t\t<span id=\"num_rides_received\"></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- Tab content ->\r\n<div id=\"Feed\" class=\"tabcontent\">\r\n  <div id=\"news_header\">\r\n<!--   <div id=\"dots\">...</div> ->\r\n\t<img src=\"src/img/filter_icon.png\" id=\"filter_icon\"></div>\r\n \t<div id=\"bigfeed\" (window:resize)=\"onResize($event)\">\r\n\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<!-- <ActionBar title=\"Home\" class=\"actionbar\">\r\n\t<NavigationButton ios:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" (tap)=\"showSideDrawer()\" ></NavigationButton>\r\n<ActionItem android:visibility=\"collapsed\" icon=\"~/img/menu-icon.png\" ios.position=\"left\" (tap)=\"showSideDrawer()\" ></ActionItem>\r\n</ActionBar> -->\r\n\r\n    <StackLayout class=\"add-btn-container\">\r\n\t\t<FAB (tap)=\"showModal()\" icon=\"res://ic_add_white_3x\" rippleColor=\"#f1f1f1\" class=\"fab-button\"></FAB>\r\n\t</StackLayout>\r\n\r\n\t<PullToRefresh (refresh)=\"refreshList($event)\" class=\"refresh\">\r\n\t\t<ListView [items]=\"postings\" (itemTap)=\"onItemTap($event)\" #listView id=\"listView\">\r\n\t\t    <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n\t\t        <StackLayout [class.odd]=\"odd\" [class.even]=\"even\" class=\"post\">\r\n\t\t        \t  <StackLayout orientation=\"horizontal\">\r\n\t\t        \t  \t<Image [src]=\"item.profileSource\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t\t        \t  \t<StackLayout>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" [text]=\"item.username\"></Label>\r\n\t\t\t              \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" [text]=\"item.info\"></Label>\r\n\t\t\t            </StackLayout>\r\n\t\t              </StackLayout>\r\n\t\t\t\t\t  <Image [src]=\"item.mapSource\" stretch=\"aspectFit\" class=\"posting-map\"></Image>\r\n\t\t        </StackLayout>\r\n\t\t    </ng-template>\r\n\t\t</ListView>\r\n\t</PullToRefresh>\r\n\t<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\">\r\n  </ActivityIndicator>"
 
 /***/ }),
 
@@ -1879,9 +2198,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("./app/add-modal/add-modal.component.ts");
+/* harmony import */ var tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("../node_modules/tns-core-modules/ui/image-cache/image-cache.js");
+/* harmony import */ var tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_16__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1905,8 +2229,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_13__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
+
+
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_16__["registerElement"])('Fab', function () { return __webpack_require__("../node_modules/nativescript-floatingactionbutton/fab.js").Fab; });
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_16__["registerElement"])("PullToRefresh", function () { return __webpack_require__("../node_modules/nativescript-pulltorefresh/pulltorefresh.js").PullToRefresh; });
 var PostItem = /** @class */ (function () {
     function PostItem(username, info, profileSource, mapSource) {
         this.username = username;
@@ -1917,7 +2244,7 @@ var PostItem = /** @class */ (function () {
     return PostItem;
 }());
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(transferService, addService, page, userService, postingService, modal, vcRef, mapService, router) {
+    function HomeComponent(transferService, addService, page, userService, postingService, modal, vcRef, mapService, router, datePipe) {
         this.transferService = transferService;
         this.addService = addService;
         this.page = page;
@@ -1927,8 +2254,10 @@ var HomeComponent = /** @class */ (function () {
         this.vcRef = vcRef;
         this.mapService = mapService;
         this.router = router;
+        this.datePipe = datePipe;
         this.blocks = 1;
         this.postings = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_1__["ObservableArray"]();
+        this.cache = new tns_core_modules_ui_image_cache__WEBPACK_IMPORTED_MODULE_14__["Cache"]();
     }
     HomeComponent.prototype.ngOnInit = function () {
         this.loadPostings();
@@ -1945,7 +2274,7 @@ var HomeComponent = /** @class */ (function () {
             // animated: true,
             // transition: { name: "slideTop" }
         };
-        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_12__["AddModalComponent"], options).then(function (res) {
+        this.modal.showModal(_add_modal_add_modal_component__WEBPACK_IMPORTED_MODULE_13__["AddModalComponent"], options).then(function (res) {
             // console.log(res);
             if (res == 'posted')
                 _this.loadPostings();
@@ -1962,23 +2291,16 @@ var HomeComponent = /** @class */ (function () {
         if (args === void 0) { args = null; }
         // let layout = <StackLayout>this.page.getViewById('feed');
         // layout.removeChildren();
+        this.cache.placeholder = Object(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_15__["fromFile"])("~/img/gray_background.jpg");
+        this.cache.maxRequests = 5;
         this.postings.splice(0);
-        // 	this.postingService.getPostings()
-        // .subscribe((data: Posting[]) => {
-        // 	this.p = data;
-        // 	this.blocks = 0;
-        // 	for(var i = this.p.length - 1; i >= 0; i--) {
-        //         this.createPosting(this.p[i]);
-        //     }
-        //     if(args != null)
-        //     {
-        //       var pullRefresh = args.object;
-        //       pullRefresh.refreshing = false;
-        //     }
-        // });
+        var activityIndicator = this.ai.nativeElement;
+        activityIndicator.busy = true;
+        var currentDate = new Date();
         var posts = [];
         var postingsCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_10__["firestore"].collection('postings');
-        postingsCollection.orderBy('formattedDate', 'asc').get().then(function (querySnapshot) {
+        var query = postingsCollection.where('formattedDate', '>=', this.datePipe.transform(currentDate, 'yyyy-MM-dd'));
+        query.orderBy('formattedDate', 'asc').get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 posts.push({
                     id: doc.id,
@@ -1990,6 +2312,7 @@ var HomeComponent = /** @class */ (function () {
                 _this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg'));
                 _this.createPosting(posts[i].data, i);
             }
+            activityIndicator.busy = false;
             if (args != null) {
                 var pullRefresh = args.object;
                 pullRefresh.refreshing = false;
@@ -2017,7 +2340,47 @@ var HomeComponent = /** @class */ (function () {
                     url += '?height=300';
                 // var mapUrl = this.mapService.getStaticMap(data.startAddress + " " + data.startFormatted, data.endAddress + " " + data.endFormatted);
                 // console.log(mapUrl)
+                // this.addCache(url, 'pfp', data.user, info_label, url, data.map_url, i).then((res) => {
+                //   console.log(res)
+                //   this.addCache(data.map_url, 'map', data.user, info_label, url, data.map_url, i).then((res) =>{
+                //     console.log(res)
+                //   })
+                // });
                 _this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url));
+            }
+        });
+    };
+    HomeComponent.prototype.addCache = function (url, img_type, user, info, pfp_url, map_url, i) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var cachedImageSource;
+            var myImage = _this.cache.get(url);
+            if (myImage) {
+                // If present -- use it.
+                cachedImageSource = Object(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_15__["fromNativeSource"])(myImage);
+                console.log(myImage);
+                if (img_type === 'pfp')
+                    _this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+                else if (img_type === 'map')
+                    _this.postings.setItem(i, new PostItem(user, info, _this.postings.getItem(i).profileSource, cachedImageSource));
+                resolve({ message: 'Retrieved from cache', cacheURL: cachedImageSource });
+            }
+            else {
+                // If not present -- request its download + put it in the cache.
+                _this.cache.push({
+                    key: url,
+                    url: url,
+                    completed: function (image, key) {
+                        if (url === key) {
+                            cachedImageSource = Object(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_15__["fromNativeSource"])(image);
+                            if (img_type === 'pfp')
+                                _this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+                            else if (img_type === 'map')
+                                _this.postings.setItem(i, new PostItem(user, info, _this.postings.getItem(i).profileSource, cachedImageSource));
+                        }
+                        resolve({ message: 'Added to cache', cacheURL: cachedImageSource });
+                    }
+                });
             }
         });
     };
@@ -2025,7 +2388,7 @@ var HomeComponent = /** @class */ (function () {
         this.loadPostings(args);
     };
     HomeComponent.prototype.onItemTap = function (args) {
-        // console.log(args);
+        console.log(this.postings.getItem(args.index));
         this.transferService.setData({
             postInfo: this.p[args.index],
             postItem: this.postings.getItem(args.index)
@@ -2036,6 +2399,10 @@ var HomeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('listView'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], HomeComponent.prototype, "lv", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('activityIndicator'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], HomeComponent.prototype, "ai", void 0);
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home',
@@ -2045,7 +2412,7 @@ var HomeComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_datatransfer_service__WEBPACK_IMPORTED_MODULE_2__["TransferService"], _dynamic_add_service_tns__WEBPACK_IMPORTED_MODULE_3__["DynamicAddService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__["Page"],
             _user_service_tns__WEBPACK_IMPORTED_MODULE_5__["UserService"], _posting_service_tns__WEBPACK_IMPORTED_MODULE_6__["PostingService"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_7__["ModalDialogService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"],
-            _google_maps_service__WEBPACK_IMPORTED_MODULE_8__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterExtensions"]])
+            _google_maps_service__WEBPACK_IMPORTED_MODULE_8__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterExtensions"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["DatePipe"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -2414,7 +2781,7 @@ var LogincheckService = /** @class */ (function () {
         //user info from cognito
         this.userInfo = null;
     }
-    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source) {
+    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source, token) {
         var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users');
         usersCollection.doc(uid).set({
             address: address,
@@ -2427,7 +2794,9 @@ var LogincheckService = /** @class */ (function () {
             rides_given: rides_given,
             rides_received: rides_received,
             profile_source: profile_source,
-            posts: []
+            posts: [],
+            chats: [],
+            tokens: [token]
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -2522,7 +2891,7 @@ var LogincheckService = /** @class */ (function () {
         //user info from cognito
         this.userInfo = null;
     }
-    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source) {
+    LogincheckService.prototype.addUserToFirestore = function (uid, address, birthdate, email, first_name, last_name, gender, phone_number, rides_given, rides_received, profile_source, token) {
         var usersCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_3__["firestore"].collection('users');
         usersCollection.doc(uid).set({
             address: address,
@@ -2535,7 +2904,9 @@ var LogincheckService = /** @class */ (function () {
             rides_given: rides_given,
             rides_received: rides_received,
             profile_source: profile_source,
-            posts: []
+            posts: [],
+            chats: [],
+            tokens: [token]
         });
     };
     LogincheckService.prototype.decodeToken = function (token) {
@@ -2726,7 +3097,7 @@ module.exports = "/*\nAdd your NativeScript specific styles here.\nTo learn more
 /***/ "./app/navigation/navigation.component.tns.html":
 /***/ (function(module, exports) {
 
-module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ actionBarTitle }}\">\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"{{ actionBarTitle }}\">\r\n    \t<ActionItem (tap)=\"toMessages()\" icon=\"~/img/send_message_icon.png\" ios.position=\"right\" width=\"20\" height=\"20\" #actionItem></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n\r\n<TabView [(ngModel)]=\"tabSelectedIndex\" (tabItemTap)=\"home()\" (selectedIndexChanged)=\"onSelectedIndexChanged($event)\" androidTabsPosition=\"bottom\" selectedTabTextColor=\"#ac00e6\" #tabView>\r\n    <Page *tabItem=\"homeTab\">\r\n    \t<app-home></app-home>\r\n    </Page>\r\n    <Page *tabItem=\"searchTab\">\r\n    \t<app-search></app-search>\r\n    </Page>\r\n    <Page *tabItem=\"historyTab\">\r\n    \t<app-history></app-history>\r\n    </Page>\r\n    <Page *tabItem=\"settingsTab\">\r\n    \t<app-settings></app-settings>\r\n    </Page>\r\n</TabView>\r\n\r\n\r\n\r\n<!--\r\nOriginal Web template:\r\n\r\n<div class=\"topnav\">\r\n\t<div class=\"navbtns\">\r\n\t\t<a (click)=\"toHome()\" class=\"active navigation\" id=\"homenav\">Home</a>\r\n\t\t<a (click)=\"toHistory()\" class=\"navigation\" id=\"historynav\">History</a>\r\n\t\t<a (click)=\"toPayments()\" class=\"navigation\" id=\"paymentsnav\">Payments</a>\r\n\t\t<a (click)=\"toSettings()\" class=\"navigation\" id=\"settingsnav\">Settings</a>\r\n\t\t<a (click)=\"post()\" class=\"navigation\" id=\"postnav\">Post</a>\r\n\t</div>\r\n\r\n\t<div class=\"imgnav\">\r\n\t\t<img src=\"src/icon.png\" (click)=\"dropMenu()\">\r\n\t</div>\r\n</div>\r\n\r\n<div class=\"caret\" id=\"dropdown-caret\"></div>\r\n<div class=\"dropdown\" id=\"dropdown-menu\">\r\n\t<div class=\"dropdown-option\" (click)=\"toHome()\">\r\n\t\t<span>Home</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"toSettings()\">\r\n\t\t<span>Settings</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option\" (click)=\"logout()\">\r\n\t\t<span>Logout</span>\r\n\t</div>\r\n\t<div class=\"dropdown-option group-two\" (click)=\"dropMenu()\">\r\n\t\t<span>Close</span>\r\n\t</div>\r\n</div>\r\n\r\n-->"
 
 /***/ }),
 
@@ -2773,12 +3144,14 @@ var NavigationComponent = /** @class */ (function () {
     // @ViewChild('listView') lv: ElementRef;
     // listView = <ListView> this.lv.nativeElement;
     NavigationComponent.prototype.ngOnInit = function () {
+        this.actionItem = this.ai.nativeElement;
         this.activebtn = this.transferService.getData();
         if (this.activebtn == "homenav") {
             this.homeTab = { iconSource: 'res://home_highlighted' };
             this.searchTab = { iconSource: 'res://search' };
             this.historyTab = { iconSource: 'res://history' };
             this.settingsTab = { iconSource: 'res://settings' };
+            this.actionItem.visibility = 'visible';
             this.tabSelectedIndex = 0;
         }
         else if (this.activebtn == "searchnav") {
@@ -2786,6 +3159,7 @@ var NavigationComponent = /** @class */ (function () {
             this.searchTab = { iconSource: 'res://search_highlighted' };
             this.historyTab = { iconSource: 'res://history' };
             this.settingsTab = { iconSource: 'res://settings' };
+            this.actionItem.visibility = 'collapse';
             this.tabSelectedIndex = 1;
         }
         else if (this.activebtn == "historynav") {
@@ -2793,6 +3167,7 @@ var NavigationComponent = /** @class */ (function () {
             this.searchTab = { iconSource: 'res://search' };
             this.historyTab = { iconSource: 'res://history_highlighted' };
             this.settingsTab = { iconSource: 'res://settings' };
+            this.actionItem.visibility = 'collapse';
             this.tabSelectedIndex = 2;
         }
         else if (this.activebtn == "settingsnav") {
@@ -2800,6 +3175,7 @@ var NavigationComponent = /** @class */ (function () {
             this.searchTab = { iconSource: 'res://search' };
             this.historyTab = { iconSource: 'res://history' };
             this.settingsTab = { iconSource: 'res://settings_highlighted' };
+            this.actionItem.visibility = 'collapse';
             this.tabSelectedIndex = 3;
         }
         // console.log(this.tabSelectedIndex)
@@ -2847,11 +3223,11 @@ var NavigationComponent = /** @class */ (function () {
         }
     };
     NavigationComponent.prototype.home = function () {
-        console.log(this.tabSelectedIndex);
         if (this.tabSelectedIndex == 0) {
             var listView = this.page.getViewById('listView');
             listView.scrollToIndex(0);
         }
+        this.actionItem.visibility = 'collapse';
     };
     NavigationComponent.prototype.toHome = function () {
         // this.transferService.setData('homenav');
@@ -2860,6 +3236,7 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search' };
         this.historyTab = { iconSource: 'res://history' };
         this.settingsTab = { iconSource: 'res://settings' };
+        this.actionItem.visibility = 'visible';
         this.tabSelectedIndex = 0;
     };
     NavigationComponent.prototype.toSearch = function () {
@@ -2869,6 +3246,7 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search_highlighted' };
         this.historyTab = { iconSource: 'res://history' };
         this.settingsTab = { iconSource: 'res://settings' };
+        this.actionItem.visibility = 'collapse';
         this.tabSelectedIndex = 1;
     };
     NavigationComponent.prototype.toHistory = function () {
@@ -2878,6 +3256,7 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search' };
         this.historyTab = { iconSource: 'res://history_highlighted' };
         this.settingsTab = { iconSource: 'res://settings' };
+        this.actionItem.visibility = 'collapse';
         this.tabSelectedIndex = 2;
     };
     NavigationComponent.prototype.toSettings = function () {
@@ -2887,7 +3266,11 @@ var NavigationComponent = /** @class */ (function () {
         this.searchTab = { iconSource: 'res://search' };
         this.historyTab = { iconSource: 'res://history' };
         this.settingsTab = { iconSource: 'res://settings_highlighted' };
+        this.actionItem.visibility = 'collapse';
         this.tabSelectedIndex = 3;
+    };
+    NavigationComponent.prototype.toMessages = function () {
+        this.router.navigate(['chat-list']);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('tabView'),
@@ -2897,6 +3280,10 @@ var NavigationComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('actionBar'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], NavigationComponent.prototype, "ab", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('actionItem'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], NavigationComponent.prototype, "ai", void 0);
     NavigationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-navigation',
@@ -3501,14 +3888,14 @@ var PlacesAutocompleteService = /** @class */ (function () {
 /***/ "./app/posting-info/posting-info.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* Add mobile styles for the component here.  */\n"
+module.exports = "/* Add mobile styles for the component here.  */\r\n.map-view {\r\n\theight: 100%;\r\n\twidth: 100%;\r\n\tvertical-align: bottom;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 50;\r\n\twidth: 50;\r\n\tborder-radius: 100%;\r\n\tvertical-align: top;\r\n\tmargin-left: 16;\r\n\tmargin-top: 20;\r\n}\r\n\r\n.name-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: black;\r\n\tfont-weight: 700;\r\n\tfont-size: 17;\r\n\ttext-align: left;\r\n}\r\n\r\n.info-label {\r\n\tmargin-top: 4;\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 16;\r\n\tcolor: black;\r\n\ttext-align: left;\r\n}\r\n\r\n.label-container {\r\n\tvertical-align: middle;\r\n}\r\n\r\n.activity-indicator {\r\n\tcolor: #ac00e6;\r\n}"
 
 /***/ }),
 
 /***/ "./app/posting-info/posting-info.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Post\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n<GridLayout>\r\n\t<MapView (mapReady)=\"onMapReady($event)\" [latitude]=\"latitude\" [longitude]=\"longitude\" #mapView></MapView>\r\n</GridLayout>"
+module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Post\">\r\n    \t<NavigationButton text=\"Go Back\" android.systemIcon=\"ic_menu_back\" (tap)=\"onNavBtnTap()\"></NavigationButton>\r\n\t    <ActionItem (tap)=\"promptDelete()\"\r\n\t      ios.systemIcon=\"16\" ios.position=\"right\"\r\n\t      text=\"Delete\" android.position=\"popup\" #deleteItem></ActionItem>\r\n\t    <ActionItem (tap)=\"onReport()\"\r\n\t      ios.systemIcon=\"9\" ios.position=\"right\"\r\n\t      text=\"Report\" android.position=\"popup\"></ActionItem>\r\n    </ActionBar>\r\n</Page.actionBar>\r\n<GridLayout rows=\"2*,auto,10*\" #layout>\r\n\t<StackLayout orientation=\"horizontal\" row=\"0\" class=\"label-container\" #infoContainer>\r\n\t\t<Image src=\"{{ profileSource }}\" class=\"profile-picture\" stretch=\"aspectFit\"></Image>\r\n\t  \t<StackLayout>\r\n\t      \t<Label textWrap=\"true\" id=\"post-name\" class=\"name-label\" text=\"{{ username }}\"></Label>\r\n\t      \t<Label textWrap=\"true\" id=\"post-info\" class=\"info-label\" text=\"{{ info }}\"></Label>\r\n\t    </StackLayout>\r\n\t</StackLayout>\r\n\t<StackLayout class=\"btn-container\" #buttonContainer row=\"1\">\r\n\t\t<Button class=\"connect-btn\" (tap)=\"onConnectTap()\" text=\"{{ buttonText }}\"></Button>\r\n\t</StackLayout>\r\n\t<MapView (mapReady)=\"onMapReady($event)\" [latitude]=\"latitude\" [longitude]=\"longitude\" class=\"map-view\" row=\"2\" #mapView></MapView>\r\n</GridLayout>\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\" height=\"40\" class=\"activity-indicator\"></ActivityIndicator>"
 
 /***/ }),
 
@@ -3519,18 +3906,23 @@ module.exports = "<Page.actionBar>\r\n    <ActionBar title=\"Post\">\r\n    \t<N
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostingInfoComponent", function() { return PostingInfoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _google_maps_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./app/google-maps.service.ts");
-/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
-/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/datatransfer.service.ts");
-/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
-/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
-/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
-/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-google-maps-sdk/map-view.js");
-/* harmony import */ var nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
+/* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _google_maps_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./app/google-maps.service.ts");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("../node_modules/nativescript-angular/router/index.js");
+/* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/tns-core-modules/ui/page/page.js");
+/* harmony import */ var tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-angular/element-registry.js");
+/* harmony import */ var nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/tns-core-modules/platform/platform.js");
+/* harmony import */ var tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/nativescript-google-maps-sdk/map-view.js");
+/* harmony import */ var nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/ui/dialogs/dialogs.js");
+/* harmony import */ var tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("./app/logincheck.service.tns.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3548,25 +3940,70 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_5__["registerElement"])("MapView", function () { return __webpack_require__("../node_modules/nativescript-google-maps-sdk/map-view.js").MapView; });
+
+
+
+Object(nativescript_angular_element_registry__WEBPACK_IMPORTED_MODULE_6__["registerElement"])("MapView", function () { return __webpack_require__("../node_modules/nativescript-google-maps-sdk/map-view.js").MapView; });
 var PostingInfoComponent = /** @class */ (function () {
-    function PostingInfoComponent(mapService, router, transferService, page) {
+    function PostingInfoComponent(mapService, router, transferService, page, logincheckService) {
         this.mapService = mapService;
         this.router = router;
         this.transferService = transferService;
         this.page = page;
+        this.logincheckService = logincheckService;
         this.latitude = 37;
         this.longitude = -122;
+        this.chatUsers = [];
     }
     PostingInfoComponent.prototype.ngOnInit = function () {
-        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isIOS"]) {
+        this.loadViews();
+    };
+    PostingInfoComponent.prototype.loadViews = function () {
+        var _this = this;
+        var activityIndicator = this.ai.nativeElement;
+        var infoContainer = this.infoContainer.nativeElement;
+        var deleteButton = this.deleteItem.nativeElement;
+        var chatButton = this.buttonContainer.nativeElement;
+        infoContainer.visibility = 'collapse';
+        chatButton.visibility = 'collapse';
+        this.userId = this.logincheckService.getUser();
+        this.mapData = this.transferService.getData();
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.userId).get().then(function (doc) {
+            _this.currentUser = doc.data();
+            if (doc.data().chats.includes(_this.mapData.postInfo.id)) {
+                _this.buttonText = 'View chat';
+                activityIndicator.busy = false;
+                infoContainer.visibility = 'visible';
+                chatButton.visibility = 'visible';
+            }
+            else {
+                nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(_this.mapData.postInfo.data.uid).get().then(function (doc) {
+                    if (!doc.exists && _this.userId === _this.mapData.postInfo.data.uid)
+                        chatButton.visibility = 'collapse';
+                    else
+                        chatButton.visibility = 'visible';
+                    activityIndicator.busy = false;
+                    infoContainer.visibility = 'visible';
+                });
+                _this.buttonText = 'Join chat';
+            }
+        });
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7__["isIOS"]) {
             this.bounds = GMSCoordinateBounds.alloc().init();
         }
-        this.mapData = this.transferService.getData();
         this.startLat = this.mapData.postInfo.data.startLat;
         this.endLat = this.mapData.postInfo.data.endLat;
         this.startLng = this.mapData.postInfo.data.startLng;
         this.endLng = this.mapData.postInfo.data.endLng;
+        this.info = this.mapData.postItem.info;
+        this.profileSource = this.mapData.postItem.profileSource;
+        this.username = this.mapData.postItem.username;
+        if (this.userId !== this.mapData.postInfo.data.uid) {
+            deleteButton.visibility = 'collapse';
+        }
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["getCurrentUser"]().then(function (user) {
+            _this.currentUserName = user.displayName;
+        });
     };
     PostingInfoComponent.prototype.onMapReady = function (event) {
         this.mapView = event.object;
@@ -3574,38 +4011,248 @@ var PostingInfoComponent = /** @class */ (function () {
         // this.longitude = (this.startLng + this.endLng) / 2.0;
         this.addMarker(this.startLat, this.startLng, this.mapData.postInfo.data.startAddress, this.mapData.postInfo.data.startFormatted, 0);
         this.addMarker(this.endLat, this.endLng, this.mapData.postInfo.data.endAddress, this.mapData.postInfo.data.endFormatted, 1);
-        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isAndroid"]) {
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7__["isAndroid"]) {
             var builder = new com.google.android.gms.maps.model.LatLngBounds.Builder();
             this.mapView.findMarker(function (marker) { builder.include(marker.android.getPosition()); return false; });
             var bounds = builder.build();
             var cu = com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds(bounds, 150);
             this.mapView.gMap.animateCamera(cu);
         }
-        else if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isIOS"]) {
+        else if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7__["isIOS"]) {
             var update = GMSCameraUpdate.fitBoundsWithPadding(bounds, 150);
             this.mapView.gMap.moveCamera(update);
         }
     };
     PostingInfoComponent.prototype.addMarker = function (lat, lng, title, snippet, index) {
-        var marker = new nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__["Marker"]();
-        marker.position = nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_7__["Position"].positionFromLatLng(lat, lng);
+        var marker = new nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_8__["Marker"]();
+        marker.position = nativescript_google_maps_sdk__WEBPACK_IMPORTED_MODULE_8__["Position"].positionFromLatLng(lat, lng);
         marker.title = title;
         marker.snippet = snippet;
         marker.userData = { index: index };
         this.mapView.addMarker(marker);
-        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_6__["isIOS"])
+        if (tns_core_modules_platform__WEBPACK_IMPORTED_MODULE_7__["isIOS"])
             this.bounds = this.bounds.includingCoordinate(marker.position);
     };
     PostingInfoComponent.prototype.onNavBtnTap = function () {
-        this.router.backToPreviousPage();
+        this.router.navigate(['navigation'], { clearHistory: true });
     };
+    PostingInfoComponent.prototype.deleteFiles = function () {
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["storage"].deleteFile({
+            // the full path of an existing file in your Firebase storage
+            remoteFullPath: 'postings/' + this.mapData.postInfo.id + '/maps/large_map.png'
+        }).then(function () {
+            console.log("File deleted.");
+        }, function (error) {
+            console.log("File deletion Error: " + error);
+        });
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["storage"].deleteFile({
+            // the full path of an existing file in your Firebase storage
+            remoteFullPath: 'postings/' + this.mapData.postInfo.id + '/maps/small_map.png'
+        }).then(function () {
+            console.log("File deleted.");
+        }, function (error) {
+            console.log("File deletion Error: " + error);
+        });
+    };
+    PostingInfoComponent.prototype.promptDelete = function () {
+        var _this = this;
+        tns_core_modules_ui_dialogs__WEBPACK_IMPORTED_MODULE_9__["confirm"]({
+            title: "Confirm delete",
+            message: "Are you sure you want to delete this post?",
+            okButtonText: "Confirm",
+            cancelButtonText: "Cancel",
+        }).then(function (result) {
+            // result argument is boolean
+            if (result)
+                _this.onDelete();
+        });
+    };
+    PostingInfoComponent.prototype.onDelete = function () {
+        var _this = this;
+        var postingDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('postings').doc(this.mapData.postInfo.id);
+        var userDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.mapData.postInfo.data.uid);
+        var chatDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(this.mapData.postInfo.id);
+        postingDocument.delete().then(function (res) {
+            userDocument.get().then(function (doc) {
+                var userPosts = doc.data().posts;
+                var index = userPosts.indexOf(_this.mapData.postInfo.id, 0);
+                if (index > -1) {
+                    userPosts.splice(index, 1);
+                }
+                userDocument.update({
+                    posts: userPosts
+                }).then(function (res) {
+                    // chatDocument.get().then((doc) => {
+                    //   let data = doc.data();
+                    //   if(data) {
+                    //     for(var i = 0; i < data.users.length; i++) {
+                    //       // this.chatUsers.push(data.users[i].uid);
+                    //       firebase.firestore.collection('users').doc(data.users[i].uid).get().then((doc) => {
+                    //         const id = data.users[i].uid;
+                    //         let uidChats = doc.data().chats;
+                    //         let index = uidChats.indexOf(this.mapData.postInfo.id);
+                    //         if(index > -1) {
+                    //           uidChats.splice(index, 1);
+                    //         }
+                    //         firebase.firestore.collection('users').doc(id).update({
+                    //           chats: uidChats
+                    //         })
+                    //       })
+                    //     }
+                    //     chatDocument.delete().then((res) => {
+                    //       this.deleteFiles();
+                    //       this.onNavBtnTap();
+                    //     })
+                    //   }
+                    //   else {
+                    //     this.deleteFiles();
+                    //     this.onNavBtnTap();
+                    //   }
+                    // })
+                    _this.deleteFiles();
+                    _this.onNavBtnTap();
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    };
+    PostingInfoComponent.prototype.removeChat = function (index) {
+        var _this = this;
+        console.log(index);
+        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.chatUsers[index]).get().then(function (doc) {
+            var userChats = doc.data().chats;
+            var index = userChats.indexOf(_this.mapData.postInfo.id);
+            if (index > -1) {
+                userChats.splice(index, 1);
+            }
+            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.chatUsers[index]).update({
+                chats: userChats
+            }).then(function (res) {
+                if (index === _this.chatUsers[index].length - 1) {
+                    _this.deleteFiles();
+                    _this.onNavBtnTap();
+                }
+            });
+        });
+    };
+    PostingInfoComponent.prototype.onReport = function () {
+    };
+    PostingInfoComponent.prototype.onConnectTap = function () {
+        var _this = this;
+        var gridContainer = this.layout.nativeElement;
+        var activityIndicator = this.ai.nativeElement;
+        gridContainer.visibility = 'collapse';
+        activityIndicator.busy = true;
+        if (this.buttonText === 'View chat') {
+            this.transferService.setData(this.mapData.postInfo.id);
+            gridContainer.visibility = 'visible';
+            activityIndicator.busy = false;
+            this.router.navigate(['chat']);
+        }
+        else if (this.buttonText === 'Join chat') {
+            var chatDocument_1 = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(this.mapData.postInfo.id);
+            var userDocument_1 = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(this.userId);
+            chatDocument_1.get().then(function (doc) {
+                if (doc.exists) {
+                    //chat exists, so add user to the chat room and navigate there
+                    var tokens = doc.data().tokens;
+                    var users = doc.data().users;
+                    var userTokens = _this.currentUser.tokens;
+                    var newTokens = tokens.concat(userTokens);
+                    users.push({ uid: _this.userId, displayName: _this.currentUserName });
+                    chatDocument_1.update({
+                        users: users,
+                        tokens: Array.from(new Set(newTokens))
+                    }).then(function (res) {
+                        userDocument_1.get().then(function (doc) {
+                            var userChats = doc.data().chats;
+                            userChats.push(_this.mapData.postInfo.id);
+                            userDocument_1.update({
+                                chats: userChats
+                            }).then(function (res) {
+                                //finally after everything else has updated, send user to chat component
+                                _this.transferService.setData(_this.mapData.postInfo.id);
+                                _this.buttonText = 'View chat';
+                                gridContainer.visibility = 'visible';
+                                activityIndicator.busy = false;
+                                _this.router.navigate(['chat']);
+                            });
+                        });
+                    });
+                }
+                else {
+                    //chat does not exist, so create and add both post user and current user
+                    nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(_this.mapData.postInfo.id).set({
+                        users: [{ uid: _this.mapData.postInfo.data.uid, displayName: _this.mapData.postItem.username }, { uid: _this.userId, displayName: _this.currentUserName }],
+                        chats: [],
+                        expired: false,
+                    }).then(function (res) {
+                        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.mapData.postInfo.data.uid).get().then(function (doc) {
+                            var userTokens = _this.currentUser.tokens;
+                            var otherUserTokens = doc.data().tokens;
+                            var newTokens = userTokens.concat(otherUserTokens);
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('chats').doc(_this.mapData.postInfo.id).update({
+                                tokens: Array.from(new Set(newTokens))
+                            });
+                            var userChats = doc.data().chats;
+                            userChats.push(_this.mapData.postInfo.id);
+                            nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_1__["firestore"].collection('users').doc(_this.mapData.postInfo.data.uid).update({
+                                chats: userChats
+                            }).then(function (res) {
+                                userDocument_1.get().then(function (doc) {
+                                    var userChats = doc.data().chats;
+                                    userChats.push(_this.mapData.postInfo.id);
+                                    userDocument_1.update({
+                                        chats: userChats
+                                    }).then(function (res) {
+                                        //finally after everything else has updated, send user to chat component
+                                        _this.transferService.setData(_this.mapData.postInfo.id);
+                                        _this.buttonText = 'View chat';
+                                        gridContainer.visibility = 'visible';
+                                        activityIndicator.busy = false;
+                                        _this.router.navigate(['chat']);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                }
+            });
+        }
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("deleteItem"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "deleteItem", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("buttonContainer"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "buttonContainer", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("infoContainer"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "infoContainer", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("activityIndicator"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "ai", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("layout"),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], PostingInfoComponent.prototype, "layout", void 0);
     PostingInfoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-posting-info',
             template: __webpack_require__("./app/posting-info/posting-info.component.html"),
             styles: [__webpack_require__("./app/posting-info/posting-info.component.css")]
         }),
-        __metadata("design:paramtypes", [_google_maps_service__WEBPACK_IMPORTED_MODULE_1__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_3__["TransferService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_4__["Page"]])
+        __metadata("design:paramtypes", [_google_maps_service__WEBPACK_IMPORTED_MODULE_2__["GoogleMapsService"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_4__["TransferService"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_5__["Page"],
+            _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_10__["LogincheckService"]])
     ], PostingInfoComponent);
     return PostingInfoComponent;
 }());
@@ -4077,14 +4724,14 @@ var SearchComponent = /** @class */ (function () {
 /***/ "./app/settings/settings.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n#Header {\r\n    color:black;\r\n    font-size: 24;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n}\r\n\r\n#listView {\r\n\tmargin-bottom: 20;\r\n}\r\n\r\n.update {\r\n    display: block;\r\n    color: #ac00e6;\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.update:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n.payments {\r\n\tcolor: black;\r\n\tmargin-top: 12;\r\n\tmargin-bottom: 12;\r\n\tmargin-left: 18;\r\n    text-align: left;\r\n    font-size: 15;\r\n}\r\n.logout {\r\n\tcolor: #ac00e6;\r\n\tmargin-top: 12;\r\n\tmargin-bottom: 12;\r\n\tmargin-left: 18;\r\n\tfont-weight: 500;\r\n    text-align: left;\r\n    font-size: 15;\r\n}\r\n\r\n.btn-list-view {\r\n\tmargin-top: 36;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 100;\r\n\twidth: 100;\r\n\tmargin-top: 10;\r\n\tmargin-bottom: 8;\r\n\t/*background-repeat: no-repeat;*/\r\n}\r\n\r\n.img-rounded {\r\n\tborder-radius: 100%;\r\n}\r\n\r\n.header-label {\r\n\tmargin-bottom: 5;\r\n\tfont-size: 15;\r\n\tcolor: #4285f4;\r\n}\r\n\r\n.bold {\r\n\tfont-weight: 500;\r\n}\r\n\r\n.activity-indicator {\r\n  color: #ac00e6;\r\n  margin: 25%;\r\n}\r\n\r\n.value-label {\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 10;\r\n    color: black;\r\n    font-weight: 400;\r\n    font-size: 18;\r\n    text-align: left;\r\n}\r\n.title-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: #696969;\r\n    text-align: left;\r\n}\r\n\r\n.stack-layout{\r\n    height:100%\r\n}\r\n.activity-indicator{\r\n    height: 50%;\r\n}\r\nListView {\r\n    separator-color: transparent;\r\n}"
+module.exports = "/*\r\nAdd your NativeScript specific styles here.\r\nTo learn more about styling in NativeScript see:\r\nhttps://docs.nativescript.org/angular/ui/styling\r\n*/\r\n\r\n#Header {\r\n    color:black;\r\n    font-size: 24;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n}\r\n\r\n#listView {\r\n\tmargin-bottom: 20;\r\n}\r\n\r\n.update {\r\n    display: block;\r\n    color: #ac00e6;\r\n    border-width: 1;\r\n    border-color: #ac00e6;\r\n    border-radius: 5;\r\n    text-align: center;\r\n    float: center;\r\n    margin: auto; \r\n    font-weight: 700;\r\n    font-family: \"Segoe UI\",Arial,sans-serif;\r\n    margin-bottom: 15;\r\n    width: 200;\r\n    height: 40;\r\n}\r\n.update:highlighted {\r\n    background-color: #f9e6ff;\r\n}\r\n.payments {\r\n\tcolor: black;\r\n\tmargin-top: 12;\r\n\tmargin-bottom: 12;\r\n\tmargin-left: 18;\r\n    text-align: left;\r\n    font-size: 15;\r\n}\r\n.logout {\r\n\tcolor: #ac00e6;\r\n\tmargin-top: 12;\r\n\tmargin-bottom: 12;\r\n\tmargin-left: 18;\r\n\tfont-weight: 500;\r\n    text-align: left;\r\n    font-size: 15;\r\n}\r\n\r\n.btn-list-view {\r\n\tmargin-top: 36;\r\n\theight: 100;\r\n}\r\n\r\n.item-list-view {\r\n\theight: 300;\r\n}\r\n\r\n.profile-picture {\r\n\theight: 100;\r\n\twidth: 100;\r\n\tmargin-top: 10;\r\n\tmargin-bottom: 8;\r\n\t/*background-repeat: no-repeat;*/\r\n}\r\n\r\n.img-rounded {\r\n\tborder-radius: 100%;\r\n}\r\n\r\n.header-label {\r\n\tmargin-bottom: 5;\r\n\tfont-size: 15;\r\n\tcolor: #4285f4;\r\n}\r\n\r\n.bold {\r\n\tfont-weight: 500;\r\n}\r\n\r\n.activity-indicator {\r\n  color: #ac00e6;\r\n  margin: 25%;\r\n}\r\n\r\n.value-label {\r\n\tmargin-left: 18;\r\n\tmargin-bottom: 10;\r\n    color: black;\r\n    font-weight: 400;\r\n    font-size: 18;\r\n    text-align: left;\r\n}\r\n.title-label {\r\n\tmargin-top: 16;\r\n\tmargin-left: 18;\r\n\tcolor: #696969;\r\n    text-align: left;\r\n}\r\n\r\n.stack-layout{\r\n    height:100%\r\n}\r\n.activity-indicator{\r\n    height: 50%;\r\n}\r\nListView {\r\n    separator-color: transparent;\r\n}"
 
 /***/ }),
 
 /***/ "./app/settings/settings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<Stacklayout height=\"100%\">\r\n    <StackLayout #settingsContainer>\r\n      <!-- <Label id= \"Header\" text=\"Account Settings\" textWrap=\"true\"></Label> -->\r\n      <Image src=\"{{ profile }}\" stretch=\"aspectFit\" class=\"img-rounded profile-picture\" (tap)=\"uploadPfp()\"></Image>\r\n      <Label text=\"Change Photo\" class=\"header-label bold\" (tap)=\"uploadPfp()\"></Label>\r\n\r\n      <ListView [items]=\"fields\" #listView id=\"listView\" (itemTap)=\"showModal($event)\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n          <StackLayout class=\"stack-layout\">\r\n            <Label textWrap=\"true\" class=\"title-label\" [text]=\"item.label\"></Label>\r\n            <Label textWrap=\"true\" class=\"value-label\" [text]=\"item.value\"></Label>\r\n          </StackLayout>\r\n        </ng-template>\r\n      </ListView>\r\n      <!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]=\"person\"></RadDataForm>   -->\r\n      <!-- <Button class=\"Update\"  text=\"Update Settings\"></Button> -->\r\n\r\n      <ListView [items]=\"buttons\" #listViewSecond (itemTap)=\"route($event)\" (setupItemView)=\"setupItemView($event)\" class=\"btn-list-view\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\" let-payments=\"payments\" let-logout=\"logout\">\r\n          <StackLayout class=\"stack-layout\">\r\n            <Label textWrap=\"true\" [text]=\"item\" [class.payments]=\"payments\" [class.logout]=\"logout\"></Label>\r\n          </StackLayout>\r\n        </ng-template>\r\n      </ListView>\r\n<!--       <StackLayout class=\"payments-container\" (tap)=\"toPayments()\">\r\n        <Label class=\"payments\" text=\"Payments\"></Label>\r\n      </StackLayout>\r\n      <StackLayout class=\"logout-container\" (tap)=\"logOut()\">\r\n        <Label class=\"logout\" text=\"Log out\"></Label>\r\n      </StackLayout> -->\r\n    </StackLayout>\r\n\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\"  class=\"activity-indicator\">\r\n  </ActivityIndicator>\r\n</Stacklayout>"
+module.exports = "<!-- <app-navigation></app-navigation> -->\r\n<Stacklayout height=\"100%\">\r\n    <StackLayout #settingsContainer>\r\n      <!-- <Label id= \"Header\" text=\"Account Settings\" textWrap=\"true\"></Label> -->\r\n      <Image src=\"{{ profile }}\" stretch=\"aspectFit\" class=\"img-rounded profile-picture\" (tap)=\"uploadPfp()\"></Image>\r\n      <Label text=\"Change Photo\" class=\"header-label bold\" (tap)=\"uploadPfp()\"></Label>\r\n\r\n      <ListView [items]=\"fields\" #listView id=\"listView\" (itemTap)=\"showModal($event)\" class=\"item-list-view\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\">\r\n          <StackLayout class=\"stack-layout\">\r\n            <Label textWrap=\"true\" class=\"title-label\" [text]=\"item.label\"></Label>\r\n            <Label textWrap=\"true\" class=\"value-label\" [text]=\"item.value\"></Label>\r\n          </StackLayout>\r\n        </ng-template>\r\n      </ListView>\r\n      <!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]=\"person\"></RadDataForm>   -->\r\n      <!-- <Button class=\"Update\"  text=\"Update Settings\"></Button> -->\r\n\r\n      <ListView [items]=\"buttons\" #listViewSecond (itemTap)=\"route($event)\" (setupItemView)=\"setupItemView($event)\" class=\"btn-list-view\">\r\n        <ng-template let-item=\"item\" let-i=\"index\" let-odd=\"odd\" let-even=\"even\" let-payments=\"payments\" let-logout=\"logout\">\r\n          <StackLayout class=\"stack-layout\">\r\n            <Label textWrap=\"true\" [text]=\"item\" [class.payments]=\"payments\" [class.logout]=\"logout\"></Label>\r\n          </StackLayout>\r\n        </ng-template>\r\n      </ListView>\r\n<!--       <StackLayout class=\"payments-container\" (tap)=\"toPayments()\">\r\n        <Label class=\"payments\" text=\"Payments\"></Label>\r\n      </StackLayout>\r\n      <StackLayout class=\"logout-container\" (tap)=\"logOut()\">\r\n        <Label class=\"logout\" text=\"Log out\"></Label>\r\n      </StackLayout> -->\r\n    </StackLayout>\r\n\r\n<ActivityIndicator #activityIndicator busy=\"true\" width=\"40\"  class=\"activity-indicator\">\r\n  </ActivityIndicator>\r\n</Stacklayout>"
 
 /***/ }),
 
@@ -4102,23 +4749,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./app/logincheck.service.tns.ts");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
-/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-imagepicker/imagepicker.js");
-/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/tns-core-modules/file-system/file-system.js");
-/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/nativescript-imagecropper/imagecropper.js");
-/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
-/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
-/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("./app/datatransfer.service.ts");
-/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
-/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
-/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/reauth/reauth.component.ts");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/messaging/index.js");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("../node_modules/nativescript-facebook/index.js");
+/* harmony import */ var nativescript_facebook__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("../node_modules/nativescript-imagepicker/imagepicker.js");
+/* harmony import */ var nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("../node_modules/tns-core-modules/file-system/file-system.js");
+/* harmony import */ var tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("../node_modules/nativescript-imagecropper/imagecropper.js");
+/* harmony import */ var nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("../node_modules/tns-core-modules/image-source/image-source.js");
+/* harmony import */ var tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("../node_modules/tns-core-modules/data/observable-array/observable-array.js");
+/* harmony import */ var tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _datatransfer_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("./app/datatransfer.service.ts");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("../node_modules/nativescript-angular/directives/dialogs.js");
+/* harmony import */ var nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("./app/settingsform/settingsform.component.ts");
+/* harmony import */ var _reauth_reauth_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("./app/reauth/reauth.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4128,8 +4777,44 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 // import { Router } from '@angular/router';
+
 
 
 
@@ -4164,23 +4849,23 @@ var SettingsComponent = /** @class */ (function () {
         this.profile = "~/img/sample_profile.png";
     }
     SettingsComponent.prototype.ngOnInit = function () {
-        this.imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__["ImageCropper"]();
+        this.imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__["ImageCropper"]();
         this.loadViews();
         var activityIndicator = this.ai.nativeElement;
         activityIndicator.style.visibility = 'collapse';
     };
     SettingsComponent.prototype.loadViews = function () {
         var _this = this;
-        this.paymentList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.paymentList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.paymentList.push('Payment methods');
-        this.logoutList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.logoutList = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.logoutList.push('Log out');
-        this.buttons = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.buttons = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.buttons.push('Payment methods');
         this.buttons.push('Log out');
         this.userId = this.logincheckService.getUser();
         var userDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(this.userId);
-        this.fields = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_10__["ObservableArray"]();
+        this.fields = new tns_core_modules_data_observable_array__WEBPACK_IMPORTED_MODULE_11__["ObservableArray"]();
         this.updateListView();
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["getCurrentUser"]().then(function (user) {
             _this.user = user;
@@ -4232,14 +4917,14 @@ var SettingsComponent = /** @class */ (function () {
             // transition: { name: "slideTop" }
         };
         if (args.index == 3) {
-            this.modal.showModal(_reauth_reauth_component__WEBPACK_IMPORTED_MODULE_14__["ReauthComponent"], options).then(function (res) {
+            this.modal.showModal(_reauth_reauth_component__WEBPACK_IMPORTED_MODULE_15__["ReauthComponent"], options).then(function (res) {
                 if (res == 'update') {
                     _this.updateListView();
                 }
             });
         }
         else {
-            this.modal.showModal(_settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_13__["SettingsformComponent"], options).then(function (res) {
+            this.modal.showModal(_settingsform_settingsform_component__WEBPACK_IMPORTED_MODULE_14__["SettingsformComponent"], options).then(function (res) {
                 if (res == 'update') {
                     _this.updateListView();
                 }
@@ -4260,16 +4945,100 @@ var SettingsComponent = /** @class */ (function () {
         this.transferService.setData(label);
     };
     SettingsComponent.prototype.logOut = function () {
-        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["logout"]();
-        Object(nativescript_facebook__WEBPACK_IMPORTED_MODULE_5__["logout"])(function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var activityIndicator, settingsContainer, tokenPromise, userDoc;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        activityIndicator = this.ai.nativeElement;
+                        activityIndicator.busy = true;
+                        activityIndicator.style.visibility = 'visible';
+                        settingsContainer = this.sc.nativeElement;
+                        settingsContainer.style.visibility = 'collapse';
+                        return [4 /*yield*/, nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__["messaging"].getCurrentPushToken().then(function (token) {
+                                _this.token = token;
+                                return token;
+                            })];
+                    case 1:
+                        tokenPromise = _a.sent();
+                        userDoc = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(this.userId);
+                        userDoc.get().then(function (doc) { return __awaiter(_this, void 0, void 0, function () {
+                            var index, newTokens, chatPromise;
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        index = doc.data().tokens.indexOf(this.token);
+                                        if (index > -1) {
+                                            newTokens = doc.data().tokens;
+                                            newTokens.splice(index, 1);
+                                            console.log(newTokens);
+                                            userDoc.update({ tokens: newTokens });
+                                        }
+                                        return [4 /*yield*/, this.updateChatTokens(doc.data().chats)];
+                                    case 1:
+                                        chatPromise = _a.sent();
+                                        nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["logout"]();
+                                        Object(nativescript_facebook__WEBPACK_IMPORTED_MODULE_6__["logout"])(function () {
+                                        });
+                                        this.logincheckService.clearInfo();
+                                        activityIndicator.busy = false;
+                                        activityIndicator.style.visibility = 'collapse';
+                                        settingsContainer.style.visibility = 'visible';
+                                        this.router.navigate(['welcome'], { clearHistory: true });
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); });
+                        return [2 /*return*/];
+                }
+            });
         });
-        this.logincheckService.clearInfo();
-        this.router.navigate(['welcome'], { clearHistory: true });
+    };
+    SettingsComponent.prototype.updateChatTokens = function (chats) {
+        return __awaiter(this, void 0, void 0, function () {
+            var chatCollection, i, chatPromise;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        chatCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('chats');
+                        i = 0;
+                        _a.label = 1;
+                    case 1:
+                        if (!(i < chats.length)) return [3 /*break*/, 4];
+                        return [4 /*yield*/, chatCollection.doc(chats[i]).get().then(function (doc) { return __awaiter(_this, void 0, void 0, function () {
+                                var index, newTokens, updatePromise;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0:
+                                            index = doc.data().tokens.indexOf(this.token);
+                                            if (!(index > -1)) return [3 /*break*/, 2];
+                                            newTokens = doc.data().tokens;
+                                            newTokens.splice(index, 1);
+                                            return [4 /*yield*/, chatCollection.doc(chats[i]).update({ tokens: newTokens })];
+                                        case 1:
+                                            updatePromise = _a.sent();
+                                            _a.label = 2;
+                                        case 2: return [2 /*return*/];
+                                    }
+                                });
+                            }); })];
+                    case 2:
+                        chatPromise = _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        i++;
+                        return [3 /*break*/, 1];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
     };
     SettingsComponent.prototype.uploadPfp = function () {
         var _this = this;
-        var imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_8__["ImageCropper"]();
-        var context = nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_6__["create"]({
+        var imageCropper = new nativescript_imagecropper__WEBPACK_IMPORTED_MODULE_9__["ImageCropper"]();
+        var context = nativescript_imagepicker__WEBPACK_IMPORTED_MODULE_7__["create"]({
             mode: "single" // use "multiple" for multiple selection
         });
         context
@@ -4279,7 +5048,7 @@ var SettingsComponent = /** @class */ (function () {
         })
             .then(function (selection) {
             selection.forEach(function (selected) {
-                var imgSource = new tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_9__["ImageSource"]();
+                var imgSource = new tns_core_modules_image_source__WEBPACK_IMPORTED_MODULE_10__["ImageSource"]();
                 imgSource.fromAsset(selected).then(function (source) {
                     _this.imageCropper
                         .show(source, { width: 300, height: 300 })
@@ -4288,8 +5057,8 @@ var SettingsComponent = /** @class */ (function () {
                         if (args.image !== null) {
                             // this.croppedImage.imageSource =
                             //     args.image;
-                            var folder = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__["knownFolders"].temp();
-                            var path = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__["path"].join(folder.path, "profile_picture.png");
+                            var folder = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["knownFolders"].temp();
+                            var path = tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["path"].join(folder.path, "profile_picture.png");
                             var saved = args.image.saveToFile(path, 'png');
                             var activityIndicator = _this.ai.nativeElement;
                             activityIndicator.busy = true;
@@ -4300,7 +5069,7 @@ var SettingsComponent = /** @class */ (function () {
                                 // the full path of the file in your Firebase storage (folders will be created)
                                 remoteFullPath: 'users/' + _this.userId + '/uploads/profile_picture.jpg',
                                 // option 1: a file-system module File object
-                                localFile: tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_7__["File"].fromPath(path),
+                                localFile: tns_core_modules_file_system__WEBPACK_IMPORTED_MODULE_8__["File"].fromPath(path),
                                 // option 2: a full file path (ignored if 'localFile' is set)
                                 localFullPath: path,
                                 // get notified of file upload progress
@@ -4366,8 +5135,8 @@ var SettingsComponent = /** @class */ (function () {
             template: __webpack_require__("./app/settings/settings.component.html"),
             styles: [__webpack_require__("./app/settings/settings.component.css")]
         }),
-        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__["Page"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_11__["TransferService"],
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_12__["ModalDialogService"]])
+        __metadata("design:paramtypes", [nativescript_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterExtensions"], tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_1__["Page"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_3__["LogincheckService"], _datatransfer_service__WEBPACK_IMPORTED_MODULE_12__["TransferService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"], nativescript_angular_directives_dialogs__WEBPACK_IMPORTED_MODULE_13__["ModalDialogService"]])
     ], SettingsComponent);
     return SettingsComponent;
 }());
@@ -4844,7 +5613,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/firebase.js");
 /* harmony import */ var nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./app/logincheck.service.tns.ts");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("../node_modules/nativescript-plugin-firebase/messaging/index.js");
+/* harmony import */ var nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./app/logincheck.service.tns.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4854,6 +5625,42 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
 
 
 
@@ -4877,6 +5684,7 @@ var WelcomeComponent = /** @class */ (function () {
         };
     }
     WelcomeComponent.prototype.ngOnInit = function () {
+        this.registerNotifications();
         this.createViews();
     };
     WelcomeComponent.prototype.createViews = function () {
@@ -4928,6 +5736,7 @@ var WelcomeComponent = /** @class */ (function () {
                 if (doc.data().payment_id == null)
                     _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
             });
+            _this.updateTokens(res.uid);
             _this.router.navigate(['navigation'], { clearHistory: true });
         }).catch(function (err) {
             console.log(err);
@@ -4945,6 +5754,7 @@ var WelcomeComponent = /** @class */ (function () {
             email: this.email,
             password: this.password,
         }).then(function (res) {
+            _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, _this.firstName, _this.lastName, null, null, 0, 0, '~/img/sample_profile.png', _this.deviceToken);
             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["updateProfile"]({ displayName: _this.firstName + ' ' + _this.lastName }).then();
             _this.logincheckService.loginUser(res.uid);
             _this.logincheckService.addUserToBraintree('test', 'test user', res.email);
@@ -4974,6 +5784,93 @@ var WelcomeComponent = /** @class */ (function () {
                 }, function (errorMessage) {
                     _this.alert('No account could be found with your email');
                 });
+        });
+    };
+    WelcomeComponent.prototype.registerNotifications = function () {
+        var _this = this;
+        nativescript_plugin_firebase_messaging__WEBPACK_IMPORTED_MODULE_5__["messaging"].registerForPushNotifications({
+            onPushTokenReceivedCallback: function (token) {
+                // console.log("Firebase plugin received a push token: " + token);
+                _this.deviceToken = token;
+            },
+            onMessageReceivedCallback: function (message) {
+                console.log("Push message received: " + message.title);
+            },
+            // Whether you want this plugin to automatically display the notifications or just notify the callback. Currently used on iOS only. Default true.
+            showNotifications: true,
+            // Whether you want this plugin to always handle the notifications when the app is in foreground. Currently used on iOS only. Default false.
+            showNotificationsWhenInForeground: false
+        }).then(function () { return console.log("Registered for push"); });
+    };
+    WelcomeComponent.prototype.updateTokens = function (uid) {
+        var _this = this;
+        var userDocument = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(uid);
+        userDocument.get().then(function (doc) { return __awaiter(_this, void 0, void 0, function () {
+            var tokens, updatedTokens, chatPromise;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tokens = doc.data().tokens;
+                        if (tokens) {
+                            tokens.push(this.deviceToken);
+                            updatedTokens = Array.from(new Set(tokens));
+                            userDocument.update({
+                                tokens: updatedTokens
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
+                        }
+                        else {
+                            userDocument.update({
+                                tokens: [this.deviceToken]
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
+                        }
+                        return [4 /*yield*/, this.updateChatTokens(doc.data().chats)];
+                    case 1:
+                        chatPromise = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); }).catch(function (err) { console.log(err); });
+    };
+    WelcomeComponent.prototype.updateChatTokens = function (chats) {
+        return __awaiter(this, void 0, void 0, function () {
+            var chatCollection, i, chatPromise;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        chatCollection = nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('chats');
+                        i = 0;
+                        _a.label = 1;
+                    case 1:
+                        if (!(i < chats.length)) return [3 /*break*/, 4];
+                        return [4 /*yield*/, chatCollection.doc(chats[i]).get().then(function (doc) { return __awaiter(_this, void 0, void 0, function () {
+                                var tokens, newTokens, updatePromise;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0:
+                                            tokens = doc.data().tokens;
+                                            tokens.push(this.deviceToken);
+                                            newTokens = Array.from(new Set(tokens));
+                                            return [4 /*yield*/, chatCollection.doc(chats[i]).update({ tokens: newTokens })];
+                                        case 1:
+                                            updatePromise = _a.sent();
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            }); })];
+                    case 2:
+                        chatPromise = _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        i++;
+                        return [3 /*break*/, 1];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
     };
     WelcomeComponent.prototype.focusEmail = function () {
@@ -5012,11 +5909,14 @@ var WelcomeComponent = /** @class */ (function () {
         }).then(function (res) {
             nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_4__["firestore"].collection('users').doc(res.uid).get().then(function (doc) {
                 if (doc.exists == false) {
-                    _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL);
+                    _this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL, _this.deviceToken);
                     _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
                 }
                 else if (doc.data().payment_id == null) {
                     _this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email);
+                }
+                else {
+                    _this.updateTokens(res.uid);
                 }
             });
             _this.logincheckService.loginUser(res.uid);
@@ -5060,7 +5960,7 @@ var WelcomeComponent = /** @class */ (function () {
             template: __webpack_require__("./app/welcome/welcome.component.html"),
             styles: [__webpack_require__("./app/welcome/welcome.component.css")]
         }),
-        __metadata("design:paramtypes", [tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_5__["LogincheckService"]])
+        __metadata("design:paramtypes", [tns_core_modules_ui_page__WEBPACK_IMPORTED_MODULE_2__["Page"], nativescript_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterExtensions"], _logincheck_service_tns__WEBPACK_IMPORTED_MODULE_6__["LogincheckService"]])
     ], WelcomeComponent);
     return WelcomeComponent;
 }());

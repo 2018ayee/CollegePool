@@ -15,18 +15,23 @@ export class GoogleMapsService {
 
   getStaticMap(startadr, endadr) {
   	var formatted_startadr = startadr.split(' ').join('+')
+  	var formatted_startadr = startadr.split('&').join('and')
   	var formatted_endadr = endadr.split(' ').join('+')
+  	var formatted_endadr = endadr.split('&').join('and')
   	return this.static_maps_uri + formatted_startadr + "&markers=size:med%7C" + formatted_endadr;
   }
 
   getStaticMapLarge(startadr, endadr) {
   	var formatted_startadr = startadr.split(' ').join('+')
+  	var formatted_startadr = startadr.split('&').join('and')
   	var formatted_endadr = endadr.split(' ').join('+')
+  	var formatted_endadr = endadr.split('&').join('and')
   	return this.static_maps_uri_large + formatted_startadr + "&markers=size:med%7C" + formatted_endadr;
   }
 
   getGeocodeResults(address) {
   	var formatted_address = address.split(' ').join('+')
+  	var formatted_address = address.split('&').join('and')
   	return this.httpClient.get(`${this.geocode_uri}` + formatted_address);
   }
 }
