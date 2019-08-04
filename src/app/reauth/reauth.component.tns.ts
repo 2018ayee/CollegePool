@@ -19,7 +19,7 @@ export class ReauthComponent implements OnInit {
   constructor(private params: ModalDialogParams, private transferService: TransferService, private logincheckService: LogincheckService, 
   	private vcRef: ViewContainerRef, private modal: ModalDialogService) { }
 
-  @ViewChild("errorMessage") em: ElementRef;
+  @ViewChild("errorMessage", { static: true }) em: ElementRef;
   field;
   userId;
   userEmail;

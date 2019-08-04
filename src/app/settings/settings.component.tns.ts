@@ -40,8 +40,8 @@ export class SettingsComponent implements OnInit {
   constructor(private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService, private transferService: TransferService,
   	private vcRef: ViewContainerRef, private modal: ModalDialogService) { }
 
-  @ViewChild("activityIndicator") ai: ElementRef;
-  @ViewChild("settingsContainer") sc: ElementRef;
+  @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
+  @ViewChild("settingsContainer", { static: true }) sc: ElementRef;
 
   profile = "~/img/sample_profile.png";
   userId;

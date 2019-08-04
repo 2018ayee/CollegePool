@@ -35,15 +35,15 @@ Button {
     background-color: #ac00e6;
     color: white;
     padding: 8;
-    padding-left: 12;
-    padding-right: 12;
+    padding-left: 14;
+    padding-right: 14;
     margin-right: 10;
     border-radius: 15;
     border-bottom-right-radius: 5;
     border-bottom-left-radius: 15;
     font-size: 16;
     max-width: 60%;
-    text-align: right;
+    text-align: left;
     /*margin-bottom: 12;*/
 }
 
@@ -78,8 +78,8 @@ Button {
     background-color: #e0e0e0;
     color: #333;
     padding: 7;
-    padding-left: 12;
-    padding-right: 12;
+    padding-left: 14;
+    padding-right: 14;
     border-radius: 15;
     border-bottom-left-radius: 5;
     border-bottom-right-radius: 15;

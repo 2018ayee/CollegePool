@@ -20,7 +20,7 @@ export class LocationComponent implements OnInit {
 
   constructor(private params: ModalDialogParams, private placesService: PlacesAutocompleteService, private transferService: TransferService) { }
 
-  @ViewChild("searchLabel") searchLabel: ElementRef;
+  @ViewChild("searchLabel", { static: true }) searchLabel: ElementRef;
   address;
   suggestions = new ObservableArray<Suggestion>();
   placeSuggestions = new ObservableArray<String>();

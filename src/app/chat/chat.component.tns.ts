@@ -12,7 +12,7 @@ declare var android: any;
 
 
 class ChatItem {
-	constructor(public chatMessage: ChatMessage, public visibility: string, public mineContinuation: boolean, public theirsContinuation: boolean) {}
+	constructor(public chatMessage: ChatMessage, public visibility: string, public formattedTime: string, public mineContinuation: boolean, public theirsContinuation: boolean) {}
 }
 
 @Component({
@@ -25,9 +25,10 @@ export class ChatComponent implements OnInit {
   constructor(private transferService: TransferService, private router: RouterExtensions, private logincheckService: LogincheckService,
   	private vcRef: ViewContainerRef) { }
 
-  @ViewChild("messageList") lv: ElementRef;
+  @ViewChild("messageList", { static: true }) lv: ElementRef;
   chatId: string;
   messages = new ObservableArray<ChatItem>();
+  allMessages = new ObservableArray<ChatItem>();
   message: string = '';
   userId: string;
   chatName: string;
@@ -36,6 +37,7 @@ export class ChatComponent implements OnInit {
   list: ListView;
   lastIndex;
   currentUser: any;
+  numShown = 20;
 
   ngOnInit() {
   	if(isAndroid) {
@@ -52,7 +54,9 @@ export class ChatComponent implements OnInit {
   	})
   	this.retrieveChats();
   	this.chatName = "John Doe"
-  	// console.log(this.chatId);
+  	// setTimeout(() => {
+   //    this.list.scrollToIndex(this.messages.length - 1);
+   //  }, 1000)
   }
 
   async sendMessage() {
@@ -83,12 +87,13 @@ export class ChatComponent implements OnInit {
   	this.message = '';
   }
 
-  retrieveChats() {
+  async retrieveChats() {
   	const messageDocument = firebase.firestore.collection('chats').doc(this.chatId);
-  	messageDocument.get().then((doc) => {
+  	const docPromise = await messageDocument.get().then((doc) => {
   		let data = doc.data();
   		this.lastIndex = data.chats.length;
       this.messages.splice(0);
+      this.allMessages.splice(0);
   		for(var i = 0; i < data.chats.length; i++) {
   			if(data.chats[i].userId === this.userId) {
           this.updateContinuations(data, i, true, "collapse");
@@ -97,7 +102,7 @@ export class ChatComponent implements OnInit {
           this.updateContinuations(data, i, false, "visible");
         }
   		}
-  		this.list.scrollToIndex(data.chats.length - 1);
+  		// this.list.scrollToIndex(data.chats.length - 1);
   		if(data.users.length === 2) {
   			if(data.users[0].uid === this.userId)
   				this.chatName = data.users[1].displayName;
@@ -120,6 +125,7 @@ export class ChatComponent implements OnInit {
   	})
 
   	const unsubscribe = messageDocument.onSnapshot(doc => {
+      console.log('called')
   		let data = doc.data();
   		for(var i = this.lastIndex; i < data.chats.length; i++) {
   			if(data.chats[i].userId === this.userId) {
@@ -129,9 +135,14 @@ export class ChatComponent implements OnInit {
   			else {
           this.updateContinuations(data, i, false, "visible");
         }
+        this.numShown += 1;
   		}
   		this.lastIndex = data.chats.length;
   	})
+    if(this.messages.length > this.numShown) {
+      this.messages.splice(0, this.messages.length - this.numShown);
+    }
+    this.list.scrollToIndex(this.messages.length - 1);
   }
 
   updateContinuations(data, index, isMine, visibility) {
@@ -139,34 +150,72 @@ export class ChatComponent implements OnInit {
     var chatTime = data.chats[index].time;
     var dateSplit = data.chats[index].date.split('/');
     var timeSplit = chatTime.split(':');
+    var formattedTime = '';
     if(timeSplit[1].length === 1) {
       timeSplit[1] = '0' + timeSplit[1];
     }
     var hours = parseInt(timeSplit[0]);
     if(hours > 12) {
-      data.chats[index].time = dateSplit[1] + '/' + dateSplit[2] + ', ' + (hours - 12) + ':' + timeSplit[1] + ' PM';
+      formattedTime = dateSplit[1] + '/' + dateSplit[2] + ', ' + (hours - 12) + ':' + timeSplit[1] + ' PM';
     }
     else {
-      data.chats[index].time = dateSplit[1] + '/' + dateSplit[2] + ', ' + timeSplit[0] + ':' + timeSplit[2] + ' AM';
+      if(hours === 0)
+        timeSplit[0] = '12';
+      formattedTime = dateSplit[1] + '/' + dateSplit[2] + ', ' + timeSplit[0] + ':' + timeSplit[1] + ' AM';
     }
-
     //Push the message item
-    this.messages.push(new ChatItem(data.chats[index], visibility, false, false));
+    this.messages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
+    this.allMessages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
 
     //Check for continuation messages and update items accordingly
     var i = index - 1;
     while(i >= 0 && data.chats[i].userId === data.chats[index].userId) {
-      var msg = this.messages.getItem(i);
-      msg.visibility = 'collapse';
-      if(isMine) {
-        msg.mineContinuation = true;
+      if(this.isTimeOver(data.chats[i], data.chats[index]))
+        return;
+      if(i >= this.messages.length) {
+        var msg = this.messages.getItem(this.messages.length + i - data.chats.length);
+        msg.visibility = 'collapse';
+        if(isMine) {
+          msg.mineContinuation = true;
+        }
+        else {
+          msg.theirsContinuation = true;
+        }
+        this.messages.setItem(this.messages.length + i - data.chats.length, msg)
       }
       else {
-        msg.theirsContinuation = true;
+        var msg = this.messages.getItem(i);
+        msg.visibility = 'collapse';
+        if(isMine) {
+          msg.mineContinuation = true;
+        }
+        else {
+          msg.theirsContinuation = true;
+        }
+        this.messages.setItem(i, msg);
       }
-      this.messages.setItem(i, msg);
+
+      this.allMessages.setItem(i, msg);
       i = i - 1;
     }
+    // this.list.scrollToIndex(this.messages.length - 1);
+  }
+
+  isTimeOver(chat1, chat2) {
+    const time1 = chat1.time;
+    const time2 = chat2.time;
+    const date1 = chat1.date;
+    const date2 = chat2.date;
+
+    const time1Split = time1.split(':');
+    const time2Split = time2.split(':');
+
+    var time1TotalSeconds = parseInt(time1Split[0]) * 3600 + parseInt(time1Split[1]) * 60 + parseInt(time1Split[2]);
+    var time2TotalSeconds = parseInt(time2Split[0]) * 3600 + parseInt(time2Split[1]) * 60 + parseInt(time2Split[2]);
+    if(time2TotalSeconds - time1TotalSeconds > (60 * 3) || date2 > date1) {
+      return true;
+    }
+    return false;
   }
 
   align(item) {
@@ -191,9 +240,9 @@ export class ChatComponent implements OnInit {
     args.view.context.mineContinuationGrid = (this.messages.getItem(args.index).mineContinuation);
     args.view.context.theirsContinuationGrid = (this.messages.getItem(args.index).theirsContinuation);
 
-    args.view.context.grid = (!this.messages.getItem(args.index).theirsContinuation && !this.messages.getItem(args.index).mineContinuation);
-    args.view.context.mineTime = (!this.messages.getItem(args.index).mineContinuation && this.messages.getItem(args.index).chatMessage.userId === this.userId);
-    args.view.context.theirsTime = (!this.messages.getItem(args.index).theirsContinuation && this.messages.getItem(args.index).chatMessage.userId !== this.userId);
+    args.view.context.grid = (!args.view.context.theirsContinuation && !args.view.context.mineContinuation);
+    args.view.context.mineTime = (!args.view.context.mineContinuation && args.view.context.mine);
+    args.view.context.theirsTime = (!args.view.context.theirsContinuation && args.view.context.theirs);
     
     args.view.context.time = (!args.view.context.mineTime && !args.view.context.theirsTime)    
     args.view.context.even = (args.index % 2 === 0);
@@ -204,11 +253,15 @@ export class ChatComponent implements OnInit {
   	if(this.router.canGoBack())
   		this.router.back();
   	else
-  		this.router.navigate(['home']);
+  		this.router.navigate(['chat-list'], {clearHistory: true});
   }
 
   onTextTap() {
     this.list.scrollToIndex(this.messages.length - 1);
+  }
+
+  loadMoreData() {
+    // console.log('Load more')
   }
 
 }

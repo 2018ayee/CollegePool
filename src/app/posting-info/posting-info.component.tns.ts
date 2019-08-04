@@ -27,11 +27,11 @@ declare var GMSCameraUpdate: any;
 })
 export class PostingInfoComponent implements OnInit {
 
-  @ViewChild("deleteItem") deleteItem: ElementRef;
-  @ViewChild("buttonContainer") buttonContainer: ElementRef;
-  @ViewChild("infoContainer") infoContainer: ElementRef;
-  @ViewChild("activityIndicator") ai: ElementRef;
-  @ViewChild("layout") layout: ElementRef;
+  @ViewChild("deleteItem", { static: true }) deleteItem: ElementRef;
+  @ViewChild("buttonContainer", { static: true }) buttonContainer: ElementRef;
+  @ViewChild("infoContainer", { static: true }) infoContainer: ElementRef;
+  @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
+  @ViewChild("layout", { static: true }) layout: ElementRef;
   mapView: MapView;
   latitude =  37;
   longitude = -122;

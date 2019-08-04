@@ -32,9 +32,9 @@ class PaymentItem {
 })
 export class PaymentsComponent implements OnInit {
 
-  @ViewChild('activityIndicator') aI: ElementRef;
-  @ViewChild('addContainer') aC: ElementRef;
-  @ViewChild('paymentsContainer') pC: ElementRef;
+  @ViewChild('activityIndicator', { static: true }) aI: ElementRef;
+  @ViewChild('addContainer', { static: true }) aC: ElementRef;
+  @ViewChild('paymentsContainer', { static: true }) pC: ElementRef;
   user = {
   	payment_id: '507305706'
   }

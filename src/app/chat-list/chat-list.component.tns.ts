@@ -56,6 +56,9 @@ export class ChatListComponent implements OnInit {
             const addPromise = await this.addMessage(lastMsg, data, docId, chatName, nonUserIndex); 
           }
         })
+        // const unsubscribe = firebase.firestore.collection('chats').doc(this.chatIds[i]).onSnapshot({includeMetadataChanges: true}, doc => {
+        //   this.refreshList(null);
+        // })
       }
       if(args != null)
       {
@@ -121,7 +124,10 @@ export class ChatListComponent implements OnInit {
   }
 
   onNavBtnTap() {
-    this.router.back();
+    if(this.router.canGoBack)
+      this.router.back();
+    else
+      this.router.navigate(['navigation'], {clearHistory: true})
   }
 
 }

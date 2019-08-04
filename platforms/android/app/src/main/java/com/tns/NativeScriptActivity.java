@@ -6,7 +6,7 @@
 package com.tns;
 
 @com.tns.JavaScriptImplementation(javaScriptFile = "./vendor.js")
-public class NativeScriptActivity extends android.support.v7.app.AppCompatActivity
+public class NativeScriptActivity extends androidx.appcompat.app.AppCompatActivity
     implements com.tns.NativeScriptHashCodeProvider {
   public NativeScriptActivity() {
     super();
