@@ -8,6 +8,14 @@ Button {
     border-radius: 5;
 }
 
+.chat-button {
+	padding-left: 5;
+	padding-right: 5;
+	margin: 5;
+	height: 30;
+	width: 30;
+}
+
 .chat-text-field {
     padding: 5; 
     /*background-color: white; */
@@ -17,41 +25,89 @@ Button {
 
 .author-img {
     margin: 0 5 5 5;
+    margin-bottom: 0;
     width: 40;
     height: 40;
     border-radius: 20;
 }
 
 .mine {
-    background-color: #30A9FF;
+    background-color: #ac00e6;
     color: white;
     padding: 8;
-    padding-left: 12;
-    padding-right: 12;
+    padding-left: 14;
+    padding-right: 14;
     margin-right: 10;
     border-radius: 15;
     border-bottom-right-radius: 5;
     border-bottom-left-radius: 15;
     font-size: 16;
     max-width: 60%;
+    text-align: left;
+    /*margin-bottom: 12;*/
+}
+
+.mineContinuation {
+	margin-bottom: 0;
+	border-bottom-right-radius: 15;
+}
+
+.mineContinuationGrid {
+	font-size: 14;
+    padding: 5;
+	padding-top: 0;
+	padding-bottom: 1;
+}
+
+.mineTime {
+	margin-right: 10;
+	margin-bottom: 5;
+}
+
+.theirsTime {
+	margin-left: 52;
+	margin-bottom: 5;
+}
+
+.time {
+	visibility: collapse;
+	display: none;
 }
 
 .theirs {
     background-color: #e0e0e0;
     color: #333;
     padding: 7;
-    padding-left: 12;
-    padding-right: 12;
+    padding-left: 14;
+    padding-right: 14;
     border-radius: 15;
     border-bottom-left-radius: 5;
+    border-bottom-right-radius: 15;
     margin-right: 40;
     font-size: 16;
     max-width: 60%;
+    text-align: left;
+    /*margin-bottom: 12;*/
 }
 
-.message-grid {
+.theirsContinuation {
+	margin-left: 52;
+	margin-bottom: 0;
+	border-bottom-left-radius: 15;
+}
+
+.theirsContinuationGrid {
+	font-size: 14;
+    padding: 5;
+	padding-top: 0;
+	padding-bottom: 1;
+}
+
+.grid {
     font-size: 14;
     padding: 5;
+    padding-top: 0;
+    padding-bottom: 8;
 }
 
 .chat-box-layout {

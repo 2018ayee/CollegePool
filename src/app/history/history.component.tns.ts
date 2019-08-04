@@ -24,7 +24,7 @@ class PostItem {
 })
 export class HistoryComponent implements OnInit {
 
-  @ViewChild('listView') lv: ElementRef;
+  @ViewChild('listView', { static: true }) lv: ElementRef;
   //user = this.logincheckService.getUser();
   user = '';
   name = "Adam Yee";

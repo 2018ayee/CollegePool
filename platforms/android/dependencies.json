@@ -1,5 +1,13 @@
 [
     {
+        "name": "@nstudio/nativescript-floatingactionbutton",
+        "directory": "..\\..\\node_modules\\@nstudio\\nativescript-floatingactionbutton"
+    },
+    {
+        "name": "@nstudio/nativescript-pulltorefresh",
+        "directory": "..\\..\\node_modules\\@nstudio\\nativescript-pulltorefresh"
+    },
+    {
         "name": "nativescript-angular",
         "directory": "..\\..\\node_modules\\nativescript-angular"
     },
@@ -18,10 +26,6 @@
     {
         "name": "nativescript-facebook",
         "directory": "..\\..\\node_modules\\nativescript-facebook"
-    },
-    {
-        "name": "nativescript-floatingactionbutton",
-        "directory": "..\\..\\node_modules\\nativescript-floatingactionbutton"
     },
     {
         "name": "nativescript-google-maps-sdk",
@@ -46,10 +50,6 @@
     {
         "name": "nativescript-plugin-firebase",
         "directory": "..\\..\\node_modules\\nativescript-plugin-firebase"
-    },
-    {
-        "name": "nativescript-pulltorefresh",
-        "directory": "..\\..\\node_modules\\nativescript-pulltorefresh"
     },
     {
         "name": "nativescript-ripple",

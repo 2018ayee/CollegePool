@@ -29,8 +29,8 @@ import { ImageSource, fromFile, fromResource, fromBase64, fromNativeSource } fro
 import { Folder, path, knownFolders } from "tns-core-modules/file-system";
 
 import { registerElement } from 'nativescript-angular/element-registry';
-registerElement('Fab', () => require('nativescript-floatingactionbutton').Fab);
-registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
+registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
 
 class PostItem {
     constructor(public username: String, public info: string, public profileSource: string, public mapSource: string) { }
@@ -51,8 +51,8 @@ export class HomeComponent implements OnInit {
   cache = new Cache();
   
 
-  @ViewChild('listView') lv: ElementRef;
-  @ViewChild('activityIndicator') ai: ElementRef;
+  @ViewChild('listView', { static: true }) lv: ElementRef;
+  @ViewChild('activityIndicator', { static: true }) ai: ElementRef;
   
 
   constructor(private transferService: TransferService, private addService: DynamicAddService, private page: Page, 

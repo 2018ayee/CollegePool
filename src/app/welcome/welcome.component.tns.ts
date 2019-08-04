@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -6,6 +6,8 @@ import * as firebase from 'nativescript-plugin-firebase';
 import { messaging, Message } from "nativescript-plugin-firebase/messaging";
 import { LogincheckService } from '../logincheck.service.tns';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
+import { TransferService } from '../datatransfer.service';
+
 
 @Component({
   selector: 'app-welcome',
@@ -31,25 +33,37 @@ export class WelcomeComponent implements OnInit {
   	appId: "1:375263680183:web:f2af3f2835638d7c",
   };
 
-  constructor(private page: Page, private router: RouterExtensions, private logincheckService: LogincheckService) { }
+  constructor(private page: Page, private router: RouterExtensions, private logincheckService: LogincheckService, private transferService: TransferService,
+    private ngZone: NgZone) { }
 
-  @ViewChild("em") em: ElementRef;
-  @ViewChild("pw") pw: ElementRef;
-  @ViewChild("cpw") cpw: ElementRef;
-  @ViewChild("fn") fn: ElementRef;
-  @ViewChild("ln") ln: ElementRef;
-  @ViewChild("welcomeContainer") wc: ElementRef;
-  @ViewChild("activityIndicator") ai: ElementRef;
+  @ViewChild("em", { static: true }) em: ElementRef;
+  @ViewChild("pw", { static: true }) pw: ElementRef;
+  @ViewChild("cpw", { static: true }) cpw: ElementRef;
+  @ViewChild("fn", { static: true }) fn: ElementRef;
+  @ViewChild("ln", { static: true }) ln: ElementRef;
+  @ViewChild("welcomeContainer", { static: true }) wc: ElementRef;
+  @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
 
   ngOnInit() {
     this.registerNotifications();
     this.createViews();
   }
 
-  createViews() {
-    // setTimeout(() => {this.em.nativeElement.focus();}, 500);
-    // console.log(this.logincheckService.getUserFromLocalStorage)
-    // this.logincheckService.getUserFromLocalStorage();
+  async createViews() {
+    await firebase.init(this.firebaseConfig).then(
+      () => {
+        console.log("firebase.init done");
+      },
+      error => {
+        console.log(`firebase.init error: ${error}`);
+      }
+    );
+    await firebase.addOnMessageReceivedCallback(async (message: any) => {
+      if(message.type === "New Message") {
+        this.transferService.setData(message.data.chatId);
+        await this.ngZone.run(() => {this.router.navigate(['chat'], {clearHistory: true})})
+      }
+    })
     if (this.logincheckService.getUserFromLocalStorage() != null)
       this.router.navigate(['navigation'], { clearHistory: true });
     else {
@@ -58,15 +72,6 @@ export class WelcomeComponent implements OnInit {
       this.wc.nativeElement.style.visibility = 'visible';
     }
     this.page.actionBarHidden = true;
-    firebase.init(this.firebaseConfig).then(
-      () => {
-        console.log("firebase.init done");
-      },
-      error => {
-        console.log(`firebase.init error: ${error}`);
-      }
-    );
-
   }
 
   toggleForm() {
@@ -163,7 +168,8 @@ export class WelcomeComponent implements OnInit {
       },
 
       onMessageReceivedCallback: (message: Message) => {
-        console.log("Push message received: " + message.title);
+        console.log("Push message received: " + message);
+        console.log("Message data: " + message.data);
       },
 
       // Whether you want this plugin to automatically display the notifications or just notify the callback. Currently used on iOS only. Default true.

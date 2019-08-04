@@ -9,7 +9,7 @@ admin.initializeApp();
 //  response.send("Hello from Firebase!");
 // });
 
-exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}')
+exports.sendChatNotification = functions.firestore.document('chats/{chatId}')
     .onUpdate(async (change, context) => {
       const chatId = context.params.chatId;
       let users;
@@ -47,6 +47,7 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
 	  	return console.log(err);
 	  })
 
+	  console.log(tokens);
 	  const removeSenderTokenPromise = await admin.firestore().collection('users').doc(lastMessage.userId).get().then((doc) => {
 	  	let newTokens = [];
 	  	for(var i = 0; i < doc.data().tokens.length; i++) {
@@ -62,8 +63,9 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
 	  	return console.log(err);
 	  })
 
+	  console.log(lastMessage.userId);
       // Get the sender profile.
-      const getFollowerProfilePromise = admin.auth().getUser(lastMessage.userId);
+      const getSenderProfilePromise = admin.auth().getUser(lastMessage.userId);
 
       // The snapshot to the user's tokens.
       let tokensSnapshot;
@@ -71,7 +73,7 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
       // The array containing all the user's tokens.
       // let tokens;
 
-      const results = await Promise.all([getDeviceTokensPromise, getFollowerProfilePromise, removeSenderTokenPromise]);
+      const results = await Promise.all([getDeviceTokensPromise, getSenderProfilePromise, removeSenderTokenPromise]);
       console.log('Device tokens found: ' + tokens);
       tokensSnapshot = results[0];
       const sender = results[1];
@@ -84,15 +86,27 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
       	return console.log('There are no notification tokens to send to.');
       }
 
-      console.log('There are', tokens.length, 'tokens to send notifications to.');
+      const finalTokens = Array.from(new Set(tokens));
+
+      console.log('There are', finalTokens.length, 'tokens to send notifications to.');
       console.log('Fetched sender profile', sender);
+
+      var photoURL = sender.photoURL;
+      if(photoURL.substring(0,27) === 'https://graph.facebook.com/') {
+      	photoURL += '?height=300';
+      }
 
       // Notification details.
       const payload = {
         notification: {
           title: sender.displayName,
           body: `${sender.displayName}: ${lastMessage.message}`,
-          icon: 'gs://collegepool-1552749118617.appspot.com/FCMImages/favicon.png'
+          sound: 'default',
+          badge: '1'
+        },
+        data: {
+        	type: 'New Message',
+        	chatId: chatId
         }
       };
 
@@ -100,21 +114,32 @@ exports.sendFollowerNotification = functions.firestore.document('chats/{chatId}'
       // tokens = Object.keys(tokensSnapshot.val());
 
       // Send notifications to all tokens.
-      const response = await admin.messaging().sendToDevice(tokens, payload);
+      const response = await admin.messaging().sendToDevice(finalTokens, payload);
       // For each message check if there was an error.
       const tokensToRemove = [];
+      var delIndex = [];
+      var remTokens = [];
       response.results.forEach((result, index) => {
         const error = result.error;
         if (error) {
-          console.error('Failure sending notification to', tokens[index], error);
+          console.error('Failure sending notification to', finalTokens[index], error);
           // Cleanup the tokens who are not registered anymore.
           if (error.code === 'messaging/invalid-registration-token' ||
               error.code === 'messaging/registration-token-not-registered') {
-            tokensToRemove.push((tokens[index]).remove());
+          	delIndex.push(index);
           }
         }
       });
-      return Promise.all(tokensToRemove);
+      for(var l = 0; l < finalTokens.length; l++) {
+      	if(delIndex.indexOf(l) < 0) {
+      		remTokens.push(finalTokens[l]);
+      	}
+      }
+      console.log(remTokens);
+      // const removeResponse = await tokensToRemove.push(admin.firestore().collection('chats').doc(chatId).update({tokens: remTokens}));
+      const removeResponse = await tokensToRemove.push(admin.firestore().collection('chats').doc(chatId).get());
+
+      return Promise.all(removePromise);
     });
 
 var braintree = require("braintree");

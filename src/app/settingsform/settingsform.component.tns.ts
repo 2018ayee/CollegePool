@@ -20,8 +20,8 @@ export class SettingsformComponent implements OnInit {
   constructor(private transferService: TransferService, private logincheckService: LogincheckService, 
     private page: Page, private router: RouterExtensions, private params: ModalDialogParams) { }
 
-  @ViewChild("errorMessage") em: ElementRef;
-  @ViewChild("secondVal") sv: ElementRef;
+  @ViewChild("errorMessage", { static: true }) em: ElementRef;
+  @ViewChild("secondVal", { static: true }) sv: ElementRef;
   userId;
   field;
   label;

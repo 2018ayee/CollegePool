@@ -26,12 +26,12 @@ export class AddCardPaymentComponent implements OnInit {
   constructor(private params: ModalDialogParams, private paymentService: PaymentService, private router: RouterExtensions) { }
 
   // @ViewChild("dropinContainter") container: ElementRef;
-  @ViewChild("submitButton") sB: ElementRef;
-  @ViewChild("expirationDate") expirationText: ElementRef;
-  @ViewChild("cardNumber") numberText: ElementRef;
-  @ViewChild("cvv") cvvText: ElementRef;
-  @ViewChild("form") formLayout: ElementRef;
-  @ViewChild("cardImage") cardLayout: ElementRef;
+  @ViewChild("submitButton", { static: true }) sB: ElementRef;
+  @ViewChild("expirationDate", { static: true }) expirationText: ElementRef;
+  @ViewChild("cardNumber", { static: true }) numberText: ElementRef;
+  @ViewChild("cvv", { static: true }) cvvText: ElementRef;
+  @ViewChild("form", { static: true }) formLayout: ElementRef;
+  @ViewChild("cardImage", { static: true }) cardLayout: ElementRef;
 
   user = {
   	payment_id: '507305706'

@@ -17,8 +17,8 @@ export class AddModalComponent implements OnInit {
 
   constructor(private postingService: PostingService) { }
 
-  @ViewChild('drivingLabel') dl: ElementRef;
-  @ViewChild('ridingLabel') rl: ElementRef;
+  @ViewChild('drivingLabel', { static: true }) dl: ElementRef;
+  @ViewChild('ridingLabel', { static: true }) rl: ElementRef;
   startAddress;
   endAddress;
   date = "now";

@@ -31,8 +31,7 @@ public class DataFormCustomEditor_DataFormCustomEditorProvider extends java.lang
   public java.lang.Object getValue(android.view.View param_0) {
     java.lang.Object[] args = new java.lang.Object[1];
     args[0] = param_0;
-    return (java.lang.Object)
-        com.tns.Runtime.callJSMethod(this, "getValue", java.lang.Object.class, args);
+    return com.tns.Runtime.callJSMethod(this, "getValue", java.lang.Object.class, args);
   }
 
   public int hashCode__super() {

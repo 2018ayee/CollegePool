@@ -22,8 +22,8 @@ export class PaymentInfoComponent implements OnInit {
   constructor(private transferService: TransferService, private paymentService: PaymentService, private router: RouterExtensions,
   	private vcRef: ViewContainerRef, private modal: ModalDialogService) { }
 
-  @ViewChild('activityIndicator') aI: ElementRef;
-  @ViewChild('infoContainer') iC: ElementRef;
+  @ViewChild('activityIndicator', { static: true }) aI: ElementRef;
+  @ViewChild('infoContainer', { static: true }) iC: ElementRef;
   
 
   paymentInfo = {

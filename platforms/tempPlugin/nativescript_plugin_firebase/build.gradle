@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -158,10 +158,10 @@ dependencies {
      implementation "com.google.firebase:firebase-storage:17.0.0"
 
     // Cloud Functions
-    // implementation "com.google.firebase:firebase-functions:17.0.0"
+     implementation "com.google.firebase:firebase-functions:17.0.0"
 
     // AdMob / Ads
-     // implementation "com.google.firebase:firebase-ads:17.2.1"
+    // implementation "com.google.firebase:firebase-ads:17.2.1"
 
     // ML Kit
     // implementation "com.google.firebase:firebase-ml-vision:20.0.0"

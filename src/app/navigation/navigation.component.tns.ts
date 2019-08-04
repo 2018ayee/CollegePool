@@ -21,9 +21,9 @@ export class NavigationComponent implements OnInit {
 
   constructor(private transferService: TransferService, private router: RouterExtensions, private page: Page) { }
 
-  @ViewChild('tabView') tv: ElementRef;
-  @ViewChild('actionBar') ab: ElementRef;
-  @ViewChild('actionItem') ai: ElementRef;
+  @ViewChild('tabView', { static: true }) tv: ElementRef;
+  @ViewChild('actionBar', { static: true }) ab: ElementRef;
+  @ViewChild('actionItem', { static: true }) ai: ElementRef;
   user;
   activebtn;
   tabSelectedIndex = 0;

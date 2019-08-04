@@ -36,10 +36,10 @@ export class AddModalComponent implements OnInit {
     private modal: ModalDialogService, private vcRef: ViewContainerRef, private transferService: TransferService, private logincheckService: LogincheckService,
     private datePipe: DatePipe, private mapService: GoogleMapsService) { }
 
-  @ViewChild('drivingLabel') dl: ElementRef;
-  @ViewChild('ridingLabel') rl: ElementRef;
-  @ViewChild('activityIndicator') ai: ElementRef;
-  @ViewChild('addContainer') ac: ElementRef;
+  @ViewChild('drivingLabel', { static: true }) dl: ElementRef;
+  @ViewChild('ridingLabel', { static: true }) rl: ElementRef;
+  @ViewChild('activityIndicator', { static: true }) ai: ElementRef;
+  @ViewChild('addContainer', { static: true }) ac: ElementRef;
   // @ViewChild('startLabel') sl: ElementRef;
   // @ViewChild('endLabel') el: ElementRef;
 
