@@ -49,6 +49,7 @@ import { SettingsformComponent } from './settingsform/settingsform.component';
 import { ReauthComponent } from './reauth/reauth.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
+import { ViewImageComponent } from './view-image/view-image.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -95,7 +96,8 @@ const appRoutes: Routes = [
     SettingsformComponent,
     ReauthComponent,
     ChatComponent,
-    ChatListComponent
+    ChatListComponent,
+    ViewImageComponent
   ],
   imports: [
     BrowserModule,

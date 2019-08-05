@@ -257,7 +257,7 @@ export class WelcomeComponent implements OnInit {
         (res) => {
           firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
             if(doc.exists == false) {
-              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL, this.deviceToken);
+              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL + "?height=300", this.deviceToken);
               this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
             }
             else if(doc.data().payment_id == null) {

@@ -65,6 +65,10 @@ import { SettingsformComponent } from './settingsform/settingsform.component';
 import { ReauthComponent } from './reauth/reauth.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
+import { ViewImageComponent } from './view-image/view-image.component';
+import { registerElement } from 'nativescript-angular/element-registry';
+registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
+registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
 
 
 // require('nativescript-nodeify')
@@ -116,6 +120,7 @@ application.on(application.launchEvent, function (args) {
     ReauthComponent,
     ChatComponent,
     ChatListComponent,
+    ViewImageComponent,
   ],
   imports: [
     NativeScriptModule,

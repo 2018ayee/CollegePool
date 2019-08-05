@@ -83,9 +83,7 @@ export class ChatListComponent implements OnInit {
   async addMessage(lastMsg, data, docId, chatName, nonUserIndex) {
     if(lastMsg.userId !== this.userId) {
       const userPromise = await firebase.firestore.collection('users').doc(lastMsg.userId).get().then((doc) => {
-        let profileSource = lastMsg.pfpSource;
-        if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
-          profileSource += '?height=300';
+        let profileSource = doc.data().profile_source;
         if(data.users.length === 2)
           this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, lastMsg.displayName, doc.data().first_name + ': ' + lastMsg.message));
         else {
@@ -98,8 +96,6 @@ export class ChatListComponent implements OnInit {
     else {
       const userPromise = await firebase.firestore.collection('users').doc(data.users[nonUserIndex].uid).get().then((doc) => {
         let profileSource = doc.data().profile_source;
-        if(profileSource.substring(0, 27) == 'https://graph.facebook.com/')
-          profileSource += '?height=300';
         if(data.users.length === 2)
           this.refreshMessages.push(new MessageItem(lastMsg, data.lastChat, docId, profileSource, 
             doc.data().first_name + ' ' + doc.data().last_name, 'You: ' + lastMsg.message));

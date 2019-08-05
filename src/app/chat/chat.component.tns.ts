@@ -180,6 +180,11 @@ export class ChatComponent implements OnInit {
         timeSplit[0] = '12';
       formattedTime = dateSplit[1] + '/' + dateSplit[2] + ', ' + timeSplit[0] + ':' + timeSplit[1] + ' AM';
     }
+
+    const pfpPromise = firebase.firestore.collection('users').doc(data.chats[index].userId).get().then((doc) => {
+      data.chats[index].pfpSource = doc.data().profile_source;
+    })
+
     //Push the message item
     this.messages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
     this.allMessages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
@@ -232,40 +237,42 @@ export class ChatComponent implements OnInit {
     .then((selection) => {
         selection.forEach((selected) => {
             // process the selected image
-            // console.log(selected.android.toString());
-            if(isAndroid) {
-              localPath = selected.android.toString();
-            }
-            else {
-              selected.getImageAsync((image, error) => {
-                let folder = fs.knownFolders.documents();
-                let path = fs.path.join(folder.path, "uploaded_image_" + counter + ".png");
-                let saved = image.saveToFile(path, "png");
-                localPath = path;
-              })
-            }
+            let imgSource = new imageSource.ImageSource();
+            imgSource.fromAsset(selected).then((source) => {
+               const b64 = source.toBase64String('jpeg', 100);
+               const fileSize = b64.replace(/\=/g, "").length * 0.75;
+               if (fileSize > 5) {
+                  // If file is greater than 1 MB
+                  source.loadFromBase64(b64);
+               }
+
+               const imgHash = Math.random().toString().slice(2,11);
+               let folder = fs.knownFolders.temp();
+               var path = fs.path.join(folder.path, imgHash + ".png");
+               let saved = source.saveToFile(path, "jpeg", 100);
+
+               firebase.storage.uploadFile({
+                  // the full path of the file in your Firebase storage (folders will be created)
+                  remoteFullPath: 'chats/' + this.chatId + '/images/' + this.userId + '/IMG_' + imgHash + '.png',
+                  // option 1: a file-system module File object
+                  localFile: fs.File.fromPath(path),
+                  // option 2: a full file path (ignored if 'localFile' is set)
+                  localFullPath: path,
+                  // get notified of file upload progress
+                  onProgress: (status) => {
+                    console.log("Uploaded fraction: " + status.fractionCompleted);
+                    console.log("Percentage complete: " + status.percentageCompleted);
+                  }
+               }).then((uploadedFile) => {
+                  console.log("File uploaded: " + JSON.stringify(uploadedFile));
+                  firebase.storage.getDownloadUrl({
+                    remoteFullPath: 'chats/' + this.chatId + '/images/' + this.userId + '/IMG_' + imgHash + '.png'
+                  }).then((url) => {
+                    this.sendMessage(url);
+                  })
+               })
+            });
         });
-        const imgHash = Math.random().toString().slice(2,11);
-        firebase.storage.uploadFile({
-          // the full path of the file in your Firebase storage (folders will be created)
-          remoteFullPath: 'chats/' + this.chatId + '/images/' + this.userId + '/IMG_' + imgHash + '.png',
-          // option 1: a file-system module File object
-          localFile: fs.File.fromPath(localPath),
-          // option 2: a full file path (ignored if 'localFile' is set)
-          localFullPath: localPath,
-          // get notified of file upload progress
-          onProgress: (status) => {
-            console.log("Uploaded fraction: " + status.fractionCompleted);
-            console.log("Percentage complete: " + status.percentageCompleted);
-          }
-        }).then((uploadedFile) => {
-          console.log("File uploaded: " + JSON.stringify(uploadedFile));
-          firebase.storage.getDownloadUrl({
-            remoteFullPath: 'chats/' + this.chatId + '/images/' + this.userId + '/IMG_' + imgHash + '.png'
-          }).then((url) => {
-            this.sendMessage(url);
-          })
-        })
     }).catch((e) => {
         // process error
         console.log(e);
@@ -332,6 +339,9 @@ export class ChatComponent implements OnInit {
     args.view.context.grid = (!args.view.context.theirsContinuation && !args.view.context.mineContinuation);
     args.view.context.mineTime = (!args.view.context.mineContinuation && args.view.context.mine);
     args.view.context.theirsTime = (!args.view.context.theirsContinuation && args.view.context.theirs);
+
+    args.view.context.theirsImg = args.view.context.theirsContinuation;
+    args.view.context.img = !args.view.context.theirsImg;
     
     args.view.context.time = (!args.view.context.mineTime && !args.view.context.theirsTime)    
     args.view.context.even = (args.index % 2 === 0);
@@ -347,6 +357,11 @@ export class ChatComponent implements OnInit {
 
   onTextTap() {
     this.list.scrollToIndex(this.messages.length - 1);
+  }
+
+  toViewImage(imgSource) {
+    this.transferService.setData(imgSource);
+    this.router.navigate(['view-image']);
   }
 
   loadMoreData() {
