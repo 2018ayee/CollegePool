@@ -26,10 +26,10 @@ public class BottomNavigationBar_vendor_153353_32_BottomNavigationBarImplementat
     com.tns.Runtime.initInstance(this);
   }
 
-  public void onTap(int param_0) {
+  public boolean onTap(int param_0) {
     java.lang.Object[] args = new java.lang.Object[1];
     args[0] = param_0;
-    com.tns.Runtime.callJSMethod(this, "onTap", void.class, args);
+    return (boolean) com.tns.Runtime.callJSMethod(this, "onTap", boolean.class, args);
   }
 
   public void onSelectedPositionChange(int param_0, int param_1) {

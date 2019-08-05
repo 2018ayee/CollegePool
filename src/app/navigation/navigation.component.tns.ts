@@ -110,7 +110,7 @@ export class NavigationComponent implements OnInit {
                 this.actionBarTitle = 'Search';
                 this.toSearch();
             } else if (newIndex === 2) {
-                this.actionBarTitle = 'Your posts';
+                this.actionBarTitle = 'Your Posts';
                 this.toHistory();
             } else if (newIndex === 3) {
                 this.actionBarTitle = 'Settings';

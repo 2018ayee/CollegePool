@@ -1,0 +1,13 @@
+<Stacklayout>
+        <StackLayout class="close-button-container" orientation="horizontal">
+            <Label text="&times;" class="close" (tap)="close('cancel')"></Label>
+        </StackLayout>
+        <Label class="header" text="Enter the email address you used to register for CollegePool to reset your password." textWrap="true"></Label>
+        <StackLayout class="input-field">
+                <TextField class="text-field" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="email" returnKeyType="next" (returnPress)="focusPassword()" #em></TextField>
+        </StackLayout>
+        <Label text="No account could be found with your email" textWrap="true" class="error-message" #errorMessage></Label>
+    
+        <Button text="Submit" (tap)="submit(email)" class="submit-btn"></Button>
+    
+    </Stacklayout>

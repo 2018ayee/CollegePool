@@ -69,6 +69,7 @@ import { ViewImageComponent } from './view-image/view-image.component';
 import { registerElement } from 'nativescript-angular/element-registry';
 registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
 registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
+import { ForgetFormComponent } from './forget-form/forget-form.component';
 
 
 // require('nativescript-nodeify')
@@ -121,6 +122,7 @@ application.on(application.launchEvent, function (args) {
     ChatComponent,
     ChatListComponent,
     ViewImageComponent,
+    ForgetFormComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -147,7 +149,7 @@ application.on(application.launchEvent, function (args) {
   DatePipe, GoogleMapsService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
-  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent, ReauthComponent],
+  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent, ReauthComponent, ForgetFormComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*
