@@ -96,6 +96,10 @@ exports.sendChatNotification = functions.firestore.document('chats/{chatId}')
       	photoURL += '?height=300';
       }
 
+      if(lastMessage.message === "") {
+      	lastMessage.message = "Sent a photo";
+      }
+      
       // Notification details.
       const payload = {
         notification: {

@@ -131,4 +131,3 @@ D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\f9b40a47
 D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\facc724826621c6eaddaa627da7437a2\classes.jar
 D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\faef79e4bb8ff47da9cf97271097968f\classes.jar
 D:\Kyvern\CollegePool\platforms\android\app\build\exploded-dependencies\fbfce9769ef83514f3cbaea1e574a79c\checker-compat-qual-2.5.2.jar
-D:\Kyvern\CollegePool\platforms\android\app\build\intermediates\javac\debug

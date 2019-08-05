@@ -13,7 +13,8 @@
             <StackLayout width="80%" [class.mineContinuationGrid]="mineContinuationGrid" [class.theirsContinuationGrid]="theirsContinuationGrid" [class.grid]="grid">
                 <StackLayout orientation="horizontal" [horizontalAlignment]="align(item)">
                     <Image [visibility]="item.visibility" class="author-img" stretch="aspectFill" height="40" width="40" verticalAlignment="bottom" [src]="item.chatMessage.pfpSource" col="1"></Image>
-                    <Label [text]='item.chatMessage.message' [class.mine]="mine" [class.theirs]="theirs" [class.mineContinuation]="mineContinuation" [class.theirsContinuation]="theirsContinuation" textWrap="true" verticalAlignment="top"></Label>
+                    <Label [visibility]="textVisibility(item)" [text]='item.chatMessage.message' [class.mine]="mine" [class.theirs]="theirs" [class.mineContinuation]="mineContinuation" [class.theirsContinuation]="theirsContinuation" textWrap="true" verticalAlignment="top"></Label>
+                    <Image [visibility]="imgVisibility(item)" class="chat-img" stretch="aspectFill" height="200" width="360" verticalAlignment="bottom" [src]="item.chatMessage.imgSource" col="1"></Image>
                 </StackLayout>
                 <Label [text]='item.formattedTime' [horizontalAlignment]="align(item)" [class.mineTime]="mineTime" [class.theirsTime]="theirsTime" [class.time]="time"></Label>
             </StackLayout>
@@ -21,9 +22,10 @@
     </ListView>
 
     <StackLayout #chatbox row="1" class="chat-box-layout">
-	        <GridLayout columns="*,auto" style="padding: 10">
-	            <TextView #textfield height="auto" maxHeight="100" hint="Start a message" class="chat-text-field" row="0" col="0" autocorrect="true" [(ngModel)]="message" (tap)="onTextTap()"></TextView>
-	            <Image #btn class="chat-button" row="0" col="1" src="~/img/send_message_icon_2.png" (tap)=sendMessage()></Image>
+	        <GridLayout columns="auto,*,auto" style="padding: 10">
+	        	<Image class="img-button" row="0" col="0" src="~/img/img_icon_2.png" (tap)=openImages()></Image>
+	            <TextView #textfield height="auto" maxHeight="100" hint="Start a message" class="chat-text-field" row="0" col="1" autocorrect="true" [(ngModel)]="message" (tap)="onTextTap()"></TextView>
+	            <Image #btn class="chat-button" row="0" col="2" src="~/img/send_message_icon_2.png" (tap)=sendMessage()></Image>
 	        </GridLayout>
 
     </StackLayout>

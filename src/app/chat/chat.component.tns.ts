@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef, ViewChild, ViewContainerRef } from '@ang
 import { TransferService } from '../datatransfer.service';
 import * as firebase from 'nativescript-plugin-firebase';
 import { RouterExtensions } from 'nativescript-angular/router';
+import * as imagepicker from "nativescript-imagepicker";
+import * as imageSource from "tns-core-modules/image-source";
+import * as fs from "tns-core-modules/file-system";
 import { LogincheckService } from '../logincheck.service.tns';
 import { ChatMessage } from '../models/chat-message.model';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
@@ -59,22 +62,36 @@ export class ChatComponent implements OnInit {
    //  }, 1000)
   }
 
-  async sendMessage() {
-    if(this.message.replace(/\s+/g, '').length === 0) {
+  async sendMessage(imgSrc = null) {
+    if(this.message.replace(/\s+/g, '').length === 0 && !imgSrc) {
       return false;
     }
   	var today = new Date();
   	var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
   	var time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
-  	const chat : ChatMessage = {
-  		userId: this.userId,
-  		displayName: this.displayName,
-  		message: this.message,
-  		pfpSource: this.pfpSource,
-  		imgSource: "",
-  		time: time,
-  		date: date
-  	}
+    var chat: ChatMessage;
+    if(imgSrc) {
+    	chat = {
+    		userId: this.userId,
+    		displayName: this.displayName,
+    		message: "",
+    		pfpSource: this.pfpSource,
+    		imgSource: imgSrc,
+    		time: time,
+    		date: date
+    	}
+    }
+    else {
+      chat = {
+        userId: this.userId,
+        displayName: this.displayName,
+        message: this.message,
+        pfpSource: this.pfpSource,
+        imgSource: "",
+        time: time,
+        date: date
+      }
+    }
   	const messageDocument = firebase.firestore.collection('chats').doc(this.chatId);
   	const messagePromise = await messageDocument.get().then((doc) => {
   		var updatedChats : [ChatMessage] = doc.data().chats;
@@ -201,6 +218,60 @@ export class ChatComponent implements OnInit {
     // this.list.scrollToIndex(this.messages.length - 1);
   }
 
+  openImages() {
+    var localPath;
+    var counter = 1;
+    let context = imagepicker.create({
+        mode: "single" // use "multiple" for multiple selection
+    });
+    context
+    .authorize()
+    .then(() => {
+        return context.present();
+    })
+    .then((selection) => {
+        selection.forEach((selected) => {
+            // process the selected image
+            // console.log(selected.android.toString());
+            if(isAndroid) {
+              localPath = selected.android.toString();
+            }
+            else {
+              selected.getImageAsync((image, error) => {
+                let folder = fs.knownFolders.documents();
+                let path = fs.path.join(folder.path, "uploaded_image_" + counter + ".png");
+                let saved = image.saveToFile(path, "png");
+                localPath = path;
+              })
+            }
+        });
+        const imgHash = Math.random().toString().slice(2,11);
+        firebase.storage.uploadFile({
+          // the full path of the file in your Firebase storage (folders will be created)
+          remoteFullPath: 'chats/' + this.chatId + '/images/' + this.userId + '/IMG_' + imgHash + '.png',
+          // option 1: a file-system module File object
+          localFile: fs.File.fromPath(localPath),
+          // option 2: a full file path (ignored if 'localFile' is set)
+          localFullPath: localPath,
+          // get notified of file upload progress
+          onProgress: (status) => {
+            console.log("Uploaded fraction: " + status.fractionCompleted);
+            console.log("Percentage complete: " + status.percentageCompleted);
+          }
+        }).then((uploadedFile) => {
+          console.log("File uploaded: " + JSON.stringify(uploadedFile));
+          firebase.storage.getDownloadUrl({
+            remoteFullPath: 'chats/' + this.chatId + '/images/' + this.userId + '/IMG_' + imgHash + '.png'
+          }).then((url) => {
+            this.sendMessage(url);
+          })
+        })
+    }).catch((e) => {
+        // process error
+        console.log(e);
+    });
+  }
+
   isTimeOver(chat1, chat2) {
     const time1 = chat1.time;
     const time2 = chat2.time;
@@ -230,6 +301,24 @@ export class ChatComponent implements OnInit {
       return "left";
     else
       return "right";
+  }
+
+  textVisibility(item) {
+    if(item.chatMessage.message === "") {
+      return "collapse";
+    }
+    else {
+      return "visible";
+    }
+  }
+
+  imgVisibility(item) {
+    if(item.chatMessage.imgSource === "") {
+      return "collapse";
+    }
+    else {
+      return "visible";
+    }
   }
 
   setupItemView(args) {
