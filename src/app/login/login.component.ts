@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   }
 
   toLogIn() {
-    console.log("HIE")
     Auth.signIn("phillim", "Collegepool69*")
     .then(user => {
         console.log(user)

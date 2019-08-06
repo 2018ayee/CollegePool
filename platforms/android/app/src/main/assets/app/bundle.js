@@ -2304,7 +2304,6 @@ var ForgetFormComponent = /** @class */ (function () {
     };
     ForgetFormComponent.prototype.submit = function (email) {
         var _this = this;
-        // console.log("email", email)
         nativescript_plugin_firebase__WEBPACK_IMPORTED_MODULE_2__["sendPasswordResetEmail"](email).then(function () {
             _this.alert('An email has been sent to ' + email + ' with details of how to recover your account');
             _this.close('cancel');
@@ -3123,11 +3122,6 @@ var LoginComponent = /** @class */ (function () {
         // });
     };
     LoginComponent.prototype.toLogIn = function () {
-        // Auth.signIn("phillim", "Collegepool69*")
-        // .then(user => {
-        //     console.log(user)
-        //     console.log("redirecting")
-        // })
         var credentials = {
             passwordOptions: {
                 email: 'adam.yee@gmail.com',

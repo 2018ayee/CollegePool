@@ -29,7 +29,6 @@ export class ForgetFormComponent implements OnInit {
     }
 
     submit(email) {
-        // console.log("email", email)
         firebase.sendPasswordResetEmail(email).then(
             () => {
                 this.alert('An email has been sent to ' + email + ' with details of how to recover your account')

@@ -132,3 +132,4 @@ C:\Users\phill\Documents\CS Projects\Colpool\CollegePool\platforms\android\app\b
 C:\Users\phill\Documents\CS Projects\Colpool\CollegePool\platforms\android\app\build\exploded-dependencies\fe6d981dc4c702018164e608e6c183f5\support-annotations-28.0.0.jar
 C:\Users\phill\Documents\CS Projects\Colpool\CollegePool\platforms\android\app\build\exploded-dependencies\fe7250eedac7f13ee7581c2a7083e936\checker-compat-qual-2.5.2.jar
 C:\Users\phill\Documents\CS Projects\Colpool\CollegePool\platforms\android\app\build\exploded-dependencies\fee831077310d9163c1eee46a4651876\protobuf-lite-3.0.1.jar
+C:\Users\phill\Documents\CS Projects\Colpool\CollegePool\platforms\android\app\build\intermediates\javac\debug

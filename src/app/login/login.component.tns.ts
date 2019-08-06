@@ -47,12 +47,6 @@ export class LoginComponent implements OnInit {
   }
 
   toLogIn() {
-    // Auth.signIn("phillim", "Collegepool69*")
-    // .then(user => {
-    //     console.log(user)
-    //     console.log("redirecting")
-
-    // })
 
     var credentials : firebase.LoginOptions = {
       passwordOptions: {
