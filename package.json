@@ -2,7 +2,7 @@
   "name": "college-pool",
   "version": "0.0.0",
   "scripts": {
-    "android": "tns run android --bundle",
+    "android": "tns run android --bundle --no-hmr",
     "ios": "tns run ios --bundle",
     "mobile": "tns run --bundle",
     "preview": "tns preview --bundle",

@@ -136,3 +136,7 @@ Button {
 	border-color: #f1f1f1;
 	border-top-width: 1;
 }
+
+.activity-indicator {
+  color: #ac00e6;
+}

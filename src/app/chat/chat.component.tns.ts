@@ -10,6 +10,8 @@ import { ChatMessage } from '../models/chat-message.model';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { ListView } from 'tns-core-modules/ui/list-view';
 import { isAndroid } from 'tns-core-modules/platform';
+import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
+import { GridLayout } from 'tns-core-modules/ui/layouts/grid-layout';
 import * as app from "tns-core-modules/application";
 declare var android: any;
 
@@ -29,6 +31,8 @@ export class ChatComponent implements OnInit {
   	private vcRef: ViewContainerRef) { }
 
   @ViewChild("messageList", { static: true }) lv: ElementRef;
+  @ViewChild("chatContainer", { static: true }) cc: ElementRef;
+  @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
   chatId: string;
   messages = new ObservableArray<ChatItem>();
   allMessages = new ObservableArray<ChatItem>();
@@ -43,6 +47,8 @@ export class ChatComponent implements OnInit {
   numShown = 20;
 
   ngOnInit() {
+    let chatContainer = <GridLayout> this.cc.nativeElement;
+    chatContainer.visibility = 'collapse';
   	if(isAndroid) {
   		var window = app.android.startActivity.getWindow();
         window.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -106,17 +112,17 @@ export class ChatComponent implements OnInit {
 
   async retrieveChats() {
   	const messageDocument = firebase.firestore.collection('chats').doc(this.chatId);
-  	const docPromise = await messageDocument.get().then((doc) => {
+  	const docPromise = await messageDocument.get().then(async (doc) => {
   		let data = doc.data();
   		this.lastIndex = data.chats.length;
       this.messages.splice(0);
       this.allMessages.splice(0);
   		for(var i = 0; i < data.chats.length; i++) {
   			if(data.chats[i].userId === this.userId) {
-          this.updateContinuations(data, i, true, "collapse");
+          await this.updateContinuations(data, i, true, "collapse");
         }
   			else {
-          this.updateContinuations(data, i, false, "visible");
+          await this.updateContinuations(data, i, false, "visible");
         }
   		}
   		// this.list.scrollToIndex(data.chats.length - 1);
@@ -141,16 +147,16 @@ export class ChatComponent implements OnInit {
   		}
   	})
 
-  	const unsubscribe = messageDocument.onSnapshot(doc => {
+  	const unsubscribe = messageDocument.onSnapshot(async doc => {
       console.log('called')
   		let data = doc.data();
   		for(var i = this.lastIndex; i < data.chats.length; i++) {
   			if(data.chats[i].userId === this.userId) {
-          this.updateContinuations(data, i, true, "collapse");
+          await this.updateContinuations(data, i, true, "collapse");
           this.list.scrollToIndex(this.messages.length - 1);
         }
   			else {
-          this.updateContinuations(data, i, false, "visible");
+          await this.updateContinuations(data, i, false, "visible");
         }
         this.numShown += 1;
   		}
@@ -159,10 +165,14 @@ export class ChatComponent implements OnInit {
     if(this.messages.length > this.numShown) {
       this.messages.splice(0, this.messages.length - this.numShown);
     }
+    let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+    activityIndicator.busy = false;
+    let chatContainer = <GridLayout> this.cc.nativeElement;
+    chatContainer.visibility = 'visible';
     this.list.scrollToIndex(this.messages.length - 1);
   }
 
-  updateContinuations(data, index, isMine, visibility) {
+  async updateContinuations(data, index, isMine, visibility) {
     //Update time to a readable format for the user
     var chatTime = data.chats[index].time;
     var dateSplit = data.chats[index].date.split('/');
@@ -181,45 +191,47 @@ export class ChatComponent implements OnInit {
       formattedTime = dateSplit[1] + '/' + dateSplit[2] + ', ' + timeSplit[0] + ':' + timeSplit[1] + ' AM';
     }
 
-    const pfpPromise = firebase.firestore.collection('users').doc(data.chats[index].userId).get().then((doc) => {
+    const pfpPromise = await firebase.firestore.collection('users').doc(data.chats[index].userId).get().then((doc) => {
       data.chats[index].pfpSource = doc.data().profile_source;
+
+        //Push the message item
+      this.messages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
+      this.allMessages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
+
+      //Check for continuation messages and update items accordingly
+      var i = index - 1;
+      while(i >= 0 && data.chats[i].userId === data.chats[index].userId) {
+        if(this.isTimeOver(data.chats[i], data.chats[index]))
+          return;
+        if(i >= this.messages.length) {
+          var msg = this.messages.getItem(this.messages.length + i - data.chats.length);
+          msg.visibility = 'collapse';
+          if(isMine) {
+            msg.mineContinuation = true;
+          }
+          else {
+            msg.theirsContinuation = true;
+          }
+          this.messages.setItem(this.messages.length + i - data.chats.length, msg)
+        }
+        else {
+          var msg = this.messages.getItem(i);
+          msg.visibility = 'collapse';
+          if(isMine) {
+            msg.mineContinuation = true;
+          }
+          else {
+            msg.theirsContinuation = true;
+          }
+          this.messages.setItem(i, msg);
+        }
+
+        this.allMessages.setItem(i, msg);
+        i = i - 1;
+      }
     })
 
-    //Push the message item
-    this.messages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
-    this.allMessages.push(new ChatItem(data.chats[index], visibility, formattedTime, false, false));
-
-    //Check for continuation messages and update items accordingly
-    var i = index - 1;
-    while(i >= 0 && data.chats[i].userId === data.chats[index].userId) {
-      if(this.isTimeOver(data.chats[i], data.chats[index]))
-        return;
-      if(i >= this.messages.length) {
-        var msg = this.messages.getItem(this.messages.length + i - data.chats.length);
-        msg.visibility = 'collapse';
-        if(isMine) {
-          msg.mineContinuation = true;
-        }
-        else {
-          msg.theirsContinuation = true;
-        }
-        this.messages.setItem(this.messages.length + i - data.chats.length, msg)
-      }
-      else {
-        var msg = this.messages.getItem(i);
-        msg.visibility = 'collapse';
-        if(isMine) {
-          msg.mineContinuation = true;
-        }
-        else {
-          msg.theirsContinuation = true;
-        }
-        this.messages.setItem(i, msg);
-      }
-
-      this.allMessages.setItem(i, msg);
-      i = i - 1;
-    }
+    
     // this.list.scrollToIndex(this.messages.length - 1);
   }
 

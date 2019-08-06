@@ -1,8 +1,8 @@
 <ScrollView>
 	<FlexboxLayout class="page" #welcomeContainer>
-		<!-- <GridLayout rows="630, auto"> -->
-		<GridLayout rows="*, auto">
-			<StackLayout class="form" row=0>
+		<GridLayout rows="630, auto">
+		<!-- <GridLayout rows="19*, *"> -->
+			<StackLayout class="form" row="0" height="100%">
 				<Image class="logo" src="~/img/logo.png"></Image>
 				<!-- <Label class="header" text="CollegePool"></Label> -->
 
@@ -46,7 +46,7 @@
 				<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
 					(tap)="forgotPassword()"></Label>
 			</StackLayout>
-			<StackLayout row=1>
+			<StackLayout row="1">
 				<Label class="sign-up-label" (tap)="toggleForm()">
 					<FormattedString>
 						<Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
