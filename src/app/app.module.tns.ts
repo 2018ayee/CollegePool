@@ -67,10 +67,13 @@ import { ChatComponent } from './chat/chat.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { ViewImageComponent } from './view-image/view-image.component';
 import { registerElement } from 'nativescript-angular/element-registry';
+import { ForgetFormComponent } from './forget-form/forget-form.component';
+import { TNSImageCacheItModule } from 'nativescript-image-cache-it/angular';
+
 registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
 registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
 registerElement('ImageZoom', () => require('nativescript-image-zoom').ImageZoom);
-import { ForgetFormComponent } from './forget-form/forget-form.component';
+
 
 
 // require('nativescript-nodeify')
@@ -140,7 +143,8 @@ application.on(application.launchEvent, function (args) {
     // NgxBraintreeModule,
     HttpClientModule,
     NativeScriptFacebookModule,
-    MaskedTextFieldModule
+    MaskedTextFieldModule,
+    TNSImageCacheItModule
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,

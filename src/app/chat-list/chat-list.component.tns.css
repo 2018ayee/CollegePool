@@ -21,7 +21,7 @@ Label {
 .profile-picture {
 	height: 60;
 	width: 60;
-	border-radius: 100%;
+	border-radius: 30;
 	vertical-align: center;
 	margin-left: 16;
 	margin-top: 14;

@@ -11,7 +11,7 @@
 </Page.actionBar>
 <GridLayout rows="2*,auto,10*" #layout>
 	<StackLayout orientation="horizontal" row="0" class="label-container" #infoContainer>
-		<Image src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></Image>
+		<ImageCacheIt src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
 	  	<StackLayout>
 	      	<Label textWrap="true" id="post-name" class="name-label" text="{{ username }}"></Label>
 	      	<Label textWrap="true" id="post-info" class="info-label" text="{{ info }}"></Label>

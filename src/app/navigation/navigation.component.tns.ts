@@ -24,6 +24,7 @@ export class NavigationComponent implements OnInit {
   @ViewChild('tabView', { static: true }) tv: ElementRef;
   @ViewChild('actionBar', { static: true }) ab: ElementRef;
   @ViewChild('actionItem', { static: true }) ai: ElementRef;
+  @ViewChild('listView', { static: true }) lv: ElementRef;
   user;
   activebtn;
   tabSelectedIndex = 0;
@@ -120,12 +121,10 @@ export class NavigationComponent implements OnInit {
     }
 
   home() {
-    if(this.tabSelectedIndex == 0)
-    {
-      let listView = <ListView> this.page.getViewById('listView');
+    if(this.tabSelectedIndex === 0) {
+      let listView = <ListView> this.lv.nativeElement;
       listView.scrollToIndex(0);
     }
-    this.actionItem.visibility = 'collapse';
   }
 
   toHome() {

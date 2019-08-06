@@ -4,13 +4,13 @@
 	    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
 	        <StackLayout [class.odd]="odd" [class.even]="even" class="post">
 	        	  <StackLayout orientation="horizontal">
-	        	  	<Image [src]="item.profileSource" class="profile-picture" stretch="aspectFit"></Image>
+	        	  	<ImageCacheIt [src]="item.profileSource" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
 	        	  	<StackLayout>
 		              	<Label textWrap="true" id="post-name" class="name-label" [text]="item.username"></Label>
 		              	<Label textWrap="true" id="post-info" class="info-label" [text]="item.info"></Label>
 		            </StackLayout>
 	              </StackLayout>
-				  <Image [src]="item.mapSource" stretch="aspectFit" class="posting-map"></Image>
+				  <ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map"></ImageCacheIt>
 	        </StackLayout>
 	    </ng-template>
 	</ListView>
