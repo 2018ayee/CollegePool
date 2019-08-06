@@ -9,6 +9,7 @@ import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { TransferService } from '../datatransfer.service';
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { ForgetFormComponent } from '../forget-form/forget-form.component';
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 @Component({
   selector: 'app-welcome',
@@ -24,6 +25,7 @@ export class WelcomeComponent implements OnInit {
   firstName;
   lastName;
   deviceToken;
+  // dialogOpen = false;
   firebaseConfig = {
     apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
     authDomain: "collegepool-1552749118617.firebaseapp.com",
@@ -92,6 +94,14 @@ export class WelcomeComponent implements OnInit {
     }
   }
 
+  // showDialog() {
+  //   this.dialogOpen = true;
+  // }
+
+  // closeDialog() {
+  //   this.dialogOpen = false;
+  // }
+
   login() {
     var credentials: firebase.LoginOptions = {
       passwordOptions: {
@@ -113,7 +123,19 @@ export class WelcomeComponent implements OnInit {
         this.router.navigate(['navigation'], { clearHistory: true });
       }
       else{
-        this.alert("Your email has not been verified yet. Please check your email for a verification link.")
+        dialogs.confirm({
+          title: "Email Verification",
+          message: "Your email has not been verified yet. Please check your email for a verification link. You may also resend the verification email.",
+          okButtonText: "Resend Email",
+          cancelButtonText: "Close"
+      }).then(result => {
+          console.log("Dialog result: " + result);
+          if(result){
+              //Do action1
+              this.sendEmailVerification();
+          }
+      });
+        // this.showDialog();
       }
     }).catch((err) => {
       console.log(err);
@@ -152,6 +174,18 @@ export class WelcomeComponent implements OnInit {
       console.log(err);
       return;
     })
+  }
+
+  sendEmailVerification() {
+    firebase.sendEmailVerification().then(
+      () => {
+        console.log("Email verification sent");
+        this.alert("An email verification link has been sent. Please check your email for the link.")
+        // this.closeDialog();
+      }).catch(err => {
+        console.log("Error sending email verificatiodn: " + err);
+      }
+      );
   }
 
   forgotPassword() {

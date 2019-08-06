@@ -1,7 +1,8 @@
 <ScrollView>
 	<FlexboxLayout class="page" #welcomeContainer>
 		<GridLayout rows="630, auto">
-		<!-- <GridLayout rows="19*, *"> -->
+			<!-- <GridLayout rows="630, auto" [class.dialogOpen]="dialogOpen"> -->
+			<!-- <GridLayout rows="19*, *"> -->
 			<StackLayout class="form" row="0" height="100%">
 				<Image class="logo" src="~/img/logo.png"></Image>
 				<!-- <Label class="header" text="CollegePool"></Label> -->
@@ -40,13 +41,14 @@
 
 				<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()"
 					class="btn btn-primary m-t-20"></Button>
+				<!-- <Button class="btn btn-primary" text="Show Dialog" (tap)="showDialog()"></Button> -->
 				<StackLayout>
 					<FacebookLoginButton (tap)="fbLogin()" class="btn-fb"></FacebookLoginButton>
 				</StackLayout>
 				<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
 					(tap)="forgotPassword()"></Label>
 			</StackLayout>
-			<StackLayout row="1">
+			<StackLayout row="1" class="redirect">
 				<Label class="sign-up-label" (tap)="toggleForm()">
 					<FormattedString>
 						<Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
@@ -54,6 +56,15 @@
 					</FormattedString>
 				</Label>
 			</StackLayout>
+			<!-- <AbsoluteLayout class="dialog-wrapper">
+				<StackLayout class="dialog">
+					<Label textWrap="true"
+						text="Your email has not been verified yet. Please check your email for a verification link. You may also resend the verification email."></Label>
+					<Button class="btn btn-verify" text="Resend Email"
+						(tap)="sendEmailVerification()"></Button>
+					<Button class= "btn-close" text="Close" (tap)="closeDialog()"></Button>
+				</StackLayout>
+			</AbsoluteLayout> -->
 		</GridLayout>
 	</FlexboxLayout>
 </ScrollView>
