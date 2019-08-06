@@ -1,61 +1,58 @@
 <ScrollView>
-	<FlexboxLayout class="page" #welcomeContainer>
-		<GridLayout rows="630, auto">
-		<!-- <GridLayout rows="19*, *"> -->
-			<StackLayout class="form" row="0" height="100%">
-				<Image class="logo" src="~/img/logo.png"></Image>
-				<!-- <Label class="header" text="CollegePool"></Label> -->
+	<GridLayout rows="*, auto" #welcomeContainer>
+		<StackLayout class="form" row="0" height="100%" #formLayout>
+			<Image class="logo" src="~/img/logo.png"></Image>
+			<!-- <Label class="header" text="CollegePool"></Label> -->
 
-				<StackLayout *ngIf="!isLoggingIn" class="input-field">
-					<TextField class="input" hint="First name" [(ngModel)]="firstName" returnKeyType="next" #fn>
-					</TextField>
-					<StackLayout class="hr-light"></StackLayout>
-				</StackLayout>
-
-				<StackLayout *ngIf="!isLoggingIn" class="input-field">
-					<TextField class="input" hint="Last name" [(ngModel)]="lastName" returnKeyType="next" #ln>
-					</TextField>
-					<StackLayout class="hr-light"></StackLayout>
-				</StackLayout>
-
-				<StackLayout class="input-field">
-					<TextField class="input" hint="Email" keyboardType="email" autocorrect="false"
-						autocapitalizationType="none" [(ngModel)]="email" returnKeyType="next"
-						(returnPress)="focusPassword()" #em></TextField>
-					<StackLayout class="hr-light"></StackLayout>
-				</StackLayout>
-
-				<StackLayout class="input-field">
-					<TextField class="input" hint="Password" secure="true" [(ngModel)]="password"
-						[returnKeyType]="isLoggingIn ? 'done' : 'next'" (returnPress)="focusConfirmPassword()" #pw>
-					</TextField>
-					<StackLayout class="hr-light"></StackLayout>
-				</StackLayout>
-
-				<StackLayout *ngIf="!isLoggingIn" class="input-field">
-					<TextField class="input" hint="Confirm password" secure="true" [(ngModel)]="confirmPassword"
-						returnKeyType="done" #cpw></TextField>
-					<StackLayout class="hr-light"></StackLayout>
-				</StackLayout>
-
-				<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()"
-					class="btn btn-primary m-t-20"></Button>
-				<StackLayout>
-					<FacebookLoginButton (tap)="fbLogin()" class="btn-fb"></FacebookLoginButton>
-				</StackLayout>
-				<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
-					(tap)="forgotPassword()"></Label>
+			<StackLayout *ngIf="!isLoggingIn" class="input-field">
+				<TextField class="input" hint="First name" [(ngModel)]="firstName" returnKeyType="next" #fn>
+				</TextField>
+				<StackLayout class="hr-light"></StackLayout>
 			</StackLayout>
-			<StackLayout row="1">
-				<Label class="sign-up-label" (tap)="toggleForm()">
-					<FormattedString>
-						<Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
-						<Span [text]="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
-					</FormattedString>
-				</Label>
+
+			<StackLayout *ngIf="!isLoggingIn" class="input-field">
+				<TextField class="input" hint="Last name" [(ngModel)]="lastName" returnKeyType="next" #ln>
+				</TextField>
+				<StackLayout class="hr-light"></StackLayout>
 			</StackLayout>
-		</GridLayout>
-	</FlexboxLayout>
+
+			<StackLayout class="input-field">
+				<TextField class="input" hint="Email" keyboardType="email" autocorrect="false"
+					autocapitalizationType="none" [(ngModel)]="email" returnKeyType="next"
+					(returnPress)="focusPassword()" #em></TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			</StackLayout>
+
+			<StackLayout class="input-field">
+				<TextField class="input" hint="Password" secure="true" [(ngModel)]="password"
+					[returnKeyType]="isLoggingIn ? 'done' : 'next'" (returnPress)="focusConfirmPassword()" #pw>
+				</TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			</StackLayout>
+
+			<StackLayout *ngIf="!isLoggingIn" class="input-field">
+				<TextField class="input" hint="Confirm password" secure="true" [(ngModel)]="confirmPassword"
+					returnKeyType="done" #cpw></TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			</StackLayout>
+
+			<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()"
+				class="btn btn-primary m-t-20"></Button>
+			<StackLayout>
+				<FacebookLoginButton (tap)="fbLogin()" class="btn-fb"></FacebookLoginButton>
+			</StackLayout>
+			<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
+				(tap)="forgotPassword()"></Label>
+		</StackLayout>
+		<StackLayout row="1">
+			<Label class="sign-up-label" (tap)="toggleForm()">
+				<FormattedString>
+					<Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
+					<Span [text]="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
+				</FormattedString>
+			</Label>
+		</StackLayout>
+	</GridLayout>
 </ScrollView>
 <ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
 </ActivityIndicator>

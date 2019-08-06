@@ -8,7 +8,7 @@
 </Page.actionBar>
 
 <GridLayout rows="*, auto" #chatContainer>
-    <ListView margin-bottom="50" padding="5" #messageList [items]="messages" separatorColor="transparent" (setupItemView)="setupItemView($event)" row="0" (loadMoreItems)="loadMoreData()">
+    <ListView margin-bottom="50" padding="5" #messageList [items]="messages" separatorColor="transparent" (itemLoading)="loadMoreData($event)" (setupItemView)="setupItemView($event)" row="0">
         <ng-template let-item="item" let-i="index" let-mine="mine" let-theirs="theirs" let-mineContinuation="mineContinuation" let-theirsContinuation="theirsContinuation" let-mineContinuationGrid="mineContinuationGrid" let-theirsContinuationGrid="theirsContinuationGrid" let-grid="grid" let-mineTime="mineTime" let-theirsTime="theirsTime" let-time="time" let-theirsImg="theirsImg" let-img="img">
             <StackLayout width="80%" [class.mineContinuationGrid]="mineContinuationGrid" [class.theirsContinuationGrid]="theirsContinuationGrid" [class.grid]="grid">
                 <StackLayout orientation="horizontal" [horizontalAlignment]="align(item)">

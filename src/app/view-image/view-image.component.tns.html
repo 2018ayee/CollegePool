@@ -3,4 +3,8 @@
   	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
   </ActionBar>
 </Page.actionBar>
-<Image src="{{ imgSource }}" class="img"></Image>
+<!-- <Image src="{{ imgSource }}" class="img"></Image> -->
+<ImageZoom src="{{ imgSource }}" class="img" (loaded)="onImageLoaded()"></ImageZoom>
+
+<ActivityIndicator #activityIndicator busy="true" width="40"  class="activity-indicator">
+</ActivityIndicator>

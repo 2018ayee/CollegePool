@@ -69,6 +69,7 @@ import { ViewImageComponent } from './view-image/view-image.component';
 import { registerElement } from 'nativescript-angular/element-registry';
 registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
 registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
+registerElement('ImageZoom', () => require('nativescript-image-zoom').ImageZoom);
 import { ForgetFormComponent } from './forget-form/forget-form.component';
 
 

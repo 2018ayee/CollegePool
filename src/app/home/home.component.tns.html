@@ -18,7 +18,7 @@
 			              	<Label textWrap="true" id="post-info" class="info-label" [text]="item.info"></Label>
 			            </StackLayout>
 		              </StackLayout>
-					  <Image [src]="item.mapSource" stretch="aspectFit" class="posting-map"></Image>
+					  <Image [src]="item.mapSource" stretch="aspectFit" class="posting-map" (tap)="toViewImage(item.mapSource)"></Image>
 		        </StackLayout>
 		    </ng-template>
 		</ListView>

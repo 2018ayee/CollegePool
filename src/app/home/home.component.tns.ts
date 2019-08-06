@@ -192,6 +192,11 @@ export class HomeComponent implements OnInit {
     this.loadPostings(args);
   }
 
+  toViewImage(src) {
+    this.transferService.setData(src);
+    this.router.navigate(['view-image']);
+  }
+
   onItemTap(args) {
     console.log(this.postings.getItem(args.index));
     this.transferService.setData({

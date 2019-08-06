@@ -62,5 +62,8 @@
 	},
 	"@nstudio/nativescript-floatingactionbutton": {
 		"D:\\Kyvern\\CollegePool\\node_modules\\@nstudio\\nativescript-floatingactionbutton\\platforms\\android\\include.gradle": "8c1fe5211f608e2cdeb32d726de040ca97d7e0f1"
+	},
+	"nativescript-image-zoom": {
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-zoom\\platforms\\android\\include.gradle": "475ee403a5a4cd308fe2356d284261d6bdfa3acf"
 	}
 }

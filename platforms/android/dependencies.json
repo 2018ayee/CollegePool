@@ -32,6 +32,10 @@
         "directory": "..\\..\\node_modules\\nativescript-google-maps-sdk"
     },
     {
+        "name": "nativescript-image-zoom",
+        "directory": "..\\..\\node_modules\\nativescript-image-zoom"
+    },
+    {
         "name": "nativescript-imagecropper",
         "directory": "..\\..\\node_modules\\nativescript-imagecropper"
     },

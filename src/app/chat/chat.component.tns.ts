@@ -376,8 +376,22 @@ export class ChatComponent implements OnInit {
     this.router.navigate(['view-image']);
   }
 
-  loadMoreData() {
-    // console.log('Load more')
+  loadMoreData(args) {
+    //On scroll to the top, load more chat messages
+    setTimeout(() => {
+      let listView = <ListView> this.lv.nativeElement;
+      const num = this.numShown;
+      if(args.index === 0 && num < this.allMessages.length) {
+        for(var i = num; i < num + 10; i++) {
+          if(i < this.allMessages.length) {
+            this.messages.unshift(this.allMessages.getItem(this.allMessages.length - i - 1));
+            this.numShown += 1;
+            listView.scrollToIndex(i - num);
+          }
+        }
+      }
+    }, 500);
+    
   }
 
 }
