@@ -28,10 +28,6 @@ import { Cache } from "tns-core-modules/ui/image-cache";
 import { ImageSource, fromFile, fromResource, fromBase64, fromNativeSource } from "tns-core-modules/image-source";
 import { Folder, path, knownFolders } from "tns-core-modules/file-system";
 
-import { registerElement } from 'nativescript-angular/element-registry';
-registerElement('Fab', () => require('nativescript-floatingactionbutton').Fab);
-registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
-
 class PostItem {
     constructor(public username: String, public info: string, public profileSource: string, public mapSource: string) { }
 }
@@ -48,7 +44,7 @@ export class HomeComponent implements OnInit {
   blocks = 1;
   p : Posting[];
   postings = new ObservableArray<PostItem>();
-  cache = new Cache();
+  // cache = new Cache();
   
 
   @ViewChild('listView') lv: ElementRef;
@@ -92,8 +88,8 @@ export class HomeComponent implements OnInit {
   loadPostings(args=null) {
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
-    this.cache.placeholder = fromFile("~/img/gray_background.jpg");
-    this.cache.maxRequests = 5;
+    // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
+    // this.cache.maxRequests = 5;
 
     this.postings.splice(0);
     let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
@@ -143,8 +139,8 @@ export class HomeComponent implements OnInit {
     usersCollection.doc(data.uid).get().then((doc) => {
       if(doc.exists) {
         var url = doc.data().profile_source;
-        if(url.substring(0, 27) === 'https://graph.facebook.com/')
-          url += '?height=300';
+        // if(url.substring(0, 27) === 'https://graph.facebook.com/')
+        //   url += '?height=300';
         // var mapUrl = this.mapService.getStaticMap(data.startAddress + " " + data.startFormatted, data.endAddress + " " + data.endFormatted);
         // console.log(mapUrl)
         // this.addCache(url, 'pfp', data.user, info_label, url, data.map_url, i).then((res) => {
@@ -158,39 +154,39 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  addCache(url, img_type, user, info, pfp_url, map_url, i) {
-    return new Promise<any>((resolve, reject) => {
-      let cachedImageSource;
-      const myImage = this.cache.get(url);
-      if (myImage) {
-        // If present -- use it.
-        cachedImageSource = fromNativeSource(myImage);
-        console.log(myImage)
-        if(img_type === 'pfp')
-          this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
-        else if (img_type === 'map')
-          this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
-        resolve({message: 'Retrieved from cache', cacheURL: cachedImageSource});
-      } 
-      else {
-        // If not present -- request its download + put it in the cache.
-        this.cache.push({
-            key: url,
-            url: url,
-            completed: (image, key) => {
-                if (url === key) {
-                    cachedImageSource = fromNativeSource(image);
-                    if(img_type === 'pfp')
-                      this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
-                    else if (img_type === 'map')
-                      this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
-                }
-                resolve({message: 'Added to cache', cacheURL: cachedImageSource});
-            }
-        });
-      }
-    })
-  }
+  // addCache(url, img_type, user, info, pfp_url, map_url, i) {
+  //   return new Promise<any>((resolve, reject) => {
+  //     let cachedImageSource;
+  //     const myImage = this.cache.get(url);
+  //     if (myImage) {
+  //       // If present -- use it.
+  //       cachedImageSource = fromNativeSource(myImage);
+  //       console.log(myImage)
+  //       if(img_type === 'pfp')
+  //         this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+  //       else if (img_type === 'map')
+  //         this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
+  //       resolve({message: 'Retrieved from cache', cacheURL: cachedImageSource});
+  //     } 
+  //     else {
+  //       // If not present -- request its download + put it in the cache.
+  //       this.cache.push({
+  //           key: url,
+  //           url: url,
+  //           completed: (image, key) => {
+  //               if (url === key) {
+  //                   cachedImageSource = fromNativeSource(image);
+  //                   if(img_type === 'pfp')
+  //                     this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+  //                   else if (img_type === 'map')
+  //                     this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
+  //               }
+  //               resolve({message: 'Added to cache', cacheURL: cachedImageSource});
+  //           }
+  //       });
+  //     }
+  //   })
+  // }
 
   refreshList(args) {
     this.loadPostings(args);

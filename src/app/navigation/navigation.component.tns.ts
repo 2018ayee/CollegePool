@@ -3,7 +3,7 @@ import { TransferService } from '../datatransfer.service';
 import { RouterExtensions } from 'nativescript-angular/router';
 import {Page} from 'tns-core-modules/ui/page';
 import { ActionBar, ActionItem } from 'tns-core-modules/ui/action-bar';
-import * as dom from 'nativescript-dom';
+// import * as dom from 'nativescript-dom';
 import { Button } from 'tns-core-modules/ui/button';
 import { TabView } from "tns-core-modules/ui/tab-view";
 import { SelectedIndexChangedEventData } from "tns-core-modules/ui/tab-view";
@@ -89,16 +89,16 @@ export class NavigationComponent implements OnInit {
     //   }
     // });
   }
-  paintActive(btn) {
-  	const navcontents = dom.getElementsByClassName('navigation')
-    for(var x = 0; x < navcontents.length; x++)
-    {
-        navcontents[x].className = 'navigation';
-    }
-    const button = <Button>this.page.getViewById(btn);
-    button.className += ' active';
+  // paintActive(btn) {
+  // 	const navcontents = dom.getElementsByClassName('navigation')
+  //   for(var x = 0; x < navcontents.length; x++)
+  //   {
+  //       navcontents[x].className = 'navigation';
+  //   }
+  //   const button = <Button>this.page.getViewById(btn);
+  //   button.className += ' active';
 
-  }
+  // }
 
   onSelectedIndexChanged(args: SelectedIndexChangedEventData) {
         if (args.oldIndex !== -1) {
@@ -110,7 +110,7 @@ export class NavigationComponent implements OnInit {
                 this.actionBarTitle = 'Search';
                 this.toSearch();
             } else if (newIndex === 2) {
-                this.actionBarTitle = 'Your posts';
+                this.actionBarTitle = 'Your Posts';
                 this.toHistory();
             } else if (newIndex === 3) {
                 this.actionBarTitle = 'Settings';

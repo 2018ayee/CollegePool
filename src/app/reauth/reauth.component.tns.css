@@ -1,7 +1,8 @@
 /* Add mobile styles for the component here.  */
 .header{
     margin-top: 50;
-	margin-left: 32;
+    margin-left: 22;
+    margin-right: 22;
 	color: black;
     font-weight: 500;
     font-size: 24;

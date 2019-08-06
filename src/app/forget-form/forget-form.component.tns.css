@@ -1,0 +1,42 @@
+/* Add mobile styles for the component here.  */
+.header{
+    margin-top: 50;
+    margin-left: 22;
+    margin-right: 22;
+	color: black;
+    font-weight: 500;
+    font-size: 18;
+    text-align: center;
+}
+
+.submit-btn{
+    background-color:#ac00e6;
+    width: 75%;
+    height: 170px;
+    font-family: "Segoe UI",Arial,sans-serif;
+    color: white;
+    margin-top: 20;
+}
+.text-field{
+    width: 85%;
+    margin-top: 20;
+    color:#696969
+}
+
+.close-button-container {
+	position: absolute;
+	left: 0;
+}
+.close {
+	margin: 10;
+	font-size: 40;
+	width: 48;
+    height: 48;
+    color: black
+}
+
+.error-message {
+	color: red;
+	font-size: 16;
+	visibility: collapse;
+}

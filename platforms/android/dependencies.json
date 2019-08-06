@@ -1,5 +1,13 @@
 [
     {
+        "name": "@nstudio/nativescript-floatingactionbutton",
+        "directory": "..\\..\\node_modules\\@nstudio\\nativescript-floatingactionbutton"
+    },
+    {
+        "name": "@nstudio/nativescript-pulltorefresh",
+        "directory": "..\\..\\node_modules\\@nstudio\\nativescript-pulltorefresh"
+    },
+    {
         "name": "nativescript-angular",
         "directory": "..\\..\\node_modules\\nativescript-angular"
     },
