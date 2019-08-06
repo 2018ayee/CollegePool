@@ -135,6 +135,7 @@ export class AddModalComponent implements OnInit {
    }
 
    addPosting() {
+     console.log("log success!");
      let addContainer = <FlexboxLayout> this.ac.nativeElement;
      addContainer.style.visibility = 'collapse';
      let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
@@ -148,6 +149,10 @@ export class AddModalComponent implements OnInit {
 
         if(this.startLocationPicked && this.endLocationPicked) {
          var postingsCollection = firebase.firestore.collection('postings');
+         console.log(this.startPlace);
+         console.log(this.endPlace);
+         this.price = require('../../../backend/data/pricing')({start: this.startPlace, end: this.endPlace});
+         console.log(this.price);
          postingsCollection.add({
            uid: this.user.id,
            user: this.user.username,
