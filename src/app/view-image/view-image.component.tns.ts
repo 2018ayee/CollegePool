@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransferService } from '../datatransfer.service';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 
 @Component({
   selector: 'app-view-image',
@@ -10,7 +11,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 export class ViewImageComponent implements OnInit {
 
   constructor(private transferService: TransferService, private router: RouterExtensions) { }
-
+  @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
   imgSource;
 
   ngOnInit() {
@@ -25,5 +26,10 @@ export class ViewImageComponent implements OnInit {
   	else {
   		this.router.navigate(['navigation']);
   	}
+  }
+
+  onImageLoaded() {
+  	let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+  	activityIndicator.busy = false;
   }
 }

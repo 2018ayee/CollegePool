@@ -81,6 +81,9 @@ export class ChatListComponent implements OnInit {
   }
 
   async addMessage(lastMsg, data, docId, chatName, nonUserIndex) {
+    if(lastMsg.imgSource !== "") {
+      lastMsg.message = "Sent a photo";
+    }
     if(lastMsg.userId !== this.userId) {
       const userPromise = await firebase.firestore.collection('users').doc(lastMsg.userId).get().then((doc) => {
         let profileSource = doc.data().profile_source;

@@ -45,6 +45,7 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("fn", { static: true }) fn: ElementRef;
   @ViewChild("ln", { static: true }) ln: ElementRef;
   @ViewChild("welcomeContainer", { static: true }) wc: ElementRef;
+  @ViewChild("formLayout", { static: true }) fl: ElementRef;
   @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
 
   ngOnInit() {
@@ -79,6 +80,12 @@ export class WelcomeComponent implements OnInit {
 
   toggleForm() {
     this.isLoggingIn = !this.isLoggingIn;
+    if(!this.isLoggingIn) {
+      this.fl.nativeElement.style.marginTop = '35';
+    }
+    else {
+      this.fl.nativeElement.style.marginTop = '100';
+    }
   }
 
   submit() {

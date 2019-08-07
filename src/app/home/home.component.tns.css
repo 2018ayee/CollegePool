@@ -71,7 +71,7 @@ Label {
 .profile-picture {
 	height: 50;
 	width: 50;
-	border-radius: 100%;
+	border-radius: 25;
 	vertical-align: top;
 	margin-left: 16;
 	margin-top: 20;

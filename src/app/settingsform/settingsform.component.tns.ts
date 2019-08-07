@@ -90,23 +90,38 @@ export class SettingsformComponent implements OnInit {
         console.log(err)
       })
 
-      // console.log("name", name)
       userDocument.update({
         first_name: this.value,
         last_name: this.secondValue
       })
 
       var postingsCollection = firebase.firestore.collection('postings');
+      var chatsCollection = firebase.firestore.collection('chats');
       userDocument.get().then(doc => {
         let postIds = doc.data().posts;
-        // console.log("postids", postIds)
+        let chatIds = doc.data().chats;
         for(var i = 0; i < postIds.length; i++) {
           postingsCollection.doc(postIds[i]).update({
             user: this.value + " " + this.secondValue
           })
         }
+
+        for(var j = 0; j < chatIds.length; j++) {
+          chatsCollection.doc(chatIds[j]).get().then((doc) => {
+            let users = doc.data().users;
+            for(var k = 0; k < users.length; k++) {
+              if(users[k].uid === this.userId) {
+                users[k].displayName = this.value + " " + this.secondValue;
+              }
+            }
+            chatsCollection.doc(doc.id).update({
+              users: users
+            })
+          })
+        }
         
       });
+
       this.params.closeCallback("update")
     }
 
