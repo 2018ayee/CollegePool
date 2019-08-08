@@ -26,14 +26,44 @@ export class ChatListComponent implements OnInit {
   refreshMessages = new ObservableArray<MessageItem>();
   userId: string;
   chatIds: [string];
+  firstLoad = true;
 
-  ngOnInit() {
+  async ngOnInit() {
   	this.userId = this.logincheckService.getUser();
+    // const loadPromise = await this.loadMessages();
+    firebase.firestore.collection('users').doc(this.userId).get().then(async (doc) => {
+      this.chatIds = doc.data().chats;
+      for(var i = 0; i < this.chatIds.length; i++) {
+        const unsubscribe = await firebase.firestore.collection('chats').doc(this.chatIds[i]).onSnapshot({includeMetadataChanges: true}, async doc => {
+          if(!this.firstLoad)
+            await this.refreshList(null);
+        })
+      }
+    })
     this.loadMessages();
   }
 
-  loadMessages(args=null) {
-  	firebase.firestore.collection('users').doc(this.userId).get().then((doc) => {
+  formatTime(date, time) {
+    var dateSplit = date.split('/');
+    var timeSplit = time.split(':');
+    var formattedTime = '';
+    if(timeSplit[1].length === 1) {
+      timeSplit[1] = '0' + timeSplit[1];
+    }
+    var hours = parseInt(timeSplit[0]);
+    if(hours > 12) {
+      formattedTime = dateSplit[1] + '/' + dateSplit[2] + ', ' + (hours - 12) + ':' + timeSplit[1] + ' PM';
+    }
+    else {
+      if(hours === 0)
+        timeSplit[0] = '12';
+      formattedTime = dateSplit[1] + '/' + dateSplit[2] + ', ' + timeSplit[0] + ':' + timeSplit[1] + ' AM';
+    }
+    return formattedTime;
+  }
+
+  async loadMessages(args=null) {
+  	await firebase.firestore.collection('users').doc(this.userId).get().then((doc) => {
   		this.chatIds = doc.data().chats;
     }).then(async (res) => {
       for(var i = 0; i < this.chatIds.length; i++) {
@@ -56,9 +86,6 @@ export class ChatListComponent implements OnInit {
             const addPromise = await this.addMessage(lastMsg, data, docId, chatName, nonUserIndex); 
           }
         })
-        // const unsubscribe = firebase.firestore.collection('chats').doc(this.chatIds[i]).onSnapshot({includeMetadataChanges: true}, doc => {
-        //   this.refreshList(null);
-        // })
       }
       if(args != null)
       {
@@ -78,12 +105,14 @@ export class ChatListComponent implements OnInit {
       }
       this.refreshMessages.splice(0);
     })
+    this.firstLoad = false;
   }
 
   async addMessage(lastMsg, data, docId, chatName, nonUserIndex) {
     if(lastMsg.imgSource !== "") {
       lastMsg.message = "Sent a photo";
     }
+    lastMsg.time = this.formatTime(lastMsg.date, lastMsg.time);
     if(lastMsg.userId !== this.userId) {
       const userPromise = await firebase.firestore.collection('users').doc(lastMsg.userId).get().then((doc) => {
         let profileSource = doc.data().profile_source;

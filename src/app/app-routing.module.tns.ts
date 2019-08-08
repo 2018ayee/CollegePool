@@ -38,7 +38,7 @@ import {SettingsformComponent} from './settingsform/settingsform.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { ViewImageComponent } from './view-image/view-image.component';
-
+import { ChatInfoComponent } from './chat-info/chat-info.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -59,6 +59,7 @@ export const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'chat-list', component: ChatListComponent },
   { path: 'view-image', component: ViewImageComponent },
+  { path: 'chat-info', component: ChatInfoComponent },
 ];
 
 @NgModule({

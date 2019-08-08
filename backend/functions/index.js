@@ -141,7 +141,7 @@ exports.sendChatNotification = functions.firestore.document('chats/{chatId}')
       }
       console.log(remTokens);
       // const removeResponse = await tokensToRemove.push(admin.firestore().collection('chats').doc(chatId).update({tokens: remTokens}));
-      const removeResponse = await tokensToRemove.push(admin.firestore().collection('chats').doc(chatId).get());
+      const removePromise = await tokensToRemove.push(admin.firestore().collection('chats').doc(chatId).get());
 
       return Promise.all(removePromise);
     });

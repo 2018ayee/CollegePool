@@ -117,5 +117,10 @@ export class HistoryComponent implements OnInit {
     })
     this.router.navigate(['posting-info'])
   }
+  
+  toViewImage(src) {
+    this.transferService.setData(src);
+    this.router.navigate(['view-image']);
+  }
 
 }

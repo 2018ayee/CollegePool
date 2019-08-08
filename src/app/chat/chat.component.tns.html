@@ -1,9 +1,7 @@
 <Page.actionBar>
     <ActionBar title="{{ chatName }}" android:horizontalAlignment="center" ios:horizontalAlignment="center">
     	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
-	    <ActionItem (tap)="onLeave()"
-	      ios.systemIcon="9" ios.position="right"
-	      text="Leave chat" android.position="popup"></ActionItem>
+    	<ActionItem (tap)="toInfo()" icon="~/img/info_icon.png" ios.position="right" width="12" height="12" #actionItem></ActionItem>
     </ActionBar>
 </Page.actionBar>
 

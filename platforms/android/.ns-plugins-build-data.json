@@ -67,6 +67,7 @@
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-web-image-cache\\platforms\\android\\include.gradle": "b88f0d3a046f6bdb8f2f211add4f53369147362b"
 	},
 	"nativescript-image-cache-it": {
+<<<<<<< HEAD
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\include.gradle": "711860f1231a93f6cbc80bb76dd16b02d6bdd34d",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\java\\com\\github\\triniwiz\\imagecacheit\\MyAppGlideModule.java": "0c16fe4b2dab78bd09149535c36546c335b056ba",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\java\\com\\github\\triniwiz\\imagecacheit\\ColoredRoundedCornerBorders.java": "d8c56325a3601eed7ffc96ec6f476104b1462ac6",
@@ -77,5 +78,17 @@
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable-xxxhdpi\\ic_indicator.png": "dae5330ac1117c31c96e573bbc3b5547673e3d84",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable-xxhdpi\\ic_indicator.png": "288f192cb14803111d587917c07575ea57454e92",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable\\progress_animation.xml": "c3d7f9a5030226bf33b3f956c2f32d6891decd64"
+=======
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\include.gradle": "711860f1231a93f6cbc80bb76dd16b02d6bdd34d",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable\\progress_animation.xml": "c3d7f9a5030226bf33b3f956c2f32d6891decd64",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable-mdpi\\ic_indicator.png": "d76c79b342d8e7c84423e293e505d2c7d6e82fd4",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable-hdpi\\ic_indicator.png": "57ac8c21816001b3a4ef697d1d36419a51b0ccab",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable-xhdpi\\ic_indicator.png": "e8e7f4dab785a5310f28be5790f20690af46f54a",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\java\\com\\github\\triniwiz\\imagecacheit\\ColoredRoundedCornerBorders.java": "d8c56325a3601eed7ffc96ec6f476104b1462ac6",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\nativescript_image_cache_it.aar": "38fd33341969d994dac0c23e344ff1c5b0b81b30",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable-xxhdpi\\ic_indicator.png": "288f192cb14803111d587917c07575ea57454e92",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\res\\drawable-xxxhdpi\\ic_indicator.png": "dae5330ac1117c31c96e573bbc3b5547673e3d84",
+		"D:\\Kyvern\\CollegePool\\node_modules\\nativescript-image-cache-it\\platforms\\android\\java\\com\\github\\triniwiz\\imagecacheit\\MyAppGlideModule.java": "0c16fe4b2dab78bd09149535c36546c335b056ba"
+>>>>>>> Chat loading algorithm tweak
 	}
 }

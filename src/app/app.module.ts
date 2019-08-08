@@ -50,6 +50,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { ViewImageComponent } from './view-image/view-image.component';
 import { ForgetFormComponent } from './forget-form/forget-form.component';
+import { ChatInfoComponent } from './chat-info/chat-info.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -97,7 +98,8 @@ const appRoutes: Routes = [
     ChatComponent,
     ChatListComponent,
     ViewImageComponent,
-    ForgetFormComponent
+    ForgetFormComponent,
+    ChatInfoComponent
   ],
   imports: [
     BrowserModule,

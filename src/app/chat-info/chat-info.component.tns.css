@@ -1,0 +1,68 @@
+/* Add mobile styles for the component here.  */
+.post {
+	/*border-bottom-width: 1;*/
+	border-color: #f1f1f1;
+}
+
+Label {
+	text-align: left;
+}
+
+.name-label {
+	/*margin-top: 16;*/
+	margin-left: 18;
+	color: black;
+	font-weight: 500;
+	font-size: 17;
+	vertical-align: center;
+}
+
+.profile-picture {
+	height: 40;
+	width: 40;
+	border-radius: 20;
+	vertical-align: center;
+	margin-left: 16;
+	margin-top: 10;
+	margin-bottom: 10;
+}
+
+.users-list {
+	border-color: #f1f1f1;
+	text-align: center;
+	border-top-width: 2;
+}
+
+.header-label {
+	font-size: 20;
+	font-weight: 500;
+	color: black;
+	text-align: center;
+}
+
+.header-wrapper {
+	text-align: center;
+	margin-top: 20;
+	margin-bottom: 20;
+}
+
+.posting-map {
+	margin-bottom: 16;
+	border-radius: 10;
+	height: 220;
+	width: 340;
+}
+
+.btn-primary {
+  height: 50;
+  width: 200;
+  margin: 0 5 20 5;
+  background-color: #ac00e6;
+  border-radius: 5;
+  font-size: 18;
+  font-weight: 500;
+}
+
+.activity-indicator {
+	color: #ac00e6;
+}

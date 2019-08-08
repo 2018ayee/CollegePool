@@ -211,6 +211,12 @@ export class HomeComponent implements OnInit {
     this.transferService.setData(src);
     this.router.navigate(['view-image']);
   }
+  
+  toMessages()
+  {
+    this.router.navigate(['chat-list'])
+  }
+
 
   onItemTap(args) {
     console.log(this.postings.getItem(args.index));

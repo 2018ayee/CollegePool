@@ -12,7 +12,7 @@ Button {
 	padding-left: 5;
 	padding-right: 5;
 	margin: 5;
-	height: 20;
+	height: 35;
 	width: 20;
 }
 
@@ -20,7 +20,7 @@ Button {
 	margin: 5;
 	margin-left: 3;
 	margin-right: 7;
-	height: 20;
+	height: 35;
 	width: 20;
 }
 
@@ -60,9 +60,9 @@ Button {
     padding-left: 14;
     padding-right: 14;
     margin-right: 10;
-    border-radius: 15;
+    border-radius: 20;
     border-bottom-right-radius: 5;
-    border-bottom-left-radius: 15;
+    border-bottom-left-radius: 20;
     font-size: 16;
     max-width: 60%;
     text-align: left;
@@ -70,8 +70,14 @@ Button {
 }
 
 .mineContinuation {
+    padding: 8;
+    padding-left: 14;
+    padding-right: 14;
 	margin-bottom: 0;
-	border-bottom-right-radius: 15;
+	border-bottom-right-radius: 20;
+	border-radius: 20;
+	font-size: 16;
+    max-width: 60%;
 }
 
 .mineContinuationGrid {
@@ -99,12 +105,12 @@ Button {
 .theirs {
     background-color: #e0e0e0;
     color: #333;
-    padding: 7;
+    padding: 8;
     padding-left: 14;
     padding-right: 14;
-    border-radius: 15;
+    border-radius: 20;
     border-bottom-left-radius: 5;
-    border-bottom-right-radius: 15;
+    border-bottom-right-radius: 20;
     margin-right: 40;
     font-size: 16;
     max-width: 60%;
@@ -113,9 +119,15 @@ Button {
 }
 
 .theirsContinuation {
+    padding: 8;
+    padding-left: 14;
+    padding-right: 14;
 	margin-left: 52;
 	margin-bottom: 0;
-	border-bottom-left-radius: 15;
+	border-radius: 20;
+	font-size: 16;
+    max-width: 60%;
+	border-bottom-left-radius: 20;
 }
 
 .theirsContinuationGrid {
@@ -135,6 +147,7 @@ Button {
 .chat-box-layout {
 	border-color: #f1f1f1;
 	border-top-width: 1;
+	height: 60;
 }
 
 .activity-indicator {
