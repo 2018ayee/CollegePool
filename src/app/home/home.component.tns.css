@@ -37,6 +37,24 @@ Label {
 	text-align: left;
 }
 
+.info-label {
+	margin-top: 4;
+	margin-left: 18;
+	margin-bottom: 16;
+	color: black;
+	font-weight: 400;
+	font-size: 14;
+}
+.cap-label {
+	margin-top: 4;
+	margin-left: 18;
+	margin-bottom: 16;
+	color: black;
+	font-weight: 400;
+	font-size: 14;
+	margin-right: 18;
+}
+
 .name-label {
 	margin-top: 16;
 	margin-left: 18;
@@ -45,11 +63,13 @@ Label {
 	font-size: 17;
 }
 
-.info-label {
-	margin-top: 4;
-	margin-left: 18;
-	margin-bottom: 16;
-	color: black;
+.price-label {
+	margin-top: 16;
+	margin-right: 18;
+	color: green;
+	font-weight: 500;
+	font-size: 16;
+	margin-bottom: 5;
 }
 
 .post {
@@ -75,6 +95,16 @@ Label {
 	vertical-align: top;
 	margin-left: 16;
 	margin-top: 20;
+}
+
+.status-icon {
+	height: 15;
+	width: 15;
+	/* border-radius: 25; */
+	vertical-align: top;
+	margin-top: 21;
+	margin-left: 7;
+	background-color: white;
 }
 
 .activity-indicator {
