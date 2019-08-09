@@ -18,6 +18,8 @@ backend/WiredTiger
 backend/data/db/
 /platforms
 platforms/
+platforms
+node_modules
 
 # IDEs and editors
 /.idea
