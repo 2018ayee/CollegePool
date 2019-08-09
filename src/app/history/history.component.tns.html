@@ -1,18 +1,52 @@
 <!-- <app-navigation></app-navigation> -->
 <PullToRefresh (refresh)="refreshList($event)" class="refresh">
 	<ListView [items]="postings" (itemTap)="onItemTap($event)" #listView id="listView">
-	    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-	        <StackLayout [class.odd]="odd" [class.even]="even" class="post">
-	        	  <StackLayout orientation="horizontal">
-	        	  	<ImageCacheIt [src]="item.profileSource" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
-	        	  	<StackLayout>
-		              	<Label textWrap="true" id="post-name" class="name-label" [text]="item.username"></Label>
-		              	<Label textWrap="true" id="post-info" class="info-label" [text]="item.info"></Label>
-		            </StackLayout>
-	              </StackLayout>
-				  <ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map" (tap)="toViewImage(item.mapSource)"></ImageCacheIt>
-	        </StackLayout>
-	    </ng-template>
+		<ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+			<StackLayout [class.odd]="odd" [class.even]="even" class="post">
+				<StackLayout orientation="horizontal">
+					<StackLayout>
+						<ImageCacheIt [src]="item.profileSource" class="profile-picture" stretch="aspectFit">
+						</ImageCacheIt>
+						<!-- <ImageCacheIt [src]="item.status" class="status-icon" stretch="aspectFill"></ImageCacheIt> -->
+					</StackLayout>
+					<StackLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<Label textWrap="true" row=0 id="post-name" class="name-label"
+									[text]="item.username"></Label>
+								<ImageCacheIt [src]="item.status" row=0 class="status-icon" stretch="aspectFit">
+								</ImageCacheIt>
+							</StackLayout>
+							<Label textWrap="true" row=0 horizontalAlignment="right" class="price-label"
+								[text]="item.price"></Label>
+						</GridLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<ImageCacheIt src="~/img/location.png" row=0 class="text-icon" stretch="aspectFit">
+								</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="info-label"
+									[text]="item.info"></Label>
+								<!-- <Label textWrap="true" row="0" id="post-info" class="cap-label" horizontalAlignment = "right" [text]="item.capacity"></Label> -->
+							</StackLayout>
+						</GridLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<ImageCacheIt src="~/img/clock.png" row=0 class="second-text-icon" stretch="aspectFit">
+								</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="cap-label"
+									[text]="item.date"></Label>
+								<ImageCacheIt src="~/img/chair.png" row=0 class="second-text-icon" stretch="aspectFit">
+								</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="cap-label"
+									[text]="item.capacity"></Label>
+							</StackLayout>
+						</GridLayout>
+					</StackLayout>
+				</StackLayout>
+					<ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map"
+						(tap)="toViewImage(item.mapSource)"></ImageCacheIt>
+				</StackLayout>
+		</ng-template>
 	</ListView>
 </PullToRefresh>
 

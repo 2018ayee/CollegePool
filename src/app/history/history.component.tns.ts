@@ -14,7 +14,8 @@ import { Cache } from "tns-core-modules/ui/image-cache";
 
 
 class PostItem {
-    constructor(public username: String, public info: string, public profileSource: string, public mapSource: string) { }
+    constructor(public username: String, public info: string, public profileSource: string, public mapSource: string,
+      public price: string, public status: string, public capacity: string, public date: string) { }
 }
 
 @Component({
@@ -66,18 +67,33 @@ export class HistoryComponent implements OnInit {
   createPosting(data, id) {
     // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
     // this.cache.maxRequests = 5;
-    let info_label = "";
-    if(data.capacity != "-1")
-      info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
-    else
-      info_label = "Requesting ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress;
+    let date = data.date.split(" ")
+    date = date[1]+" "+date[2]+" "+date[3];
+    let info_label = data.startAddress + " to " + data.endAddress;
+    let dat = date;
+    let price;
+    let type;
+    let cap;
+    // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
+    if(data.capacity != "-1"){
+      cap = 2+"/"+ data.capacity+" Seats Left";
+      // info_label+= ", "+2+"/"+ data.capacity+" Seats Remaining";
+      price = data.price
+      type = '~/img/steering-wheel-2.png'
+    }
+    else{
+      // info_label += "\nEnding At: " + data.endAddress + + "\nRiders: "+ data.capacity;
+       cap = "Riders: "+ "2";
+      // info_label+= ","+ " 2 "+"Riders";
+      type = '~/img/passenger-2.png'
+    }
     const usersCollection = firebase.firestore.collection('users');
     usersCollection.doc(data.uid).get().then((doc) => {
       if(doc.exists) {
         var url = doc.data().profile_source;
         // if(url.substring(0, 27) === 'https://graph.facebook.com/')
         //   url += '?height=300';
-        this.postings.push(new PostItem(data.user, info_label, url, data.map_url));
+        this.postings.push(new PostItem(data.user, info_label, url, data.map_url, price, type, cap, dat));
         this.p.push(data)
         this.ids.push(id)
       }

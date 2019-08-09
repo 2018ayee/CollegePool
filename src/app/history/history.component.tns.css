@@ -23,13 +23,27 @@ Label {
 	font-size: 17;
 }
 
-.info-label {
-	margin-top: 4;
-	margin-left: 18;
+.info-label {	
+	color: black;
+	font-weight: 400;
+	font-size: 14;
+	margin-right: 5;
+}
+.price-label {
+	margin-top: 16;
+	margin-right: 18;
+	color: green;
+	font-weight: 500;
+	font-size: 16;
+	margin-bottom: 5;
+}
+.cap-label {
 	margin-bottom: 16;
 	color: black;
+	font-weight: 400;
+	font-size: 14;
+	margin-right: 18;
 }
-
 .post {
 	border-bottom-width: 1;
 	border-color: #f1f1f1;
@@ -59,4 +73,34 @@ Label {
 
 .refresh {
 	color: #ac00e6;
+}
+.status-icon {
+	height: 15;
+	width: 15;
+	/* border-radius: 25; */
+	vertical-align: top;
+	margin-top: 21;
+	margin-left: 7;
+	background-color: white;
+}
+.text-icon {
+	height: 15;
+	width: 15;
+	margin-top: 2;
+	margin-left: 18;
+	margin-right:4;
+	/* border-radius: 25; */
+	vertical-align: top;
+	background-color: white;
+}
+.second-text-icon {
+	height: 15;
+	width: 15;
+	margin-left: 18;
+	margin-right: 4;
+	margin-top: 2;
+	/* border-radius: 25; */
+	vertical-align: top;
+	background-color: white;
+	margin-bottom: 16;
 }

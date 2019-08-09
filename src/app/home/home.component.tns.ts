@@ -30,7 +30,8 @@ import { Folder, path, knownFolders } from "tns-core-modules/file-system";
 
 class PostItem {
     constructor(public username: String, public info: string, public profileSource: string, 
-      public mapSource: string, public price: string, public status: string, public capacity: string) { }
+      public mapSource: string, public price: string, public status: string, public capacity: string,
+      public date: string) { }
 }
 
 @Component({
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
   p : Posting[];
   postings = new ObservableArray<PostItem>();
   // cache = new Cache();
-  space =1;
+  
 
   @ViewChild('listView', { static: true }) lv: ElementRef;
   @ViewChild('activityIndicator', { static: true }) ai: ElementRef;
@@ -110,7 +111,7 @@ export class HomeComponent implements OnInit {
       });
       this.p = posts;
       for(var i = 0; i < posts.length; i++) {
-        this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg','', '', ''));
+        this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg','', '', '', '',));
         this.createPosting(posts[i].data, i);
       }
       activityIndicator.busy = false;
@@ -132,22 +133,22 @@ export class HomeComponent implements OnInit {
   createPosting(data, i: number) {
     let date = data.date.split(" ")
     date = date[1]+" "+date[2]+" "+date[3];
-    let info_label = data.startAddress + " to " + data.endAddress +"\n"+ date;
+    let info_label = data.startAddress + " to " + data.endAddress;
+    let dat = date;
     let price;
     let type;
     let cap;
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
     if(data.capacity != "-1"){
-      // cap = "\nSeats: "+this.space+"/"+ data.capacity;
-      info_label+= ", "+this.space+"/"+ data.capacity+" Seats Remaining";
+      cap = 2+"/"+ data.capacity+" Seats Left";
+      // info_label+= ", "+2+"/"+ data.capacity+" Seats Remaining";
       price = data.price
-      this.space++;
       type = '~/img/steering-wheel-2.png'
     }
     else{
       // info_label += "\nEnding At: " + data.endAddress + + "\nRiders: "+ data.capacity;
-      // cap = "\nRiders: "+ "2";
-      info_label+= ","+ " 2 "+"Riders";
+       cap = "Riders: "+ "2";
+      // info_label+= ","+ " 2 "+"Riders";
       type = '~/img/passenger-2.png'
     }
     const usersCollection = firebase.firestore.collection('users');
@@ -164,7 +165,7 @@ export class HomeComponent implements OnInit {
         //     console.log(res)
         //   })
         // });
-        this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url, price, type, cap));
+        this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url, price, type, cap, dat));
       }
     })
   }

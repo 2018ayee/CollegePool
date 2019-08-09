@@ -37,17 +37,13 @@ Label {
 	text-align: left;
 }
 
-.info-label {
-	margin-top: 4;
-	margin-left: 18;
-	margin-bottom: 16;
+.info-label {	
 	color: black;
 	font-weight: 400;
 	font-size: 14;
+	margin-right: 5;
 }
 .cap-label {
-	margin-top: 4;
-	margin-left: 18;
 	margin-bottom: 16;
 	color: black;
 	font-weight: 400;
@@ -107,6 +103,27 @@ Label {
 	background-color: white;
 }
 
+.text-icon {
+	height: 15;
+	width: 15;
+	margin-top: 2;
+	margin-left: 18;
+	margin-right:4;
+	/* border-radius: 25; */
+	vertical-align: top;
+	background-color: white;
+}
+.second-text-icon {
+	height: 15;
+	width: 15;
+	margin-left: 18;
+	margin-right: 4;
+	margin-top: 2;
+	/* border-radius: 25; */
+	vertical-align: top;
+	background-color: white;
+	margin-bottom: 16;
+}
 .activity-indicator {
 	color: #ac00e6;
 }
