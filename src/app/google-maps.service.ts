@@ -11,6 +11,7 @@ export class GoogleMapsService {
   static_maps_uri_large = 'https://maps.googleapis.com/maps/api/staticmap?key=' + this.API_KEY + '&size=512x512&scale=2&maptype=roadmap\&markers=size:small%7Ccolor:red%7C'
   
   geocode_uri = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + this.API_KEY + '&address='
+  distance_uri = 'https://maps.googleapis.com/maps/api/distancematrix/json?key='+this.API_KEY+'&units=imperial'//&origins=Washington,DC&destinations=New+York+City,NY' 
   constructor(private httpClient: HttpClient) { }
 
   getStaticMap(startadr, endadr) {
@@ -33,5 +34,15 @@ export class GoogleMapsService {
   	var formatted_address = address.split(' ').join('+')
   	var formatted_address = address.split('&').join('and')
   	return this.httpClient.get(`${this.geocode_uri}` + formatted_address);
+  }
+
+  getDistance(startadr, endadr){
+    console.log(this.API_KEY);
+    var formatted_startadr = startadr.split(' ').join('+');
+    var formatted_startadr = startadr.split('&').join('and');
+    var formatted_endadr = endadr.split(' ').join('+');
+    var formatted_endadr = endadr.split('&').join('and');
+    return this.httpClient.get(`${this.distance_uri}`+"&origins="+formatted_startadr+"&destinations="+formatted_endadr)//.pipe(map((response: any)=>response.json()));
+    //return this.distance_uri;
   }
 }
