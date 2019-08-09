@@ -65,6 +65,16 @@ import { SettingsformComponent } from './settingsform/settingsform.component';
 import { ReauthComponent } from './reauth/reauth.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
+import { ViewImageComponent } from './view-image/view-image.component';
+import { registerElement } from 'nativescript-angular/element-registry';
+import { ForgetFormComponent } from './forget-form/forget-form.component';
+import { TNSImageCacheItModule } from 'nativescript-image-cache-it/angular';
+import { ChatInfoComponent } from './chat-info/chat-info.component';
+
+registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
+registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
+registerElement('ImageZoom', () => require('nativescript-image-zoom').ImageZoom);
+
 
 
 // require('nativescript-nodeify')
@@ -116,6 +126,9 @@ application.on(application.launchEvent, function (args) {
     ReauthComponent,
     ChatComponent,
     ChatListComponent,
+    ViewImageComponent,
+    ForgetFormComponent,
+    ChatInfoComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -132,7 +145,8 @@ application.on(application.launchEvent, function (args) {
     // NgxBraintreeModule,
     HttpClientModule,
     NativeScriptFacebookModule,
-    MaskedTextFieldModule
+    MaskedTextFieldModule,
+    TNSImageCacheItModule
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
@@ -142,7 +156,7 @@ application.on(application.launchEvent, function (args) {
   DatePipe, GoogleMapsService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
-  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent, ReauthComponent],
+  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent, ReauthComponent, ForgetFormComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*

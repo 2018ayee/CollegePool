@@ -56,7 +56,7 @@ https://docs.nativescript.org/angular/ui/styling
 }
 
 .item-list-view {
-	height: 300;
+	height: 275;
 }
 
 .profile-picture {
@@ -68,7 +68,7 @@ https://docs.nativescript.org/angular/ui/styling
 }
 
 .img-rounded {
-	border-radius: 100%;
+	border-radius: 50%;
 }
 
 .header-label {

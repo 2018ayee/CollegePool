@@ -1,5 +1,5 @@
 <Page.actionBar>
-    <ActionBar title="Messages">
+    <ActionBar title="Pools">
     	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
     </ActionBar>
 </Page.actionBar>
@@ -8,10 +8,13 @@
 	<ListView [items]="messages" (itemTap)="onItemTap($event)" #listView id="listView">
 	    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
 	        <StackLayout [class.odd]="odd" [class.even]="even" class="message" orientation="horizontal">
-	        	  	<Image [src]="item.pfpSource" class="profile-picture" stretch="aspectFit"></Image>
+	        	  	<ImageCacheIt [src]="item.pfpSource" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
 	        	  	<StackLayout>
 		              	<Label textWrap="true" id="post-name" class="name-label" [text]="item.displayName"></Label>
-		              	<Label textWrap="true" id="post-info" class="info-label" [text]="item.message"></Label>
+		              	<GridLayout columns="*,auto">
+		              		<Label textWrap="true" id="post-info" class="info-label" [text]="item.message" column="0"></Label>
+		              		<Label textWrap="true" class="time-label" [text]="item.chatMessage.time" column="1"></Label>
+		              	</GridLayout>
 		            </StackLayout>
 	        </StackLayout>
 	    </ng-template>

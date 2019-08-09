@@ -1,19 +1,18 @@
 <Page.actionBar>
     <ActionBar title="{{ chatName }}" android:horizontalAlignment="center" ios:horizontalAlignment="center">
     	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
-	    <ActionItem (tap)="onLeave()"
-	      ios.systemIcon="9" ios.position="right"
-	      text="Leave chat" android.position="popup"></ActionItem>
+    	<ActionItem (tap)="toInfo()" icon="~/img/info_icon.png" ios.position="right" width="12" height="12" #actionItem></ActionItem>
     </ActionBar>
 </Page.actionBar>
 
-<GridLayout rows="*, auto">
-    <ListView margin-bottom="50" padding="5" #messageList [items]="messages" separatorColor="transparent" (setupItemView)="setupItemView($event)" row="0" (loadMoreItems)="loadMoreData()">
-        <ng-template let-item="item" let-i="index" let-mine="mine" let-theirs="theirs" let-mineContinuation="mineContinuation" let-theirsContinuation="theirsContinuation" let-mineContinuationGrid="mineContinuationGrid" let-theirsContinuationGrid="theirsContinuationGrid" let-grid="grid" let-mineTime="mineTime" let-theirsTime="theirsTime" let-time="time">
+<GridLayout rows="*, auto" #chatContainer>
+    <ListView margin-bottom="50" padding="5" #messageList [items]="messages" separatorColor="transparent" (itemLoading)="loadMoreData($event)" (setupItemView)="setupItemView($event)" row="0">
+        <ng-template let-item="item" let-i="index" let-mine="mine" let-theirs="theirs" let-mineContinuation="mineContinuation" let-theirsContinuation="theirsContinuation" let-mineContinuationGrid="mineContinuationGrid" let-theirsContinuationGrid="theirsContinuationGrid" let-grid="grid" let-mineTime="mineTime" let-theirsTime="theirsTime" let-time="time" let-theirsImg="theirsImg" let-img="img">
             <StackLayout width="80%" [class.mineContinuationGrid]="mineContinuationGrid" [class.theirsContinuationGrid]="theirsContinuationGrid" [class.grid]="grid">
                 <StackLayout orientation="horizontal" [horizontalAlignment]="align(item)">
-                    <Image [visibility]="item.visibility" class="author-img" stretch="aspectFill" height="40" width="40" verticalAlignment="bottom" [src]="item.chatMessage.pfpSource" col="1"></Image>
-                    <Label [text]='item.chatMessage.message' [class.mine]="mine" [class.theirs]="theirs" [class.mineContinuation]="mineContinuation" [class.theirsContinuation]="theirsContinuation" textWrap="true" verticalAlignment="top"></Label>
+                    <ImageCacheIt [visibility]="item.visibility" class="author-img" stretch="aspectFill" height="40" width="40" verticalAlignment="bottom" [src]="item.chatMessage.pfpSource" col="1"></ImageCacheIt>
+                    <Label [visibility]="textVisibility(item)" [text]='item.chatMessage.message' [class.mine]="mine" [class.theirs]="theirs" [class.mineContinuation]="mineContinuation" [class.theirsContinuation]="theirsContinuation" textWrap="true" verticalAlignment="top"></Label>
+                    <Image [visibility]="imgVisibility(item)" [class.theirsImg]="theirsImg" [class.img]="img" stretch="none" minWidth="200" minHeight="200" decodeWidth="200" decodeHeight="200" maxHeight="400" verticalAlignment="bottom" [src]="item.chatMessage.imgSource" col="1" (tap)="toViewImage(item.chatMessage.imgSource)" loadMode="async"></Image>
                 </StackLayout>
                 <Label [text]='item.formattedTime' [horizontalAlignment]="align(item)" [class.mineTime]="mineTime" [class.theirsTime]="theirsTime" [class.time]="time"></Label>
             </StackLayout>
@@ -21,11 +20,14 @@
     </ListView>
 
     <StackLayout #chatbox row="1" class="chat-box-layout">
-	        <GridLayout columns="*,auto" style="padding: 10">
-	            <TextView #textfield height="auto" maxHeight="100" hint="Start a message" class="chat-text-field" row="0" col="0" autocorrect="true" [(ngModel)]="message" (tap)="onTextTap()"></TextView>
-	            <Image #btn class="chat-button" row="0" col="1" src="~/img/send_message_icon_2.png" (tap)=sendMessage()></Image>
+	        <GridLayout columns="auto,*,auto" style="padding: 10">
+	        	<Image class="img-button" row="0" col="0" src="~/img/img_icon_2.png" (tap)=openImages()></Image>
+	            <TextView #textfield height="auto" maxHeight="100" hint="Start a message" class="chat-text-field" row="0" col="1" autocorrect="true" [(ngModel)]="message" (tap)="onTextTap()"></TextView>
+	            <Image #btn class="chat-button" row="0" col="2" src="~/img/send_message_icon_2.png" (tap)=sendMessage()></Image>
 	        </GridLayout>
 
     </StackLayout>
-
 </GridLayout>
+
+<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
+</ActivityIndicator>

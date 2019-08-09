@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, NgZone, ViewContainerRef } from '@angular/core';
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { Page } from 'tns-core-modules/ui/page';
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -7,7 +7,9 @@ import { messaging, Message } from "nativescript-plugin-firebase/messaging";
 import { LogincheckService } from '../logincheck.service.tns';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { TransferService } from '../datatransfer.service';
-
+import { ModalDialogService } from "nativescript-angular/directives/dialogs";
+import { ForgetFormComponent } from '../forget-form/forget-form.component';
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 @Component({
   selector: 'app-welcome',
@@ -23,18 +25,19 @@ export class WelcomeComponent implements OnInit {
   firstName;
   lastName;
   deviceToken;
+  // dialogOpen = false;
   firebaseConfig = {
     apiKey: "AIzaSyBGuiYpM138Q6ayqDMRUVWJp1CE9WB09Nw",
-  	authDomain: "collegepool-1552749118617.firebaseapp.com",
-  	databaseURL: "https://collegepool-1552749118617.firebaseio.com",
-  	projectId: "collegepool-1552749118617",
-  	storageBucket: "gs://collegepool-1552749118617.appspot.com",
-  	messagingSenderId: "375263680183",
-  	appId: "1:375263680183:web:f2af3f2835638d7c",
+    authDomain: "collegepool-1552749118617.firebaseapp.com",
+    databaseURL: "https://collegepool-1552749118617.firebaseio.com",
+    projectId: "collegepool-1552749118617",
+    storageBucket: "gs://collegepool-1552749118617.appspot.com",
+    messagingSenderId: "375263680183",
+    appId: "1:375263680183:web:f2af3f2835638d7c",
   };
 
   constructor(private page: Page, private router: RouterExtensions, private logincheckService: LogincheckService, private transferService: TransferService,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone, private modal: ModalDialogService, private vcRef: ViewContainerRef) { }
 
   @ViewChild("em", { static: true }) em: ElementRef;
   @ViewChild("pw", { static: true }) pw: ElementRef;
@@ -42,6 +45,7 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("fn", { static: true }) fn: ElementRef;
   @ViewChild("ln", { static: true }) ln: ElementRef;
   @ViewChild("welcomeContainer", { static: true }) wc: ElementRef;
+  @ViewChild("formLayout", { static: true }) fl: ElementRef;
   @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
 
   ngOnInit() {
@@ -76,6 +80,12 @@ export class WelcomeComponent implements OnInit {
 
   toggleForm() {
     this.isLoggingIn = !this.isLoggingIn;
+    if(!this.isLoggingIn) {
+      this.fl.nativeElement.style.marginTop = '35';
+    }
+    else {
+      this.fl.nativeElement.style.marginTop = '100';
+    }
   }
 
   submit() {
@@ -91,6 +101,14 @@ export class WelcomeComponent implements OnInit {
     }
   }
 
+  // showDialog() {
+  //   this.dialogOpen = true;
+  // }
+
+  // closeDialog() {
+  //   this.dialogOpen = false;
+  // }
+
   login() {
     var credentials: firebase.LoginOptions = {
       passwordOptions: {
@@ -101,62 +119,95 @@ export class WelcomeComponent implements OnInit {
     }
     firebase.login(credentials).then((res) => {
       console.log(res);
-      this.logincheckService.loginUser(res.uid)
-      firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
-        if (doc.data().payment_id == null)
-          this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
-      })
-      this.updateTokens(res.uid);
-      this.router.navigate(['navigation'], { clearHistory: true });
+      console.log("Email Verified Status", res.emailVerified)
+      if (res.emailVerified) {
+        this.logincheckService.loginUser(res.uid)
+        firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
+          if (doc.data().payment_id == null)
+            this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+        })
+        this.updateTokens(res.uid);
+        this.router.navigate(['navigation'], { clearHistory: true });
+      }
+      else{
+        dialogs.confirm({
+          title: "Email Verification",
+          message: "Your email has not been verified yet. Please check your email for a verification link. You may also resend the verification email.",
+          okButtonText: "Resend Email",
+          cancelButtonText: "Close"
+      }).then(result => {
+          console.log("Dialog result: " + result);
+          if(result){
+              //Do action1
+              this.sendEmailVerification();
+          }
+      });
+        // this.showDialog();
+      }
     }).catch((err) => {
       console.log(err);
-      this.alert("We could not find an account matching your email or password");
+      this.alert("We could not find an account matching your email or password.");
       return;
     })
   }
 
   register() {
-	  if (this.password != this.confirmPassword) {
-	    this.alert("Your passwords do not match");
-	    return;
-  	}
-  	firebase.createUser({
-  		email: this.email,
-  		password: this.password,
-  	}).then((res) => {
-        this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, this.firstName, this.lastName, null, null, 0, 0, '~/img/sample_profile.png', this.deviceToken)
-        firebase.updateProfile({displayName: this.firstName + ' ' + this.lastName}).then();
-        this.logincheckService.loginUser(res.uid)
-        this.logincheckService.addUserToBraintree('test', 'test user', res.email)
-      	this.router.navigate(['navigation'], {clearHistory: true});
-      }).catch((err) => {
-        if(err == 'Creating a user failed. com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account.')
-          this.alert('There is already an account associated with that email')
-        else if (err == 'Creating a user failed. Password should be at least 6 characters')
-          this.alert('Password must be at least 6 characters')
-  		console.log(err);
-  		return;
-      })
+    if (this.password != this.confirmPassword) {
+      this.alert("Your passwords do not match");
+      return;
+    }
+    firebase.createUser({
+      email: this.email,
+      password: this.password,
+    }).then((res) => {
+      this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, this.firstName, this.lastName, null, null, 0, 0, '~/img/sample_profile.png', this.deviceToken)
+      firebase.updateProfile({ displayName: this.firstName + ' ' + this.lastName }).then();
+      // this.logincheckService.loginUser(res.uid)
+      this.logincheckService.addUserToBraintree('test', 'test user', res.email)
+      firebase.sendEmailVerification().then(
+        () => {
+          console.log("Email verification sent");
+          this.alert("An email verification link has been sent. Please check your email for the link.")
+          this.toggleForm();
+        }).catch(err => {
+          console.log("Error sending email verificatiodn: " + err);
+        }
+        );
+    }).catch((err) => {
+      if (err == 'Creating a user failed. com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account.')
+        this.alert('There is already an account associated with that email')
+      else if (err == 'Creating a user failed. Password should be at least 6 characters')
+        this.alert('Password must be at least 6 characters')
+      console.log(err);
+      return;
+    })
+  }
+
+  sendEmailVerification() {
+    firebase.sendEmailVerification().then(
+      () => {
+        console.log("Email verification sent");
+        this.alert("An email verification link has been sent. Please check your email for the link.")
+        // this.closeDialog();
+      }).catch(err => {
+        console.log("Error sending email verificatiodn: " + err);
+      }
+      );
   }
 
   forgotPassword() {
-    prompt({
-      title: "Forgot Password",
-      message: "Enter the email address you used to register for CollegePool to reset your password",
-      inputType: "email",
-      defaultText: "",
-      okButtonText: "Ok",
-      cancelButtonText: "Cancel"
-    }).then((data) => {
-      if (data.result)
-        firebase.sendPasswordResetEmail(data.text).then(
-          () => {
-            this.alert('An email has been sent to ' + data.text + ' with details of how to recover your account')
-          },
-          (errorMessage) => {
-            this.alert('No account could be found with your email')
-          }
-        );
+
+    let options = {
+      context: {},
+      fullscreen: true,
+      viewContainerRef: this.vcRef
+      // animated: true,
+      // transition: { name: "slideTop" }
+  };
+    this.modal.showModal(ForgetFormComponent, options).then(res => {
+      if(res == 'update') {
+        // this.updateListView();
+      }
     });
   }
 
@@ -184,7 +235,7 @@ export class WelcomeComponent implements OnInit {
     const userDocument = firebase.firestore.collection('users').doc(uid);
     userDocument.get().then(async (doc) => {
       let tokens = doc.data().tokens;
-      if(tokens) {
+      if (tokens) {
         tokens.push(this.deviceToken);
         let updatedTokens = Array.from(new Set(tokens));
         userDocument.update({
@@ -206,12 +257,12 @@ export class WelcomeComponent implements OnInit {
 
   async updateChatTokens(chats) {
     let chatCollection = firebase.firestore.collection('chats');
-    for(var i = 0; i < chats.length; i++) {
+    for (var i = 0; i < chats.length; i++) {
       const chatPromise = await chatCollection.doc(chats[i]).get().then(async (doc) => {
         const tokens = doc.data().tokens;
         tokens.push(this.deviceToken);
         const newTokens = Array.from(new Set(tokens));
-        const updatePromise = await chatCollection.doc(chats[i]).update({tokens: newTokens});
+        const updatePromise = await chatCollection.doc(chats[i]).update({ tokens: newTokens });
       })
     }
   }
@@ -229,7 +280,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   focusConfirmPassword() {
-    if (!this.isLoggingIn) {
+    if (!this.isLoggingIn && this.cpw) {
       this.cpw.nativeElement.focus();
     }
   }
@@ -254,26 +305,26 @@ export class WelcomeComponent implements OnInit {
         scopes: ['public_profile', 'email', 'user_birthday', 'user_gender'] // note: this property was renamed from "scope" in 8.4.0
       }
     }).then(
-        (res) => {
-          firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
-            if(doc.exists == false) {
-              this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL, this.deviceToken);
-              this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
-            }
-            else if(doc.data().payment_id == null) {
-              this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
-            }
-            else {
-              this.updateTokens(res.uid);
-            }
-          })
-          this.logincheckService.loginUser(res.uid)
-          this.router.navigate(['navigation'], {clearHistory: true});
-        },
-        (errorMessage) => {
-          console.log(errorMessage);
-          this.wc.nativeElement.style.visibility = 'visible';
-        }
+      (res) => {
+        firebase.firestore.collection('users').doc(res.uid).get().then(doc => {
+          if (doc.exists == false) {
+            this.logincheckService.addUserToFirestore(res.uid, null, null, res.email, res.additionalUserInfo.profile['first_name'], res.additionalUserInfo.profile['last_name'], null, null, 0, 0, res.photoURL, this.deviceToken);
+            this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+          }
+          else if (doc.data().payment_id == null) {
+            this.logincheckService.addUserToBraintree(res.displayName, res.displayName, res.email)
+          }
+          else {
+            this.updateTokens(res.uid);
+          }
+        })
+        this.logincheckService.loginUser(res.uid)
+        this.router.navigate(['navigation'], { clearHistory: true });
+      },
+      (errorMessage) => {
+        console.log(errorMessage);
+        this.wc.nativeElement.style.visibility = 'visible';
+      }
     );
 
   }

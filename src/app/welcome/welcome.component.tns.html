@@ -1,47 +1,64 @@
-<FlexboxLayout class="page" #welcomeContainer>
-	<StackLayout class="form">
-		<Image class="logo" src="~/img/logo.png"></Image>
-		<!-- <Label class="header" text="CollegePool"></Label> -->
+<ScrollView>
+	<GridLayout rows="*, auto" #welcomeContainer visibility="collapse">
+		<!-- <GridLayout rows="630, auto" [class.dialogOpen]="dialogOpen"> -->
+		<StackLayout class="form" row="0" height="100%" #formLayout>
+			<Image class="logo" src="~/img/logo.png"></Image>
+			<!-- <Label class="header" text="CollegePool"></Label> -->
 
-		<StackLayout *ngIf="!isLoggingIn" class="input-field">
-			<TextField class="input" hint="First name" [(ngModel)]="firstName" returnKeyType="next" #fn></TextField>
-			<StackLayout class="hr-light"></StackLayout>
+
+			<StackLayout *ngIf="!isLoggingIn" class="input-field">
+				<TextField class="input" hint="First name" [(ngModel)]="firstName" returnKeyType="next" #fn>
+				</TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			</StackLayout>
+
+			<StackLayout *ngIf="!isLoggingIn" class="input-field">
+				<TextField class="input" hint="Last name" [(ngModel)]="lastName" returnKeyType="next" #ln>
+				</TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			</StackLayout>
+
+			<StackLayout class="input-field">
+				<TextField class="input" hint="Email" keyboardType="email" autocorrect="false"
+					autocapitalizationType="none" [(ngModel)]="email" returnKeyType="next"
+					(returnPress)="focusPassword()" #em></TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			</StackLayout>
+
+			<StackLayout class="input-field">
+				<TextField class="input" hint="Password" secure="true" [(ngModel)]="password"
+					[returnKeyType]="isLoggingIn ? 'done' : 'next'" (returnPress)="focusConfirmPassword()" #pw>
+				</TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			</StackLayout>
+
+			<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()"
+				class="btn btn-primary m-t-20"></Button>
+			<!-- <Button class="btn btn-primary" text="Show Dialog" (tap)="showDialog()"></Button> -->
+			<StackLayout>
+				<FacebookLoginButton (tap)="fbLogin()" class="btn-fb"></FacebookLoginButton>
+			</StackLayout>
+			<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
+				(tap)="forgotPassword()"></Label>
 		</StackLayout>
-
-		<StackLayout *ngIf="!isLoggingIn" class="input-field">
-			<TextField class="input" hint="Last name" [(ngModel)]="lastName" returnKeyType="next" #ln></TextField>
-			<StackLayout class="hr-light"></StackLayout>
+		<StackLayout row="1" class="redirect">
+			<Label class="sign-up-label" (tap)="toggleForm()">
+				<FormattedString>
+					<Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
+					<Span [text]="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
+				</FormattedString>
+			</Label>
 		</StackLayout>
-
-		<StackLayout class="input-field">
-			<TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="email" returnKeyType="next" (returnPress)="focusPassword()" #em></TextField>
-			<StackLayout class="hr-light"></StackLayout>
-		</StackLayout>
-
-		<StackLayout class="input-field">
-			<TextField class="input" hint="Password" secure="true" [(ngModel)]="password" [returnKeyType]="isLoggingIn ? 'done' : 'next'" (returnPress)="focusConfirmPassword()" #pw></TextField>
-			<StackLayout class="hr-light"></StackLayout>
-		</StackLayout>
-
-		<StackLayout *ngIf="!isLoggingIn" class="input-field">
-			<TextField class="input" hint="Confirm password" secure="true" [(ngModel)]="confirmPassword" returnKeyType="done" #cpw></TextField>
-			<StackLayout class="hr-light"></StackLayout>
-		</StackLayout>
-
-		<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()" class="btn btn-primary m-t-20"></Button>
-		<StackLayout>
-			<FacebookLoginButton (tap)="fbLogin()" class="btn-fb"></FacebookLoginButton>
-		</StackLayout>
-		<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
-	</StackLayout>
-
-	<Label class="login-label sign-up-label" (tap)="toggleForm()">
-		<FormattedString>
-			<Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
-			<Span [text]="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
-		</FormattedString>
-	</Label>
-</FlexboxLayout>
-
+		<!-- <AbsoluteLayout class="dialog-wrapper">
+				<StackLayout class="dialog">
+					<Label textWrap="true"
+						text="Your email has not been verified yet. Please check your email for a verification link. You may also resend the verification email."></Label>
+					<Button class="btn btn-verify" text="Resend Email"
+						(tap)="sendEmailVerification()"></Button>
+					<Button class= "btn-close" text="Close" (tap)="closeDialog()"></Button>
+				</StackLayout>
+			</AbsoluteLayout> -->
+	</GridLayout>
+</ScrollView>
 <ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
 </ActivityIndicator>

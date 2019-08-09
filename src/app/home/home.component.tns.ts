@@ -28,12 +28,9 @@ import { Cache } from "tns-core-modules/ui/image-cache";
 import { ImageSource, fromFile, fromResource, fromBase64, fromNativeSource } from "tns-core-modules/image-source";
 import { Folder, path, knownFolders } from "tns-core-modules/file-system";
 
-import { registerElement } from 'nativescript-angular/element-registry';
-registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
-registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
-
 class PostItem {
-    constructor(public username: String, public info: string, public profileSource: string, public mapSource: string) { }
+    constructor(public username: String, public info: string, public profileSource: string, 
+      public mapSource: string, public price: string, public status: string, public capacity: string) { }
 }
 
 @Component({
@@ -48,8 +45,8 @@ export class HomeComponent implements OnInit {
   blocks = 1;
   p : Posting[];
   postings = new ObservableArray<PostItem>();
-  cache = new Cache();
-  
+  // cache = new Cache();
+  space =1;
 
   @ViewChild('listView', { static: true }) lv: ElementRef;
   @ViewChild('activityIndicator', { static: true }) ai: ElementRef;
@@ -92,8 +89,8 @@ export class HomeComponent implements OnInit {
   loadPostings(args=null) {
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
-    this.cache.placeholder = fromFile("~/img/gray_background.jpg");
-    this.cache.maxRequests = 5;
+    // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
+    // this.cache.maxRequests = 5;
 
     this.postings.splice(0);
     let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
@@ -113,7 +110,7 @@ export class HomeComponent implements OnInit {
       });
       this.p = posts;
       for(var i = 0; i < posts.length; i++) {
-        this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg'));
+        this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg','', '', ''));
         this.createPosting(posts[i].data, i);
       }
       activityIndicator.busy = false;
@@ -133,18 +130,32 @@ export class HomeComponent implements OnInit {
 	// }
 
   createPosting(data, i: number) {
-    let info_label = "";
+    let date = data.date.split(" ")
+    date = date[1]+" "+date[2]+" "+date[3];
+    let info_label = data.startAddress + " to " + data.endAddress +"\n"+ date;
+    let price;
+    let type;
+    let cap;
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
-    if(data.capacity != "-1")
-      info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
-    else
-      info_label = "Requesting ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress;
+    if(data.capacity != "-1"){
+      // cap = "\nSeats: "+this.space+"/"+ data.capacity;
+      info_label+= ", "+this.space+"/"+ data.capacity+" Seats Remaining";
+      price = data.price
+      this.space++;
+      type = '~/img/steering-wheel-2.png'
+    }
+    else{
+      // info_label += "\nEnding At: " + data.endAddress + + "\nRiders: "+ data.capacity;
+      // cap = "\nRiders: "+ "2";
+      info_label+= ","+ " 2 "+"Riders";
+      type = '~/img/passenger-2.png'
+    }
     const usersCollection = firebase.firestore.collection('users');
     usersCollection.doc(data.uid).get().then((doc) => {
       if(doc.exists) {
         var url = doc.data().profile_source;
-        if(url.substring(0, 27) === 'https://graph.facebook.com/')
-          url += '?height=300';
+        // if(url.substring(0, 27) === 'https://graph.facebook.com/')
+        //   url += '?height=300';
         // var mapUrl = this.mapService.getStaticMap(data.startAddress + " " + data.startFormatted, data.endAddress + " " + data.endFormatted);
         // console.log(mapUrl)
         // this.addCache(url, 'pfp', data.user, info_label, url, data.map_url, i).then((res) => {
@@ -153,48 +164,59 @@ export class HomeComponent implements OnInit {
         //     console.log(res)
         //   })
         // });
-        this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url));
+        this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url, price, type, cap));
       }
     })
   }
 
-  addCache(url, img_type, user, info, pfp_url, map_url, i) {
-    return new Promise<any>((resolve, reject) => {
-      let cachedImageSource;
-      const myImage = this.cache.get(url);
-      if (myImage) {
-        // If present -- use it.
-        cachedImageSource = fromNativeSource(myImage);
-        console.log(myImage)
-        if(img_type === 'pfp')
-          this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
-        else if (img_type === 'map')
-          this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
-        resolve({message: 'Retrieved from cache', cacheURL: cachedImageSource});
-      } 
-      else {
-        // If not present -- request its download + put it in the cache.
-        this.cache.push({
-            key: url,
-            url: url,
-            completed: (image, key) => {
-                if (url === key) {
-                    cachedImageSource = fromNativeSource(image);
-                    if(img_type === 'pfp')
-                      this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
-                    else if (img_type === 'map')
-                      this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
-                }
-                resolve({message: 'Added to cache', cacheURL: cachedImageSource});
-            }
-        });
-      }
-    })
-  }
+  // addCache(url, img_type, user, info, pfp_url, map_url, i) {
+  //   return new Promise<any>((resolve, reject) => {
+  //     let cachedImageSource;
+  //     const myImage = this.cache.get(url);
+  //     if (myImage) {
+  //       // If present -- use it.
+  //       cachedImageSource = fromNativeSource(myImage);
+  //       console.log(myImage)
+  //       if(img_type === 'pfp')
+  //         this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+  //       else if (img_type === 'map')
+  //         this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
+  //       resolve({message: 'Retrieved from cache', cacheURL: cachedImageSource});
+  //     } 
+  //     else {
+  //       // If not present -- request its download + put it in the cache.
+  //       this.cache.push({
+  //           key: url,
+  //           url: url,
+  //           completed: (image, key) => {
+  //               if (url === key) {
+  //                   cachedImageSource = fromNativeSource(image);
+  //                   if(img_type === 'pfp')
+  //                     this.postings.setItem(i, new PostItem(user, info, cachedImageSource, map_url));
+  //                   else if (img_type === 'map')
+  //                     this.postings.setItem(i, new PostItem(user, info, this.postings.getItem(i).profileSource, cachedImageSource));
+  //               }
+  //               resolve({message: 'Added to cache', cacheURL: cachedImageSource});
+  //           }
+  //       });
+  //     }
+  //   })
+  // }
 
   refreshList(args) {
     this.loadPostings(args);
   }
+
+  toViewImage(src) {
+    this.transferService.setData(src);
+    this.router.navigate(['view-image']);
+  }
+  
+  toMessages()
+  {
+    this.router.navigate(['chat-list'])
+  }
+
 
   onItemTap(args) {
     console.log(this.postings.getItem(args.index));

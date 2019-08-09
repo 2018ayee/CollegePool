@@ -2,7 +2,7 @@
 <Stacklayout height="100%">
     <StackLayout #settingsContainer>
       <!-- <Label id= "Header" text="Account Settings" textWrap="true"></Label> -->
-      <Image src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></Image>
+      <ImageCacheIt src="{{ profile }}" stretch="aspectFit" class="img-rounded profile-picture" (tap)="uploadPfp()"></ImageCacheIt>
       <Label text="Change Photo" class="header-label bold" (tap)="uploadPfp()"></Label>
 
       <ListView [items]="fields" #listView id="listView" (itemTap)="showModal($event)" class="item-list-view">

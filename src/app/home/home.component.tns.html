@@ -3,25 +3,42 @@
 <ActionItem android:visibility="collapsed" icon="~/img/menu-icon.png" ios.position="left" (tap)="showSideDrawer()" ></ActionItem>
 </ActionBar> -->
 
-    <StackLayout class="add-btn-container">
-		<FAB (tap)="showModal()" icon="res://ic_add_white_3x" rippleColor="#f1f1f1" class="fab-button"></FAB>
-	</StackLayout>
+<StackLayout class="add-btn-container">
+	<FAB (tap)="showModal()" icon="res://ic_add_white_3x" rippleColor="#f1f1f1" class="fab-button"></FAB>
+</StackLayout>
 
-	<PullToRefresh (refresh)="refreshList($event)" class="refresh">
-		<ListView [items]="postings" (itemTap)="onItemTap($event)" #listView id="listView">
-		    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-		        <StackLayout [class.odd]="odd" [class.even]="even" class="post">
-		        	  <StackLayout orientation="horizontal">
-		        	  	<Image [src]="item.profileSource" class="profile-picture" stretch="aspectFit"></Image>
-		        	  	<StackLayout>
-			              	<Label textWrap="true" id="post-name" class="name-label" [text]="item.username"></Label>
-			              	<Label textWrap="true" id="post-info" class="info-label" [text]="item.info"></Label>
-			            </StackLayout>
-		              </StackLayout>
-					  <Image [src]="item.mapSource" stretch="aspectFit" class="posting-map"></Image>
-		        </StackLayout>
-		    </ng-template>
-		</ListView>
-	</PullToRefresh>
-	<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
-  </ActivityIndicator>
+<PullToRefresh (refresh)="refreshList($event)" class="refresh">
+	<ListView [items]="postings" (itemTap)="onItemTap($event)" #listView id="listView">
+		<ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+			<StackLayout [class.odd]="odd" [class.even]="even" class="post">
+				<StackLayout orientation="horizontal">
+					<StackLayout>
+						<ImageCacheIt [src]="item.profileSource" class="profile-picture" stretch="aspectFit">
+						</ImageCacheIt>
+						<!-- <ImageCacheIt [src]="item.status" class="status-icon" stretch="aspectFill"></ImageCacheIt> -->
+					</StackLayout>
+					<StackLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<Label textWrap="true" row=0 id="post-name" class="name-label"
+									[text]="item.username"></Label>
+								<ImageCacheIt [src]="item.status" row=0 class="status-icon" stretch="aspectFit">
+								</ImageCacheIt>
+							</StackLayout>
+							<Label textWrap="true" row=0 horizontalAlignment="right" class="price-label"
+								[text]="item.price"></Label>
+						</GridLayout>
+						<GridLayout row="auto" cols="*">
+							<Label textWrap="true" row="0" id="post-info" class="info-label" [text]="item.info"></Label>
+							<!-- <Label textWrap="true" row="0" id="post-info" class="cap-label" horizontalAlignment = "right" [text]="item.capacity"></Label> -->
+						</GridLayout>
+					</StackLayout>
+				</StackLayout>
+				<ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map"
+					(tap)="toViewImage(item.mapSource)"></ImageCacheIt>
+			</StackLayout>
+		</ng-template>
+	</ListView>
+</PullToRefresh>
+<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
+</ActivityIndicator>

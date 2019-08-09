@@ -9,6 +9,7 @@ Label {
 	color: black;
 	font-weight: 700;
 	font-size: 17;
+	margin-right: 10;
 }
 
 .info-label {
@@ -18,10 +19,18 @@ Label {
 	color: #696969;
 }
 
+.time-label {
+	margin-top: 4;
+	margin-bottom: 16;
+	color: #696969;
+	text-align: right;
+	margin-right: 10;
+}
+
 .profile-picture {
 	height: 60;
 	width: 60;
-	border-radius: 100%;
+	border-radius: 30;
 	vertical-align: center;
 	margin-left: 16;
 	margin-top: 14;

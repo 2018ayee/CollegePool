@@ -5,6 +5,7 @@
 	<color name="ns_accent">#33B5E5</color>
     <color name="ns_blue">#272734</color>
     <color name="cpool_purple">#AC00E6</color>
+    <color name="white">#FFFFFF</color>
     <!--uCrop Activity-->
     <color name="ucrop_color_toolbar">#F5F5F5</color>
     <color name="ucrop_color_statusbar">#a234c7</color>

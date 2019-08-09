@@ -1,0 +1,31 @@
+<Page.actionBar>
+    <ActionBar title="" android:horizontalAlignment="center" ios:horizontalAlignment="center">
+    	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+    </ActionBar>
+</Page.actionBar>
+
+<StackLayout>
+	<StackLayout class="header-wrapper">
+		<Label text="Ride information" class="header-label" textWrap="true"></Label>
+	</StackLayout>
+
+	<ImageCacheIt src="{{ map_url }}" class="posting-map" stretch="aspectFit" (tap)="toViewImage()"></ImageCacheIt>
+	<Button text="View post" class="btn btn-primary m-t-20" (tap)="viewPost()"></Button>
+
+	<StackLayout class="header-wrapper">
+		<Label text="Members" class="header-label" textWrap="true"></Label>
+	</StackLayout>
+
+	<GridLayout>
+		<ListView [items]="users" (itemTap)="onItemTap($event)" #listView class="users-list" visibility="collapse">
+		    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+		        <StackLayout [class.odd]="odd" [class.even]="even" class="post" orientation="horizontal">
+	        	  	<ImageCacheIt [src]="item.profileSource" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
+		            <Label textWrap="true" id="post-name" class="name-label" [text]="item.username"></Label>
+		        </StackLayout>
+		    </ng-template>
+		</ListView>
+		<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
+  		</ActivityIndicator>
+	</GridLayout>
+</StackLayout>

@@ -32,7 +32,7 @@ export class HistoryComponent implements OnInit {
   postings = new ObservableArray<PostItem>();
   p = [];
   ids = [];
-  cache = new Cache();
+  // cache = new Cache();
 
   constructor(private logincheckService: LogincheckService, private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
 
@@ -64,8 +64,8 @@ export class HistoryComponent implements OnInit {
   }
 
   createPosting(data, id) {
-    this.cache.placeholder = fromFile("~/img/gray_background.jpg");
-    this.cache.maxRequests = 5;
+    // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
+    // this.cache.maxRequests = 5;
     let info_label = "";
     if(data.capacity != "-1")
       info_label = "Offering ride leaving " + data.date + " from " + data.startAddress + " to " + data.endAddress + " for " + data.price;
@@ -75,8 +75,8 @@ export class HistoryComponent implements OnInit {
     usersCollection.doc(data.uid).get().then((doc) => {
       if(doc.exists) {
         var url = doc.data().profile_source;
-        if(url.substring(0, 27) === 'https://graph.facebook.com/')
-          url += '?height=300';
+        // if(url.substring(0, 27) === 'https://graph.facebook.com/')
+        //   url += '?height=300';
         this.postings.push(new PostItem(data.user, info_label, url, data.map_url));
         this.p.push(data)
         this.ids.push(id)
@@ -88,27 +88,27 @@ export class HistoryComponent implements OnInit {
     this.loadPostings(args);
   }
 
-  addCache(url) {
-    let cachedImageSource;
-    const myImage = this.cache.get(url);
-    if (myImage) {
-        // If present -- use it.
-        cachedImageSource = fromNativeSource(myImage);
-        return cachedImageSource;
-    } else {
-        // If not present -- request its download + put it in the cache.
-        this.cache.push({
-            key: url,
-            url: url,
-            completed: (image, key) => {
-                if (url === key) {
-                    cachedImageSource = fromNativeSource(image);
-                    return cachedImageSource;
-                }
-            }
-        });
-    }
-  }
+  // addCache(url) {
+  //   let cachedImageSource;
+  //   const myImage = this.cache.get(url);
+  //   if (myImage) {
+  //       // If present -- use it.
+  //       cachedImageSource = fromNativeSource(myImage);
+  //       return cachedImageSource;
+  //   } else {
+  //       // If not present -- request its download + put it in the cache.
+  //       this.cache.push({
+  //           key: url,
+  //           url: url,
+  //           completed: (image, key) => {
+  //               if (url === key) {
+  //                   cachedImageSource = fromNativeSource(image);
+  //                   return cachedImageSource;
+  //               }
+  //           }
+  //       });
+  //   }
+  // }
 
   onItemTap(args) {
     this.transferService.setData({
@@ -116,6 +116,11 @@ export class HistoryComponent implements OnInit {
       postItem: this.postings.getItem(args.index)
     })
     this.router.navigate(['posting-info'])
+  }
+  
+  toViewImage(src) {
+    this.transferService.setData(src);
+    this.router.navigate(['view-image']);
   }
 
 }

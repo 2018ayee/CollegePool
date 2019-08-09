@@ -4,7 +4,8 @@
     </ActionBar>
 </Page.actionBar>
 
-<TabView [(ngModel)]="tabSelectedIndex" (tabItemTap)="home()" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom" selectedTabTextColor="#ac00e6" #tabView>
+<GridLayout>
+<TabView [(ngModel)]="tabSelectedIndex" (tabItemTap)="home()" (selectedIndexChanged)="onSelectedIndexChanged($event)" androidTabsPosition="bottom" selectedTabTextColor="#ac00e6" #tabView tabBackgroundColor="white">
     <Page *tabItem="homeTab">
     	<app-home></app-home>
     </Page>
@@ -18,6 +19,7 @@
     	<app-settings></app-settings>
     </Page>
 </TabView>
+</GridLayout>
 
 
 

@@ -9,9 +9,12 @@
   margin-right: 30;
   flex-grow: 2;
   vertical-align: middle;
+  margin-top: 100;
+  margin-bottom: 50;
 }
 
 .logo {
+  /*margin-top: 15;*/
   margin-bottom: 72;
   height: 120;
   font-weight: bold;
@@ -54,9 +57,13 @@
   horizontal-align: center;
   color: #A8A8A8;
   font-size: 16;
+  /* margin-bottom: 20; */
 }
 .sign-up-label {
-  margin-bottom: 20;
+  horizontal-align: center;
+  color: #A8A8A8;
+  font-size: 16;
+   margin-bottom: 20; 
 }
 .bold {
   color: #000000; 
@@ -64,3 +71,59 @@
 .activity-indicator {
   color: #ac00e6;
 }
+
+/* @keyframes show {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dialogOpen .form {
+  opacity: 0.15;
+}
+.dialogOpen .redirect {
+  opacity: 0.15;
+}
+
+.dialogOpen .dialog-wrapper {
+  visibility: visible;
+  animation-name: show;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+.dialog-wrapper {
+  visibility: collapse;
+  opacity: 0;
+  horizontal-align: center;
+  vertical-align: center;
+}
+
+.dialog {
+  border-width: 1px;
+  border-color: black;
+  background-color: white;
+  width: 70%;
+  margin: auto;
+  padding: 20; 
+
+}
+.dialog Label {
+  margin: 0 15 15 15;
+  color: black;
+}
+.btn-close{
+  height: 50;
+  background-color: #696969;
+  border-radius: 5;
+  font-size: 18;
+  color: white;
+  font-weight: 400;
+}
+.btn-verify{
+  height: 50;
+  margin: 15 5 15 5;
+  background-color: #ac00e6;
+  color: white;
+  border-radius: 5;
+  font-size: 18;
+  font-weight: 400;
+} */
