@@ -1,25 +1,53 @@
 <Page.actionBar>
-    <ActionBar title="Post">
-    	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
-	    <ActionItem (tap)="promptDelete()"
-	      ios.systemIcon="16" ios.position="right"
-	      text="Delete" android.position="popup" #deleteItem></ActionItem>
-	    <ActionItem (tap)="onReport()"
-	      ios.systemIcon="9" ios.position="right"
-	      text="Report" android.position="popup"></ActionItem>
-    </ActionBar>
+	<ActionBar title="Post">
+		<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+		<ActionItem (tap)="promptDelete()" ios.systemIcon="16" ios.position="right" text="Delete"
+			android.position="popup" #deleteItem></ActionItem>
+		<ActionItem (tap)="onReport()" ios.systemIcon="9" ios.position="right" text="Report" android.position="popup">
+		</ActionItem>
+	</ActionBar>
 </Page.actionBar>
-<GridLayout rows="2*,auto,10*" #layout>
-	<StackLayout orientation="horizontal" row="0" class="label-container" #infoContainer>
-		<ImageCacheIt src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
-	  	<StackLayout>
-	      	<Label textWrap="true" id="post-name" class="name-label" text="{{ username }}"></Label>
-	      	<Label textWrap="true" id="post-info" class="info-label" text="{{ info }}"></Label>
-	    </StackLayout>
+<GridLayout rows="auto,auto,auto" #layout>
+	<StackLayout [class.odd]="odd" [class.even]="even" class="post">
+		<StackLayout orientation="horizontal" #infoContainer>
+			<StackLayout>
+				<ImageCacheIt src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
+			</StackLayout>
+			<StackLayout>
+				<GridLayout row="auto" cols="*">
+					<StackLayout orientation="horizontal">
+						<Label textWrap="true" id="post-name" row=0 class="name-label" text="{{ username }}"></Label>
+						<ImageCacheIt src="{{ status }}" row=0 class="status-icon" stretch="aspectFit">
+						</ImageCacheIt>
+					</StackLayout>
+					<Label textWrap="true" row=0 horizontalAlignment="right" class="price-label"
+						text="{{price}}"></Label>
+				</GridLayout>
+				<GridLayout row="auto" cols="*">
+					<StackLayout orientation="horizontal">
+						<ImageCacheIt src="~/img/loc.png" row=0 class="text-icon" stretch="aspectFit">
+						</ImageCacheIt>
+						<Label textWrap="true" row="0" id="post-info" class="info-label" text="{{info}}"></Label>
+					</StackLayout>
+				</GridLayout>
+				<GridLayout row="auto" cols="*">
+					<StackLayout orientation="horizontal">
+						<ImageCacheIt src="~/img/clock.png" row=0 class="second-text-icon" stretch="aspectFit">
+						</ImageCacheIt>
+						<Label textWrap="true" row="0" id="post-info" class="cap-label" text="{{date}}"></Label>
+						<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon" stretch="aspectFit">
+						</ImageCacheIt>
+						<Label textWrap="true" row="0" id="post-info" class="cap-label" text="{{capacity}}"></Label>
+					</StackLayout>
+				</GridLayout>
+			</StackLayout>
+		</StackLayout>
 	</StackLayout>
 	<StackLayout class="btn-container" #buttonContainer row="1">
-		<Button class="connect-btn" (tap)="onConnectTap()" text="{{ buttonText }}"></Button>
-	</StackLayout>
-	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" row="2" #mapView></MapView>
+			<Button class="connect-btn" (tap)="onConnectTap()" text="{{ buttonText }}"></Button>
+		</StackLayout>
+	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" row="2"
+	#mapView></MapView>
 </GridLayout>
-<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator"></ActivityIndicator>
+<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
+</ActivityIndicator>

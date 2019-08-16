@@ -14,8 +14,8 @@ import { Cache } from "tns-core-modules/ui/image-cache";
 
 
 class PostItem {
-    constructor(public username: String, public info: string, public profileSource: string, public mapSource: string,
-      public price: string, public status: string, public capacity: string, public date: string) { }
+  constructor(public username: String, public info: string, public profileSource: string, public mapSource: string,
+    public price: string, public status: string, public capacity: string, public date: string) { }
 }
 
 @Component({
@@ -38,29 +38,29 @@ export class HistoryComponent implements OnInit {
   constructor(private logincheckService: LogincheckService, private transferService: TransferService, private router: Router, private postingService: PostingService, private addService: DynamicAddService) { }
 
   ngOnInit() {
-  	this.logincheckService.loginCheck();
-  	this.user = this.logincheckService.getUser()
-  	this.loadPostings();
+    this.logincheckService.loginCheck();
+    this.user = this.logincheckService.getUser()
+    this.loadPostings();
   }
 
-  loadPostings(args=null) {
+  loadPostings(args = null) {
     this.postings.splice(0);
     var postIds = [];
     var postingsCollection = firebase.firestore.collection('postings');
     var usersCollection = firebase.firestore.collection('users').doc(this.user);
     usersCollection.get().then(doc => {
-    	postIds = doc.data().posts;
-    	for(var i = 0; i < postIds.length; i++) {
-    		postingsCollection.doc(postIds[i]).get().then(doc => {
+      postIds = doc.data().posts;
+      for (var i = 0; i < postIds.length; i++) {
+        postingsCollection.doc(postIds[i]).get().then(doc => {
           this.createPosting(doc.data(), doc.id);
-    		})
-    	}
-    	if(args != null) {
-	        var pullRefresh = args.object;
-	        pullRefresh.refreshing = false;
-	    }
-	    var listView = <ListView> this.lv.nativeElement;
-	    listView.scrollToIndex(postIds.length - 1);
+        })
+      }
+      if (args != null) {
+        var pullRefresh = args.object;
+        pullRefresh.refreshing = false;
+      }
+      var listView = <ListView>this.lv.nativeElement;
+      listView.scrollToIndex(postIds.length - 1);
     })
   }
 
@@ -68,28 +68,28 @@ export class HistoryComponent implements OnInit {
     // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
     // this.cache.maxRequests = 5;
     let date = data.date.split(" ")
-    date = date[1]+" "+date[2]+" "+date[3];
+    date = date[1] + " " + date[2] + " " + date[3];
     let info_label = data.startAddress + " to " + data.endAddress;
     let dat = date;
     let price;
     let type;
     let cap;
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
-    if(data.capacity != "-1"){
-      cap = 2+"/"+ data.capacity+" Seats Left";
+    if (data.capacity >"0") {
+      cap = 2 + "/" + data.capacity + " Seats Left";
       // info_label+= ", "+2+"/"+ data.capacity+" Seats Remaining";
       price = data.price
       type = '~/img/steering-wheel-2.png'
     }
-    else{
+    else {
       // info_label += "\nEnding At: " + data.endAddress + + "\nRiders: "+ data.capacity;
-       cap = "Riders: "+ "2";
+      cap = "Riders: " + Math.abs(data.capacity)
       // info_label+= ","+ " 2 "+"Riders";
       type = '~/img/passenger-2.png'
     }
     const usersCollection = firebase.firestore.collection('users');
     usersCollection.doc(data.uid).get().then((doc) => {
-      if(doc.exists) {
+      if (doc.exists) {
         var url = doc.data().profile_source;
         // if(url.substring(0, 27) === 'https://graph.facebook.com/')
         //   url += '?height=300';
@@ -128,12 +128,12 @@ export class HistoryComponent implements OnInit {
 
   onItemTap(args) {
     this.transferService.setData({
-      postInfo: {id: this.ids[args.index], data: this.p[args.index]},
+      postInfo: { id: this.ids[args.index], data: this.p[args.index] },
       postItem: this.postings.getItem(args.index)
     })
     this.router.navigate(['posting-info'])
   }
-  
+
   toViewImage(src) {
     this.transferService.setData(src);
     this.router.navigate(['view-image']);

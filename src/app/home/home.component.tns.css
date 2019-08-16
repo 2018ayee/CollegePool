@@ -41,7 +41,7 @@ Label {
 	color: black;
 	font-weight: 400;
 	font-size: 14;
-	margin-right: 5;
+	margin-right: 10;
 }
 .cap-label {
 	margin-bottom: 16;
@@ -80,8 +80,8 @@ Label {
 .posting-map {
 	margin-bottom: 16;
 	border-radius: 10;
-	height: 220;
-	width: 340;
+	height: 176;
+	width: 272;
 }
 
 .profile-picture {
@@ -100,7 +100,6 @@ Label {
 	vertical-align: top;
 	margin-top: 21;
 	margin-left: 7;
-	background-color: white;
 }
 
 .text-icon {
@@ -111,7 +110,6 @@ Label {
 	margin-right:4;
 	/* border-radius: 25; */
 	vertical-align: top;
-	background-color: white;
 }
 .second-text-icon {
 	height: 15;
@@ -121,7 +119,6 @@ Label {
 	margin-top: 2;
 	/* border-radius: 25; */
 	vertical-align: top;
-	background-color: white;
 	margin-bottom: 16;
 }
 .activity-indicator {

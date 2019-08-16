@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
     let type;
     let cap;
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
-    if(data.capacity != "-1"){
+    if(data.capacity >"0"){
       cap = 2+"/"+ data.capacity+" Seats Left";
       // info_label+= ", "+2+"/"+ data.capacity+" Seats Remaining";
       price = data.price
@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit {
     }
     else{
       // info_label += "\nEnding At: " + data.endAddress + + "\nRiders: "+ data.capacity;
-       cap = "Riders: "+ "2";
+       cap = "Riders: "+ Math.abs(data.capacity)
       // info_label+= ","+ " 2 "+"Riders";
       type = '~/img/passenger-2.png'
     }
