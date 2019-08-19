@@ -154,7 +154,7 @@ export class PostingInfoComponent implements OnInit {
   }
 
   onNavBtnTap() {
-  	this.router.navigate(['navigation'], {clearHistory: true});
+  	this.router.back();
   }
 
   deleteFiles() {

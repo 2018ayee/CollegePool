@@ -1,1 +1,215 @@
 /* Add mobile styles for the component here.  */
+.field-label {
+	border-radius: 5;
+	background-color: white;
+	height: 52%;
+	padding: 9%;
+	color: #333;
+	border-color: #996fd6;
+	border-width: 1;
+	margin-right: 14;
+	text-align: left;
+}
+
+.search-container {
+	background-color: #d0c9ea;
+	vertical-align: top;
+	text-align: center;
+}
+
+.label-container-top {
+	height: 100%;
+	width: 90%;
+	/*vertical-align: center;*/
+	text-align: left;
+	vertical-align: bottom;
+	margin-bottom: 5%;
+}
+
+.label-container-bottom {
+	height: 100%;
+	width: 90%;
+	/*vertical-align: center;*/
+	text-align: left;
+	vertical-align: top;
+	margin-top: 5%;
+}
+
+.capacity-label-container {
+	height: 100%;
+	vertical-align: top;
+	text-align: left;
+	margin-top: 5%;
+}
+
+.capacity-field-label {
+	text-align: left;
+	color: black;
+	margin-top: 12%;
+}
+
+.switch {
+	color: #ac00e6;
+	background-color: #996fd6;
+	vertical-align: top;
+	margin-top: 12%;
+}
+
+.checkbox {
+	margin-top: 6%;
+	vertical-align: top;
+}
+
+.checkbox-icon {
+	width: 20;
+	height: 20;
+	vertical-align: top;
+	margin-left: 0;
+	margin-top: 16%;
+}
+
+.checkbox-left {
+	margin-left: 14;
+	margin-right: 0;
+}
+
+.label-icon {
+	width: 20;
+	height: 20;
+	margin: 8;
+}
+
+.seats {
+	margin: 0;
+	padding: 8;
+}
+
+.label-icon-left {
+	width: 20;
+	height: 20;
+	margin: 8;
+	margin-left: 14;
+}
+
+.top {
+	vertical-align: bottom;
+	margin-bottom: 12%;
+}
+
+.bottom {
+	vertical-align: top;
+	margin-top: 12%;
+}
+
+.slider-container {
+	vertical-align: top;
+	text-align: center;
+	margin-top: 0;
+}
+
+.slider-label {
+	text-align: center;
+}
+
+.slider-value-label {
+	font-size: 16;
+	text-align: center;
+}
+
+.slider-header-label {
+	width: 100%;
+	text-align: center;
+}
+
+Label {
+	text-align: left;
+}
+
+.info-label {	
+	color: black;
+	font-weight: 400;
+	font-size: 14;
+	margin-right: 10;
+}
+.cap-label {
+	margin-bottom: 16;
+	color: black;
+	font-weight: 400;
+	font-size: 14;
+	margin-right: 18;
+}
+
+.name-label {
+	margin-top: 16;
+	margin-left: 18;
+	color: black;
+	font-weight: 700;
+	font-size: 17;
+}
+
+.price-label {
+	margin-top: 16;
+	margin-right: 18;
+	color: green;
+	font-weight: 500;
+	font-size: 16;
+	margin-bottom: 5;
+}
+
+.post {
+	/*border-bottom-width: 1;*/
+	border-color: #f1f1f1;
+}
+
+.post:highlighted {
+	/*background-color: #f1f1f1;*/
+}
+
+.posting-map {
+	margin-bottom: 16;
+	border-radius: 10;
+	height: 220;
+	width: 340;
+}
+
+.profile-picture {
+	height: 50;
+	width: 50;
+	border-radius: 25;
+	vertical-align: top;
+	margin-left: 16;
+	margin-top: 20;
+}
+
+.status-icon {
+	height: 15;
+	width: 15;
+	/* border-radius: 25; */
+	vertical-align: top;
+	margin-top: 21;
+	margin-left: 7;
+}
+
+.text-icon {
+	height: 15;
+	width: 15;
+	margin-top: 2;
+	margin-left: 18;
+	margin-right:4;
+	/* border-radius: 25; */
+	vertical-align: top;
+}
+.second-text-icon {
+	height: 15;
+	width: 15;
+	margin-left: 18;
+	margin-right: 4;
+	margin-top: 2;
+	/* border-radius: 25; */
+	vertical-align: top;
+	margin-bottom: 16;
+}
+
+.activity-indicator {
+	color: #ac00e6;
+}

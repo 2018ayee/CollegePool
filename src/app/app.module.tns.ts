@@ -42,6 +42,8 @@ import { MaskedTextFieldModule } from "nativescript-masked-text-field/angular";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
+import { NgShadowModule } from 'nativescript-ng-shadow';
+import { TNSCheckBoxModule } from '@nstudio/nativescript-checkbox/angular';
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -70,6 +72,7 @@ import { registerElement } from 'nativescript-angular/element-registry';
 import { ForgetFormComponent } from './forget-form/forget-form.component';
 import { TNSImageCacheItModule } from 'nativescript-image-cache-it/angular';
 import { ChatInfoComponent } from './chat-info/chat-info.component';
+import { NumberPickerComponent } from './number-picker/number-picker.component';
 
 registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
 registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
@@ -129,6 +132,7 @@ application.on(application.launchEvent, function (args) {
     ViewImageComponent,
     ForgetFormComponent,
     ChatInfoComponent,
+    NumberPickerComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -146,7 +150,9 @@ application.on(application.launchEvent, function (args) {
     HttpClientModule,
     NativeScriptFacebookModule,
     MaskedTextFieldModule,
-    TNSImageCacheItModule
+    TNSImageCacheItModule,
+    NgShadowModule,
+    TNSCheckBoxModule
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
@@ -156,7 +162,7 @@ application.on(application.launchEvent, function (args) {
   DatePipe, GoogleMapsService],
   bootstrap: [AppComponent],
   entryComponents: [PostingComponent, PaymentMethodComponent, AddModalComponent, LocationComponent, AddPaymentComponent, AddCardPaymentComponent, 
-  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent, ReauthComponent, ForgetFormComponent],
+  PaymentInfoComponent, ConfirmationComponent, SettingsformComponent, ReauthComponent, ForgetFormComponent, NumberPickerComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 /*

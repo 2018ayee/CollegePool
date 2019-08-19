@@ -1,6 +1,104 @@
 <!-- <app-navigation></app-navigation> -->
+<!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]="postSearch">
+	<TKEntityProperty tkDataFormProperty name="startLocation" displayName="Start Location" imageResource="~/img/location-2.png" hint="Start Location" index="0"></TKEntityProperty>
+	<TKEntityProperty tkDataFormProperty name="endLocation" displayName="End Location" imageResource="~/img/loc.png" hint="End Location" index="1"></TKEntityProperty>
+	<TKEntityProperty tkDataFormProperty name="date" displayName="Date" index="2">
+	    <TKPropertyEditor tkEntityPropertyEditor type="DatePicker"></TKPropertyEditor>
+	</TKEntityProperty>
+
+	<TKEntityProperty tkDataFormProperty name="capacity" displayName="Number of passengers" imageResource="~/img/chair-2.png" hint="Number of passengers" index="3">
+	    <TKPropertyEditor tkEntityPropertyEditor type="Stepper">
+	    	<TKPropertyEditorParams tKEditorParams minimum="1" maximum="8"></TKPropertyEditorParams>
+	    </TKPropertyEditor>
+	</TKEntityProperty>
+</RadDataForm> -->
+
 <StackLayout>
-  <Label text="search works" textWrap="true"></Label>
-  <Label text="This is a migrated component" textWrap="true"></Label>
-  <Label text="Update it to provide the UI elements required in your mobile app" textWrap="true"></Label>
+	<StackLayout class="search-container" height="23%" shadow="6" shadowColor="black" shadowRadius="4" bgcolor="#e1d5e8">
+		<GridLayout rows="*, *" columns="*, 4*, *, 4*" height="100%">
+			<Image src="~/img/location-2.png" row="0" col="0" class="label-icon-left top"></Image>
+			<Image src="~/img/loc.png" row="0" col="2" class="label-icon top"></Image>
+			<Image src="~/img/clock.png" row="1" col="0" class="label-icon-left bottom"></Image>
+			<Image src="~/img/chair.png" row="1" col="2" (tap)="pickNumber()" class="label-icon bottom seats"></Image>
+
+			<StackLayout row="0" col="1" class="label-container-top">
+				<Label text="{{ startLabel }}" (tap)="showModal('start')" class="field-label"></Label>
+			</StackLayout>
+			<StackLayout row="0" col="4" class="label-container-top">
+				<Label text="{{ endLabel }}" (tap)="showModal('end')" class="field-label"></Label>
+			</StackLayout>
+			<StackLayout row="1" col="1" class="label-container-bottom">
+				<Label text="{{ dateLabel }}" (tap)="selectDate()" class="field-label"></Label>
+			</StackLayout>
+
+			<StackLayout orientation="horizontal" row="1" col="4" class="label-container-bottom">
+				<Label text="{{ capacity }}" (tap)="pickNumber()" class="capacity-field-label" textWrap="true"></Label>
+				<Image src="~/img/passenger-2.png" class="checkbox-icon checkbox-left"></Image>
+				<Switch checked="true" (checkedChange)="onCheckedChange($event)" class="m-15 switch"></Switch>
+				<Image src="~/img/steering-wheel-2.png" class="checkbox-icon"></Image>
+			</StackLayout>
+		</GridLayout>
+		
+<!-- 		<StackLayout orientation="horizontal" class="slider-header-label">
+			<Label text="Search radius: " class="slider-value-label"></Label>
+			<Label text="{{ distance }}" class="slider-value-label"></Label>
+		</StackLayout>
+		<GridLayout class="m-15 slider-container" rows="auto" columns="50 * 50" height="20%">
+		    <Label class="h3 slider-label" text="5" textWrap="true" row="0" col="0"></Label>
+		    <Slider minValue="5" maxValue="25" [(ngModel)]="distance" row="0"
+		     col="1"></Slider>
+		    <Label class="h3 slider-label" text="25" textWrap="true" row="0" col="2"></Label>
+		</GridLayout> -->
+	</StackLayout>
+
+	<ListView [items]="postings" (itemTap)="onItemTap($event)" #listView id="listView" height="80%">
+		<ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+			<StackLayout [class.odd]="odd" [class.even]="even" class="post">
+				<StackLayout orientation="horizontal">
+					<StackLayout>
+						<ImageCacheIt [src]="item.profileSource" class="profile-picture" stretch="aspectFit">
+						</ImageCacheIt>
+						<!-- <ImageCacheIt [src]="item.status" class="status-icon" stretch="aspectFill"></ImageCacheIt> -->
+					</StackLayout>
+					<StackLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<Label textWrap="true" row=0 id="post-name" class="name-label"
+									[text]="item.username"></Label>
+								<ImageCacheIt [src]="item.status" row=0 class="status-icon" stretch="aspectFit">
+								</ImageCacheIt>
+							</StackLayout>
+							<Label textWrap="true" row=0 horizontalAlignment="right" class="price-label"
+								[text]="item.price"></Label>
+						</GridLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<ImageCacheIt src="~/img/loc.png" row=0 class="text-icon" stretch="aspectFit">
+								</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="info-label"
+									[text]="item.info"></Label>
+								<!-- <Label textWrap="true" row="0" id="post-info" class="cap-label" horizontalAlignment = "right" [text]="item.capacity"></Label> -->
+							</StackLayout>
+						</GridLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<ImageCacheIt src="~/img/clock.png" row=0 class="second-text-icon" stretch="aspectFit">
+								</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="cap-label"
+									[text]="item.date"></Label>
+									<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon" stretch="aspectFit">
+										</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="cap-label"
+									[text]="item.capacity"></Label>
+							</StackLayout>
+						</GridLayout>
+					</StackLayout>
+				</StackLayout>
+				<ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map"
+					(tap)="toViewImage(item.mapSource)"></ImageCacheIt>
+			</StackLayout>
+		</ng-template>
+	</ListView>
+	<ActivityIndicator #activityIndicator busy="false" width="40" height="40" class="activity-indicator">
+	</ActivityIndicator>
 </StackLayout>

@@ -1,5 +1,9 @@
 [
     {
+        "name": "@nstudio/nativescript-checkbox",
+        "directory": "..\\..\\node_modules\\@nstudio\\nativescript-checkbox"
+    },
+    {
         "name": "@nstudio/nativescript-floatingactionbutton",
         "directory": "..\\..\\node_modules\\@nstudio\\nativescript-floatingactionbutton"
     },
@@ -54,6 +58,10 @@
     {
         "name": "nativescript-modal-datetimepicker",
         "directory": "..\\..\\node_modules\\nativescript-modal-datetimepicker"
+    },
+    {
+        "name": "nativescript-ng-shadow",
+        "directory": "..\\..\\node_modules\\nativescript-ng-shadow"
     },
     {
         "name": "nativescript-plugin-firebase",
