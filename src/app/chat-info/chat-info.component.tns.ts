@@ -67,20 +67,42 @@ export class ChatInfoComponent implements OnInit {
   }
 
   async viewPost() {
-  	var info_label;
-  	if(this.postInfo.capacity != "-1")
-      info_label = "Offering ride leaving " + this.postInfo.date + " from " + this.postInfo.startAddress + " to " + this.postInfo.endAddress + " for " + this.postInfo.price;
-    else
-      info_label = "Requesting ride leaving " + this.postInfo.date + " from " + this.postInfo.startAddress + " to " + this.postInfo.endAddress;
-  	var profileSource;
+	let date = this.postInfo.date.split(" ")
+    date = date[1]+" "+date[2]+" "+date[3];
+    let info_label = this.postInfo.startAddress + " to " + this.postInfo.endAddress;
+    let dat = date;
+    let price;
+    let type;
+    let cap;
+    // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
+    if(this.postInfo.capacity != "-1"){
+      cap = 2+"/"+ this.postInfo.capacity+" Seats Left";
+      // info_label+= ", "+2+"/"+ this.postInfo.capacity+" Seats Remaining";
+      price = this.postInfo.price
+      type = '~/img/steering-wheel-2.png'
+    }
+    else{
+      // info_label += "\nEnding At: " + this.postInfo.endAddress + + "\nRiders: "+ this.postInfo.capacity;
+       cap = "Riders: "+ "2";
+      // info_label+= ","+ " 2 "+"Riders";
+      type = '~/img/passenger-2.png'
+    }
+  	// var info_label;
+  	// if(this.postInfo.capacity != "-1")
+    //   info_label = "Offering ride leaving " + this.postInfo.date + " from " + this.postInfo.startAddress + " to " + this.postInfo.endAddress + " for " + this.postInfo.price;
+    // else
+    //   info_label = "Requesting ride leaving " + this.postInfo.date + " from " + this.postInfo.startAddress + " to " + this.postInfo.endAddress;
+	let profileSource;
+	
   	await firebase.firestore.collection('users').doc(this.postInfo.uid).get().then((doc) => {
-  		profileSource = doc.data().profile_source;
+		  profileSource = doc.data().profile_source;
   	})
 
   	this.transferService.setData({
-  		postInfo: {id: this.chatId, data: this.postInfo},
-  		postItem: {info: info_label, profileSource: profileSource, username: this.postInfo.user}
-  	});
+		  postInfo: {id: this.chatId, data: this.postInfo},
+		  postItem: {profileSource: profileSource, status: type, capacity: cap, date: dat, price: price, username: this.postInfo.user, info:info_label}
+  		// postItem: {info: info_label, profileSource: profileSource, username: this.postInfo.user}
+	  });
   	this.router.navigate(['posting-info']);
   }
 

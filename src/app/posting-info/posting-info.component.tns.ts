@@ -48,6 +48,10 @@ export class PostingInfoComponent implements OnInit {
   username;
   buttonText;
   currentUserName;
+  status;
+  capacity;
+  date;
+  price;
 
   chatUsers = [];
   currentUser;
@@ -69,6 +73,11 @@ export class PostingInfoComponent implements OnInit {
     chatButton.visibility = 'collapse';
     this.userId = this.logincheckService.getUser();
     this.mapData = this.transferService.getData();
+    console.log("Mapdata", this.mapData.postItem)
+    this.status = this.mapData.postItem.status;
+    this.capacity = this.mapData.postItem.capacity;
+    this.date = this.mapData.postItem.date;
+    this.price = this.mapData.postItem.price;
     firebase.firestore.collection('users').doc(this.userId).get().then((doc) => {
       this.currentUser = doc.data();
       if(doc.data().chats.includes(this.mapData.postInfo.id)) {
@@ -145,7 +154,7 @@ export class PostingInfoComponent implements OnInit {
   }
 
   onNavBtnTap() {
-  	this.router.navigate(['navigation'], {clearHistory: true});
+  	this.router.back();
   }
 
   deleteFiles() {

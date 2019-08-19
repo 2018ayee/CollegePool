@@ -148,6 +148,9 @@ export class AddModalComponent implements OnInit {
         this.endLng = res.results[0].geometry.location.lng;
 
         if(this.startLocationPicked && this.endLocationPicked) {
+          if(!this.isDriving){
+            this.capacity = "-"+this.capacity;
+          }
          var postingsCollection = firebase.firestore.collection('postings');
          console.log(this.startPlace);
          console.log(this.endPlace);
@@ -300,7 +303,7 @@ export class AddModalComponent implements OnInit {
     	ridingLabel.style.fontWeight = "700";
     	ridingLabel.style.color = new Color("#ac00e6");
     	this.isDriving = false;
-    	this.capacity = "-1";
+    	// this.capacity = "-1";
     }
     else {
     	drivingLabel.style.fontWeight = "700";

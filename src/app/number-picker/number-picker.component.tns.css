@@ -1,0 +1,27 @@
+/* Add mobile styles for the component here.  */
+.header-label {
+	font-size: 18;
+	color: black;
+}
+
+.cancel-label {
+	font-size: 16;
+	padding: 12;
+	font-weight: 500;
+}
+
+.done-label {
+	font-size: 16;
+	color: #ac00e6;
+	padding: 12;
+	font-weight: 500;
+}
+
+.options-container {
+	margin-bottom: 8;
+}
+
+.header-container {
+	margin: 16;
+	margin-top: 24;
+}

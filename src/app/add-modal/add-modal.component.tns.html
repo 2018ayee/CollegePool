@@ -33,16 +33,16 @@
 	(dayChange)="onDayChanged($event)" (monthChange)="onMonthChanged($event)" (yearChange)="onYearChanged($event)" verticalAlignment="center"></DatePicker> -->
 			<Label text="When?" class="header-label bold"></Label>
 
-		  <DatePicker (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)" verticalAlignment="center"></DatePicker>
+		  <DatePicker class ="date-picker" (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)" verticalAlignment="center"></DatePicker>
 
-		  <Label *ngIf="isDriving" text="How many?" class="header-label"></Label>
-		  <GridLayout *ngIf="isDriving" class="m-15" rows="auto" columns="50 * 50">
+		  <Label text="How many?" class="header-label"></Label>
+		  <GridLayout class="m-15" rows="auto" columns="50 * 50">
 			    <Label class="h3" text="1" textWrap="true" row="10" col="0"></Label>
 			    <Slider minValue="1" maxValue="8" [(ngModel)]="capacity" row="0"
 			     col="1"></Slider>
 			    <Label class="h3" text="8" textWrap="true" row="0" col="2"></Label>
 			</GridLayout>
-		  <Label *ngIf="isDriving" text="{{ capacity }}" class="header-label-2"></Label>
+		  <Label text="{{ capacity }}" class="header-label-2"></Label>
 
 		  <Button text="Add" class="btn btn-primary submit-btn" (tap)="addPosting()"></Button>
 		</StackLayout>

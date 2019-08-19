@@ -29,8 +29,25 @@
 								[text]="item.price"></Label>
 						</GridLayout>
 						<GridLayout row="auto" cols="*">
-							<Label textWrap="true" row="0" id="post-info" class="info-label" [text]="item.info"></Label>
-							<!-- <Label textWrap="true" row="0" id="post-info" class="cap-label" horizontalAlignment = "right" [text]="item.capacity"></Label> -->
+							<StackLayout orientation="horizontal">
+								<ImageCacheIt src="~/img/loc.png" row=0 class="text-icon" stretch="aspectFit">
+								</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="info-label"
+									[text]="item.info"></Label>
+								<!-- <Label textWrap="true" row="0" id="post-info" class="cap-label" horizontalAlignment = "right" [text]="item.capacity"></Label> -->
+							</StackLayout>
+						</GridLayout>
+						<GridLayout row="auto" cols="*">
+							<StackLayout orientation="horizontal">
+								<ImageCacheIt src="~/img/clock.png" row=0 class="second-text-icon" stretch="aspectFit">
+								</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="cap-label"
+									[text]="item.date"></Label>
+									<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon" stretch="aspectFit">
+										</ImageCacheIt>
+								<Label textWrap="true" row="0" id="post-info" class="cap-label"
+									[text]="item.capacity"></Label>
+							</StackLayout>
 						</GridLayout>
 					</StackLayout>
 				</StackLayout>

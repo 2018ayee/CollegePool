@@ -3,6 +3,8 @@
 	height: 100%;
 	width: 100%;
 	vertical-align: bottom;
+	margin-bottom: 20;
+	/*margin-top: 20;*/
 }
 
 .profile-picture {
@@ -14,25 +16,77 @@
 	margin-top: 20;
 }
 
+.info-label {	
+	color: black;
+	font-weight: 400;
+	font-size: 14;
+	margin-right: 10;
+}
+.cap-label {
+	margin-bottom: 16;
+	color: black;
+	font-weight: 400;
+	font-size: 14;
+	margin-right: 18;
+}
+
 .name-label {
 	margin-top: 16;
 	margin-left: 18;
 	color: black;
 	font-weight: 700;
 	font-size: 17;
-	text-align: left;
 }
 
-.info-label {
-	margin-top: 4;
+.price-label {
+	margin-top: 16;
+	margin-right: 18;
+	color: green;
+	font-weight: 500;
+	font-size: 16;
+	margin-bottom: 5;
+}
+
+.status-icon {
+	height: 15;
+	width: 15;
+	/* border-radius: 25; */
+	vertical-align: top;
+	margin-top: 21;
+	margin-left: 7;
+}
+
+.text-icon {
+	height: 15;
+	width: 15;
+	margin-top: 2;
 	margin-left: 18;
+	margin-right:4;
+	/* border-radius: 25; */
+	vertical-align: top;
+}
+.second-text-icon {
+	height: 15;
+	width: 15;
+	margin-left: 18;
+	margin-right: 4;
+	margin-top: 2;
+	/* border-radius: 25; */
+	vertical-align: top;
 	margin-bottom: 16;
-	color: black;
-	text-align: left;
 }
 
-.label-container {
-	vertical-align: middle;
+.connect-btn{
+    background-color:#ac00e6;
+    width: 200;
+    height: 140px;
+/*    font-family: "Segoe UI",Arial,sans-serif;
+*/    color: white;
+	margin: 0 5 20 5;
+	border-radius: 5;
+	font-size: 18;
+	font-weight: 500;
+
 }
 
 .activity-indicator {
