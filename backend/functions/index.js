@@ -195,6 +195,40 @@ exports.addCustomer = functions.https.onRequest(async (req, res) => {
 	});
 });
 
+exports.getDriverPay = functions.https.onCall((data, context) => {
+ 	const DEFAULTMPG = 24.7;
+	const DEFAULTCARPRICE = 20000;
+	const LIFESPAN = 150000;
+	const OPP_COST = 10;
+	const TRAFFICADJUST = 1.2;
+	/****
+	data = {
+		"distance": distance,
+		"capacity": capacity,
+	}
+	//duration in seconds
+	***/
+	var dist = data['distance'];
+	var n = data['capacity'];
+	//var dur = data['duration'];
+	var mpg = DEFAULTMPG; //for coding in different mpg's in the future
+	var car_price = DEFAULTCARPRICE; // for coding in different car prices in the future
+	var gas_price = 1.0*dist/mpg*get_gas_price();
+
+	/*
+	var depreciation = 1.0*car_price/LIFESPAN*dist;
+	var labor = 1.0*OPP_COST/3600*dur*TRAFFICADJUST;
+	console.log(gas_price+"+"+depreciation+"+"+labor);
+	return (gas_price+depreciation+labor);
+	*/
+	return (gas_price*(1+(n-1)/3));
+
+	//return raw_price;
+  
+});
+
+
+
 exports.addPayment = functions.https.onRequest(async (req, res) => {
 	var cards;
 	var venmoAccounts;
