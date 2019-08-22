@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="ns_accent">#3d5afe</color>
+	<color name="ns_accent">#ac00e6</color>
 	<!--uCrop Activity-->
     <color name="ucrop_color_toolbar">#ac00e6</color>
     <color name="ucrop_color_statusbar">#a234c7</color>

@@ -7,48 +7,67 @@
 		</ActionItem>
 	</ActionBar>
 </Page.actionBar>
-<GridLayout rows="2*,7*,*" #layout>
-	<StackLayout [class.odd]="odd" [class.even]="even" class="post" row="0">
-		<StackLayout orientation="horizontal" #infoContainer>
-			<StackLayout>
-				<ImageCacheIt src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
-			</StackLayout>
-			<StackLayout>
-				<GridLayout rows="auto" cols="*">
-					<StackLayout orientation="horizontal">
-						<Label textWrap="true" id="post-name" row=0 class="name-label" text="{{ username }}"></Label>
-						<ImageCacheIt src="{{ status }}" row=0 class="status-icon" stretch="aspectFit">
-						</ImageCacheIt>
+<!-- <ScrollView orientation="vertical"> -->
+<GridLayout rows="4*,14*,3*" #layout>
+	<ScrollView class ="header">
+		<StackLayout [class.odd]="odd" [class.even]="even" class="post" row="0">
+			<StackLayout orientation="horizontal" #infoContainer>
+				<StackLayout>
+					<ImageCacheIt src="{{ profileSource }}" class="profile-picture" stretch="aspectFit"></ImageCacheIt>
+				</StackLayout>
+				<StackLayout>
+					<GridLayout rows="auto" cols="*">
+						<StackLayout orientation="horizontal">
+							<Label textWrap="true" id="post-name" row=0 class="name-label"
+								text="{{ username }}"></Label>
+							<ImageCacheIt src="{{ status }}" row=0 class="status-icon" stretch="aspectFit">
+							</ImageCacheIt>
+						</StackLayout>
+						<Label textWrap="true" row=0 horizontalAlignment="right" class="price-label"
+							text="{{price}}"></Label>
+					</GridLayout>
+					<GridLayout rows="auto" cols="*">
+						<StackLayout orientation="horizontal">
+							<ImageCacheIt src="~/img/loc.png" row=0 class="text-icon" stretch="aspectFit">
+							</ImageCacheIt>
+							<Label textWrap="true" row="0" id="post-info" class="info-label" text="{{info}}"></Label>
+						</StackLayout>
+					</GridLayout>
+					<GridLayout rows="auto" cols="*">
+						<StackLayout orientation="horizontal">
+							<ImageCacheIt src="~/img/clock.png" row=0 class="second-text-icon" stretch="aspectFit">
+							</ImageCacheIt>
+							<Label textWrap="true" row="0" id="post-info" class="cap-label" text="{{date}}"></Label>
+							<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon" stretch="aspectFit">
+							</ImageCacheIt>
+							<Label textWrap="true" row="0" id="post-info" class="cap-label" text="{{capacity}}"></Label>
+						</StackLayout>
+					</GridLayout>
+					<StackLayout class="comments" *ngIf="hasText" (tap)="showText($event)">
+						<Label visibility="visible" id="text-label-1">
+							<FormattedString>
+								<Span text="View more..." color="#696969"></Span>
+							</FormattedString>
+						</Label>
+						<Label visibility="collapse" textWrap="true" id="post-info" class="cap-label"
+							text="{{comment}}"></Label>
+						<Label visibility="collapse" id=text-label-2>
+							<FormattedString>
+								<Span text="View less" color="#696969"></Span>
+							</FormattedString>
+						</Label>
 					</StackLayout>
-					<Label textWrap="true" row=0 horizontalAlignment="right" class="price-label"
-						text="{{price}}"></Label>
-				</GridLayout>
-				<GridLayout rows="auto" cols="*">
-					<StackLayout orientation="horizontal">
-						<ImageCacheIt src="~/img/loc.png" row=0 class="text-icon" stretch="aspectFit">
-						</ImageCacheIt>
-						<Label textWrap="true" row="0" id="post-info" class="info-label" text="{{info}}"></Label>
-					</StackLayout>
-				</GridLayout>
-				<GridLayout rows="auto" cols="*">
-					<StackLayout orientation="horizontal">
-						<ImageCacheIt src="~/img/clock.png" row=0 class="second-text-icon" stretch="aspectFit">
-						</ImageCacheIt>
-						<Label textWrap="true" row="0" id="post-info" class="cap-label" text="{{date}}"></Label>
-						<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon" stretch="aspectFit">
-						</ImageCacheIt>
-						<Label textWrap="true" row="0" id="post-info" class="cap-label" text="{{capacity}}"></Label>
-					</StackLayout>
-				</GridLayout>
+				</StackLayout>
 			</StackLayout>
 		</StackLayout>
-	</StackLayout>
+	</ScrollView>
 
 	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" row="1"
-	#mapView></MapView>
-		<StackLayout class="btn-container" #buttonContainer row="2">
-			<Button class="connect-btn" (tap)="onConnectTap()" text="{{ buttonText }}"></Button>
-		</StackLayout>
+		height=500 #mapView></MapView>
+	<StackLayout class="btn-container" #buttonContainer row="2">
+		<Button class="connect-btn" (tap)="onConnectTap()" text="{{ buttonText }}"></Button>
+	</StackLayout>
 </GridLayout>
+<!-- </ScrollView> -->
 <ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
 </ActivityIndicator>

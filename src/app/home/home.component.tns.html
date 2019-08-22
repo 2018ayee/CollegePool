@@ -43,12 +43,28 @@
 								</ImageCacheIt>
 								<Label textWrap="true" row="0" id="post-info" class="cap-label"
 									[text]="item.date"></Label>
-									<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon" stretch="aspectFit">
-										</ImageCacheIt>
+								<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon"
+									stretch="aspectFit">
+								</ImageCacheIt>
 								<Label textWrap="true" row="0" id="post-info" class="cap-label"
 									[text]="item.capacity"></Label>
 							</StackLayout>
 						</GridLayout>
+						<StackLayout class="comments" *ngIf="item.hasText" (tap)="showText($event)">
+							<Label visibility="visible" id="text-label-1">
+								<FormattedString>
+									<Span text="View more..." color="#696969"></Span>
+								</FormattedString>
+							</Label>
+							<Label visibility="collapse" textWrap="true" id="post-info" class="cap-label"
+								[text]="item.comment"></Label>
+							<Label visibility="collapse" id=text-label-2>
+								<FormattedString>
+									<Span text="View less" color="#696969"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+
 					</StackLayout>
 				</StackLayout>
 				<ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map"

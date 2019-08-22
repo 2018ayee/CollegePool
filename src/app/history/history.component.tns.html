@@ -35,43 +35,32 @@
 								</ImageCacheIt>
 								<Label textWrap="true" row="0" id="post-info" class="cap-label"
 									[text]="item.date"></Label>
-								<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon" stretch="aspectFit">
+								<ImageCacheIt src="~/img/chair-2.png" row=0 class="second-text-icon"
+									stretch="aspectFit">
 								</ImageCacheIt>
 								<Label textWrap="true" row="0" id="post-info" class="cap-label"
 									[text]="item.capacity"></Label>
 							</StackLayout>
 						</GridLayout>
+						<StackLayout class="comments" *ngIf="item.hasText" (tap)="showText($event)">
+							<Label visibility="visible" id="text-label-1">
+								<FormattedString>
+									<Span text="View more..." color="#696969"></Span>
+								</FormattedString>
+							</Label>
+							<Label visibility="collapse" textWrap="true" id="post-info" class="cap-label"
+								[text]="item.comment"></Label>
+							<Label visibility="collapse" id=text-label-2>
+								<FormattedString>
+									<Span text="View less" color="#696969"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
 					</StackLayout>
 				</StackLayout>
-					<ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map"
-						(tap)="toViewImage(item.mapSource)"></ImageCacheIt>
-				</StackLayout>
+				<ImageCacheIt [src]="item.mapSource" stretch="aspectFit" class="posting-map"
+					(tap)="toViewImage(item.mapSource)"></ImageCacheIt>
+			</StackLayout>
 		</ng-template>
 	</ListView>
 </PullToRefresh>
-
-<!--
-Original Web template:
-
-<app-navigation></app-navigation>
-
-<div class="right-background">
-	<div class="user-card-right info">
-		<img src="src/img/sample_profile.jpg" alt="Profile Photo" id="profile_pic">
-		<div id="name_info">
-			<h3 id="username">{{user.name}}</h3>
-			<h3 id="user_university">University of Virginia</h3>
-		</div>
-		<div class="userStats">
-			<span id="user_rides_given" class="userData">Rides Given: </span>
-			<span id="num_rides_given"></span>
-			<span id="user_rides_received" class="userData">Rides Received: </span>
-			<span id="num_rides_received"></span>
-		</div>
-	</div>
-</div>
-<div id="history" class="tabcontent">
-	<h3 align="center">Your Rides</h3>
-	<div id="bigfeed" (window:resize)="onResize($event)"></div>
-</div>
--->

@@ -191,6 +191,9 @@ export class PaymentsComponent implements OnInit {
   }
 
   onNavBtnTap() {
+  if(this.router.canGoBack)
     this.router.back();
+  else
+    this.router.navigate(['navigation'], {clearHistory: true})
   }
 }

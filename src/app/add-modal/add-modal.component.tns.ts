@@ -25,6 +25,13 @@ import { FlexboxLayout } from 'tns-core-modules/ui/layouts/flexbox-layout';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 
+class Comment {
+  public comment: string;
+
+  constructor(name: string) {
+      this.comment = name;
+  }
+}
 @Component({
   selector: 'app-add-modal',
   templateUrl: './add-modal.component.html',
@@ -50,9 +57,10 @@ export class AddModalComponent implements OnInit {
   startAddress;
   endAddress;
   formattedDate;
-  date = "now";
+  date;
   price = "$15";
   capacity = "-1";
+  commentText = "";
   user = {
   	username: "2022ayee",
     id: ""
@@ -68,7 +76,10 @@ export class AddModalComponent implements OnInit {
   startLocationPicked = false;
   endLocationPicked = false;
   imageSource = new ImageSource();
-
+  comment;
+  validator ="Notes are limited to 150 characters";
+  iswithinLimit = true;
+  limitHelper = "";
 
   API_KEY = "AIzaSyAITxS1jmf8PMtazRguWcAfWQxW1kPOoYg";
   // googlePlacesAutocomplete = new GooglePlacesAutocomplete(this.API_KEY);
@@ -84,8 +95,34 @@ export class AddModalComponent implements OnInit {
         this.user.username = user.email;
       this.user.id = this.logincheckService.getUser();
     })
+    this.comment = new Comment("");
   }
 
+  get person(): Comment {
+    return this.comment;
+}
+
+// dfPropertyCommitted(args) {
+//   console.log(this.comment.comment.length);
+//   this.validator = this.comment.comment.length;
+// }
+
+onPropertyValidate(args) {
+  this.limitHelper="s"
+}
+// << angular-dataform-property-validate-event
+
+public onPropertyValidated(args) {
+  console.log("a2f");
+  if(this.limitHelper =="s")
+    this.iswithinLimit = true;
+  else
+    this.iswithinLimit=false;
+  this.limitHelper="";
+}
+  showText() {
+      alert("Text: " + this.commentText);
+  }
   startSelect(event: Event) {
     console.log(event.srcElement);
   }
@@ -135,6 +172,14 @@ export class AddModalComponent implements OnInit {
    }
 
    addPosting() {
+    if(!this.startPlace || !this.endPlace){
+      alert("Please enter a starting and ending location before posting.");
+      return;
+    }
+    if(!this.iswithinLimit){
+      alert("Please enter a note that is 150 characters or less.")
+      return;
+    }
      let addContainer = <FlexboxLayout> this.ac.nativeElement;
      addContainer.style.visibility = 'collapse';
      let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
@@ -150,6 +195,10 @@ export class AddModalComponent implements OnInit {
           if(!this.isDriving){
             this.capacity = "-"+this.capacity;
           }
+        let formattedText = this.commentText.trim();
+        // console.log("Fromatted",formattedText)
+        // formattedText.join(" ");
+        // console.log("textfo", formattedText)
          var postingsCollection = firebase.firestore.collection('postings');
          postingsCollection.add({
            uid: this.user.id,
@@ -161,7 +210,7 @@ export class AddModalComponent implements OnInit {
            date: this.date,
            price: this.price,
            capacity: this.capacity,
-           comments: "",
+           comments: this.comment.comment.trim(),
            formattedDate: this.formattedDate,
            startLat: this.startLat,
            endLat: this.endLat,
@@ -181,14 +230,37 @@ export class AddModalComponent implements OnInit {
            }).catch((err) => {})
          }).catch((err) => {})
        }
-
+       else{
+         alert("Please enter a starting and ending location before posting.");
+         let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+         let addContainer = <FlexboxLayout> this.ac.nativeElement;
+         activityIndicator.style.visibility = 'collapse';
+         addContainer.style.visibility = 'visible';
+       }
       });
     });
       // this.postingService.addPosting(this.user.username, this.startPlace, this.endPlace, this.date, this.price, this.capacity, "").subscribe(() => {
       //   this.close('posted');
       // });
   }
-
+  // clearTextfieldFocus(args) {
+  //   var layout = args.object;
+  //   var commentForm = layout.getViewById("comment-form");
+  //   var textField = commentForm.getViewById("text-field")
+  //   textField.android.clearFocus();
+  //   textField.dismissSoftInput();
+  // }
+  clearTextfieldFocus(args) {
+    var layout = args.object;
+    var commentForm = layout.getViewById("comment-form");
+    var textField = commentForm.getViewById("text-field");
+    var editor = textField.getViewById('editor');
+    // console.log("editor2", editor2, 'textfield', textField)
+    textField.android.clearFocus();
+    editor.set("readOnly", true);
+    editor.set("readOnly", false);
+  }
+  
   uploadMap(id, uploadName) {
     const cache = new Cache();
     cache.enableDownload();
@@ -257,7 +329,9 @@ export class AddModalComponent implements OnInit {
 
   	var nextYearDate = new Date(today);
   	nextYearDate.setDate(nextYearDate.getDate() + 365);
-  	datePicker.maxDate = nextYearDate;
+    datePicker.maxDate = nextYearDate;
+    this.onDateChanged(args);
+    console.log("Date", this.date)
   }
 
   onDateChanged(args) {

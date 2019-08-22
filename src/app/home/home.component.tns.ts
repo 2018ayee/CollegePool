@@ -31,7 +31,7 @@ import { Folder, path, knownFolders } from "tns-core-modules/file-system";
 class PostItem {
     constructor(public username: String, public info: string, public profileSource: string, 
       public mapSource: string, public price: string, public status: string, public capacity: string,
-      public date: string) { }
+      public date: string, public comment: String, public hasText: boolean) { }
 }
 
 @Component({
@@ -87,6 +87,23 @@ export class HomeComponent implements OnInit {
 
   }
 
+  showText(args){
+    var layout = args.object;
+    let textLabel1 = layout.getViewById('text-label-1');
+    let textLabel2 = layout.getViewById('text-label-2');
+    let commentLabel = layout.getViewById('post-info');
+    if(textLabel1.visibility==='visible'){
+      textLabel1.set("visibility", "collapse");
+      commentLabel.set("visibility", "visible");
+      textLabel2.set("visibility", "visible");
+    }
+    else{
+      textLabel1.set("visibility", "visible");
+      commentLabel.set("visibility", "collapse");
+      textLabel2.set("visibility", "collapse");
+    }
+  }
+
   loadPostings(args=null) {
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
@@ -111,7 +128,7 @@ export class HomeComponent implements OnInit {
       });
       this.p = posts;
       for(var i = 0; i < posts.length; i++) {
-        this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg','', '', '', '',));
+        this.postings.push(new PostItem(posts[i].user, '', '', '~/img/gray_background.jpg','', '', '', '','', false));
         this.createPosting(posts[i].data, i);
       }
       activityIndicator.busy = false;
@@ -138,18 +155,28 @@ export class HomeComponent implements OnInit {
     let price;
     let type;
     let cap;
+    let hasText;
+    let comment;
+    if(data.comments==''){
+      hasText = false;
+    }
+    else{
+      hasText = true;
+    }
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
-    if(data.capacity >"0"){
+    if(data.capacity >0){
       cap = 2+"/"+ data.capacity+" Seats Left";
       // info_label+= ", "+2+"/"+ data.capacity+" Seats Remaining";
       price = data.price
       type = '~/img/steering-wheel-2.png'
+      comment = "Driver's Note: " + data.comments;
     }
     else{
       // info_label += "\nEnding At: " + data.endAddress + + "\nRiders: "+ data.capacity;
        cap = "Riders: "+ Math.abs(data.capacity)
       // info_label+= ","+ " 2 "+"Riders";
       type = '~/img/passenger-2.png'
+      comment = "Rider's Note: " + data.comments;
     }
     const usersCollection = firebase.firestore.collection('users');
     usersCollection.doc(data.uid).get().then((doc) => {
@@ -165,7 +192,7 @@ export class HomeComponent implements OnInit {
         //     console.log(res)
         //   })
         // });
-        this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url, price, type, cap, dat));
+        this.postings.setItem(i, new PostItem(data.user, info_label, url, data.map_url, price, type, cap, dat, comment, hasText));
       }
     })
   }
