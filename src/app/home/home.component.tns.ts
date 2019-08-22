@@ -109,8 +109,8 @@ export class HomeComponent implements OnInit {
     const query = postingsCollection.where('formattedDate', '>=', this.datePipe.transform(currentDate, 'yyyy-MM-dd'))
     query.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        //console.log(doc);
-        this.price.feedCloud(time, doc.id).subscribe(res => {
+        console.log(doc.data().capacity);
+        this.price.feedCloud(time, doc.id, doc.data().capacity).subscribe(res => {
           console.log("response received in ngOnInit, this is the response: ");
           console.log(res);
         });

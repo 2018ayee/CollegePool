@@ -225,11 +225,11 @@ exports.getDriverPay = functions.https.onRequest(async (req, res) => {
 	      if (doc.exists) {
 		      //let newPrice = '$10';
 		      if(doc.get('riders') !== null && doc.get('distance') !== null && doc.get('capacity') !== null){
-			      var distance = doc.data().distance;
+			      var d = doc.data().distance;
 			      var n = doc.data().riders;
 			      var c = doc.data().capacity;
-			      let newPrice = distance*(GAS_PRICE*(1+(n-1)/3))
-			      let theoretical = distance*(GAS_PRICE*(1+(c-1)/3))
+			      let newPrice = d*(GAS_PRICE*(1+(n-1)/3))
+			      let theoretical = d*(GAS_PRICE*(1+(c-1)/3))
 			      var displayed ="";
 			      if(newPrice===theoretical)
 			      	displayed = "$"+newPrice.toFixed(2);
@@ -237,7 +237,7 @@ exports.getDriverPay = functions.https.onRequest(async (req, res) => {
 			      	displayed = "$"+newPrice.toFixed(2)+"-$"+theoretical.toFixed(2);
 			      t.update(DocRef, {price: displayed});
 			      //res.send(displayed);
-			      res.send("Current time received by document "+req.query.id+" is: "+req.query.time+". It's current price is "+newPrice+".");
+			      res.send("Current time received by document "+req.query.id+" is: "+req.query.time+". It's current payout is "+displayed+".");
 			      return displayed;
 			  }
 			  else
@@ -248,50 +248,65 @@ exports.getDriverPay = functions.https.onRequest(async (req, res) => {
 		  	throw new Error("Profile doesn't exist")
 		  }
 	    });
-	})/***.then(result => {
-	  console.log('Transaction success!');
-	  //res.send(newPrice);
-	}).catch(err => {
-	  console.log('Transaction failure:', err);
-	  //res.send("fuck");
-	});
-	***/
-	//return transaction;
-
-			//var DocRef = admin.firestore().ref('/postings/'+req.query.id);
-	/***
-	DocRef.transaction(function (data) {
-	  //console.log('hi');
-	  if (data !== null) {
-	    //data.fieldA = data.fieldB;
-	    //data.fieldB = firebase.database.ServerValue.TIMESTAMP;
-
-	    //console.log('success');
-	    data.price = '$10';
-	    res.send("Current time received by document "+req.query.id+" is: "+req.query.time+". It's current price is "+data.price+".");
-	    //res.send(data);
-	    
-	  }
-	  return data;
-	});
-	**/
-	/**
-	DocRef.update({
-		price: '$34'
-	});
-	**/
-	//const snapshot = await firebase.firestore().collection('postings').get()
-    //snapshot.docs.map(doc => doc.data());
-    
-	//return req.query.time;
-
-
-	//return raw_price;
+	})
   
 });
 
+exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
+	
+ 	const DEFAULTMPG = 24.7;
+	const DEFAULTCARPRICE = 20000;
+	const LIFESPAN = 150000;
+	const OPP_COST = 10;
+	const TRAFFICADJUST = 1.2;
+	const GAS_PRICE = 0.15;
+	/****
+	data = {
+		"distance": distance,
+		"capacity": capacity,
+	}
+	//duration in seconds
+	***/
+	console.log(req.query.time);
+	
+	let DocRef = admin.firestore().collection("postings").doc(req.query.id);
+	//res.send(DocRef.user);
+	
 
-
+	let transaction = admin.firestore().runTransaction(t => {
+	  return t.get(DocRef)
+	    .then(doc => {
+	      if (doc.exists) {
+		      //let newPrice = '$10';
+		      if(doc.get('riders') !== null && doc.get('distance') !== null && doc.get('capacity') !== null){
+			      var d = doc.data().distance;
+			      var n = doc.data().riders;
+			      var c = doc.data().capacity;
+			      var current_time = req.query.time;
+			      var preprocessed_dt = current_time - doc.data().timeStamp;
+			      var dt = preprocessed_dt/1000/3600;
+			      let newPrice = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;
+			      let theoretical = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;//distance*(GAS_PRICE*(1+(c-1)/3))
+			      var displayed ="";
+			      if(newPrice===theoretical)
+			      	displayed = "$"+newPrice.toFixed(2);
+			      else
+			      	displayed = "$"+newPrice.toFixed(2)+"-$"+theoretical.toFixed(2);
+			      t.update(DocRef, {price: displayed});
+			      //res.send(displayed);
+			      res.send("Current time received by document "+req.query.id+" is: "+req.query.time+", and the time differential is "+dt+" hours. It's current price is "+displayed+".");
+			      return displayed;
+			  }
+			  else
+			  	res.send('Document missing required fields');
+			  	throw new Error('Document missing required fields');
+		  }
+		  else{
+		  	throw new Error("Profile doesn't exist")
+		  }
+	    });
+	})
+});
 exports.addPayment = functions.https.onRequest(async (req, res) => {
 	var cards;
 	var venmoAccounts;

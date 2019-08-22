@@ -12,13 +12,16 @@ export class pricing {
   
   // geocode_uri = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + this.API_KEY + '&address='
   // distance_uri = 'https://maps.googleapis.com/maps/api/distancematrix/json?key='+this.API_KEY+'&units=imperial'//&origins=Washington,DC&destinations=New+York+City,NY' 
-  uri = 'https://us-central1-collegepool-1552749118617.cloudfunctions.net/getDriverPay?time=';
+  driver_uri = 'https://us-central1-collegepool-1552749118617.cloudfunctions.net/getDriverPay?time=';
+  rider_uri = 'https://us-central1-collegepool-1552749118617.cloudfunctions.net/getRiderPrice?time='
   constructor(private httpClient: HttpClient) { };
 
  
-  feedCloud(time, id){
-   
-    return this.httpClient.get(`${this.uri}`+time+"&id="+id, {responseType: 'text'});//.pipe(map((response: any)=>response.json()));
+  feedCloud(time, id, d_or_r){ //keep in mind that the DRIVER should display the rider price
+    if(d_or_r>0)
+      return this.httpClient.get(`${this.rider_uri}`+time+"&id="+id, {responseType: 'text'}) 
+    else
+      return this.httpClient.get(`${this.driver_uri}`+time+"&id="+id, {responseType: 'text'});//.pipe(map((response: any)=>response.json()));
     //return this.distance_uri;
   }
 }
