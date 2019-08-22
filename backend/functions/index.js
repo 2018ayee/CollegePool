@@ -195,12 +195,14 @@ exports.addCustomer = functions.https.onRequest(async (req, res) => {
 	});
 });
 
-exports.getDriverPay = functions.https.onCall((data, context) => {
+exports.getDriverPay = functions.https.onRequest(async (req, res) => {
+	
  	const DEFAULTMPG = 24.7;
 	const DEFAULTCARPRICE = 20000;
 	const LIFESPAN = 150000;
 	const OPP_COST = 10;
 	const TRAFFICADJUST = 1.2;
+	const GAS_PRICE = 0.15;
 	/****
 	data = {
 		"distance": distance,
@@ -208,20 +210,81 @@ exports.getDriverPay = functions.https.onCall((data, context) => {
 	}
 	//duration in seconds
 	***/
-	var dist = data['distance'];
-	var n = data['capacity'];
-	//var dur = data['duration'];
-	var mpg = DEFAULTMPG; //for coding in different mpg's in the future
-	var car_price = DEFAULTCARPRICE; // for coding in different car prices in the future
-	var gas_price = 1.0*dist/mpg*get_gas_price();
+	console.log(req.query.time);
+	
+	let DocRef = admin.firestore().collection("postings").doc(req.query.id);
+	//res.send(DocRef.user);
+	
 
-	/*
-	var depreciation = 1.0*car_price/LIFESPAN*dist;
-	var labor = 1.0*OPP_COST/3600*dur*TRAFFICADJUST;
-	console.log(gas_price+"+"+depreciation+"+"+labor);
-	return (gas_price+depreciation+labor);
-	*/
-	return (gas_price*(1+(n-1)/3));
+	let transaction = admin.firestore().runTransaction(t => {
+	  return t.get(DocRef)
+	    .then(doc => {
+	      // Add one person to the city population.
+	      // Note: this could be done without a transaction
+	      //       by updating the population using FieldValue.increment()
+	      if (doc.exists) {
+		      //let newPrice = '$10';
+		      if(doc.get('riders') !== null && doc.get('distance') !== null && doc.get('capacity') !== null){
+			      var distance = doc.data().distance;
+			      var n = doc.data().riders;
+			      var c = doc.data().capacity;
+			      let newPrice = distance*(GAS_PRICE*(1+(n-1)/3))
+			      let theoretical = distance*(GAS_PRICE*(1+(c-1)/3))
+			      var displayed ="";
+			      if(newPrice===theoretical)
+			      	displayed = "$"+newPrice.toFixed(2);
+			      else
+			      	displayed = "$"+newPrice.toFixed(2)+"-$"+theoretical.toFixed(2);
+			      t.update(DocRef, {price: displayed});
+			      //res.send(displayed);
+			      res.send("Current time received by document "+req.query.id+" is: "+req.query.time+". It's current price is "+newPrice+".");
+			      return displayed;
+			  }
+			  else
+			  	res.send('Document missing required fields');
+			  	throw new Error('Document missing required fields');
+		  }
+		  else{
+		  	throw new Error("Profile doesn't exist")
+		  }
+	    });
+	})/***.then(result => {
+	  console.log('Transaction success!');
+	  //res.send(newPrice);
+	}).catch(err => {
+	  console.log('Transaction failure:', err);
+	  //res.send("fuck");
+	});
+	***/
+	//return transaction;
+
+			//var DocRef = admin.firestore().ref('/postings/'+req.query.id);
+	/***
+	DocRef.transaction(function (data) {
+	  //console.log('hi');
+	  if (data !== null) {
+	    //data.fieldA = data.fieldB;
+	    //data.fieldB = firebase.database.ServerValue.TIMESTAMP;
+
+	    //console.log('success');
+	    data.price = '$10';
+	    res.send("Current time received by document "+req.query.id+" is: "+req.query.time+". It's current price is "+data.price+".");
+	    //res.send(data);
+	    
+	  }
+	  return data;
+	});
+	**/
+	/**
+	DocRef.update({
+		price: '$34'
+	});
+	**/
+	//const snapshot = await firebase.firestore().collection('postings').get()
+    //snapshot.docs.map(doc => doc.data());
+    
+	//return req.query.time;
+
 
 	//return raw_price;
   

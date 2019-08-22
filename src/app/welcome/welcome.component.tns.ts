@@ -9,6 +9,7 @@ import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { TransferService } from '../datatransfer.service';
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { ForgetFormComponent } from '../forget-form/forget-form.component';
+//import { HttpClient } from '@angular/common/http';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 
 @Component({
@@ -49,11 +50,23 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("activityIndicator", { static: true }) ai: ElementRef;
 
   ngOnInit() {
+    //console.log("ngOnInit"); 
     this.registerNotifications();
     this.createViews();
-  }
+    
+    /***
+    this.price.feedCloud(time).subscribe(res => {
+      console.log("response received in ngOnInit, this is the response: ");
+      console.log(res);
+    });
+    ***/
+    //console.log("current time: " + time);
 
+  }
+/******   HERE   ******/
   async createViews() {
+    //console.log("createViews");
+    
     await firebase.init(this.firebaseConfig).then(
       () => {
         console.log("firebase.init done");
@@ -64,6 +77,7 @@ export class WelcomeComponent implements OnInit {
     );
     await firebase.addOnMessageReceivedCallback(async (message: any) => {
       if(message.type === "New Message") {
+        console.log(message);
         this.transferService.setData(message.data.chatId);
         await this.ngZone.run(() => {this.router.navigate(['chat'], {clearHistory: true})})
       }

@@ -28,6 +28,8 @@ import { Cache } from "tns-core-modules/ui/image-cache";
 import { ImageSource, fromFile, fromResource, fromBase64, fromNativeSource } from "tns-core-modules/image-source";
 import { Folder, path, knownFolders } from "tns-core-modules/file-system";
 
+import { pricing } from '../pricing-cloud.tns';
+
 class PostItem {
     constructor(public username: String, public info: string, public profileSource: string, 
       public mapSource: string, public price: string, public status: string, public capacity: string,
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private transferService: TransferService, private addService: DynamicAddService, private page: Page, 
   	private userService: UserService, private postingService: PostingService, private modal: ModalDialogService, private vcRef: ViewContainerRef,
-    private mapService: GoogleMapsService, private router: RouterExtensions, private datePipe: DatePipe) { }
+    private mapService: GoogleMapsService, private router: RouterExtensions, private datePipe: DatePipe, private price: pricing) { }
 
   ngOnInit() {
   	this.loadPostings();
@@ -88,6 +90,9 @@ export class HomeComponent implements OnInit {
   }
 
   loadPostings(args=null) {
+    console.log("loadPostings");
+    var time = Date.now()+5000;
+
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
     // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
@@ -104,6 +109,11 @@ export class HomeComponent implements OnInit {
     const query = postingsCollection.where('formattedDate', '>=', this.datePipe.transform(currentDate, 'yyyy-MM-dd'))
     query.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
+        //console.log(doc);
+        this.price.feedCloud(time, doc.id).subscribe(res => {
+          console.log("response received in ngOnInit, this is the response: ");
+          console.log(res);
+        });
         posts.push({
           id: doc.id,
           data: doc.data()

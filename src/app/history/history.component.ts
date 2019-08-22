@@ -27,6 +27,7 @@ export class HistoryComponent implements OnInit {
   	this.loginCheck();
   	this.loadPostings();
   	this.loadViews();
+  	console.log("history.component.ts");
   }
 
   loadViews() {
