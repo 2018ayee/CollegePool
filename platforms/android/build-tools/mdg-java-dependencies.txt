@@ -151,3 +151,4 @@ C:\Users\ajwan\DEV\CollegePool\platforms\android\app\build\exploded-dependencies
 C:\Users\ajwan\DEV\CollegePool\platforms\android\app\build\exploded-dependencies\f7f6b7e29b4db7dfbb36b0c7c6596fd8\classes.jar
 C:\Users\ajwan\DEV\CollegePool\platforms\android\app\build\exploded-dependencies\fa189977c0d2c2ec044a724c708067ea\annotations-4.9.0.jar
 C:\Users\ajwan\DEV\CollegePool\platforms\android\app\build\exploded-dependencies\fefc3e45c96774d71f32185de45b92e0\classes.jar
+C:\Users\ajwan\DEV\CollegePool\platforms\android\app\build\intermediates\javac\debug
