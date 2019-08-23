@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 C:\Users\phill\Documents\CS Projects\Colpool\CollegePool\platforms\android\app/src/main/assets/metadata
+=======
+C:\Users\ajwan\DEV\CollegePool\platforms\android\app/src/main/assets/metadata
+>>>>>>> thinkpad

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TransferService } from '../datatransfer.service';
 import { Router } from '@angular/router';
-import { PostingService } from '../posting.service';
+import { PostingService } from '../posting.service.tns';
 import { Posting } from '../posting.model';
 import { DynamicAddService } from '../dynamic-add.service';
 import { LogincheckService } from '../logincheck.service';

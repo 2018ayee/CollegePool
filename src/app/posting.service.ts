@@ -1,6 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+// import { config } from “./app.config”;
+// import { Task } from “./app.model”;
+// import {
+//   AngularFirestoreDocument,
+//   AngularFirestore,
+//   AngularFirestoreCollection
+// } from “angularfire2/firestore”;
+
+// distance: AngularFirestoreCollection<Distance>;
+// private distDoc: AngularFirestoreDocument<Distance>;
+
+// constructor(private db: AngularFirestore) {
+//    //Get the tasks collection
+//    this.distance = db.collection<Distance>(config.collection_endpoint);
+// }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +33,9 @@ export class PostingService {
   }
 
   addPosting(user, startadr, endadr, date, cost, capacity, comments) {
+    cost = require("../../backend/data/pricing")({start: startadr, end: endadr});
+    console.log("reached!");
+    console.log(cost);
   	const posting = {
   		user : user,
   		startadr : startadr,

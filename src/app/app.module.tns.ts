@@ -21,7 +21,7 @@ import { SearchComponent } from './search/search.component';
 import { LoginDirective } from './login.directive';
 import { HomeDirective } from './home.directive';
 
-import { PostingService } from './posting.service';
+import { PostingService } from './posting.service.tns';
 import { UserService } from './user.service';
 import { TransferService } from './datatransfer.service';
 import { DynamicAddService } from './dynamic-add.service';
