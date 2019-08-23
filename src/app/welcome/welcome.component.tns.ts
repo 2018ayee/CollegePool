@@ -11,6 +11,10 @@ import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { ForgetFormComponent } from '../forget-form/forget-form.component';
 //import { HttpClient } from '@angular/common/http';
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import { pricing } from '../pricing-cloud.tns';
+import { DatePipe } from '@angular/common';
+//import { HomeComponent} from '../home/home.component.tns'
+//import { Posting } from '../posting.model';
 
 @Component({
   selector: 'app-welcome',
@@ -36,9 +40,10 @@ export class WelcomeComponent implements OnInit {
     messagingSenderId: "375263680183",
     appId: "1:375263680183:web:f2af3f2835638d7c",
   };
-
+  //p : Posting[];
   constructor(private page: Page, private router: RouterExtensions, private logincheckService: LogincheckService, private transferService: TransferService,
-    private ngZone: NgZone, private modal: ModalDialogService, private vcRef: ViewContainerRef) { }
+    private ngZone: NgZone, private modal: ModalDialogService, private vcRef: ViewContainerRef, private price: pricing, private datePipe: DatePipe,
+    ) { }
 
   @ViewChild("em", { static: true }) em: ElementRef;
   @ViewChild("pw", { static: true }) pw: ElementRef;
@@ -53,6 +58,8 @@ export class WelcomeComponent implements OnInit {
     //console.log("ngOnInit"); 
     this.registerNotifications();
     this.createViews();
+    this.updatePrice();
+    //this.home.loadPostings();
     
     /***
     this.price.feedCloud(time).subscribe(res => {
@@ -65,7 +72,7 @@ export class WelcomeComponent implements OnInit {
   }
 /******   HERE   ******/
   async createViews() {
-    //console.log("createViews");
+    console.log("createViews");
     
     await firebase.init(this.firebaseConfig).then(
       () => {
@@ -90,6 +97,42 @@ export class WelcomeComponent implements OnInit {
       this.wc.nativeElement.style.visibility = 'visible';
     }
     this.page.actionBarHidden = true;
+  }
+
+  updatePrice(){
+     var time = Date.now()+5000;
+    console.log(this.logincheckService.getUser());
+    var userDocRef = firebase.firestore.collection('users').doc(this.logincheckService.getUser());
+    userDocRef.update({
+      currTime: time
+    })
+    // let layout = <StackLayout>this.page.getViewById('feed');
+    // layout.removeChildren();
+    // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
+    // this.cache.maxRequests = 5;
+
+    //this.postings.splice(0);
+    //let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+    //activityIndicator.busy = true;
+
+    const currentDate = new Date();
+
+    var posts = [];
+    var postingsCollection = firebase.firestore.collection('postings');
+    const query = postingsCollection.where('formattedDate', '>=', this.datePipe.transform(currentDate, 'yyyy-MM-dd'))
+    query.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        //console.log(doc.data().capacity);
+        this.price.feedCloud(time, doc.id, doc.data().capacity).subscribe(res => {
+          console.log("response received in loadPostings, this is the response: ");
+          console.log(res);
+        });
+        posts.push({
+          id: doc.id,
+          data: doc.data()
+        })
+      });
+     });
   }
 
   toggleForm() {

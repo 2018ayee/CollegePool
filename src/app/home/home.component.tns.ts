@@ -133,10 +133,10 @@ export class HomeComponent implements OnInit {
     query.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         //console.log(doc.data().capacity);
-        this.price.feedCloud(time, doc.id, doc.data().capacity).subscribe(res => {
-          console.log("response received in loadPostings, this is the response: ");
-          console.log(res);
-        });
+        // this.price.feedCloud(time, doc.id, doc.data().capacity).subscribe(res => {
+        //   console.log("response received in loadPostings, this is the response: ");
+        //   console.log(res);
+        // });
         posts.push({
           id: doc.id,
           data: doc.data()
