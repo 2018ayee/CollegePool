@@ -6,6 +6,7 @@ import { DynamicAddService } from '../dynamic-add.service.tns';
 import {Page} from "tns-core-modules/ui/page";
 import { getFrameById } from "tns-core-modules/ui/frame";
 import { UserService } from '../user.service.tns';
+import { LogincheckService } from '../logincheck.service.tns'
 import { PostingService } from '../posting.service.tns';
 import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 import { GoogleMapsService } from '../google-maps.service';
@@ -34,7 +35,7 @@ class PostItem {
     constructor(public username: String, public info: string, public profileSource: string, 
       public mapSource: string, public price: string, public status: string, public capacity: string,
       public date: string) { }
-}
+} 
 
 @Component({
   selector: 'app-home',
@@ -57,7 +58,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private transferService: TransferService, private addService: DynamicAddService, private page: Page, 
   	private userService: UserService, private postingService: PostingService, private modal: ModalDialogService, private vcRef: ViewContainerRef,
-    private mapService: GoogleMapsService, private router: RouterExtensions, private datePipe: DatePipe, private price: pricing) { }
+    private mapService: GoogleMapsService, private router: RouterExtensions, private datePipe: DatePipe, private price: pricing,
+    private user: LogincheckService) { }
 
   ngOnInit() {
   	this.loadPostings();
@@ -90,9 +92,13 @@ export class HomeComponent implements OnInit {
   }
 
   loadPostings(args=null) {
-    console.log("loadPostings");
+    //console.log("loadPostings");
     var time = Date.now()+5000;
-
+    console.log(this.user.getUser());
+    var userDocRef = firebase.firestore.collection('users').doc(this.user.getUser());
+    userDocRef.update({
+      currTime: time
+    })
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
     // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
@@ -109,9 +115,9 @@ export class HomeComponent implements OnInit {
     const query = postingsCollection.where('formattedDate', '>=', this.datePipe.transform(currentDate, 'yyyy-MM-dd'))
     query.orderBy('formattedDate', 'asc').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        console.log(doc.data().capacity);
+        //console.log(doc.data().capacity);
         this.price.feedCloud(time, doc.id, doc.data().capacity).subscribe(res => {
-          console.log("response received in ngOnInit, this is the response: ");
+          console.log("response received in loadPostings, this is the response: ");
           console.log(res);
         });
         posts.push({

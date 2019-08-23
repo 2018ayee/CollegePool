@@ -38,7 +38,8 @@ export class LogincheckService {
       profile_source: profile_source,
   		posts: [],
       chats: [],
-      tokens: [token]
+      tokens: [token],
+      balance: []
   	});
   }
 

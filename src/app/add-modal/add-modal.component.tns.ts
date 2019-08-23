@@ -156,21 +156,21 @@ export class AddModalComponent implements OnInit {
             this.capacity = "-"+this.capacity;
           }
          var postingsCollection = firebase.firestore.collection('postings');
-         console.log(this.startPlace);
-         console.log(this.endPlace);
+         //console.log(this.startPlace);
+         //console.log(this.endPlace);
          this.mapService.getDistance(this.startPlace, this.endPlace).subscribe(res => {
-       		 console.log(res);
-       		 console.log(res['rows'][0]['elements'][0]['distance']['text']);
+       		 //console.log(res);
+       		 //console.log(res['rows'][0]['elements'][0]['distance']['text']);
        		 var distance_string = res['rows'][0]['elements'][0]['distance']['text'];
        		 var duration = res['rows'][0]['elements'][0]['duration']['value'];
-       		 console.log("duration type:");
-       		 console.log(typeof duration);
-       		 console.log(distance_string.split(',').join(""));
+       		 //console.log("duration type:");
+       		 //console.log(typeof duration);
+       		 //console.log(distance_string.split(',').join(""));
        		 var distance = parseInt(distance_string.split(',').join(""), 10);//.substring(0, distance_string.length()-3), 10);
-       		 console.log(distance); 
-       		 console.log(typeof distance);
-       		 console.log("duration: " + res['rows'][0]['elements'][0]['duration']['text']);
-       		 this.price = require('../../../backend/data/pricing')({"distance": distance, "capacity": this.capacity, "duration": duration});
+       		 //console.log(distance); 
+       		 //console.log(typeof distance);
+       		 //console.log("duration: " + res['rows'][0]['elements'][0]['duration']['text']);
+       		 //this.price = require('../../../backend/data/pricing')({"distance": distance, "capacity": this.capacity, "duration": duration});
                //console.log("capacity: " + this.capacity);
            
 	         console.log(this.price);
@@ -182,7 +182,7 @@ export class AddModalComponent implements OnInit {
 	           startFormatted: this.startAddress,
 	           endFormatted: this.endAddress,
 	           date: this.date,
-	           price: this.price,
+	           price: 15,
 	           capacity: this.capacity,
 	           comments: "",
 	           formattedDate: this.formattedDate,

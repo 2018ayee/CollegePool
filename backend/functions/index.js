@@ -294,7 +294,8 @@ exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
 			      	displayed = "$"+newPrice.toFixed(2)+"-$"+theoretical.toFixed(2);
 			      t.update(DocRef, {price: displayed});
 			      //res.send(displayed);
-			      res.send("Current time received by document "+req.query.id+" is: "+req.query.time+", and the time differential is "+dt+" hours. It's current price is "+displayed+".");
+			      //res.send("Current time received by document "+req.query.id+" is: "+req.query.time+", and the time differential is "+dt+" hours. It's current price is "+displayed+".");
+			      res.send(displayed);
 			      return displayed;
 			  }
 			  else
@@ -307,6 +308,30 @@ exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
 	    });
 	})
 });
+/**
+exports.finalRiderPrice = functions.https.onRequest(async (req, res) => {
+	const GAS_PRICE = 0.15;
+	var userid = req.query.userid;
+	var docid = req.query.docid;
+	let userDocRef = admin.firestore().collection("users").doc(userid);
+	let postDocRef = admin.firestore().collection("postings").doc(docid);
+
+	let getDoc = userDocRef.get().then(doc => {
+	    if (!doc.exists) {
+	      throw new Error('No such document');
+	    } else {
+	      //console.log('Document data:', doc.data());
+	      return doc.data();
+	    }
+	  }).catch(err => {
+	  	throw new Error('Error getting document');
+	     //console.log('Error getting document', err);
+	  });
+
+
+
+})
+**/
 exports.addPayment = functions.https.onRequest(async (req, res) => {
 	var cards;
 	var venmoAccounts;
