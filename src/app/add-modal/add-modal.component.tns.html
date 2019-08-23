@@ -1,53 +1,65 @@
 <StackLayout>
-	<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator"></ActivityIndicator>
+	<ActivityIndicator #activityIndicator busy="true" width="40" height="40" class="activity-indicator">
+	</ActivityIndicator>
 	<ScrollView height="100%">
-	<FlexboxLayout class="page" #addContainer>
-		<StackLayout class="close-button-container" orientation="horizontal">
-			<Label text="&times;" class="close" (tap)="close('cancel')"></Label>
-		</StackLayout>
+		<FlexboxLayout class="page" #addContainer>
+			<StackLayout class="close-button-container" orientation="horizontal">
+				<Label text="&times;" class="close" (tap)="close('cancel')"></Label>
+			</StackLayout>
 
+			<StackLayout class="form" (tap)="clearTextfieldFocus($event)">
+				<Label text="I am..." class="header-label-2 bold"></Label>
 
-		<StackLayout class="form">
-			<Label text="I am..." class="header-label-2 bold"></Label>
+				<StackLayout class="input-field switch-container" orientation="horizontal" horizontalAlignment="center">
+					<Label text="Driving" class="header-label-3 driving-label" #drivingLabel></Label>
+					<Switch checked="true" (checkedChange)="onCheckedChange($event)" class="m-15 switch"></Switch>
+					<Label text="Riding" class="header-label-3 riding-label" #ridingLabel></Label>
+				</StackLayout>
 
-		  <StackLayout class="input-field switch-container" orientation="horizontal" horizontalAlignment="center">
-		  	<Label text="Driving" class="header-label-3 driving-label" #drivingLabel></Label>
-		  	<Switch checked="true" (checkedChange)="onCheckedChange($event)" class="m-15 switch"></Switch>
-		  	<Label text="Riding" class="header-label-3 riding-label" #ridingLabel></Label>
-		  </StackLayout>
+				<Label text="Where?" class="header-label bold"></Label>
+				<StackLayout class="input-field start-field">
+					<!-- 		    <TextField class="input" autocorrect="false" hint="Where from?" [(ngModel)]="startAddress" (textChange)="startAutocomplete()" (tap)="showModal('start')" required></TextField> -->
+					<Label text="{{ startLabel }}" class="header-label-3" (tap)="showModal('start')"></Label>
+					<StackLayout class="hr-light"></StackLayout>
+				</StackLayout>
 
-		  <Label text="Where?" class="header-label bold"></Label>
-		  <StackLayout class="input-field start-field">
-<!-- 		    <TextField class="input" autocorrect="false" hint="Where from?" [(ngModel)]="startAddress" (textChange)="startAutocomplete()" (tap)="showModal('start')" required></TextField> -->
-			<Label text="{{ startLabel }}" class="header-label-3" (tap)="showModal('start')"></Label>
-		    <StackLayout class="hr-light"></StackLayout>
-		  </StackLayout>
+				<StackLayout class="input-field">
+					<!-- 		    <TextField class="input" autocorrect="false" hint="Where to?" [(ngModel)]="endAddress" (textChange)="endAutocomplete()" (tap)="showModal('end')" required></TextField> -->
+					<Label text="{{ endLabel }}" class="header-label-3" (tap)="showModal('end')"></Label>
+					<StackLayout class="hr-light"></StackLayout>
+				</StackLayout>
 
-		  <StackLayout class="input-field">
-<!-- 		    <TextField class="input" autocorrect="false" hint="Where to?" [(ngModel)]="endAddress" (textChange)="endAutocomplete()" (tap)="showModal('end')" required></TextField> -->
-				<Label text="{{ endLabel }}" class="header-label-3" (tap)="showModal('end')"></Label>
-		    <StackLayout class="hr-light"></StackLayout>
-		  </StackLayout>
-
-	<!-- 	  <DatePicker (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)" 
+				<!-- 	  <DatePicker (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)" 
 	(dayChange)="onDayChanged($event)" (monthChange)="onMonthChanged($event)" (yearChange)="onYearChanged($event)" verticalAlignment="center"></DatePicker> -->
-			<Label text="When?" class="header-label bold"></Label>
+				<Label text="When?" class="header-label bold"></Label>
 
-		  <DatePicker class ="date-picker" (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)" verticalAlignment="center"></DatePicker>
+				<DatePicker class="date-picker" (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)"
+					verticalAlignment="center"></DatePicker>
 
-		  <Label text="How many?" class="header-label"></Label>
-		  <GridLayout class="m-15" rows="auto" columns="50 * 50">
-			    <Label class="h3" text="1" textWrap="true" row="10" col="0"></Label>
-			    <Slider minValue="1" maxValue="8" [(ngModel)]="capacity" row="0"
-			     col="1"></Slider>
-			    <Label class="h3" text="8" textWrap="true" row="0" col="2"></Label>
-			</GridLayout>
-		  <Label text="{{ capacity }}" class="header-label-2"></Label>
-
-		  <Button text="Add" class="btn btn-primary submit-btn" (tap)="addPosting()"></Button>
-		</StackLayout>
-	</FlexboxLayout>
+				<Label *ngIf="isDriving" text="Your Available Space?" class="header-label"></Label>
+				<Label *ngIf="!isDriving" text="How many riders?" class="header-label"></Label>
+				<GridLayout rows="auto" columns="50 * 50">
+					<Label class="h3" text="1" textWrap="true" row="0" col="0"></Label>
+					<Slider minValue="1" maxValue="8" [(ngModel)]="capacity" row="0" col="1"></Slider>
+					<Label class="h3" text="8" textWrap="true" row="0" col="2"></Label>
+				</GridLayout>
+				<Label text="{{ capacity }}" class="header-label-2"></Label>
+				<TextField height="0" id="dummy"></TextField>
+				<StackLayout id= "comment-form">
+					<Label *ngIf="isDriving" text="A note for riders?" class="header-label"></Label>
+					<Label *ngIf="!isDriving" text="A note for drivers?" class="header-label"></Label>
+					<!-- <TextView [(ngModel)]="commentText" hint="Enter your note!"  autocorrect="true" id="text-field" maxLength="150"></TextView> -->
+					<RadDataForm  [source]="person" id = "text-field" (propertyValidate)="onPropertyValidate($event)" 
+					(propertyValidated)="onPropertyValidated($event)" tkExampleTitle tkToggleNavButton>
+						<TKEntityProperty id ="editor" tkDataFormProperty name="comment" hintText = "Enter your note!" displayName="" >
+							<TKPropertyEditor id = 'editor-2' tkEntityPropertyEditor type="MultilineText"></TKPropertyEditor>
+							<TKMaximumLengthValidator tkEntityPropertyValidators errorMessage="{{validator}}"  length="150"></TKMaximumLengthValidator>
+						</TKEntityProperty>
+					</RadDataForm>
+				</StackLayout>
+				
+				<Button text="Add" class="btn btn-primary submit-btn" (tap)="addPosting()"></Button>
+			</StackLayout>
+		</FlexboxLayout>
 	</ScrollView>
 </StackLayout>
-
-

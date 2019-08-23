@@ -44,7 +44,7 @@ Label {
 	margin-right: 10;
 }
 .cap-label {
-	margin-bottom: 16;
+	/* margin-bottom: 12; */
 	color: black;
 	font-weight: 400;
 	font-size: 14;
@@ -78,6 +78,7 @@ Label {
 }
 
 .posting-map {
+	margin-top: 16;
 	margin-bottom: 16;
 	border-radius: 10;
 	height: 220;
@@ -119,7 +120,17 @@ Label {
 	margin-top: 2;
 	/* border-radius: 25; */
 	vertical-align: top;
-	margin-bottom: 16;
+	/* margin-bottom: 12; */
+}
+
+.comments {
+	margin-left: 18;
+	margin-top: 10;
+	/* margin-bottom: 16; */
+	margin-right: 10;
+}
+#text-label-2 {
+	margin-top: 4;
 }
 .activity-indicator {
 	color: #ac00e6;

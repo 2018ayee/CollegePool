@@ -52,6 +52,8 @@ export class PostingInfoComponent implements OnInit {
   capacity;
   date;
   price;
+  hasText;
+  comment;
 
   chatUsers = [];
   currentUser;
@@ -73,11 +75,13 @@ export class PostingInfoComponent implements OnInit {
     chatButton.visibility = 'collapse';
     this.userId = this.logincheckService.getUser();
     this.mapData = this.transferService.getData();
-    console.log("Mapdata", this.mapData.postItem)
+    // console.log("Mapdata", this.mapData.postItem)
     this.status = this.mapData.postItem.status;
     this.capacity = this.mapData.postItem.capacity;
     this.date = this.mapData.postItem.date;
     this.price = this.mapData.postItem.price;
+    this.hasText = this.mapData.postItem.hasText;
+    this.comment = this.mapData.postItem.comment;
     firebase.firestore.collection('users').doc(this.userId).get().then((doc) => {
       this.currentUser = doc.data();
       if(doc.data().chats.includes(this.mapData.postInfo.id)) {
@@ -121,6 +125,23 @@ export class PostingInfoComponent implements OnInit {
     })
   }
 
+  showText(args){
+    var layout = args.object;
+    let textLabel1 = layout.getViewById('text-label-1');
+    let textLabel2 = layout.getViewById('text-label-2');
+    let commentLabel = layout.getViewById('post-info');
+    if(textLabel1.visibility==='visible'){
+      textLabel1.set("visibility", "collapse");
+      commentLabel.set("visibility", "visible");
+      textLabel2.set("visibility", "visible");
+    }
+    else{
+      textLabel1.set("visibility", "visible");
+      commentLabel.set("visibility", "collapse");
+      textLabel2.set("visibility", "collapse");
+    }
+  }
+
   onMapReady(event) {
   	this.mapView = event.object;
 
@@ -154,7 +175,10 @@ export class PostingInfoComponent implements OnInit {
   }
 
   onNavBtnTap() {
-  	this.router.back();
+  if(this.router.canGoBack)
+    this.router.back();
+  else
+    this.router.navigate(['navigation'], {clearHistory: true})
   }
 
   deleteFiles() {

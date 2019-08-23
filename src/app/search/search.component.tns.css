@@ -9,6 +9,8 @@
 	border-width: 1;
 	margin-right: 14;
 	text-align: left;
+	font-size: 10;
+	vertical-align: center;
 }
 
 .search-container {
@@ -53,6 +55,7 @@
 	background-color: #996fd6;
 	vertical-align: top;
 	margin-top: 12%;
+	margin-left:0;
 }
 
 .checkbox {
@@ -64,13 +67,16 @@
 	width: 20;
 	height: 20;
 	vertical-align: top;
-	margin-left: 0;
 	margin-top: 16%;
 }
 
 .checkbox-left {
 	margin-left: 14;
 	margin-right: 0;
+}
+.checkbox-right {
+	margin-left: 0;
+	margin-right: 14;
 }
 
 .label-icon {

@@ -1,7 +1,7 @@
 /* Add mobile styles for the component here.  */
 .close {
 	margin: 10;
-	font-size: 28;
+	font-size: 40;
 	width: 48;
 	height: 48;
 }
@@ -9,6 +9,7 @@
 .close-button-container {
 	position: absolute;
 	left: 0;
+	color:black;
 }
 
 .header-label-2 {

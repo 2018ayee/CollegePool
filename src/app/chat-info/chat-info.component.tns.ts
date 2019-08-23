@@ -74,18 +74,28 @@ export class ChatInfoComponent implements OnInit {
     let price;
     let type;
     let cap;
+    let hasText;
+    let comment;
+    if(this.postInfo.comments==''){
+      hasText = false;
+    }
+    else{
+      hasText = true;
+    }
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
     if(this.postInfo.capacity != "-1"){
       cap = 2+"/"+ this.postInfo.capacity+" Seats Left";
       // info_label+= ", "+2+"/"+ this.postInfo.capacity+" Seats Remaining";
       price = this.postInfo.price
       type = '~/img/steering-wheel-2.png'
+      comment = "Driver's Note: " + this.postInfo.comments;
     }
     else{
       // info_label += "\nEnding At: " + this.postInfo.endAddress + + "\nRiders: "+ this.postInfo.capacity;
        cap = "Riders: "+ "2";
       // info_label+= ","+ " 2 "+"Riders";
       type = '~/img/passenger-2.png'
+      comment = "Riders's Note: " + this.postInfo.comments;
     }
   	// var info_label;
   	// if(this.postInfo.capacity != "-1")
@@ -100,8 +110,8 @@ export class ChatInfoComponent implements OnInit {
 
   	this.transferService.setData({
 		  postInfo: {id: this.chatId, data: this.postInfo},
-		  postItem: {profileSource: profileSource, status: type, capacity: cap, date: dat, price: price, username: this.postInfo.user, info:info_label}
-  		// postItem: {info: info_label, profileSource: profileSource, username: this.postInfo.user}
+      postItem: {profileSource: profileSource, status: type, capacity: cap, date: dat, price: price, 
+        username: this.postInfo.user, info:info_label, hasText: hasText, comment: comment}
 	  });
   	this.router.navigate(['posting-info']);
   }
