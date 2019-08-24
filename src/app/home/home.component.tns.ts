@@ -110,12 +110,12 @@ export class HomeComponent implements OnInit {
 
   loadPostings(args=null) {
     //console.log("loadPostings");
-    var time = Date.now()+5000;
-    console.log(this.user.getUser());
-    var userDocRef = firebase.firestore.collection('users').doc(this.user.getUser());
-    userDocRef.update({
-      currTime: time
-    })
+    // var time = Date.now()+5000;
+    // console.log(this.user.getUser());
+    // var userDocRef = firebase.firestore.collection('users').doc(this.user.getUser());
+    // userDocRef.update({
+    //   currTime: time
+    // })
     // let layout = <StackLayout>this.page.getViewById('feed');
     // layout.removeChildren();
     // this.cache.placeholder = fromFile("~/img/gray_background.jpg");
