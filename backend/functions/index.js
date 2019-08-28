@@ -282,21 +282,32 @@ exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
 			      var d = doc.data().distance;
 			      var n = doc.data().riders;
 			      var c = doc.data().capacity;
+			      //var e = Math.E;
+			      //NEW REQUIREMENTS: unix departure time 
 			      var current_time = req.query.time;
+			      //var post_time = req.query.ptime;
+			      var departure_time = req.query.utime;
+			      var scale = (departure_time-doc.data().timeStamp)/1000/3600/24;
 			      var preprocessed_dt = current_time - doc.data().timeStamp;
-			      var dt = preprocessed_dt/1000/3600;
+			      var dt = Math.floor(preprocessed_dt/1000/3600*5)/5;
+			      /***
 			      let newPrice = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;
 			      let theoretical = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;//distance*(GAS_PRICE*(1+(c-1)/3))
+			      ***/
+			      let newPrice = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/n))*d;
+			      let theoretical = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/c))*d;
+
 			      var displayed ="";
-			      if(newPrice===theoretical)
+			      if(newPrice.toFixed(2)===theoretical.toFixed(2))
 			      	displayed = "$"+newPrice.toFixed(2);
 			      else
-			      	displayed = "$"+newPrice.toFixed(2)+"-$"+theoretical.toFixed(2);
+			      	displayed = "$"+theoretical.toFixed(2)+"-$"+newPrice.toFixed(2);
 			      t.update(DocRef, {price: displayed});
 			      //res.send(displayed);
-			      //res.send("Current time received by document "+req.query.id+" is: "+req.query.time+", and the time differential is "+dt+" hours. It's current price is "+displayed+".");
+			      //res.send("Current time received by document "+req.query.id+" is: "+req.query.time+", and the time differential is "+dt+" hours. The scale factor is "+scale+", and the price is "+displayed+".");
 			      res.send(displayed);
 			      return displayed;
+
 			  }
 			  else
 			  	res.send('Document missing required fields');
@@ -308,6 +319,34 @@ exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
 	    });
 	})
 });
+
+exports.getRiderPriceNoDbUpdate = functions.https.onRequest(async (req, res) => {
+  const GAS_PRICE = 0.15;
+  var d = req.query.distance;
+  var n = 1
+  var c = req.query.capacity;
+  var current_time = req.query.time;
+  var post_time = req.query.ptime;
+  //var post_time = req.query.ptime;
+  var departure_time = req.query.utime;
+  var scale = (departure_time-post_time/1000/3600/24);
+  var preprocessed_dt = current_time - post_time;
+  var dt = Math.floor(preprocessed_dt/1000/3600*5)/5;
+  let newPrice = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/n))*d;
+  let theoretical = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/c))*d;
+
+  var displayed ="";
+  if(newPrice.toFixed(2)===theoretical.toFixed(2))
+  	displayed = "$"+newPrice.toFixed(2);
+  else
+  	displayed = "$"+theoretical.toFixed(2)+"-$"+newPrice.toFixed(2);
+  //res.send(displayed);
+  //res.send("Current time received by document "+req.query.id+" is: "+req.query.time+", and the time differential is "+dt+" hours. The scale factor is "+scale+", and the price is "+displayed+".");
+  res.send(displayed);
+  return displayed;
+
+
+})
 /**
 exports.finalRiderPrice = functions.https.onRequest(async (req, res) => {
 	const GAS_PRICE = 0.15;

@@ -23,6 +23,7 @@ import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { ScrollView } from 'tns-core-modules/ui/scroll-view';
 import { FlexboxLayout } from 'tns-core-modules/ui/layouts/flexbox-layout';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import { pricing } from '../pricing-cloud.tns';
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 
 class Comment {
@@ -41,7 +42,7 @@ export class AddModalComponent implements OnInit {
 
   constructor(private params: ModalDialogParams, private postingService: PostingService, private page: Page, private placesService: PlacesAutocompleteService,
     private modal: ModalDialogService, private vcRef: ViewContainerRef, private transferService: TransferService, private logincheckService: LogincheckService,
-    private datePipe: DatePipe, private mapService: GoogleMapsService) { }
+    private datePipe: DatePipe, private mapService: GoogleMapsService, private price: pricing) { }
 
   @ViewChild('drivingLabel', { static: true }) dl: ElementRef;
   @ViewChild('ridingLabel', { static: true }) rl: ElementRef;
@@ -58,7 +59,7 @@ export class AddModalComponent implements OnInit {
   endAddress;
   formattedDate;
   date;
-  price = "$15";
+  //price = "$15";
   capacity = "-1";
   commentText = "";
   user = {
@@ -220,40 +221,43 @@ public onPropertyValidated(args) {
             //console.log("duration: " + res['rows'][0]['elements'][0]['duration']['text']);
             //this.price = require('../../../backend/data/pricing')({"distance": distance, "capacity": this.capacity, "duration": duration});
                //console.log("capacity: " + this.capacity);
-           
-           console.log(this.price);
-           postingsCollection.add({
-             uid: this.user.id,
-             user: this.user.username,
-             startAddress: this.startPlace,
-             endAddress: this.endPlace,
-             startFormatted: this.startAddress,
-             endFormatted: this.endAddress,
-             date: this.date,
-             price: 15,
-             capacity: this.capacity,
-             comments: this.comment.comment.trim(),
-             formattedDate: this.formattedDate,
-             startLat: this.startLat,
-             endLat: this.endLat,
-             startLng: this.startLng,
-             endLng: this.endLng,
-             timeStamp: Date.now(),
-             distance: distance,
-             riders: 1
-           }).then(res => {
-             // console.log(res);
-             console.log("finished add!");
-             firebase.firestore.collection('users').doc(this.user.id).get().then(doc => {
-               var posts: String[] = doc.data().posts;
-               posts.push(res.id);
-               firebase.firestore.collection('users').doc(this.user.id).update({
-                 posts: posts
-               })
-               this.uploadMap(res.id, 'small_map.png');
-               this.uploadMap(res.id, 'large_map.png');
+           this.price.noUpdate(distance, 1, this.capacity, Date.now(), Date.now(), (new Date(this.date).getTime())).subscribe(res => {
+              //console.log(this.price);
+             postingsCollection.add({
+               uid: this.user.id,
+               user: this.user.username,
+               startAddress: this.startPlace,
+               endAddress: this.endPlace,
+               startFormatted: this.startAddress,
+               endFormatted: this.endAddress,
+               date: this.date,
+               unixDate: (new Date(this.date).getTime()),
+               price: res,
+               capacity: this.capacity,
+               comments: this.comment.comment.trim(),
+               formattedDate: this.formattedDate,
+               startLat: this.startLat,
+               endLat: this.endLat,
+               startLng: this.startLng,
+               endLng: this.endLng,
+               timeStamp: Date.now(),
+               distance: distance,
+               riders: 1
+             }).then(res => {
+               // console.log(res);
+               console.log("finished add!");
+               firebase.firestore.collection('users').doc(this.user.id).get().then(doc => {
+                 var posts: String[] = doc.data().posts;
+                 posts.push(res.id);
+                 firebase.firestore.collection('users').doc(this.user.id).update({
+                   posts: posts
+                 })
+                 this.uploadMap(res.id, 'small_map.png');
+                 this.uploadMap(res.id, 'large_map.png');
+               }).catch((err) => {})
              }).catch((err) => {})
-           }).catch((err) => {})
+            });
+           
 
          });
        }
