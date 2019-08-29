@@ -12,7 +12,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPayPalModule } from 'ngx-paypal';
 
-import { PostingService } from './posting.service';
+import { PostingService } from './posting.service.tns';
 import { UserService } from './user.service';
 import { TransferService } from './datatransfer.service';
 import { DynamicAddService } from './dynamic-add.service';

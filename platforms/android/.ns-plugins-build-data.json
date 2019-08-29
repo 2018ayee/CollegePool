@@ -47,7 +47,8 @@
 	"nativescript-ng-shadow": {
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ng-shadow\\platforms\\android\\README.md": "45f2f63427be0a461a7e2dfd5ff0ad5bab64068f",
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ng-shadow\\platforms\\android\\AndroidManifest.xml": "a49c6297b29f6fca5b1b61650dae089ff2181ba0",
-		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ng-shadow\\platforms\\android\\include.gradle": "1822b66b1a8d68811e5bdbaba0e69031bb84bb49"
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ng-shadow\\platforms\\android\\include.gradle": "4945565d2e438104a7124474e0975db3692b0b02",
+		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-ng-shadow\\platforms\\android\\nativescript_ng_shadow.aar": "1ea44cafb070ea3a85745989354d7c0b519832a0"
 	},
 	"nativescript-plugin-firebase": {
 		"C:\\Users\\phill\\Documents\\CS Projects\\Colpool\\CollegePool\\node_modules\\nativescript-plugin-firebase\\platforms\\android\\.DS_Store": "08b9fd18287f85a1099bda47d40aa99d1aa5c40b",

@@ -1,38 +1,67 @@
-const request = require('request');
+//const request = require('request');
 
-const DEFAULTMPG = 24.7;
+//let cheerio = require('cheerio');
+//let jsonframe = require('jsonframe-cheerio');
+
 function get_gas_price()
 {
-	return 1;
+	//let $ = cheerio.load("https://gasprices.aaa.com/state-gas-price-averages/");
+	//jsonframe($) // apply the plugin to the current Cheerio instance
+	
+	/*
+	let frame = {
+		"class": "numb" // CSS selector
+	}
+	*/	
+	return 2.5;
 }
 
 function raw_price(options) {
+	const DEFAULTMPG = 24.7;
+	const DEFAULTCARPRICE = 20000;
+	const LIFESPAN = 150000;
+	const OPP_COST = 10;
+	const TRAFFICADJUST = 1.2;
 	/****
 	options = {
-		start: startadr,
-		end: endadr
+		"distance": distance,
+		"capacity": capacity,
+		"duration": duration
 	}
+	//duration in seconds
 	***/
-	//var start = options.start;
-	//var end = options.end;
-	var dist = 1;//req("./distance")(options);
+	var dist = options['distance'];
+	var dur = options['duration'];
 	var mpg = DEFAULTMPG; //for coding in different mpg's in the future
-	var raw_price = dist/get_gas_price()*1.0*mpg;
-	return raw_price
+	var car_price = DEFAULTCARPRICE; // for coding in different car prices in the future
+	var gas_price = 1.0*dist/mpg*get_gas_price();
+	var depreciation = 1.0*car_price/LIFESPAN*dist;
+	var labor = 1.0*OPP_COST/3600*dur*TRAFFICADJUST;
+	console.log(gas_price+"+"+depreciation+"+"+labor);
+	return (gas_price+depreciation+labor);
+	//return raw_price;
 
 
 }
 
-function price_model(raw_price) {
+function price_model(options) {
 	/********
 	INSERT PRICE MODEL HERE
 	********/
-	return raw_price * 1.0; //FORMULA
+	var capacity = options['capacity']
+	var true_cost = 1.0*raw_price(options)/capacity;
+	var max_cost = 1/6*options['distance'];
+	/*
+	if(max_cost<true_cost)
+		true_cost = max_cost;
+	*/
+	return ("$"+(true_cost).toFixed(2)); //FORMULA
 
 }
 
 
 
 module.exports = function(options) {
+	console.log("enter pricing.js");
 	return price_model(options);
 }
