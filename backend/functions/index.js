@@ -289,7 +289,7 @@ exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
 			      var departure_time = req.query.utime;
 			      var scale = (departure_time-doc.data().timeStamp)/1000/3600/24;
 			      var preprocessed_dt = current_time - doc.data().timeStamp;
-			      var dt = Math.floor(preprocessed_dt/1000/3600*5)/5;
+			      var dt = Math.floor(preprocessed_dt/1000/3600/6)*6;
 			      /***
 			      let newPrice = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;
 			      let theoretical = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;//distance*(GAS_PRICE*(1+(c-1)/3))
@@ -331,7 +331,7 @@ exports.getRiderPriceNoDbUpdate = functions.https.onRequest(async (req, res) => 
   var departure_time = req.query.utime;
   var scale = (departure_time-post_time/1000/3600/24);
   var preprocessed_dt = current_time - post_time;
-  var dt = Math.floor(preprocessed_dt/1000/3600*5)/5;
+  var dt = Math.floor(preprocessed_dt/1000/3600/6)*6;
   let newPrice = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/n))*d;
   let theoretical = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/c))*d;
 
