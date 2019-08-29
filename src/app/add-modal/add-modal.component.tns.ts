@@ -116,7 +116,7 @@ onPropertyValidate(args) {
 // << angular-dataform-property-validate-event
 
 public onPropertyValidated(args) {
-  console.log("a2f");
+  // console.log("a2f");
   if(this.limitHelper =="s")
     this.iswithinLimit = true;
   else
