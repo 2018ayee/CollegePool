@@ -25,13 +25,15 @@
 }
 
 .header-label {
-	margin-top: 20;
+	margin-top: 48;
 	font-size: 20;
+	color: black;
 	horizontal-align: center;
 }
 
 .header-label-2 {
 	font-size: 20;
+	color: black;
 	horizontal-align: center;
 }
 
@@ -76,7 +78,7 @@
 }
 
 .bold {
-	font-weight: 700;
+	font-weight: 500;
 }
 
 .start-field {

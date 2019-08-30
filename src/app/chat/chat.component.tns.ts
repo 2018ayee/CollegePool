@@ -76,7 +76,10 @@ export class ChatComponent implements OnInit {
     }
 
   	var today = new Date();
-  	var date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+  	var date = new Date(today.getTime() - (today.getTimezoneOffset() * 60000 ))
+                    .toISOString()
+                    .split("T")[0];
+    var unformattedDate = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
   	var time = today.getHours() + ":" + today.getUTCMinutes() + ":" + today.getSeconds();
     var chat: ChatMessage;
     if(imgSrc) {
@@ -87,7 +90,7 @@ export class ChatComponent implements OnInit {
     		pfpSource: this.pfpSource,
     		imgSource: imgSrc,
     		time: time,
-    		date: date
+    		date: unformattedDate
     	}
     }
     else {
@@ -98,7 +101,7 @@ export class ChatComponent implements OnInit {
         pfpSource: this.pfpSource,
         imgSource: "",
         time: time,
-        date: date
+        date: unformattedDate
       }
     }
     this.message = '';
