@@ -33,11 +33,17 @@
 	(dayChange)="onDayChanged($event)" (monthChange)="onMonthChanged($event)" (yearChange)="onYearChanged($event)" verticalAlignment="center"></DatePicker> -->
 				<Label text="When?" class="header-label bold"></Label>
 
-				<DatePicker class="date-picker" (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)"
-					verticalAlignment="center"></DatePicker>
+				<StackLayout class="input-field start-field">
+					<!-- 		    <TextField class="input" autocorrect="false" hint="Where from?" [(ngModel)]="startAddress" (textChange)="startAutocomplete()" (tap)="showModal('start')" required></TextField> -->
+					<Label text="{{ dateLabel }}" class="header-label-3" (tap)="showDateModal()"></Label>
+					<StackLayout class="hr-light"></StackLayout>
+				</StackLayout>
 
-				<Label *ngIf="isDriving" text="Your Available Space?" class="header-label"></Label>
-				<Label *ngIf="!isDriving" text="How many riders?" class="header-label"></Label>
+<!-- 				<DatePicker class="date-picker" (loaded)="onPickerLoaded($event)" (dateChange)="onDateChanged($event)"
+					verticalAlignment="center"></DatePicker> -->
+
+				<Label *ngIf="isDriving" text="How many?" class="header-label bold"></Label>
+				<Label *ngIf="!isDriving" text="How many?" class="header-label bold"></Label>
 				<GridLayout rows="auto" columns="50 * 50">
 					<Label class="h3" text="1" textWrap="true" row="0" col="0"></Label>
 					<Slider minValue="1" maxValue="8" [(ngModel)]="capacity" row="0" col="1"></Slider>
@@ -46,8 +52,8 @@
 				<Label text="{{ capacity }}" class="header-label-2"></Label>
 				<TextField height="0" id="dummy"></TextField>
 				<StackLayout id= "comment-form">
-					<Label *ngIf="isDriving" text="A note for riders?" class="header-label"></Label>
-					<Label *ngIf="!isDriving" text="A note for drivers?" class="header-label"></Label>
+					<Label *ngIf="isDriving" text="Comments?" class="header-label bold"></Label>
+					<Label *ngIf="!isDriving" text="Comments?" class="header-label bold"></Label>
 					<!-- <TextView [(ngModel)]="commentText" hint="Enter your note!"  autocorrect="true" id="text-field" maxLength="150"></TextView> -->
 					<RadDataForm  [source]="person" id = "text-field" (propertyValidate)="onPropertyValidate($event)" 
 					(propertyValidated)="onPropertyValidated($event)" tkExampleTitle tkToggleNavButton>

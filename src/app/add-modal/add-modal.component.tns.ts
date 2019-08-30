@@ -23,6 +23,7 @@ import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { ScrollView } from 'tns-core-modules/ui/scroll-view';
 import { FlexboxLayout } from 'tns-core-modules/ui/layouts/flexbox-layout';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import * as ModalPicker from 'nativescript-modal-datetimepicker';
 // import { GooglePlacesAutocomplete } from 'nativescript-google-places-autocomplete';
 
 class Comment {
@@ -67,10 +68,15 @@ export class AddModalComponent implements OnInit {
   };
   startLabel = "Pick start location";
   endLabel = "Pick end location";
+  dateLabel = "Pick date";
+  picker;
   startLat;
   startLng;
   endLat;
   endLng;
+
+  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   isDriving = false;
   startLocationPicked = false;
@@ -87,6 +93,7 @@ export class AddModalComponent implements OnInit {
     // let addContainer = <FlexboxLayout> this.ac.nativeElement;
     //  // activityIndicator.style.visibility = 'visible';
     // addContainer.style.visibility = 'collapse';
+    this.picker = new ModalPicker.ModalDatetimepicker;
     let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
     activityIndicator.style.visibility = 'collapse'
     firebase.getCurrentUser().then(user => {
@@ -385,6 +392,30 @@ public onPropertyValidated(args) {
     	ridingLabel.style.color = new Color("#5c687c");
     	this.isDriving = true;
     }
+  }
+
+  showDateModal() {
+    var today = new Date();
+    var nextYearDate = new Date(today);
+    nextYearDate.setDate(nextYearDate.getDate() + 365);
+
+    this.picker
+    .pickDate({
+      title: "Select date",
+      theme: "light",
+      minDate: new Date(),
+      maxDate: nextYearDate
+    })
+    .then(result => {
+      // Note the month is 1-12 (unlike js which is 0-11)
+      var selectedDate = new Date(result.year, result.month - 1, result.day);
+      this.dateLabel = this.days[selectedDate.getDay()] + ', ' + this.months[selectedDate.getMonth()] + ' ' + selectedDate.getDate();
+      this.date = selectedDate.toString().substring(0, 15);
+      this.formattedDate = this.datePipe.transform(selectedDate,"yyyy-MM-dd")
+    })
+    .catch(error => {
+      console.log("Error: " + error);
+    });
   }
 
 }
