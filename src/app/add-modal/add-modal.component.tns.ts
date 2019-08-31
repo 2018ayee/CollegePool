@@ -187,6 +187,10 @@ public onPropertyValidated(args) {
       alert("Please enter a note that is 150 characters or less.")
       return;
     }
+    if(!this.date){
+      alert("Please select a valid ride date.");
+      return;
+    }
      let addContainer = <FlexboxLayout> this.ac.nativeElement;
      addContainer.style.visibility = 'collapse';
      let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
@@ -202,7 +206,6 @@ public onPropertyValidated(args) {
           if(!this.isDriving){
             this.capacity = "-"+this.capacity;
           }
-        let formattedText = this.commentText.trim();
         // console.log("Fromatted",formattedText)
         // formattedText.join(" ");
         // console.log("textfo", formattedText)
@@ -210,10 +213,18 @@ public onPropertyValidated(args) {
         //  console.log(this.startPlace);
         //  console.log(this.endPlace);
          this.mapService.getDistance(this.startPlace, this.endPlace).subscribe(res => {
-     		//  console.log(res);
-     		//  console.log(res['rows'][0]['elements'][0]['distance']['text']);
-     		 var distance_string = res['rows'][0]['elements'][0]['distance']['text'];
-     		 var duration = res['rows'][0]['elements'][0]['duration']['value'];
+          // console.log(res);
+        if(!res['rows'][0]['elements'][0]['distance']){
+          alert("Please choose a start and end location that are within the same continent.");
+          let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+          let addContainer = <FlexboxLayout> this.ac.nativeElement;
+          activityIndicator.style.visibility = 'collapse';
+          addContainer.style.visibility = 'visible';
+          return;
+        }
+         //  console.log(res['rows'][0]['elements'][0]['distance']['text']);
+        var distance_string = res['rows'][0]['elements'][0]['distance']['text'];
+     		var duration = res['rows'][0]['elements'][0]['duration']['value'];
      		//  console.log("duration type:");
      		//  console.log(typeof duration);
      		//  console.log(distance_string.split(',').join(""));

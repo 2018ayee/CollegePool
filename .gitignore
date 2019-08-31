@@ -14,11 +14,7 @@ backend/WiredTiger
 
 # dependencies
 /node_modules
-/backend/data/db
-backend/data/db/
-/platforms
-platforms/
-platforms
+
 node_modules
 
 # IDEs and editors
