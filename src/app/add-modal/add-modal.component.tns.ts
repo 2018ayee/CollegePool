@@ -193,6 +193,10 @@ public onPropertyValidated(args) {
       alert("Please enter a note that is 150 characters or less.")
       return;
     }
+    if(!this.date){
+      alert("Please select a valid ride date.");
+      return;
+    }
      let addContainer = <FlexboxLayout> this.ac.nativeElement;
      addContainer.style.visibility = 'collapse';
      let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
@@ -208,7 +212,6 @@ public onPropertyValidated(args) {
           if(!this.isDriving){
             this.capacity = "-"+this.capacity;
           }
-        let formattedText = this.commentText.trim();
         // console.log("Fromatted",formattedText)
         // formattedText.join(" ");
         // console.log("textfo", formattedText)
@@ -216,20 +219,26 @@ public onPropertyValidated(args) {
          //console.log(this.startPlace);
          //console.log(this.endPlace);
          this.mapService.getDistance(this.startPlace, this.endPlace).subscribe(res => {
-            //console.log(res);
-            //console.log(res['rows'][0]['elements'][0]['distance']['text']);
-            var distance_string = res['rows'][0]['elements'][0]['distance']['text'];
-            var duration = res['rows'][0]['elements'][0]['duration']['value'];
-            //console.log("duration type:");
-            //console.log(typeof duration);
-            //console.log(distance_string.split(',').join(""));
-            var distance = parseInt(distance_string.split(',').join(""), 10);//.substring(0, distance_string.length()-3), 10);
-            //console.log(distance); 
-            //console.log(typeof distance);
-            //console.log("duration: " + res['rows'][0]['elements'][0]['duration']['text']);
-            //this.price = require('../../../backend/data/pricing')({"distance": distance, "capacity": this.capacity, "duration": duration});
-               //console.log("capacity: " + this.capacity);
-           this.price.noUpdate(distance, 1, this.capacity, Date.now(), Date.now(), (new Date(this.date).getTime())).subscribe(res => {
+          // console.log(res);
+        if(!res['rows'][0]['elements'][0]['distance']){
+          alert("Please choose a start and end location that are within the same continent.");
+          let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
+          let addContainer = <FlexboxLayout> this.ac.nativeElement;
+          activityIndicator.style.visibility = 'collapse';
+          addContainer.style.visibility = 'visible';
+          return;
+        }
+         //  console.log(res['rows'][0]['elements'][0]['distance']['text']);
+        var distance_string = res['rows'][0]['elements'][0]['distance']['text'];
+         var duration = res['rows'][0]['elements'][0]['duration']['value'];
+         //  console.log("duration type:");
+         //  console.log(typeof duration);
+         //  console.log(distance_string.split(',').join(""));
+          var distance = parseInt(distance_string.split(',').join(""), 10);//.substring(0, distance_string.length()-3), 10);
+         //  console.log(distance); 
+         //  console.log(typeof distance);
+         //  console.log("duration: " + res['rows'][0]['elements'][0]['duration']['text']);
+          this.price.noUpdate(distance, 1, this.capacity, Date.now(), Date.now(), (new Date(this.date).getTime())).subscribe(res => {
               //console.log(this.price);
              postingsCollection.add({
                uid: this.user.id,
@@ -252,20 +261,19 @@ public onPropertyValidated(args) {
                distance: distance,
                riders: 1
              }).then(res => {
-               // console.log(res);
-               console.log("finished add!");
-               firebase.firestore.collection('users').doc(this.user.id).get().then(doc => {
-                 var posts: String[] = doc.data().posts;
-                 posts.push(res.id);
-                 firebase.firestore.collection('users').doc(this.user.id).update({
-                   posts: posts
-                 })
-                 this.uploadMap(res.id, 'small_map.png');
-                 this.uploadMap(res.id, 'large_map.png');
-               }).catch((err) => {})
+             // console.log(res);
+             console.log("finished add!");
+             firebase.firestore.collection('users').doc(this.user.id).get().then(doc => {
+               var posts: String[] = doc.data().posts;
+               posts.push(res.id);
+               firebase.firestore.collection('users').doc(this.user.id).update({
+                 posts: posts
+               })
+               this.uploadMap(res.id, 'small_map.png');
+               this.uploadMap(res.id, 'large_map.png');
              }).catch((err) => {})
-            });
-           
+           }).catch((err) => {})
+          });
 
          });
        }

@@ -199,6 +199,7 @@ export class PostingInfoComponent implements OnInit {
     }).then(
         () => {
           console.log("File deleted.");
+          this.router.navigate(['navigation'], {clearHistory: true})
         },
         (error) => {
           console.log("File deletion Error: " + error);
@@ -236,15 +237,16 @@ export class PostingInfoComponent implements OnInit {
           posts: userPosts
         }).then(async (res) => {
           await chatDocument.get().then(async (doc) => {
+            if(doc.data()){
             let users = doc.data().users;
             for(var i = 0; i < users.length; i++) {
               let chatUsers = users;
               await this.removeChat(chatUsers, i);
             }
             chatDocument.delete();
-            this.deleteFiles();
-            this.onNavBtnTap();
-          })
+          }
+          this.deleteFiles();
+        })
         }).catch((err) => {
           console.log(err);
         })
@@ -295,6 +297,7 @@ export class PostingInfoComponent implements OnInit {
         if(doc.exists) {
           //chat exists, so add user to the chat room and navigate there
           let tokens: [string] = doc.data().tokens;
+          console.log("doc.data()2",doc.data())
           var users: [{uid: string, displayName: string}] = doc.data().users;
           var userTokens: [string] = this.currentUser.tokens;
           var newTokens = tokens.concat(userTokens);
