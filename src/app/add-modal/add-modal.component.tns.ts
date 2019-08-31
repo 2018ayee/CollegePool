@@ -218,8 +218,8 @@ public onPropertyValidated(args) {
          var postingsCollection = firebase.firestore.collection('postings');
          //console.log(this.startPlace);
          //console.log(this.endPlace);
-         this.mapService.getDistance(this.startPlace, this.endPlace).subscribe(res => {
-          // console.log(res);
+         this.mapService.getDistance(this.startLat, this.startLng, this.endLat, this.endLng).subscribe(res => {
+          console.log(res);
         if(!res['rows'][0]['elements'][0]['distance']){
           alert("Please choose a start and end location that are within the same continent.");
           let activityIndicator = <ActivityIndicator> this.ai.nativeElement;
@@ -228,15 +228,15 @@ public onPropertyValidated(args) {
           addContainer.style.visibility = 'visible';
           return;
         }
-         //  console.log(res['rows'][0]['elements'][0]['distance']['text']);
+         //console.log(res['rows'][0]['elements'][0]['distance']['text']);
         var distance_string = res['rows'][0]['elements'][0]['distance']['text'];
          var duration = res['rows'][0]['elements'][0]['duration']['value'];
          //  console.log("duration type:");
          //  console.log(typeof duration);
          //  console.log(distance_string.split(',').join(""));
           var distance = parseInt(distance_string.split(',').join(""), 10);//.substring(0, distance_string.length()-3), 10);
-         //  console.log(distance); 
-         //  console.log(typeof distance);
+           console.log(distance); 
+           console.log(typeof distance);
          //  console.log("duration: " + res['rows'][0]['elements'][0]['duration']['text']);
           this.price.noUpdate(distance, 1, this.capacity, Date.now(), Date.now(), (new Date(this.date).getTime())).subscribe(res => {
               //console.log(this.price);
