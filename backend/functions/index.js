@@ -287,21 +287,27 @@ exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
 			      var current_time = req.query.time;
 			      //var post_time = req.query.ptime;
 			      var departure_time = req.query.utime;
-			      var scale = (departure_time-doc.data().timeStamp)/1000/3600/24;
-			      var preprocessed_dt = current_time - doc.data().timeStamp;
-			      var dt = Math.floor(preprocessed_dt/1000/3600/6)*6;
+			      //var scale = (departure_time-doc.data().timeStamp)/1000/3600/24;
+			      //var preprocessed_dt = current_time - doc.data().timeStamp;
+			      //var dt = Math.floor(preprocessed_dt/1000/3600/6)*6;
+			      var time_remaining = (departure_time-current_time);
+			      var dt = Math.floor(time_remaining/1000/3600/12)*12;
+			      //res.send(d+" "+n+" "+c +" "+t);
 			      /***
-			      let newPrice = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;
-			      let theoretical = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;//distance*(GAS_PRICE*(1+(c-1)/3))
+			      1) let newPrice = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;
+			      1) let theoretical = (GAS_PRICE + 0.007/n*Math.log(1+2*dt))*d;//distance*(GAS_PRICE*(1+(c-1)/3))
+			      2) let newPrice = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/n))*d;
+			      2) let theoretical = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/c))*d;
 			      ***/
-			      let newPrice = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/n))*d;
-			      let theoretical = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/c))*d;
+			      let newPrice = (GAS_PRICE+(1.0*1/37*Math.pow(Math.E, (120-dt)/37-1/0.4)+0.0025)/n)*d;
+			      let theoretical = (GAS_PRICE+(1.0*1/37*Math.pow(Math.E, (120-dt)/37-1/0.4)+0.0025)/c)*d;
 
 			      var displayed ="";
 			      if(newPrice.toFixed(2)===theoretical.toFixed(2))
 			      	displayed = "$"+newPrice.toFixed(2);
 			      else
 			      	displayed = "$"+theoretical.toFixed(2)+"-$"+newPrice.toFixed(2);
+			      //res.send("passed!");
 			      t.update(DocRef, {price: displayed});
 			      //res.send(displayed);
 			      //res.send("Current time received by document "+req.query.id+" is: "+req.query.time+", and the time differential is "+dt+" hours. The scale factor is "+scale+", and the price is "+displayed+".");
@@ -332,9 +338,14 @@ exports.getRiderPriceNoDbUpdate = functions.https.onRequest(async (req, res) => 
   var scale = (departure_time-post_time/1000/3600/24);
   var preprocessed_dt = current_time - post_time;
   var dt = Math.floor(preprocessed_dt/1000/3600/6)*6;
+  var time_remaining = (departure_time-current_time);
+  var t = Math.floor(time_remaining/1000/3600/12)*12;
+  /***
   let newPrice = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/n))*d;
   let theoretical = (GAS_PRICE+((1.0*5/Math.pow(Math.E, 2)*Math.pow(Math.E, 1/12*dt/scale)-1.0*5/Math.pow(Math.E, 2))/100/c))*d;
-
+	***/
+  let newPrice = (GAS_PRICE+(1.0*1/37*Math.pow(Math.E, (120-t)/37-1/0.4)+0.0025)/n)*d;
+  let theoretical = (GAS_PRICE+(1.0*1/37*Math.pow(Math.E, (120-t)/37-1/0.4)+0.0025)/c)*d;
   var displayed ="";
   if(newPrice.toFixed(2)===theoretical.toFixed(2))
   	displayed = "$"+newPrice.toFixed(2);
