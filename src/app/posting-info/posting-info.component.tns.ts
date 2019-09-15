@@ -295,6 +295,7 @@ export class PostingInfoComponent implements OnInit {
     activityIndicator.busy = true;
 
     if(this.buttonText === 'View chat') {
+      console.log(this.mapData.postInfo.data.uid);
       this.transferService.setData(this.mapData.postInfo.id);
       gridContainer.visibility = 'visible';
       activityIndicator.busy = false;
@@ -344,15 +345,16 @@ export class PostingInfoComponent implements OnInit {
                       this.priceService.noUpdate(doc.data().distance, doc.data().riders, doc.data().capacity, doc2.data().currTime, doc.data().timeStamp, doc.data().unixDate).subscribe(res => {
                         var newbalance = doc2.data().balance;
                         console.log("old balance: "+newbalance); 
-                        var num = parseFloat(res.substring(1));
+                        var num = 0-parseFloat(res.substring(1));
                         var num_string_temp = res.substring(1);
                         var num_string = num_string_temp.substring(0, num_string_temp.length-3) +num_string_temp.substring(num_string_temp.length-2);
-                        console.log(num_string);
-                        console.log("num: "+num);
+                        //console.log(num_string);
+                        //console.log("num: "+num);
                         //newbalance[num_string] = num;
-                        console.log("new balance: "+newbalance);
+                        //console.log("new balance: "+newbalance);
+                        console.log(this.mapData.postInfo.data.uid);
                         userDocument.update({
-                          ['balance.' + num_string]: num
+                          ['balance.' + num_string]: this.mapData.postInfo.data.uid
                         });
                     }); 
                   });
