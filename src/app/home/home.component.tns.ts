@@ -181,7 +181,7 @@ export class HomeComponent implements OnInit {
     }
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
     if(data.capacity >0){
-      cap = 2+"/"+ data.capacity+" Seats Left";
+      cap = data.riders+"/"+ data.capacity+" Filled";
       // info_label+= ", "+2+"/"+ data.capacity+" Seats Remaining";
       price = data.price
       type = '~/img/steering-wheel-2.png'

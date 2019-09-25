@@ -259,7 +259,7 @@ public onPropertyValidated(args) {
                endLng: this.endLng,
                timeStamp: Date.now(),
                distance: distance,
-               riders: 1
+               riders: 0
              }).then(res => {
              // console.log(res);
              console.log("finished add!");

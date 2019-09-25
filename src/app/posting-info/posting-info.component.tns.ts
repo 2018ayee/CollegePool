@@ -305,7 +305,7 @@ export class PostingInfoComponent implements OnInit {
       const chatDocument = firebase.firestore.collection('chats').doc(this.mapData.postInfo.id);
       const userDocument = firebase.firestore.collection('users').doc(this.userId);
       const postingDocument = firebase.firestore.collection('postings').doc(this.mapData.postInfo.id);
-      this.confirm("You are about to join this ride. Confirming will take you to the group chat.").then(result=>{
+      this.confirm("Are you sure you want to join? Cancelling will result in a 10% fee.").then(result=>{
         if(result){
           chatDocument.get().then((doc) => {
             if(doc.exists) {
@@ -337,9 +337,10 @@ export class PostingInfoComponent implements OnInit {
               })
             }
             else {
-              //confirm to user that they're joining the chat
+              
               
                   //update the user's balance
+                  //update the post's capacity
                   firebase.firestore.collection('postings').doc(this.mapData.postInfo.id).get().then((doc) => {
                     firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc2) => {
                       this.priceService.noUpdate(doc.data().distance, doc.data().riders, doc.data().capacity, doc2.data().currTime, doc.data().timeStamp, doc.data().unixDate).subscribe(res => {
@@ -347,7 +348,7 @@ export class PostingInfoComponent implements OnInit {
                         console.log("old balance: "+newbalance); 
                         var num = 0-parseFloat(res.substring(1));
                         var num_string_temp = res.substring(1);
-                        var num_string = num_string_temp.substring(0, num_string_temp.length-3) +num_string_temp.substring(num_string_temp.length-2);
+                        var num_string = "-"+num_string_temp.substring(0, num_string_temp.length-3) +num_string_temp.substring(num_string_temp.length-2);
                         //console.log(num_string);
                         //console.log("num: "+num);
                         //newbalance[num_string] = num;
@@ -356,10 +357,13 @@ export class PostingInfoComponent implements OnInit {
                         userDocument.update({
                           ['balance.' + num_string]: this.mapData.postInfo.data.uid
                         });
+
+                        postingDocument.update({
+                          riders: (doc.data().riders+1)
+                        })
                     }); 
                   });
                 });
-                  
 
                   //chat does not exist, so create and add both post user and current user
                   
