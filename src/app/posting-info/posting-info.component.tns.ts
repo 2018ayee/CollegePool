@@ -14,6 +14,8 @@ import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { LogincheckService } from '../logincheck.service.tns';
 import { ChatMessage } from '../models/chat-message.model';
+import { pricing } from '../pricing-cloud.tns';
+import { confirm, alert, prompt } from "tns-core-modules/ui/dialogs";
 
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 declare var com:any;
@@ -59,7 +61,15 @@ export class PostingInfoComponent implements OnInit {
   currentUser;
 
   constructor(private mapService: GoogleMapsService, private router: RouterExtensions, private transferService: TransferService, private page: Page,
-    private logincheckService: LogincheckService) { }
+    private logincheckService: LogincheckService, private priceService: pricing,) { }
+  confirm(message: string) {
+    return confirm({
+      title: "CollegePool",
+      okButtonText: "Confirm",
+      cancelButtonText: "Cancel",
+      message: message
+    });
+  }
 
   ngOnInit() {
   	this.loadViews();
@@ -99,7 +109,7 @@ export class PostingInfoComponent implements OnInit {
           activityIndicator.busy = false;
           infoContainer.visibility = 'visible';
         })
-        this.buttonText = 'Join chat';
+        this.buttonText = 'Join';
       }
     })
 
@@ -285,61 +295,30 @@ export class PostingInfoComponent implements OnInit {
     activityIndicator.busy = true;
 
     if(this.buttonText === 'View chat') {
+      console.log(this.mapData.postInfo.data.uid);
       this.transferService.setData(this.mapData.postInfo.id);
       gridContainer.visibility = 'visible';
       activityIndicator.busy = false;
       this.router.navigate(['chat']);
     }
-    else if(this.buttonText === 'Join chat') {
+    else if(this.buttonText === 'Join') {
       const chatDocument = firebase.firestore.collection('chats').doc(this.mapData.postInfo.id);
       const userDocument = firebase.firestore.collection('users').doc(this.userId);
-      chatDocument.get().then((doc) => {
-        if(doc.exists) {
-          //chat exists, so add user to the chat room and navigate there
-          let tokens: [string] = doc.data().tokens;
-          console.log("doc.data()2",doc.data())
-          var users: [{uid: string, displayName: string}] = doc.data().users;
-          var userTokens: [string] = this.currentUser.tokens;
-          var newTokens = tokens.concat(userTokens);
-          users.push({uid: this.userId, displayName: this.currentUserName})
-          chatDocument.update({
-            users: users,
-            tokens: Array.from(new Set(newTokens))
-          }).then((res) => {
-            userDocument.get().then((doc) => {
-              var userChats = doc.data().chats;
-              userChats.push(this.mapData.postInfo.id);
-              userDocument.update({
-                chats: userChats
-              }).then((res) => {
-                //finally after everything else has updated, send user to chat component
-                this.transferService.setData(this.mapData.postInfo.id);
-                this.buttonText = 'View chat';
-                gridContainer.visibility = 'visible';
-                activityIndicator.busy = false;
-                this.router.navigate(['chat']);
-              })
-            })
-          })
-        }
-        else {
-          //chat does not exist, so create and add both post user and current user
-          firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).set({
-            users: [{uid: this.mapData.postInfo.data.uid, displayName: this.mapData.postItem.username}, {uid: this.userId, displayName: this.currentUserName}],
-            chats: [],
-            expired: false,
-          }).then((res) => {
-            firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc) => {
-              const userTokens = this.currentUser.tokens;
-              const otherUserTokens = doc.data().tokens;
-              const newTokens = userTokens.concat(otherUserTokens);
-              firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).update({
+      const postingDocument = firebase.firestore.collection('postings').doc(this.mapData.postInfo.id);
+      this.confirm("Are you sure you want to join? Cancelling will result in a 10% fee.").then(result=>{
+        if(result){
+          chatDocument.get().then((doc) => {
+            if(doc.exists) {
+              //chat exists, so add user to the chat room and navigate there
+              let tokens: [string] = doc.data().tokens;
+              console.log("doc.data()2",doc.data())
+              var users: [{uid: string, displayName: string}] = doc.data().users;
+              var userTokens: [string] = this.currentUser.tokens;
+              var newTokens = tokens.concat(userTokens);
+              users.push({uid: this.userId, displayName: this.currentUserName})
+              chatDocument.update({
+                users: users,
                 tokens: Array.from(new Set(newTokens))
-              })
-              var userChats = doc.data().chats;
-              userChats.push(this.mapData.postInfo.id);
-              firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).update({
-                chats: userChats
               }).then((res) => {
                 userDocument.get().then((doc) => {
                   var userChats = doc.data().chats;
@@ -356,10 +335,91 @@ export class PostingInfoComponent implements OnInit {
                   })
                 })
               })
-            })
-          })
-        }
-      })
+            }
+            else {
+              
+              
+                  //update the user's balance
+                  //update the post's capacity
+                  firebase.firestore.collection('postings').doc(this.mapData.postInfo.id).get().then((doc) => {
+                    firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc2) => {
+                      this.priceService.noUpdate(doc.data().distance, doc.data().riders, doc.data().capacity, doc2.data().currTime, doc.data().timeStamp, doc.data().unixDate).subscribe(res => {
+                        var newbalance = doc2.data().balance;
+                        console.log("old balance: "+newbalance); 
+                        var num = 0-parseFloat(res.substring(1));
+                        var num_string_temp = res.substring(1);
+                        var num_string = "-"+num_string_temp.substring(0, num_string_temp.length-3) +num_string_temp.substring(num_string_temp.length-2);
+                        //console.log(num_string);
+                        //console.log("num: "+num);
+                        //newbalance[num_string] = num;
+                        //console.log("new balance: "+newbalance);
+                        console.log(this.mapData.postInfo.data.uid);
+                        userDocument.update({
+                          ['balance.' + num_string]: this.mapData.postInfo.data.uid
+                        });
+
+                        postingDocument.update({
+                          riders: (doc.data().riders+1)
+                        })
+                    }); 
+                  });
+                });
+
+                  //chat does not exist, so create and add both post user and current user
+                  
+                  firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).set({
+                    users: [{uid: this.mapData.postInfo.data.uid, displayName: this.mapData.postItem.username}, {uid: this.userId, displayName: this.currentUserName}],
+                    chats: [],
+                    expired: false,
+                  }).then((res) => {
+                    firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc) => {
+                      const userTokens = this.currentUser.tokens;
+                      const otherUserTokens = doc.data().tokens;
+                      const newTokens = userTokens.concat(otherUserTokens);
+                      firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).update({
+                        tokens: Array.from(new Set(newTokens))
+                      })
+                      var userChats = doc.data().chats;
+                      userChats.push(this.mapData.postInfo.id);
+                      firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).update({
+                        chats: userChats
+                      }).then((res) => {
+                        userDocument.get().then((doc) => {
+                          var userChats = doc.data().chats;
+                          userChats.push(this.mapData.postInfo.id);
+                          userDocument.update({
+                            chats: userChats
+                          }).then((res) => {
+                            //finally after everything else has updated, send user to chat component
+
+                            ///***
+
+                            this.transferService.setData(this.mapData.postInfo.id);
+                            this.buttonText = 'View chat';
+                            gridContainer.visibility = 'visible';
+                            activityIndicator.busy = false;
+                            this.router.navigate(['chat']);
+                            //***/
+                          })
+                        })
+                      })
+                    })
+                  })
+
+                }
+                
+
+
+              
+            
+            });
+          }
+          else{
+            console.log("im going back");
+            activityIndicator.busy = false;
+            this.router.back();
+          }
+        });
     }
   }
 }
