@@ -109,7 +109,15 @@ export class PostingInfoComponent implements OnInit {
           activityIndicator.busy = false;
           infoContainer.visibility = 'visible';
         })
-        this.buttonText = 'Join';
+        firebase.firestore.collection('postings').doc(this.mapData.postInfo.id).get().then((doc) => {
+        	if(doc.data().capacity > 0){
+        	  this.buttonText = 'Join';
+          }
+          else{
+            this.buttonText = 'Give Ride';
+          }
+        })
+        
       }
     })
 

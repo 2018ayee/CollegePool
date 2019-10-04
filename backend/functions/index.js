@@ -306,8 +306,8 @@ exports.getRiderPrice = functions.https.onRequest(async (req, res) => {
 			      //let theoretical = (GAS_PRICE+(1.0*1/37*Math.pow(Math.E, (120-dt)/37-1/0.4)+0.0025)/n)*d;
 
 			      /*** CCER ***/
-			      let newPrice = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/n)*d;
-			      let theoretical = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/n)*d;
+			      let newPrice = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/1)*d;
+			      let theoretical = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/1)*d;
 			      
 			      var displayed ="";
 			      if(newPrice.toFixed(2)===theoretical.toFixed(2))
@@ -356,8 +356,8 @@ exports.getRiderPriceNoDbUpdate = functions.https.onRequest(async (req, res) => 
   //let theoretical = (GAS_PRICE+(1.0*1/37*Math.pow(Math.E, (120-t)/37-1/0.4)+0.0025)/n)*d;
 
   /*** CCER ***/
-  let newPrice = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/n)*d;
-  let theoretical = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/n)*d;
+  let newPrice = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/1)*d;
+  let theoretical = (GAS_PRICE+(1.0*1/48*Math.pow(Math.E, (120-dt)/48-1/0.4)+0.0025)/1)*d;
 
   var displayed ="";
   if(newPrice.toFixed(2)===theoretical.toFixed(2))

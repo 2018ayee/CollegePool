@@ -107,6 +107,7 @@ export class AddModalComponent implements OnInit {
       this.user.id = this.logincheckService.getUser();
     })
     this.comment = new Comment("");
+    
   }
 
   get person(): Comment {
@@ -396,7 +397,7 @@ public onPropertyValidated(args) {
 
     let drivingLabel = <Label> this.dl.nativeElement;
     let ridingLabel = <Label> this.rl.nativeElement;
-
+    //this.isDriving = false; 
     if(isChecked) {
     	drivingLabel.style.fontWeight = "400";
     	drivingLabel.style.color = new Color("#5c687c");
