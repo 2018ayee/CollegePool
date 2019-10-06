@@ -43,6 +43,8 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.logincheckService.getUser()
+    if(this.transferService.getData() != 'cancelled')
+      this.checkRides();
 
     this.actionItem = <ActionItem> this.ai.nativeElement;
 
@@ -104,7 +106,10 @@ export class NavigationComponent implements OnInit {
       for (var i = 0; i < postIds.length; i++) {
         postingsCollection.doc(postIds[i]).get().then(doc => {
           var curTime = Date.now();
-          if(doc.data().unixDate - curTime < 10800000) {
+          var postTime = doc.data().unixDate;
+          if(Math.abs(postTime - curTime) < (24 * 3600000) && doc.data().rideStatus == 'created') {
+            console.log("start ride")
+
             this.router.navigate(['start-ride']);
           }
         })

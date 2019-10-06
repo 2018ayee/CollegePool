@@ -1,1 +1,34 @@
 /* Add mobile styles for the component here.  */
+.btn-primary {
+  height: 50;
+  width: 200;
+  margin: 0 5 20 5;
+  background-color: #ac00e6;
+  border-radius: 5;
+  font-size: 18;
+  font-weight: 500;
+  vertical-align: center;
+}
+
+.map-view {
+	height: 100%;
+	width: 100%;
+	/* height: 380; */
+	vertical-align: center;
+	/* margin-bottom: 20; */
+	/*margin-top: 20;*/
+	margin-bottom: 5;
+	margin-top:16;
+}
+
+.info-label {
+	font-size: 36;
+	font-weight: 500;
+	color: black;
+}
+
+.start-text-container {
+	text-align: left;
+	margin-top: 28;
+	width: 100%;
+}

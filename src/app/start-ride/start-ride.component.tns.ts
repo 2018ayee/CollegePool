@@ -6,15 +6,15 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { TransferService } from '../datatransfer.service';
 import {isAndroid, isIOS} from "tns-core-modules/platform";
 
+declare var com:any;
+declare var GMSCoordinateBounds: any;
+declare var GMSCameraUpdate: any;
+
 @Component({
   selector: 'app-start-ride',
   templateUrl: './start-ride.component.html',
   styleUrls: ['./start-ride.component.css']
 })
-
-declare var com:any;
-declare var GMSCoordinateBounds: any;
-declare var GMSCameraUpdate: any;
 
 export class StartRideComponent implements OnInit {
 
@@ -27,6 +27,7 @@ export class StartRideComponent implements OnInit {
   mapView: MapView;
   bounds;
   mapData;
+  postId = 'S7rJ2bO0QyjivsPzynUH';
 
   constructor(private mapService: GoogleMapsService, private router: RouterExtensions, private transferService: TransferService) { }
 
@@ -38,8 +39,8 @@ export class StartRideComponent implements OnInit {
 
 	// this.latitude = (this.startLat + this.endLat) / 2.0;
 	// this.longitude = (this.startLng + this.endLng) / 2.0;
-  	this.addMarker(this.startLat, this.startLng, this.mapData.postInfo.data.startAddress, this.mapData.postInfo.data.startFormatted, 0);
-	this.addMarker(this.endLat, this.endLng, this.mapData.postInfo.data.endAddress, this.mapData.postInfo.data.endFormatted, 1);
+  	this.addMarker(this.startLat, this.startLng, 'D.C.', 'DC, USA', 0);
+	this.addMarker(this.endLat, this.endLng, 'Charlottesville', 'VA, USA', 1);
 
   	if(isAndroid) {
     	var builder = new com.google.android.gms.maps.model.LatLngBounds.Builder();
@@ -65,11 +66,18 @@ export class StartRideComponent implements OnInit {
     	this.bounds = this.bounds.includingCoordinate(marker.position);
   }
 
+  startPool() {
+  	var postingsCollection = firebase.firestore.collection('postings');
+  	postingsCollection.doc(this.postId).update({
+  		rideStatus: 'started'
+  	}).then(() => {
+  		this.router.navigate(['navigation'], {clearHistory: true})
+  	})
+  }
+
   onNavBtnTap() {
-    if(this.router.canGoBack)
-      this.router.back();
-    else
-      this.router.navigate(['navigation'], {clearHistory: true})
+    this.router.navigate(['navigation'], {clearHistory: true})
+    this.transferService.setData('cancelled');
   }
 
 }

@@ -136,7 +136,7 @@ application.on(application.launchEvent, function (args) {
     ChatInfoComponent,
     NumberPickerComponent,
     StartRideComponent,
-    EndRideComponent,
+    EndRideComponent
   ],
   imports: [
     NativeScriptModule,

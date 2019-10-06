@@ -6,15 +6,15 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { TransferService } from '../datatransfer.service';
 import {isAndroid, isIOS} from "tns-core-modules/platform";
 
+declare var com:any;
+declare var GMSCoordinateBounds: any;
+declare var GMSCameraUpdate: any;
+
 @Component({
   selector: 'app-end-ride',
   templateUrl: './end-ride.component.html',
   styleUrls: ['./end-ride.component.css']
 })
-
-declare var com:any;
-declare var GMSCoordinateBounds: any;
-declare var GMSCameraUpdate: any;
 
 export class EndRideComponent implements OnInit {
 
