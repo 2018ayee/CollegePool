@@ -1,0 +1,9 @@
+<Page.actionBar>
+    <ActionBar title="Start Pool">
+    	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+    </ActionBar>
+</Page.actionBar>
+
+<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" height=500 #mapView></MapView>
+
+<Button text="Complete Pool" class="btn btn-primary m-t-20"></Button>

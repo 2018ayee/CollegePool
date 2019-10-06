@@ -73,6 +73,8 @@ import { ForgetFormComponent } from './forget-form/forget-form.component';
 import { TNSImageCacheItModule } from 'nativescript-image-cache-it/angular';
 import { ChatInfoComponent } from './chat-info/chat-info.component';
 import { NumberPickerComponent } from './number-picker/number-picker.component';
+import { StartRideComponent } from './start-ride/start-ride.component';
+import { EndRideComponent } from './end-ride/end-ride.component';
 
 registerElement('Fab', () => require('@nstudio/nativescript-floatingactionbutton').Fab);
 registerElement("PullToRefresh", () => require("@nstudio/nativescript-pulltorefresh").PullToRefresh);
@@ -133,6 +135,8 @@ application.on(application.launchEvent, function (args) {
     ForgetFormComponent,
     ChatInfoComponent,
     NumberPickerComponent,
+    StartRideComponent,
+    EndRideComponent,
   ],
   imports: [
     NativeScriptModule,
