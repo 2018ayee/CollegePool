@@ -1,0 +1,15 @@
+<Page.actionBar>
+    <ActionBar title="Start Pool">
+    	<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+    </ActionBar>
+</Page.actionBar>
+
+<GridLayout rows="2*, 14*,3*" #layout>
+	<StackLayout row="0" class="start-text-container">
+		<Label textWrap="true" class="info-label" text="Start your Pool"></Label>
+	</StackLayout>
+
+	<MapView (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" class="map-view" row="1" height=500 #mapView></MapView>
+
+	<Button text="Start Pool" class="btn btn-primary m-t-20" row="2" (tap)="startPool()"></Button>
+</GridLayout>

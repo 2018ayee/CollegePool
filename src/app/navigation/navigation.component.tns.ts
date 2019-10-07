@@ -11,6 +11,9 @@ import { ListView } from "tns-core-modules/ui/list-view";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { isAndroid } from "tns-core-modules/platform";
+import * as firebase from 'nativescript-plugin-firebase';
+import { LogincheckService } from '../logincheck.service';
+
 
 @Component({
   selector: 'app-navigation',
@@ -19,7 +22,7 @@ import { isAndroid } from "tns-core-modules/platform";
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private transferService: TransferService, private router: RouterExtensions, private page: Page) { }
+  constructor(private transferService: TransferService, private router: RouterExtensions, private page: Page, private logincheckService: LogincheckService) { }
 
   @ViewChild('tabView', { static: true }) tv: ElementRef;
   @ViewChild('actionBar', { static: true }) ab: ElementRef;
@@ -39,6 +42,10 @@ export class NavigationComponent implements OnInit {
   // listView = <ListView> this.lv.nativeElement;
 
   ngOnInit() {
+    this.user = this.logincheckService.getUser()
+    if(this.transferService.getData() != 'cancelled')
+      this.checkRides();
+
     this.actionItem = <ActionItem> this.ai.nativeElement;
 
   	this.activebtn = this.transferService.getData();
@@ -90,6 +97,26 @@ export class NavigationComponent implements OnInit {
     //   }
     // });
   }
+
+  checkRides() {
+    var postingsCollection = firebase.firestore.collection('postings');
+    var usersCollection = firebase.firestore.collection('users').doc(this.user);
+    usersCollection.get().then(doc => {
+      var postIds = doc.data().posts;
+      for (var i = 0; i < postIds.length; i++) {
+        postingsCollection.doc(postIds[i]).get().then(doc => {
+          var curTime = Date.now();
+          var postTime = doc.data().unixDate;
+          if(Math.abs(postTime - curTime) < (24 * 3600000) && doc.data().rideStatus == 'created') {
+            console.log("start ride")
+
+            this.router.navigate(['start-ride']);
+          }
+        })
+      }
+    })
+  }
+
   paintActive(btn) {
   	const navcontents = dom.getElementsByClassName('navigation')
     for(var x = 0; x < navcontents.length; x++)

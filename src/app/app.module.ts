@@ -52,6 +52,8 @@ import { ViewImageComponent } from './view-image/view-image.component';
 import { ForgetFormComponent } from './forget-form/forget-form.component';
 import { ChatInfoComponent } from './chat-info/chat-info.component';
 import { NumberPickerComponent } from './number-picker/number-picker.component';
+import { StartRideComponent } from './start-ride/start-ride.component';
+import { EndRideComponent } from './end-ride/end-ride.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -101,7 +103,9 @@ const appRoutes: Routes = [
     ViewImageComponent,
     ForgetFormComponent,
     ChatInfoComponent,
-    NumberPickerComponent
+    NumberPickerComponent,
+    StartRideComponent,
+    EndRideComponent
   ],
   imports: [
     BrowserModule,

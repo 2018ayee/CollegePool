@@ -1,1 +1,1 @@
-C:\Users\ajwan\DEV\CollegePool\platforms\android\app/src/main/assets/metadata
+D:\Kyvern\CollegePool\platforms\android\app/src/main/assets/metadata

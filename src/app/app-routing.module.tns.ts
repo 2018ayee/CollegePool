@@ -39,6 +39,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { ViewImageComponent } from './view-image/view-image.component';
 import { ChatInfoComponent } from './chat-info/chat-info.component';
+import { StartRideComponent } from './start-ride/start-ride.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -60,6 +61,7 @@ export const routes: Routes = [
   { path: 'chat-list', component: ChatListComponent },
   { path: 'view-image', component: ViewImageComponent },
   { path: 'chat-info', component: ChatInfoComponent },
+  { path: 'start-ride', component: StartRideComponent },
 ];
 
 @NgModule({
