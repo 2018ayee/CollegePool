@@ -411,9 +411,9 @@ export class PostingInfoComponent implements OnInit {
                               var body = "";
                               var type = "Group Message";
                               if(this.capacity>0)
-                                body = this.userId + " has joined the ride!";
+                                body = this.username + " has joined the ride!";
                               else
-                                body = this.userId + " has added you to their ride!";
+                                body = this.username + " has added you to their ride!";
                               this.notifService.feedCloud(this.mapData.postInfo.id, this.userId, title, body, type).subscribe(res => {
                                 //finally after everything else has updated, send user to chat component
 
