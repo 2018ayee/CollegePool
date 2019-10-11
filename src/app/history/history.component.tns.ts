@@ -102,7 +102,7 @@ export class HistoryComponent implements OnInit {
     // this
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
     if (data.capacity >0) {
-      cap = data.riders+"/"+ data.capacity+" Filled";
+      cap = data.riders+"/"+ data.capacity;
       // info_label+= ", "+2+"/"+ data.capacity+" Seats Remaining";
       price = data.price
       type = '~/img/steering-wheel-2.png'

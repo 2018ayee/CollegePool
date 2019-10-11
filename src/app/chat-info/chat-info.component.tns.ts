@@ -85,7 +85,7 @@ export class ChatInfoComponent implements OnInit {
     // this.createPosting(this.p[i]._id, this.p[i].user, this.p[i].startadr, this.p[i].endadr, this.p[i].date, this.p[i].cost, this.p[i].capacity, this.p[i].comments);
     if(this.postInfo.capacity != "-1"){
       //cap = 2+"/"+ this.postInfo.capacity+" Seats Left";
-      cap = this.postInfo.riders+"/"+ this.postInfo.capacity+" Filled";
+      cap = this.postInfo.riders+"/"+ this.postInfo.capacity;
       // info_label+= ", "+2+"/"+ this.postInfo.capacity+" Seats Remaining";
       price = this.postInfo.price
       type = '~/img/steering-wheel-2.png'
