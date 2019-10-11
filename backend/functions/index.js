@@ -9,6 +9,47 @@ admin.initializeApp();
 //  response.send("Hello from Firebase!");
 // });
 
+exports.generalNotification = functions.https.onRequest(async (req, res) => {
+	//	
+	var chat_id = req.query.chat_id;
+	var user_id = req.query.user_id; //person who caused this notif
+	var title = req.query.title; 
+	var body = req.query.body;
+	var type = req.query.type;
+	admin.firestore().collection('chats').doc(chat_id).get().then((doc) => {
+		var tokens = doc.data().tokens; //
+		const payload = {
+			notification: {
+				title: title,
+				body: body,
+				sound: 'default',
+				badge: '1'
+			},
+			data: {
+				type: type,
+				chatId: chat_id
+			}
+		};
+
+	      // Send notifications to all tokens.
+	      var finalTokens = []; 
+	      //res.send(tokens);
+	     for(var i = 0; i<tokens.length; i++){
+	       	//res.send("tokens");
+	       	//res.send(tokens);
+	       	if(tokens[i]!== user_id)
+	       	 	finalTokens.push(tokens[i]);
+	       }
+	      admin.messaging().sendToDevice(finalTokens, payload);
+	      //res.status(200).json({message: 'Notification sent'});
+	      res.send("Notification sent")
+	      return;
+	  }).catch((err) => {
+	  	return console.log(err);
+	  });
+
+});
+
 exports.sendChatNotification = functions.firestore.document('chats/{chatId}')
     .onUpdate(async (change, context) => {
       const chatId = context.params.chatId;

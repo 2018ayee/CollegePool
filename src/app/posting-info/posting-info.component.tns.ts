@@ -17,6 +17,8 @@ import { ChatMessage } from '../models/chat-message.model';
 import { pricing } from '../pricing-cloud.tns';
 import { confirm, alert, prompt } from "tns-core-modules/ui/dialogs";
 
+import { notifs } from "../send-notif.service";
+
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 declare var com:any;
 declare var GMSCoordinateBounds: any;
@@ -61,7 +63,7 @@ export class PostingInfoComponent implements OnInit {
   currentUser;
 
   constructor(private mapService: GoogleMapsService, private router: RouterExtensions, private transferService: TransferService, private page: Page,
-    private logincheckService: LogincheckService, private priceService: pricing,) { }
+    private logincheckService: LogincheckService, private priceService: pricing, private notifService: notifs) { }
   confirm(message: string) {
     return confirm({
       title: "CollegePool",
@@ -309,7 +311,7 @@ export class PostingInfoComponent implements OnInit {
       activityIndicator.busy = false;
       this.router.navigate(['chat']);
     }
-    else if(this.buttonText === 'Join') {
+    else if(this.buttonText === 'Join' || this.buttonText === 'Give Ride') {
       const chatDocument = firebase.firestore.collection('chats').doc(this.mapData.postInfo.id);
       const userDocument = firebase.firestore.collection('users').doc(this.userId);
       const postingDocument = firebase.firestore.collection('postings').doc(this.mapData.postInfo.id);
@@ -374,41 +376,58 @@ export class PostingInfoComponent implements OnInit {
                 });
 
                   //chat does not exist, so create and add both post user and current user
-                  
+                  var driver = ""
+                  if(this.buttonText === 'Join')
+                    driver = this.mapData.postInfo.id;
+                  else if(this.buttonText === 'Give Ride')
+                    driver = this.userId;
                   firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).set({
                     users: [{uid: this.mapData.postInfo.data.uid, displayName: this.mapData.postItem.username}, {uid: this.userId, displayName: this.currentUserName}],
-                    chats: [],
+                    chats: [], 
+                    driver: driver, 
                     expired: false,
                   }).then((res) => {
-                    firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc) => {
-                      const userTokens = this.currentUser.tokens;
-                      const otherUserTokens = doc.data().tokens;
-                      const newTokens = userTokens.concat(otherUserTokens);
-                      firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).update({
-                        tokens: Array.from(new Set(newTokens))
-                      })
-                      var userChats = doc.data().chats;
-                      userChats.push(this.mapData.postInfo.id);
-                      firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).update({
-                        chats: userChats
-                      }).then((res) => {
-                        userDocument.get().then((doc) => {
-                          var userChats = doc.data().chats;
-                          userChats.push(this.mapData.postInfo.id);
-                          userDocument.update({
-                            chats: userChats
-                          }).then((res) => {
-                            //finally after everything else has updated, send user to chat component
+                    // chat_id, user_id, title, body, type
+                    
+                      firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc) => {
+                        const userTokens = this.currentUser.tokens;
+                        const otherUserTokens = doc.data().tokens;
+                        const newTokens = userTokens.concat(otherUserTokens);
+                        firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).update({
+                          tokens: Array.from(new Set(newTokens))
+                        })
+                        var userChats = doc.data().chats;
+                        userChats.push(this.mapData.postInfo.id);
+                        firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).update({
+                          chats: userChats
+                        }).then((res) => {
+                          userDocument.get().then((doc) => {
+                            var userChats = doc.data().chats;
+                            userChats.push(this.mapData.postInfo.id);
+                            userDocument.update({
+                              chats: userChats
+                            }).then((res) => {
+                              var title = "Ride Update";
+                              var body = "";
+                              var type = "Group Message";
+                              if(this.capacity>0)
+                                body = this.userId + " has joined the ride!";
+                              else
+                                body = this.userId + " has added you to their ride!";
+                              this.notifService.feedCloud(this.mapData.postInfo.id, this.userId, title, body, type).subscribe(res => {
+                                //finally after everything else has updated, send user to chat component
 
-                            ///***
+                                ///***
 
-                            this.transferService.setData(this.mapData.postInfo.id);
-                            this.buttonText = 'View chat';
-                            gridContainer.visibility = 'visible';
-                            activityIndicator.busy = false;
-                            this.router.navigate(['chat']);
+                                this.transferService.setData(this.mapData.postInfo.id);
+                                this.buttonText = 'View chat';
+                                gridContainer.visibility = 'visible';
+                                activityIndicator.busy = false;
+                                this.router.navigate(['chat']);
+                              });
+                            })
                             //***/
-                          })
+                         
                         })
                       })
                     })
