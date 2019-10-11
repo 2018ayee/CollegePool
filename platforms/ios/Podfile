@@ -1,0 +1,137 @@
+use_frameworks!
+
+target "CollegePool" do
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/@nstudio/nativescript-checkbox/platforms/ios/Podfile
+pod 'BEMCheckBox', '~> 1.4.1'
+
+# End Podfile
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/@nstudio/nativescript-floatingactionbutton/platforms/ios/Podfile
+pod 'MNFloatingActionButton', '~> 2.0'
+
+# End Podfile
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-braintree/platforms/ios/Podfile
+pod 'BraintreeDropIn'
+pod 'Braintree/Apple-Pay'
+pod 'Braintree/PayPal'
+pod 'Braintree/Venmo'
+pod 'Braintree/3D-Secure'
+pod 'CardIO'
+# End Podfile
+
+post_install do |installer|
+  post_installnativescript_dialog_0 installer
+end
+
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-facebook/platforms/ios/Podfile
+pod 'FBSDKCoreKit', '~> 5.0'
+pod 'FBSDKLoginKit', '~> 5.0'
+pod 'FBSDKShareKit', '~> 5.0'
+
+# End Podfile
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-google-maps-sdk/platforms/ios/Podfile
+source 'https://github.com/CocoaPods/Specs.git'
+
+pod 'GoogleMaps'
+# End Podfile
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-image-cache-it/platforms/ios/Podfile
+pod 'SDWebImage', '~>5.0'
+
+# End Podfile
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-imagecropper/platforms/ios/Podfile
+pod 'TOCropViewController','2.4.0'
+
+# End Podfile
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-imagepicker/platforms/ios/Podfile
+pod 'QBImagePickerController', '~> 3.4.0'
+# End Podfile
+
+# NativeScriptPlatformSection /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-plugin-firebase/platforms/ios/Podfile with 9.0
+platform :ios, '9.0'
+# End NativeScriptPlatformSection
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-plugin-firebase/platforms/ios/Podfile
+# platform :ios, '9.0'
+
+# With NativeScript < 5.2 we can't bump Firebase/Core beyond 5.15.0, but with 5.2+ we can
+pod 'Firebase/Core', '~> 6.2.0'
+
+# Authentication
+pod 'Firebase/Auth'
+
+# Realtime DB
+#pod 'Firebase/Database'
+
+# Cloud Firestore (sticking to 0.14 for now because of build error - see https://github.com/firebase/firebase-ios-sdk/issues/2177)
+#pod 'FirebaseFirestore', '~> 0.14.0'
+# .. unless the modern build system is supported, then we can use the latest version (NativeScript 5.2+)
+pod 'Firebase/Firestore'
+
+# Remote Config
+#pod 'Firebase/RemoteConfig'
+
+# Performance Monitoring
+pod 'Firebase/Performance'
+
+# Crashlytics
+#pod 'Fabric'
+#pod 'Crashlytics'
+
+
+# Firebase Cloud Messaging (FCM)
+pod 'Firebase/Messaging'
+
+# Firebase In-App Messaging (supported on NativeScript 5.2+)
+#pod 'Firebase/InAppMessagingDisplay'
+
+# Firebase Cloud Storage
+pod 'Firebase/Storage'
+
+# Firebase Cloud Functions
+pod 'Firebase/Functions'
+
+# AdMob
+#pod 'Firebase/AdMob'
+
+# Dynamic Links
+#pod 'Firebase/DynamicLinks'
+
+# ML Kit
+#pod 'Firebase/MLVision'
+#pod 'Firebase/MLVisionTextModel'
+#pod 'Firebase/MLVisionBarcodeModel'
+#pod 'Firebase/MLVisionFaceModel'
+#pod 'Firebase/MLVisionLabelModel'
+#pod 'Firebase/MLModelInterpreter'
+#pod 'Firebase/MLNaturalLanguage'
+#pod 'Firebase/MLNLLanguageID'
+#pod 'Firebase/MLCommon'
+#pod 'Firebase/MLNLSmartReply'
+
+# Facebook Authentication
+#pod 'FBSDKCoreKit'
+#pod 'FBSDKLoginKit'
+
+# Google Authentication
+#pod 'GoogleSignIn'
+# End Podfile
+
+# Begin Podfile - /Users/ashwin/Downloads/coding/projects/CollegePool/node_modules/nativescript-dialog/platforms/ios/Podfile
+pod 'SDCAlertView', '~> 10.0' 
+
+def post_installnativescript_dialog_0 (installer)
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '5.0'
+    end
+  end
+end
+
+# End Podfile
+end
