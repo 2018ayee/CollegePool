@@ -113,7 +113,7 @@ export class PostingInfoComponent implements OnInit {
         })
         firebase.firestore.collection('postings').doc(this.mapData.postInfo.id).get().then((doc) => {
         	if(doc.data().capacity > 0){
-        	  this.buttonText = 'Join';
+            this.buttonText = 'Join';
           }
           else{
             this.buttonText = 'Give Ride';
@@ -165,21 +165,21 @@ export class PostingInfoComponent implements OnInit {
   onMapReady(event) {
   	this.mapView = event.object;
 
-	// this.latitude = (this.startLat + this.endLat) / 2.0;
-	// this.longitude = (this.startLng + this.endLng) / 2.0;
-  	this.addMarker(this.startLat, this.startLng, this.mapData.postInfo.data.startAddress, this.mapData.postInfo.data.startFormatted, 0);
-	  this.addMarker(this.endLat, this.endLng, this.mapData.postInfo.data.endAddress, this.mapData.postInfo.data.endFormatted, 1);
+    // this.latitude = (this.startLat + this.endLat) / 2.0;
+    // this.longitude = (this.startLng + this.endLng) / 2.0;
+    this.addMarker(this.startLat, this.startLng, this.mapData.postInfo.data.startAddress, this.mapData.postInfo.data.startFormatted, 0);
+    this.addMarker(this.endLat, this.endLng, this.mapData.postInfo.data.endAddress, this.mapData.postInfo.data.endFormatted, 1);
 
-  	if(isAndroid) {
-    		var builder = new com.google.android.gms.maps.model.LatLngBounds.Builder();
-  		this.mapView.findMarker(function (marker) { builder.include(marker.android.getPosition()); return false});
-  		var bounds = builder.build();
-  		var cu = com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds(bounds, 150);
-  		this.mapView.gMap.animateCamera(cu);
-  	}
-  	else if(isIOS) {
-  		var update = GMSCameraUpdate.fitBoundsWithPadding(bounds, 150); this.mapView.gMap.moveCamera(update);
-  	}
+    if(isAndroid) {
+      var builder = new com.google.android.gms.maps.model.LatLngBounds.Builder();
+      this.mapView.findMarker(function (marker) { builder.include(marker.android.getPosition()); return false});
+      var bounds = builder.build();
+      var cu = com.google.android.gms.maps.CameraUpdateFactory.newLatLngBounds(bounds, 150);
+      this.mapView.gMap.animateCamera(cu);
+    }
+    else if(isIOS) {
+      var update = GMSCameraUpdate.fitBoundsWithPadding(bounds, 150); this.mapView.gMap.moveCamera(update);
+    }
 
   }
 
@@ -195,10 +195,10 @@ export class PostingInfoComponent implements OnInit {
   }
 
   onNavBtnTap() {
-  if(this.router.canGoBack)
-    this.router.back();
-  else
-    this.router.navigate(['navigation'], {clearHistory: true})
+    if(this.router.canGoBack)
+      this.router.back();
+    else
+      this.router.navigate(['navigation'], {clearHistory: true})
   }
 
   deleteFiles() {
@@ -206,37 +206,37 @@ export class PostingInfoComponent implements OnInit {
       // the full path of an existing file in your Firebase storage
       remoteFullPath: 'postings/' + this.mapData.postInfo.id + '/maps/large_map.png'
     }).then(
-        () => {
-          console.log("File deleted.");
-        },
-        (error) => {
-          console.log("File deletion Error: " + error);
-        }
+    () => {
+      console.log("File deleted.");
+    },
+    (error) => {
+      console.log("File deletion Error: " + error);
+    }
     );
     firebase.storage.deleteFile({
       // the full path of an existing file in your Firebase storage
       remoteFullPath: 'postings/' + this.mapData.postInfo.id + '/maps/small_map.png'
     }).then(
-        () => {
-          console.log("File deleted.");
-          this.router.navigate(['navigation'], {clearHistory: true})
-        },
-        (error) => {
-          console.log("File deletion Error: " + error);
-        }
+    () => {
+      console.log("File deleted.");
+      this.router.navigate(['navigation'], {clearHistory: true})
+    },
+    (error) => {
+      console.log("File deletion Error: " + error);
+    }
     );
   }
 
   promptDelete() {
     dialogs.confirm({
-        title: "Confirm delete",
-        message: "Are you sure you want to delete this post?",
-        okButtonText: "Confirm",
-        cancelButtonText: "Cancel",
+      title: "Confirm delete",
+      message: "Are you sure you want to delete this post?",
+      okButtonText: "Confirm",
+      cancelButtonText: "Cancel",
     }).then(result => {
-        // result argument is boolean
-        if(result)
-          this.onDelete();
+      // result argument is boolean
+      if(result)
+        this.onDelete();
     });
   }
 
@@ -250,7 +250,7 @@ export class PostingInfoComponent implements OnInit {
         let userPosts = doc.data().posts;
         const index = userPosts.indexOf(this.mapData.postInfo.id, 0);
         if (index > -1) {
-           userPosts.splice(index, 1);
+          userPosts.splice(index, 1);
         }
 
         userDocument.update({
@@ -258,15 +258,15 @@ export class PostingInfoComponent implements OnInit {
         }).then(async (res) => {
           await chatDocument.get().then(async (doc) => {
             if(doc.data()){
-            let users = doc.data().users;
-            for(var i = 0; i < users.length; i++) {
-              let chatUsers = users;
-              await this.removeChat(chatUsers, i);
+              let users = doc.data().users;
+              for(var i = 0; i < users.length; i++) {
+                let chatUsers = users;
+                await this.removeChat(chatUsers, i);
+              }
+              chatDocument.delete();
             }
-            chatDocument.delete();
-          }
-          this.deleteFiles();
-        })
+            this.deleteFiles();
+          })
         }).catch((err) => {
           console.log(err);
         })
@@ -284,7 +284,7 @@ export class PostingInfoComponent implements OnInit {
       let userChats = doc.data().chats;
       const index = userChats.indexOf(this.mapData.postInfo.id);
       if (index > -1) {
-         userChats.splice(index, 1);
+        userChats.splice(index, 1);
       }
       await firebase.firestore.collection('users').doc(id).update({
         chats: userChats
@@ -347,106 +347,106 @@ export class PostingInfoComponent implements OnInit {
               })
             }
             else {
-              
-              
-                  //update the user's balance
-                  //update the post's capacity
-                  firebase.firestore.collection('postings').doc(this.mapData.postInfo.id).get().then((doc) => {
-                    firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc2) => {
-                      this.priceService.noUpdate(doc.data().distance, doc.data().riders, doc.data().capacity, doc2.data().currTime, doc.data().timeStamp, doc.data().unixDate).subscribe(res => {
-                        var newbalance = doc2.data().balance;
-                        console.log("old balance: "+newbalance); 
-                        var num = 0-parseFloat(res.substring(1));
-                        var num_string_temp = res.substring(1);
-                        var num_string = "-"+num_string_temp.substring(0, num_string_temp.length-3) +num_string_temp.substring(num_string_temp.length-2);
-                        //console.log(num_string);
-                        //console.log("num: "+num);
-                        //newbalance[num_string] = num;
-                        //console.log("new balance: "+newbalance);
-                        console.log(this.mapData.postInfo.data.uid);
-                        userDocument.update({
-                          ['balance.' + num_string]: this.mapData.postInfo.data.uid
-                        });
 
-                        postingDocument.update({
-                          riders: (doc.data().riders+1)
-                        })
-                    }); 
-                  });
+
+              //update the user's balance
+              //update the post's capacity
+              firebase.firestore.collection('postings').doc(this.mapData.postInfo.id).get().then((doc) => {
+                firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc2) => {
+                  this.priceService.noUpdate(doc.data().distance, doc.data().riders, doc.data().capacity, doc2.data().currTime, doc.data().timeStamp, doc.data().unixDate).subscribe(res => {
+                    var newbalance = doc2.data().balance;
+                    console.log("old balance: "+newbalance); 
+                    var num = 0-parseFloat(res.substring(1));
+                    var num_string_temp = res.substring(1);
+                    var num_string = "-"+num_string_temp.substring(0, num_string_temp.length-3) +num_string_temp.substring(num_string_temp.length-2);
+                    //console.log(num_string);
+                    //console.log("num: "+num);
+                    //newbalance[num_string] = num;
+                    //console.log("new balance: "+newbalance);
+                    console.log(this.mapData.postInfo.data.uid);
+                    userDocument.update({
+                      ['balance.' + num_string]: this.mapData.postInfo.data.uid
+                    });
+
+                    postingDocument.update({
+                      riders: (doc.data().riders+1)
+                    })
+                  }); 
                 });
+              });
 
-                  //chat does not exist, so create and add both post user and current user
-                  var driver = ""
-                  if(this.buttonText === 'Join')
-                    driver = this.mapData.postInfo.id;
-                  else if(this.buttonText === 'Give Ride')
-                    driver = this.userId;
-                  firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).set({
-                    users: [{uid: this.mapData.postInfo.data.uid, displayName: this.mapData.postItem.username}, {uid: this.userId, displayName: this.currentUserName}],
-                    chats: [], 
-                    driver: driver, 
-                    expired: false,
+              //chat does not exist, so create and add both post user and current user
+              var driver = ""
+              if(this.buttonText === 'Join')
+                driver = this.mapData.postInfo.id;
+              else if(this.buttonText === 'Give Ride')
+                driver = this.userId;
+              firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).set({
+                users: [{uid: this.mapData.postInfo.data.uid, displayName: this.mapData.postItem.username}, {uid: this.userId, displayName: this.currentUserName}],
+                chats: [], 
+                driver: driver, 
+                expired: false,
+              }).then((res) => {
+                // chat_id, user_id, title, body, type
+
+                firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc) => {
+                  const userTokens = this.currentUser.tokens;
+                  const otherUserTokens = doc.data().tokens;
+                  const newTokens = userTokens.concat(otherUserTokens);
+                  firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).update({
+                    tokens: Array.from(new Set(newTokens))
+                  })
+                  var userChats = doc.data().chats;
+                  userChats.push(this.mapData.postInfo.id);
+                  firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).update({
+                    chats: userChats
                   }).then((res) => {
-                    // chat_id, user_id, title, body, type
-                    
-                      firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).get().then((doc) => {
-                        const userTokens = this.currentUser.tokens;
-                        const otherUserTokens = doc.data().tokens;
-                        const newTokens = userTokens.concat(otherUserTokens);
-                        firebase.firestore.collection('chats').doc(this.mapData.postInfo.id).update({
-                          tokens: Array.from(new Set(newTokens))
-                        })
-                        var userChats = doc.data().chats;
-                        userChats.push(this.mapData.postInfo.id);
-                        firebase.firestore.collection('users').doc(this.mapData.postInfo.data.uid).update({
-                          chats: userChats
-                        }).then((res) => {
-                          userDocument.get().then((doc) => {
-                            var userChats = doc.data().chats;
-                            userChats.push(this.mapData.postInfo.id);
-                            userDocument.update({
-                              chats: userChats
-                            }).then((res) => {
-                              var title = "Ride Update";
-                              var body = "";
-                              var type = "Group Message";
-                              if(this.capacity>0)
-                                body = this.username + " has joined the ride!";
-                              else
-                                body = this.username + " has added you to their ride!";
-                              this.notifService.feedCloud(this.mapData.postInfo.id, this.userId, title, body, type).subscribe(res => {
-                                //finally after everything else has updated, send user to chat component
+                    userDocument.get().then((doc) => {
+                      var userChats = doc.data().chats;
+                      userChats.push(this.mapData.postInfo.id);
+                      userDocument.update({
+                        chats: userChats
+                      }).then((res) => {
+                        var title = "Ride Update";
+                        var body = "";
+                        var type = "Group Message";
+                        if(this.capacity>0)
+                          body = this.currentUserName + " has joined the ride!";
+                        else
+                          body = this.currentUserName + " has added you to their ride!";
+                        this.notifService.feedCloud(this.mapData.postInfo.id, this.userId, title, body, type).subscribe(res => {
+                          //finally after everything else has updated, send user to chat component
 
-                                ///***
+                          ///***
 
-                                this.transferService.setData(this.mapData.postInfo.id);
-                                this.buttonText = 'View chat';
-                                gridContainer.visibility = 'visible';
-                                activityIndicator.busy = false;
-                                this.router.navigate(['chat']);
-                              });
-                            })
-                            //***/
-                         
-                        })
+                          this.transferService.setData(this.mapData.postInfo.id);
+                          this.buttonText = 'View chat';
+                          gridContainer.visibility = 'visible';
+                          activityIndicator.busy = false;
+                          this.router.navigate(['chat']);
+                        });
                       })
+                      //***/
+
                     })
                   })
+                })
+              })
 
-                }
-                
+            }
 
 
-              
+
+
             
-            });
-          }
-          else{
-            console.log("im going back");
-            activityIndicator.busy = false;
-            this.router.back();
-          }
-        });
-    }
-  }
+          });
+}
+else{
+  console.log("im going back");
+  activityIndicator.busy = false;
+  this.router.back();
+}
+});
+}
+}
 }
